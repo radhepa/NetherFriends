@@ -110,7 +110,10 @@
     "Wart grows slowly on soul sand. Everything good here grows slowly. Except gossip.",
     "Outsiders think we are sad. We are not sad. We are busy. Remembering is a great deal of work.",
     "A Hollowed walked past the valley edge a while ago. Nobody said anything. You do not greet them. They would not know their own name.",
-    "Ash on the lane again. The Ashwardens say it means nothing. The Ashwardens say that about most things. It is their job."
+    "Ash on the lane again. The Ashwardens say it means nothing. The Ashwardens say that about most things. It is their job.",
+    "The Cairnback on the terrace has eaten the good wart again. {neighbour} says it is a sign. It is a sign of a hungry Cairnback.",
+    "Walk slower. The Cairnbacks set the pace here, and they are never late, because they never go anywhere.",
+    {"text": "I sat on a Cairnback once. It did not go anywhere. It was still the best day.", "when": {"child": true}}
   ],
 
   "topics": [
@@ -260,6 +263,16 @@
       {"text": "You are Kept. I will say your name when I rise, when I eat and when I lie down. You will not be finished while I am here.", "when": {"level": [5, 5]}, "replies": [
         {"ask": "Thank you.", "text": "Do not thank me. Live a long while. It is easier to keep someone with a lot of stories.", "points": 1},
         {"ask": "And when you die?", "text": "Then you go on the Wall beside me, and a child chooses us both. They will have two to carry. They will manage.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "cairnbacks", "ask": "What are the Cairnbacks?", "when": {"child": false}, "lines": [
+      "A Cairnback carries a soul fire on its back that does not go out while it lives. We walk them at the head of every Vigil, so the dead can see the way.",
+      "They are slow. That is the point. Nobody hurries a procession, and nobody hurries a Cairnback. It saves a great many arguments.",
+      "Hold a torch to its shell and the torch comes away burning blue. Every lantern in the Vigil was lit that way. The Cairnback does not mind.",
+      {"text": "When a Cairnback dies, its fire goes out with it. We keep their names too. Someone has to.", "replies": [
+        {"ask": "You name them?", "text": "Of course. {neighbour} keeps the name of the old one, before this one. It was called Patience. It was not.", "points": 1},
+        {"ask": "It's only an animal.", "text": "So is everything, eventually. Then it is a name, and then it is only a name if nobody keeps it.", "points": -1}
       ]}
     ]},
 

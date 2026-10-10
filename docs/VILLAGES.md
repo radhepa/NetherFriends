@@ -35,6 +35,7 @@ or `#netherexpansion:village` for all of them).
 - **Homes** (4-5): smooth basalt on a bone plinth, polished basalt corners, a dark gable roof, warped doors, a
   soul-fire hearth, bedrolls (no beds: beds explode in the Nether), bookshelves, wither roses.
 - **Remembrancer's tower**, **brewery**, **wart terraces** (nether wart on soul sand), two **Ashwarden posts**.
+- **Cairnbacks**: one keeps its fire in the Hall of the Three; more graze the wart terraces.
 - Soul-soil lanes lit by soul lanterns on bone posts.
 
 ### Mooring (Magmari)
@@ -54,6 +55,7 @@ or `#netherexpansion:village` for all of them).
 - **Woven huts**: round huts of teal wool and warped planks with orange stitches and cone roofs of wool stairs.
 - **Dye house** (open, wool canopy, cauldrons, dye barrels) and a **lookout** (a small cap, a light, nets).
 - Ladders run up the front of every stalk and come out through a hatch in the deck. The Weft just climb.
+- **Silkgrubs** are kept on the home decks, at the dye house and on the Great Loom.
 
 ### Eave (Ghastkin)
 - **Great pillars** (3-4): a polished basalt core in rough basalt, rising about 18 blocks. A gallery runs round
@@ -63,6 +65,7 @@ or `#netherexpansion:village` for all of them).
   from every pod to the ground, and they can be climbed.
 - **Weeping Hall** (centre): tall walls of quartz with light-blue windows and a stepped blackstone roof. Inside,
   the pool of tears: real water, the only water in the Nether.
+- **Ashbells** drift under the pillars' galleries and over the pool in the Weeping Hall.
 
 ## Residents
 

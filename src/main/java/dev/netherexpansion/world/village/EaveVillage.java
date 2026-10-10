@@ -173,6 +173,14 @@ public class EaveVillage extends NetherVillage {
         }
         pod(b, -7, g, b.param(0, HOME), Direction.EAST, top - 2);
         pod(b, 7, g, b.param(1, HOME), Direction.WEST, top - 2);
+        // the Ashbells the Ghastkin tend, drifting under the gallery
+        ashbell(b, -4, 4, 2);
+        if (b.random.nextBoolean()) ashbell(b, 4, 3, -2);
+    }
+
+    /** One of the Eave's Ashbells. */
+    static void ashbell(Builder b, double x, double y, double z) {
+        b.spawn(NetherEntities.ASHBELL, x, y, z, a -> {});
     }
 
     /**
@@ -306,5 +314,6 @@ public class EaveVillage extends NetherVillage {
         ghastkin(b, -3, 0, -2, false);
         ghastkin(b, 3, 0, 2, false);
         if (b.random.nextBoolean()) ghastkin(b, 0, 0, -3, true);
+        ashbell(b, 3, 4, -3);
     }
 }

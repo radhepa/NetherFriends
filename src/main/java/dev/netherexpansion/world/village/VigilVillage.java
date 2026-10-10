@@ -224,6 +224,9 @@ public class VigilVillage extends NetherVillage {
         b.set(5, 0, -2, Kit.facing(Blocks.LECTERN, Direction.WEST));
         withren(b, -2, 0, -4, Withren.REMEMBRANCER, false);
         withren(b, 3, 0, 4, Withren.VILLAGER, false);
+        // the Hall's own Cairnbacks, keeping their fires beside the Three
+        cairnback(b, -4, 0, 3, false);
+        cairnback(b, 5, 0, 1, false);
     }
 
     /** A home: basalt walls on a bone plinth, polished basalt corners, a dark gable roof and a warped door. */
@@ -372,6 +375,16 @@ public class VigilVillage extends NetherVillage {
         b.set(0, 0, 0, Blocks.SOUL_SOIL);
         Kit.lampPost(b, 0, 1, 0, 2, BONE, Kit.soulLantern(false));
         if (b.random.nextBoolean()) withren(b, -3, 0, -3, Withren.VILLAGER, true);
+        // a Cairnback grazing the lower ring, sometimes with its young
+        cairnback(b, 3, 0, 0, false);
+        if (b.random.nextBoolean()) cairnback(b, -3, 0, 1, true);
+    }
+
+    /** One of the Vigil's Cairnbacks, the tortoises the Withren walk in their processions. */
+    static void cairnback(Builder b, double x, double y, double z, boolean young) {
+        b.spawn(NetherEntities.CAIRNBACK, x, y, z, c -> {
+            if (young) c.setAge(-24000);
+        });
     }
 
     /** An Ashwardens' post: a small bone-and-basalt watchtower with a warden at its foot. */

@@ -272,6 +272,8 @@ public class LoomVillage extends NetherVillage {
                 b.set(-2, s, 0, Blocks.WOOL.lightBlue());
                 b.set(-2, s + 1, 0, Blocks.WOOL.lightBlue());
                 weft(b, 0, s, 0, false, "Dyer");
+                silkgrub(b, 0, s, -2);
+                silkgrub(b, -1, s, 1);
             }
             case LOOKOUT -> {
                 b.fill(0, s, 0, 0, s + 4, 0, Kit.axis(Blocks.WARPED_STEM, Direction.Axis.Y));
@@ -288,6 +290,8 @@ public class LoomVillage extends NetherVillage {
             default -> {
                 hut(b, s);
                 weft(b, 0, s, 0, false);
+                silkgrub(b, -(r - 1), s, 0);
+                if (b.random.nextBoolean()) silkgrub(b, r - 1, s, 1);
                 if (b.random.nextInt(3) > 0) weft(b, -1, s, -r + 1, false);
                 if (b.random.nextInt(5) < 2) weft(b, 1, s, 1, true);
             }
@@ -329,5 +333,12 @@ public class LoomVillage extends NetherVillage {
         weft(b, 2, s, -2, false, "Weaver");
         weft(b, 0, s, -5, false, "Weaver|Spinner");
         if (b.random.nextBoolean()) weft(b, 3, s, 2, true);
+        silkgrub(b, -3, s, -1);
+        silkgrub(b, 4, s, 0);
+    }
+
+    /** One of the Loom's Silkgrubs, kept on the decks for their silk. */
+    static void silkgrub(Builder b, double x, double y, double z) {
+        b.spawn(NetherEntities.SILKGRUB, x, y, z, g -> {});
     }
 }

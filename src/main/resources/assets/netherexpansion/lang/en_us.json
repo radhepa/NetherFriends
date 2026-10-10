@@ -6,5 +6,11 @@
   "item.netherexpansion.withren_spawn_egg": "Withren Spawn Egg",
   "item.netherexpansion.magmari_spawn_egg": "Magmari Spawn Egg",
   "item.netherexpansion.weft_spawn_egg": "Weft Spawn Egg",
-  "item.netherexpansion.ghastkin_spawn_egg": "Ghastkin Spawn Egg"
+  "item.netherexpansion.ghastkin_spawn_egg": "Ghastkin Spawn Egg",
+  "entity.netherexpansion.cairnback": "Cairnback",
+  "entity.netherexpansion.silkgrub": "Silkgrub",
+  "entity.netherexpansion.ashbell": "Ashbell",
+  "item.netherexpansion.cairnback_spawn_egg": "Cairnback Spawn Egg",
+  "item.netherexpansion.silkgrub_spawn_egg": "Silkgrub Spawn Egg",
+  "item.netherexpansion.ashbell_spawn_egg": "Ashbell Spawn Egg"
 }

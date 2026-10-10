@@ -191,6 +191,29 @@ wardens).
    turns half the Ghastkin into ghasts; the Weft weave sixty black rows.
 4. **Now:** five kinds of village, ten grudges. The player arrives from the world where outsiders make Withers.
 
+## Creatures (in the game)
+
+One beast for each people that had none (the Piglins keep hoglins, the Magmari striders). Models in
+`tools/creatures/`. Each lives wild in its people's biome and is kept in its people's villages.
+
+- **Cairnback** (Withren, Soul Sand Valley): a slow tortoise whose high, stepped shell is plated in bone like a
+  cairn, with a bone bowl on top where a small soul fire burns as long as it lives. Hold a torch, lantern or campfire
+  to a grown one and it comes away relit as its soul version. Bred with nether wart. Armoured and hard to knock
+  about. The Withren walk them in their processions; every Hall of the Three keeps one, and they graze the wart
+  terraces. About 1.1 blocks tall, 1.4 long.
+- **Silkgrub** (Weft, Warped Forest): a fat teal caterpillar with glowing orange spots that lives in the wart and
+  spins silk. Shear its tufts for string (and now and then a cobweb); they grow back in three minutes, or at once if
+  you feed it warped roots. Bred with warped roots. It climbs like the Weft. They're kept on the Loom's decks, at
+  the dye house and the Great Loom. About 0.55 blocks tall, 1.3 long.
+- **Ashbell** (Ghastkin, Basalt Deltas): a pale drifter like a jellyfish of the air, half see-through, with a glow
+  at its heart and glowing beads on its trailing threads. It rings faintly as it drifts. Harmless; it can be led on
+  a lead. No ghast takes aim at anyone within 16 blocks of an Ashbell (a ghast that hears one remembers being kin),
+  so the Ghastkin lead them across open ground. They drift round the Eave's pillars and in the Weeping Hall. Not
+  bred. About 1.25 blocks from bell to thread tips.
+
+The young of the Cairnback and Silkgrub are the grown model at half size; a young Cairnback has no fire yet and a
+young Silkgrub no silk. The three peoples talk about their creatures (a topic each and some small talk).
+
 ## Conversation screen
 
 Built: Village Friends' layout in netherrack (see `CONVERSATION_UI.md`), with every line new (`DIALOGUE.md`,
@@ -204,5 +227,4 @@ quick hat clicks, Ghastkin chimes that fall through the line.
 Names: every resident has one from the moment the world generates them (see `world/Names.java`), with a job from
 the building they live in. Walking into a village shows its name ("Gildmaw Hold", "the Mooring of the Slow Glow").
 
-Next: creature species. Not built yet: trading for the four new peoples, the Ferrier's ferry (Travel), and the
-Story and Journal tabs.
+Not built yet: trading for the four new peoples, the Ferrier's ferry (Travel), and the Story and Journal tabs.

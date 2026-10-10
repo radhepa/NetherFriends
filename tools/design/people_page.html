@@ -73,6 +73,7 @@ section { display: grid; gap: 18px; }
 .magmari .view { background: radial-gradient(70% 80% at 50% 35%, #3a1a0c, var(--deep-2)); }
 .weft .view { background: radial-gradient(70% 80% at 50% 35%, #14304a, var(--deep-2)); }
 .ghastkin .view { background: radial-gradient(70% 80% at 50% 35%, #2e2d36, var(--deep-2)); }
+.creatures .view { background: radial-gradient(70% 80% at 50% 35%, #2a2430, var(--deep-2)); }
 @media (max-width: 760px) { .sheet { grid-template-columns: 1fr; } .view { height: 360px; } }
 .facts { display: grid; grid-template-columns: max-content 1fr; gap: 7px 14px; margin: 0; font-size: .95rem; }
 .facts dt { font: 500 .72rem/1.9 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
@@ -507,6 +508,33 @@ section { display: grid; gap: 18px; }
     </article>
   </section>
 
+  <section class="creatures" id="creatures">
+    <span class="eyebrow">Their beasts</span>
+    <h2>Three creatures</h2>
+    <p class="lede">The Piglins have their hoglins and the Magmari their striders. The other three peoples each keep a beast of their own, which lives wild in their biome and in their villages.</p>
+    <article class="sheet">
+      <div class="col">
+        <header><h3 id="creature-name">Cairnback</h3><span class="say" id="creature-say">the Withren's beast · Soul Sand Valley</span></header>
+        <canvas class="view" id="creature-view" aria-label="Creature model, drag to turn"></canvas>
+        <div class="variants" role="group" aria-label="Show creature">
+          <button class="btn" type="button" data-view="creature-view" data-mob="cairnback" aria-pressed="true">Cairnback</button>
+          <button class="btn" type="button" data-view="creature-view" data-mob="silkgrub" aria-pressed="false">Silkgrub</button>
+          <button class="btn" type="button" data-view="creature-view" data-mob="ashbell" aria-pressed="false">Ashbell</button>
+        </div>
+      </div>
+      <div class="col">
+        <dl class="facts">
+          <dt>Cairnback</dt><dd>The Withren's slow tortoise. Its high, stepped shell is plated in bone like a cairn, and a small soul fire burns in a bowl on top for as long as it lives. Hold a torch, lantern or campfire to it and it comes away relit with soul fire. Bred with nether wart. Every Hall of the Three keeps one; more graze the wart terraces.</dd>
+          <dt>Silkgrub</dt><dd>The Weft's fat teal caterpillar, with glowing orange spots. Shear its tufts for string; they grow back in three minutes, or at once if you feed it warped roots. It climbs like the Weft. Bred with warped roots. Kept on the Loom's decks.</dd>
+          <dt>Ashbell</dt><dd>The Ghastkin's pale drifter, like a jellyfish of the air, half see-through with a glow at its heart. It rings faintly as it goes and can be led on a lead. No ghast takes aim at anyone within 16 blocks of one: a ghast that hears an Ashbell remembers it was kin. It drifts round the Eave's pillars and over the pool of tears.</dd>
+          <dt>Young</dt><dd>Half size. A young Cairnback has no fire yet and a young Silkgrub no silk.</dd>
+        </dl>
+        <p class="quote">"A faint ringing in the smoke is an Ashbell. A scream is a ghast. It helps to learn the difference quickly."</p>
+      </div>
+    </article>
+    <div class="shots"><!--__CREATURESHOTS__--></div>
+  </section>
+
   <!-- FEUDS -------------------------------------------------------------------------------------- -->
   <section>
     <span class="eyebrow">How they get along</span>
@@ -854,12 +882,18 @@ function lineup() {
   });
 }
 
+const CREATURE_NOTES = {
+  cairnback: ['Cairnback', "the Withren's beast · Soul Sand Valley"],
+  silkgrub: ['Silkgrub', "the Weft's beast · Warped Forest"],
+  ashbell: ['Ashbell', "the Ghastkin's beast · Basalt Deltas"],
+};
 // ---- per-people turntables with variant buttons -----------------------------------------------------
 const STANDS = {
   'piglin-view': { mob: 'piglin', base: () => ground(32, 32, rackCanvas()), tint: 0xffd2c0 },
   'withren-view': { mob: 'withren', base: () => ground(32, 32, soulCanvas()), tint: 0xd8f2f2 },
   'weft-view': { mob: 'weft', base: () => ground(32, 32, nyliumCanvas()), tint: 0xd0ecf0 },
   'ghastkin-view': { mob: 'ghastkin', base: () => ground(32, 32, basaltCanvas()), tint: 0xe8e6f0 },
+  'creature-view': { mob: 'cairnback', base: () => ground(32, 32, soulCanvas()), tint: 0xe6e2ee },
   'magmari-view': { mob: 'magmari', base: () => { const g = new THREE.Group(); g.add(ground(16, 16, basaltCanvas(), 20)); const l = lavaSea(160); g.add(l); g.userData.lava = l; return g; }, tint: 0xffc8a0 },
 };
 function turntables() {
@@ -874,6 +908,11 @@ function turntables() {
     document.querySelectorAll(`.variants .btn[data-view="${id}"]`).forEach(b => b.addEventListener('click', () => {
       view.turn.remove(view.mob); view.mob = buildMob(b.dataset.mob); view.turn.add(view.mob); view.resize();
       document.querySelectorAll(`.variants .btn[data-view="${id}"]`).forEach(o => o.setAttribute('aria-pressed', o === b));
+      const about = CREATURE_NOTES[b.dataset.mob];
+      if (id === 'creature-view' && about) {
+        document.getElementById('creature-name').textContent = about[0];
+        document.getElementById('creature-say').textContent = about[1];
+      }
     }));
   }
 }

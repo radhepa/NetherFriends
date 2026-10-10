@@ -36,6 +36,9 @@ PEOPLE = {
     "ghastkin": ("ghastkin", "ghastkin"),
     "ghastkin_female": ("ghastkin_female", "ghastkin_female"),
     "ghastkin_child": ("ghastkin_child", "ghastkin_child"),
+    "cairnback": ("cairnback", "cairnback"),
+    "silkgrub": ("silkgrub", "silkgrub"),
+    "ashbell": ("ashbell", "ashbell"),
 }
 
 
@@ -44,15 +47,19 @@ SHOTS_DIR = os.path.join(HERE, "shots")
 CAPTIONS_FILE = os.path.join(SHOTS_DIR, "captions.json")
 
 
-def shots_html(talk=False):
-    """The in-game photos: village ones, or (talk=True) the conversation window's, whose names start with talk-."""
+GROUPS = ("talk-", "creature-")
+
+
+def shots_html(group=""):
+    """The in-game photos of one group: "talk-" (the conversation window), "creature-", or "" for the villages."""
     if not os.path.exists(CAPTIONS_FILE):
         return ""
     with open(CAPTIONS_FILE, encoding="utf-8") as f:
         captions = json.load(f)
     out = []
     for name, (title, text) in captions.items():
-        if name.startswith("talk-") != talk:
+        mine = name.startswith(group) if group else not name.startswith(GROUPS)
+        if not mine:
             continue
         data = base64.b64encode(read(os.path.join(SHOTS_DIR, name + ".jpg"))).decode()
         out.append(f'<figure><img src="data:image/jpeg;base64,{data}" alt="{title}: {text}" loading="lazy">'
@@ -92,7 +99,8 @@ def main():
         page = f.read()
     page = page.replace("/*__DATA__*/null", json.dumps(data, separators=(",", ":")))
     page = page.replace("<!--__SHOTS__-->", shots_html())
-    page = page.replace("<!--__TALKSHOTS__-->", shots_html(talk=True))
+    page = page.replace("<!--__TALKSHOTS__-->", shots_html("talk-"))
+    page = page.replace("<!--__CREATURESHOTS__-->", shots_html("creature-"))
     os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
     with open(out, "w", encoding="utf-8") as f:
         f.write(page)

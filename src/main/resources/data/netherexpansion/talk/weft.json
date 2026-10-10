@@ -119,7 +119,10 @@
 
     "*click*",
     "*click... click* Hm. Yes.",
-    "*six eyes drift to the canopy, then back to you* The wart is thick. That is good."
+    "*six eyes drift to the canopy, then back to you* The wart is thick. That is good.",
+    "{neighbour}'s silkgrub crawled up the stalk again. It always finds the highest point. It has ambitions.",
+    "*click* Hold still. There is a silkgrub on your boot. There. Back to the deck, little one.",
+    {"text": "My silkgrub is called Thread. I have two arms and it has none, so I am winning.", "when": {"child": true}}
   ],
 
   "topics": [
@@ -266,6 +269,16 @@
         {"ask": "They are.", "text": "*click* Perhaps. The dye house would be empty without them. Choose: colour, or kindness.", "points": 0},
         {"ask": "I didn't say that.", "text": "Your face said it. Two-armed folk have very loud faces.", "points": 0},
         {"ask": "Every people does as it must.", "text": "*click click* A weft answer. Over and under. I like it.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "silkgrubs", "ask": "What are the silkgrubs?", "when": {"child": false}, "lines": [
+      "*click* Silkgrubs. They live in the wart and spin all day. Every thread of the Long Cloth began in a silkgrub's tufts. We only finish what they start.",
+      "Shear them gently and the silk grows back. Feed them warped roots and it grows back sooner. Two arms could manage it. Four is more graceful.",
+      "They climb as we do. We taught them, or they taught us. The Clothkeepers still argue about it. *click click*",
+      {"text": "A silkgrub is never killed for its silk. Anyone who does is not welcome on our decks.", "replies": [
+        {"ask": "I'd never hurt one.", "text": "*click* Good. They would not know to thank you. We do.", "points": 1},
+        {"ask": "It's just string.", "text": "Just string. The forest is just stems. *click* Words are cheap here. Thread is not.", "points": -1}
       ]}
     ]},
 

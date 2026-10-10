@@ -139,6 +139,24 @@ LOOT = {
 for name, t in LOOT.items():
     write(os.path.join(DATA, NS, "loot_table", "chests", name + ".json"), t)
 
+# -- creature drops ----------------------------------------------------------------------------------------
+def drops(*entries):
+    """An entity loot table: each entry (item, min, max) rolls once, adults only."""
+    return {"type": "minecraft:entity", "pools": [{
+        "rolls": 1,
+        "entries": [item(name, 1, lo, hi)],
+        **({"conditions": [{"condition": "minecraft:random_chance", "chance": chance}]} if chance < 1 else {}),
+    } for (name, lo, hi, chance) in entries]}
+
+
+CREATURE_DROPS = {
+    "cairnback": drops(("minecraft:bone", 1, 3, 1), ("minecraft:bone_meal", 1, 2, 0.5)),
+    "silkgrub": drops(("minecraft:string", 0, 2, 1)),
+    "ashbell": drops(("minecraft:glowstone_dust", 0, 1, 1)),
+}
+for name, t in CREATURE_DROPS.items():
+    write(os.path.join(DATA, NS, "loot_table", "entities", name + ".json"), t)
+
 # -- entity tags ------------------------------------------------------------------------------------------
 write(os.path.join(DATA, "minecraft", "tags", "entity_type", "fall_damage_immune.json"), {"values": [f"{NS}:ghastkin"]})
 # the Wither leaves its own people alone
@@ -152,6 +170,9 @@ EGGS = {
     "magmari": ("#3a2420", "#ff7a1a", "#ffd166"),     # basalt hide, magma seams
     "weft": ("#262b52", "#17958c", "#ffb84a"),        # warped bark, teal weave, glowing eyes
     "ghastkin": ("#ebe8e2", "#a9c4cf", "#5e5b60"),    # ghast white, tear blue, ash silk
+    "cairnback": ("#e3dcc6", "#5a4d45", "#6fe3f0"),   # bone plates, scaly hide, soul fire
+    "silkgrub": ("#178c86", "#d9f2ee", "#ff9a3c"),    # teal hide, silk, shroomlight spots
+    "ashbell": ("#d8d3e0", "#a9a4b8", "#bfe9f5"),     # smoke-pale bell, threads, glowing beads
 }
 for i, (mob, (base, spots, accent)) in enumerate(EGGS.items()):
     spawn_egg(mob, base, spots, accent, seed=11 + i)
@@ -169,6 +190,12 @@ LANG = {
     "item.netherexpansion.magmari_spawn_egg": "Magmari Spawn Egg",
     "item.netherexpansion.weft_spawn_egg": "Weft Spawn Egg",
     "item.netherexpansion.ghastkin_spawn_egg": "Ghastkin Spawn Egg",
+    "entity.netherexpansion.cairnback": "Cairnback",
+    "entity.netherexpansion.silkgrub": "Silkgrub",
+    "entity.netherexpansion.ashbell": "Ashbell",
+    "item.netherexpansion.cairnback_spawn_egg": "Cairnback Spawn Egg",
+    "item.netherexpansion.silkgrub_spawn_egg": "Silkgrub Spawn Egg",
+    "item.netherexpansion.ashbell_spawn_egg": "Ashbell Spawn Egg",
 }
 write(os.path.join(ASSETS, "lang", "en_us.json"), LANG)
 print("data written")

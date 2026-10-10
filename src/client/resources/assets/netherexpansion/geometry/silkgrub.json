@@ -1,0 +1,458 @@
+{
+ "texture": [
+  64,
+  64
+ ],
+ "parts": [
+  {
+   "name": "segment_0",
+   "parent": "",
+   "pivot": [
+    0,
+    23,
+    -4.0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      26,
+      0
+     ],
+     "from": [
+      -4.0,
+      -7,
+      -2.0
+     ],
+     "size": [
+      8,
+      7,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      28
+     ],
+     "from": [
+      -3.5,
+      0,
+      -1
+     ],
+     "size": [
+      2,
+      1,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      28
+     ],
+     "from": [
+      1.5,
+      0,
+      -1
+     ],
+     "size": [
+      2,
+      1,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  },
+  {
+   "name": "silk_0",
+   "parent": "segment_0",
+   "pivot": [
+    0,
+    -7,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      22,
+      23
+     ],
+     "from": [
+      -3.5,
+      -2,
+      -1.5
+     ],
+     "size": [
+      7,
+      2,
+      3
+     ],
+     "inflate": 0.25,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "segment_1",
+   "parent": "",
+   "pivot": [
+    0,
+    23,
+    0.0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      0
+     ],
+     "from": [
+      -4.5,
+      -8,
+      -2.0
+     ],
+     "size": [
+      9,
+      8,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      28
+     ],
+     "from": [
+      -4.0,
+      0,
+      -1
+     ],
+     "size": [
+      2,
+      1,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      28
+     ],
+     "from": [
+      2.0,
+      0,
+      -1
+     ],
+     "size": [
+      2,
+      1,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  },
+  {
+   "name": "silk_1",
+   "parent": "segment_1",
+   "pivot": [
+    0,
+    -8,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      23
+     ],
+     "from": [
+      -4.0,
+      -2,
+      -1.5
+     ],
+     "size": [
+      8,
+      2,
+      3
+     ],
+     "inflate": 0.25,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "segment_2",
+   "parent": "",
+   "pivot": [
+    0,
+    23,
+    4.0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      12
+     ],
+     "from": [
+      -4.0,
+      -7,
+      -2.0
+     ],
+     "size": [
+      8,
+      7,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      28
+     ],
+     "from": [
+      -3.5,
+      0,
+      -1
+     ],
+     "size": [
+      2,
+      1,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      0,
+      28
+     ],
+     "from": [
+      1.5,
+      0,
+      -1
+     ],
+     "size": [
+      2,
+      1,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  },
+  {
+   "name": "silk_2",
+   "parent": "segment_2",
+   "pivot": [
+    0,
+    -7,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      42,
+      23
+     ],
+     "from": [
+      -3.5,
+      -2,
+      -1.5
+     ],
+     "size": [
+      7,
+      2,
+      3
+     ],
+     "inflate": 0.25,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "segment_3",
+   "parent": "",
+   "pivot": [
+    0,
+    23,
+    7.5
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      44,
+      12
+     ],
+     "from": [
+      -3.0,
+      -6,
+      -1.5
+     ],
+     "size": [
+      6,
+      6,
+      3
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "segment_4",
+   "parent": "",
+   "pivot": [
+    0,
+    23,
+    10.0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      50,
+      0
+     ],
+     "from": [
+      -2.0,
+      -4,
+      -1.0
+     ],
+     "size": [
+      4,
+      4,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "",
+   "pivot": [
+    0,
+    23,
+    -6.5
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      24,
+      12
+     ],
+     "from": [
+      -3.5,
+      -6,
+      -3
+     ],
+     "size": [
+      7,
+      6,
+      3
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      8,
+      28
+     ],
+     "from": [
+      -2.5,
+      -2,
+      -4
+     ],
+     "size": [
+      1,
+      2,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      8,
+      28
+     ],
+     "from": [
+      1.5,
+      -2,
+      -4
+     ],
+     "size": [
+      1,
+      2,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  }
+ ]
+}

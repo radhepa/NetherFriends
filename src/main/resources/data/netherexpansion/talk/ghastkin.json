@@ -114,7 +114,10 @@
     {"text": "Do you want to play drift? You stand still, I float round you, and you have to guess where I am.", "when": {"child": true}, "replies": [
       {"ask": "*close your eyes and guess*", "text": "Wrong! I was right behind you. Again, again!", "points": 1},
       {"ask": "I'm too busy.", "text": "Oh. That's all right. Grown-ups always are. Even the ones who float.", "points": -1}
-    ]}
+    ]},
+    "{neighbour} sang to an Ashbell and it rang back. Or it bumped a lantern. We've agreed it sang.",
+    "A faint ringing in the smoke is an Ashbell. A scream is a ghast. It helps to learn the difference quickly.",
+    {"text": "I'm counting an Ashbell's beads. I got to nine and then it drifted off. I'll start again. I always start again.", "when": {"child": true}}
   ],
 
   "topics": [
@@ -253,6 +256,16 @@
         {"ask": "Remember me instead.", "text": "Then I'd grieve you badly, a little at a time, for ever. That's how ghasts start. ...For you, I'd nearly risk it.", "points": 1},
         {"ask": "Cry for me, properly.", "text": "Then I will. Once. All the way. I promise it will be the best cry anyone ever let go of.", "points": 2}
       ]}
+    ]},
+
+    {"id": "ashbells", "ask": "What are the Ashbells?", "when": {"child": false}, "lines": [
+      "The Ashbells drift through the smoke and ring, very softly. We tend them and they keep us company. They never ask for anything. It's restful.",
+      {"text": "A ghast that hears an Ashbell remembers it was kin, once, and holds its fire. So we lead one on a cord when we cross open ground.", "replies": [
+        {"ask": "Could I lead one?", "text": "If you're gentle. A lead, and no pulling. Then the ghasts will leave you be too. That's our secret. Well. Now it's ours.", "points": 1},
+        {"ask": "Just shoot the ghasts.", "text": "Oh. Yes, I suppose you could. They were someone, you know. Most of them. Never mind.", "points": -2}
+      ]},
+      "Their threads glow at the tips. Children try to count the beads. Nobody has ever finished. Something always drifts off, the bell or the child.",
+      "There was an Ashbell that followed someone I knew, everywhere. After, it stayed by the pool for the longest time. It's still there, I think. Anyway."
     ]},
 
     {"id": "kid_eyes", "ask": "Why are your eyes open?", "when": {"child": true}, "lines": [

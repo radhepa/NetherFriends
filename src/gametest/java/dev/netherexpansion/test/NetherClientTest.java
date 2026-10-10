@@ -5,7 +5,10 @@ import java.util.List;
 
 import dev.netherexpansion.NetherExpansion;
 import dev.netherexpansion.client.TalkScreen;
+import dev.netherexpansion.entity.Ashbell;
+import dev.netherexpansion.entity.Cairnback;
 import dev.netherexpansion.entity.NetherEntities;
+import dev.netherexpansion.entity.Silkgrub;
 import dev.netherexpansion.entity.People;
 import dev.netherexpansion.talk.Bonds;
 import dev.netherexpansion.talk.Folk;
@@ -27,7 +30,13 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Ghast;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.status.ChunkStatus;
@@ -45,7 +54,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
  * Drives the real game. "Peoples": every look of every people in a lit pen, photographed. "Villages": each kind
  * of village is found by natural world generation in a fresh Nether (as /locate would), visited, checked for
  * residents (each with a name and a job) and photographed from a few sides. "Talk": a conversation with each people,
- * through the real window: greeting, a topic, a gift and a level-up. Screenshots land in build/run/clientGameTest/screenshots.
+ * through the real window: greeting, a topic, a gift and a level-up. "Creatures": the Cairnback, Silkgrub and Ashbell,
+ * photographed, then each one's use tried for real (relighting, shearing, calming a ghast). Screenshots land in build/run/clientGameTest/screenshots.
  *   gradlew runClientGameTest -PtestHeap=3g [-PnetherTests=Villages]
  */
 @SuppressWarnings("UnstableApiUsage")
@@ -88,6 +98,7 @@ public class NetherClientTest implements FabricClientGameTest {
             }
             if (wanted("Peoples")) peoples(ctx, world, server);
             if (wanted("Talk")) talk(ctx, world, server);
+            if (wanted("Creatures")) creatures(ctx, world, server);
             if (wanted("Villages")) villages(ctx, world, server);
         }
     }
@@ -245,6 +256,84 @@ public class NetherClientTest implements FabricClientGameTest {
         System.out.println("[netherexpansion] talk:" + System.lineSeparator() + String.join(System.lineSeparator(), report));
     }
 
+    // -- the creatures ----------------------------------------------------------------------------------------------
+
+    void creatures(ClientGameTestContext ctx, TestSingleplayerContext world, TestServerContext server) {
+        server.runCommand("tp @a 0 150 -10 0 10");
+        world.getConnection().waitForChunksRender();
+        ctx.waitTicks(20);
+        for (String cmd : List.of("fill -10 149 -8 10 149 12 blackstone", "fill -10 150 -8 10 160 12 air", "fill -10 150 12 10 156 12 nether_bricks",
+                "kill @e[type=!player]", "gamemode survival @a", "clear @a")) {
+            server.runCommand(cmd);
+        }
+        // a lineup in one row: grown and young of each, the Ashbell hanging in the air
+        server.runCommand("summon netherexpansion:cairnback -5 150 3 {NoAI:1b,PersistenceRequired:1b,Rotation:[180f,0f]}");
+        server.runCommand("summon netherexpansion:cairnback -2.5 150 3 {NoAI:1b,PersistenceRequired:1b,Rotation:[180f,0f],Age:-24000}");
+        server.runCommand("summon netherexpansion:silkgrub 0.5 150 3 {NoAI:1b,PersistenceRequired:1b,Rotation:[150f,0f]}");
+        server.runCommand("summon netherexpansion:silkgrub 2.5 150 3 {NoAI:1b,PersistenceRequired:1b,Rotation:[150f,0f],Age:-24000}");
+        server.runCommand("summon netherexpansion:ashbell 5 151.5 3 {NoAI:1b,PersistenceRequired:1b,Rotation:[180f,0f]}");
+        world.getConnection().waitForClientboundEntityUpdates(NetherEntities.ASHBELL);
+        ctx.waitTicks(40);
+        String sizes = ctx.computeOnClient(client -> {
+            List<String> out = new ArrayList<>();
+            for (LivingEntity e : client.level.getEntitiesOfClass(LivingEntity.class, new AABB(-10, 148, -8, 10, 160, 12), e -> !(e instanceof net.minecraft.world.entity.player.Player))) {
+                out.add(e.getType().getDescription().getString() + (e.isBaby() ? " young" : "") + " scale " + e.getScale() + " at x " + e.getX());
+            }
+            return String.join("; ", out);
+        });
+        System.out.println("[netherexpansion] creature sizes: " + sizes);
+        server.runCommand("tp @a 0 152.5 -5 0 15");
+        ctx.waitTicks(20);
+        shoot(ctx, "nether-creatures-1-lineup");
+        server.runCommand("tp @a 1.5 151 -0.5 0 20");
+        ctx.waitTicks(15);
+        shoot(ctx, "nether-creatures-2-close");
+        List<String> report = new ArrayList<>();
+        String result = server.computeOnServer(srv -> {
+            var level = srv.overworld();
+            ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+            AABB pen = new AABB(-10, 148, -8, 10, 160, 12);
+            List<String> out = new ArrayList<>();
+            // a torch held to a grown Cairnback comes away a soul torch
+            Cairnback cairnback = level.getEntitiesOfClass(Cairnback.class, pen, c -> !c.isBaby()).getFirst();
+            player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.TORCH, 3));
+            player.interactOn(cairnback, InteractionHand.MAIN_HAND, cairnback.position());
+            int soul = player.getInventory().countItem(Items.SOUL_TORCH);
+            check(soul == 1 && player.getMainHandItem().getCount() == 2, "a Cairnback relit " + soul + " torches");
+            out.add("cairnback: 1 torch relit as a soul torch");
+            // shears take a grown Silkgrub's silk as string; warped roots grow it back
+            Silkgrub grub = level.getEntitiesOfClass(Silkgrub.class, pen, g -> !g.isBaby()).getFirst();
+            player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.SHEARS));
+            player.interactOn(grub, InteractionHand.MAIN_HAND, grub.position());
+            int string = level.getEntitiesOfClass(ItemEntity.class, pen, i -> i.getItem().is(Items.STRING)).stream().mapToInt(i -> i.getItem().getCount()).sum();
+            check(string >= 2 && grub.silk() < 0.01F, "shearing gave " + string + " string, silk " + grub.silk());
+            player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.WARPED_ROOTS));
+            player.interactOn(grub, InteractionHand.MAIN_HAND, grub.position());
+            check(grub.silk() > 0.99F, "warped roots didn't grow the silk back");
+            out.add("silkgrub: sheared for " + string + " string, regrown with warped roots");
+            // a ghast won't take aim at anyone near an Ashbell, and will again once it's gone
+            Ghast ghast = EntityTypes.GHAST.create(level, net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+            ghast.snapTo(0, 158, 8, 0, 0);
+            ghast.setNoAi(true);
+            level.addFreshEntity(ghast);
+            ghast.setTarget(player);
+            check(ghast.getTarget() == null, "a ghast took aim beside an Ashbell");
+            level.getEntitiesOfClass(Ashbell.class, pen, a -> true).forEach(a -> a.discard());
+            ghast.setTarget(player);
+            check(ghast.getTarget() == player, "a ghast wouldn't take aim even with no Ashbell near");
+            ghast.discard();
+            out.add("ashbell: a ghast held its fire while one was near");
+            return String.join(System.lineSeparator(), out);
+        });
+        report.add(result);
+        ctx.waitTicks(10);
+        shoot(ctx, "nether-creatures-3-sheared");
+        server.runCommand("kill @e[type=!player]");
+        server.runCommand("gamemode creative @a");
+        server.runCommand("clear @a");
+        System.out.println("[netherexpansion] creatures:" + System.lineSeparator() + String.join(System.lineSeparator(), report));
+    }
+
     // -- the villages ----------------------------------------------------------------------------------------------
 
     void villages(ClientGameTestContext ctx, TestSingleplayerContext world, TestServerContext server) {
@@ -300,6 +389,18 @@ public class NetherClientTest implements FabricClientGameTest {
                 return out;
             });
             for (String f : folk) check(!f.startsWith("!") && !f.endsWith("!village"), village + ": resident without a proper profile: " + f);
+            // the creature its people keep
+            var beast = switch (village) {
+                case "vigil" -> NetherEntities.CAIRNBACK;
+                case "loom" -> NetherEntities.SILKGRUB;
+                case "eave" -> NetherEntities.ASHBELL;
+                default -> null;
+            };
+            if (beast != null) {
+                int beasts = server.computeOnServer(srv -> srv.getLevel(Level.NETHER).getEntities(beast, new AABB(centre).inflate(56, 40, 56), e -> true).size());
+                report.add("  " + beasts + " " + beast.getDescription().getString());
+                check(beasts >= 1, village + " keeps no " + beast.getDescription().getString());
+            }
             report.add("  " + dev.netherexpansion.world.Names.village(people, centre) + ": " + String.join("; ", folk.subList(0, Math.min(6, folk.size()))));
         }
         System.out.println("[netherexpansion] villages:\n" + String.join("\n", report));

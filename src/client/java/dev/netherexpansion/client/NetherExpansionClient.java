@@ -3,9 +3,12 @@ package dev.netherexpansion.client;
 import java.util.List;
 
 import dev.netherexpansion.client.ResidentRenderer.Look;
+import dev.netherexpansion.entity.Ashbell;
+import dev.netherexpansion.entity.Cairnback;
 import dev.netherexpansion.entity.Ghastkin;
 import dev.netherexpansion.entity.Magmari;
 import dev.netherexpansion.entity.NetherEntities;
+import dev.netherexpansion.entity.Silkgrub;
 import dev.netherexpansion.entity.Weft;
 import dev.netherexpansion.entity.Withren;
 
@@ -16,13 +19,14 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 
-/** Client wiring: a model layer per geometry file (and its borrowed layer), and a renderer per people. */
+/** Client wiring: a model layer per geometry file (and its borrowed layer), and a renderer per people and creature. */
 public final class NetherExpansionClient implements ClientModInitializer {
     static final List<String> GEOMETRY = List.of(
             "withren", "withren_child", "withren_remembrancer", "withren_ashwarden",
             "magmari", "magmari_female", "magmari_ferrier", "magmari_child",
             "weft", "weft_female", "weft_child",
-            "ghastkin", "ghastkin_female", "ghastkin_child");
+            "ghastkin", "ghastkin_female", "ghastkin_child",
+            "cairnback", "silkgrub", "ashbell");
 
     @Override
     public void onInitializeClient() {
@@ -62,5 +66,13 @@ public final class NetherExpansionClient implements ClientModInitializer {
         EntityRendererRegistry.register(NetherEntities.GHASTKIN, ctx -> new ResidentRenderer<Ghastkin>(ctx, List.of(
                 new Look("ghastkin", "ghastkin"), new Look("ghastkin_female", "ghastkin_female"), new Look("ghastkin_child", "ghastkin_child")), 0.35F,
                 g -> g.isBaby() ? 2 : g.isFemale() ? 1 : 0, (g, s) -> s.frightened = g.isFrightened()));
+
+        // the creatures: the Withren's Cairnback, the Weft's Silkgrub, the Ghastkin's see-through Ashbell
+        EntityRendererRegistry.register(NetherEntities.CAIRNBACK, ctx -> new CreatureRenderer<Cairnback>(ctx, "cairnback", 0.7F, false, (c, s) -> {}));
+        EntityRendererRegistry.register(NetherEntities.SILKGRUB, ctx -> new CreatureRenderer<Silkgrub>(ctx, "silkgrub", 0.4F, false, (g, s) -> {
+            s.silk = g.silk();
+            s.climbing = g.isClimbing();
+        }));
+        EntityRendererRegistry.register(NetherEntities.ASHBELL, ctx -> new CreatureRenderer<Ashbell>(ctx, "ashbell", 0.3F, true, (a, s) -> {}));
     }
 }
