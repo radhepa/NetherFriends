@@ -32,7 +32,9 @@ import net.minecraft.world.item.Items;
  * The conversation window: Village Friends' layout in netherrack. The resident stays in view in the world; their
  * portrait and name ribbon sit on a dialogue box at the bottom, where their line types out in their people's
  * voice; what you can say floats as numbered bubbles on the right; a dock along the bottom has Talk, Gift, Barter
- * (Piglins) and Goodbye; and a card in the corner shows your friendship in their people's own tokens.
+ * (Piglins) and Goodbye; and a card in the corner shows your friendship in their people's own tokens, with three
+ * tabs under it: Talk, Story (their own story, step by step) and Journal (what you've shared, shown at once in a
+ * taller box you can scroll).
  */
 public final class TalkScreen extends Screen {
     // netherrack: light ink on dark stone (Village Friends is dark ink on paper, so every colour is new here)
@@ -45,6 +47,7 @@ public final class TalkScreen extends Screen {
     private static final float CHARS_PER_SECOND = 36F;
     private static final int SPACE_KEY = 32, KEY_1 = 49; // key codes (the same in GLFW and SDL)
     private static final int LINE = 10;
+    private static final String[][] TABS = {{"talk", "Talk"}, {"story", "Story"}, {"journal", "Journal"}};
 
     private TalkPayload data;
     private final People people;
@@ -81,7 +84,7 @@ public final class TalkScreen extends Screen {
     }
 
     public void update(TalkPayload next) {
-        if (!this.data.line().equals(next.line()) || next.opening()) {
+        if (!this.data.line().equals(next.line()) || next.opening() || !this.data.tab().equals(next.tab())) {
             this.dialogueScroll = 0;
             this.restartTyping();
         }
@@ -159,7 +162,18 @@ public final class TalkScreen extends Screen {
         this.shown = Math.min(this.shown, total);
     }
 
+    /** A Journal page is your own notes: it appears at once, without their voice. */
+    private boolean instant() {
+        return this.data.tab().equals("journal");
+    }
+
     private void advanceTyping() {
+        if (this.instant()) {
+            this.shown = this.typeFlat.length();
+            this.popPending = false;
+            this.lastFrameNanos = 0;
+            return;
+        }
         long now = System.nanoTime();
         float dt = this.lastFrameNanos == 0 ? 0F : Math.min(0.1F, (now - this.lastFrameNanos) / 1.0E9F);
         this.lastFrameNanos = now;
@@ -201,7 +215,7 @@ public final class TalkScreen extends Screen {
         this.textX = this.boxX + this.portraitW + 18;
         this.textW = this.boxX + this.boxW - 12 - this.textX;
         int count = this.data.choices().size(), row = 18;
-        this.boxH = 64;
+        this.boxH = this.instant() ? 114 : 64;
         int columns = count * row > bottom - this.boxH - 30 ? 2 : 1;
         int rows = (count + columns - 1) / columns;
         int replyW = columns == 1 ? Math.clamp(this.width * 2 / 5, 130, 196) : Math.clamp((this.boxW - 12) / 2 - 2, 100, 170);
@@ -212,7 +226,22 @@ public final class TalkScreen extends Screen {
         this.cardX = 8;
         this.cardY = 8;
         this.cardW = Math.min(176, this.width / 2 - 12);
-        this.cardH = 50;
+        this.cardH = 66;
+        // the tabs, along the bottom of the friendship card
+        int tabW = (this.cardW - 12 - 6) / TABS.length;
+        for (int i = 0; i < TABS.length; i++) {
+            String id = TABS[i][0];
+            TabButton tab = new TabButton(this.cardX + 6 + i * (tabW + 3), this.cardY + this.cardH - 19, tabW, 13, TABS[i][1], id.equals(this.data.tab()),
+                    pressed -> this.send("tab:" + id));
+            tab.active = !this.waiting && !this.data.refused();
+            tab.setTooltip(Tooltip.create(Component.literal(switch (id) {
+                case "story" -> "Story: their own story, one step at a time";
+                case "journal" -> "Journal: what you've shared, and what you know about them";
+                default -> "Talk: topics and small talk";
+            })));
+            this.actions.add(tab);
+            this.addRenderableWidget(tab);
+        }
         // replies float above the box on the right, hugging the screen's edge so the resident stays in view
         int replyRight = Math.max(this.boxX + this.boxW, this.width - 10), replyBottom = this.boxY - 18;
         for (int i = 0; i < count; i++) {
@@ -411,7 +440,7 @@ public final class TalkScreen extends Screen {
         for (int line = this.dialogueScroll, y = top; line < Math.min(this.typeLines.size(), this.dialogueScroll + visible); line++, y += LINE) {
             int chars = Math.min(this.typeLines.get(line).length(), this.shown - this.lineStarts[line]);
             if (chars <= 0) break;
-            g.text(this.font, this.typeLines.get(line).substring(0, chars), this.textX, y, INK, true);
+            g.text(this.font, this.typeLines.get(line).substring(0, chars), this.textX, y, this.instant() && line == 0 ? GOLD : INK, true);
         }
         g.disableScissor();
         if (this.typeLines.size() > visible) this.scrollbar(g, top, visible);
@@ -419,6 +448,7 @@ public final class TalkScreen extends Screen {
         int statusY = this.boxY + this.boxH - 13;
         g.fill(this.textX, statusY - 3, this.textX + this.textW, statusY - 2, PAPER_SHADE);
         String status = this.waiting ? "..." : this.data.refused() ? "They won't talk to you now." : this.data.status();
+        if (status.isEmpty() && this.typeLines.size() > visible) status = "Scroll for more";
         int statusColor = now - this.statusAt < 40 ? GOLD_BRIGHT : GOLD;
         g.text(this.font, this.font.plainSubstrByWidth(status, this.textW - 12), this.textX, statusY, statusColor, false);
         if (mouseX >= this.textX && mouseX < this.textX + this.textW && mouseY >= statusY - 2 && mouseY < statusY + 9 && this.font.width(status) > this.textW - 12) {
@@ -462,7 +492,7 @@ public final class TalkScreen extends Screen {
         for (int i = 0; i < 5; i++) meter(g, this.people, hx + i * 11, hy, i < this.data.level() ? 1 : i == this.data.level() ? progress : 0);
         String goal = this.data.level() >= 5 ? "As close as an outsider can be" : (next - this.data.points()) + " more to the next level";
         g.text(this.font, this.font.plainSubstrByWidth(goal, this.cardW - 12), this.cardX + 6, this.cardY + 35, MUTED, false);
-        if (mouseX >= this.cardX && mouseX < this.cardX + this.cardW && mouseY >= this.cardY && mouseY < this.cardY + this.cardH) {
+        if (mouseX >= this.cardX && mouseX < this.cardX + this.cardW && mouseY >= this.cardY && mouseY < this.cardY + this.cardH - 20) {
             List<Component> lines = new ArrayList<>();
             lines.add(Component.literal("Friendship Lv. " + this.data.level() + ": " + this.data.levelName()));
             lines.add(Component.literal(this.data.points() + " points"));
@@ -579,6 +609,31 @@ public final class TalkScreen extends Screen {
                 else color = row <= 1 && col < 4 ? light : row >= masks.length - 2 && col > 3 ? dark : main;
                 g.fill(x + col, y + row, x + col + 1, y + row + 1, color);
             }
+        }
+    }
+
+    /** A tab under the friendship card: gold when it's the one shown. */
+    static final class TabButton extends Button {
+        private final boolean selected;
+
+        TabButton(int x, int y, int w, int h, String label, boolean selected, OnPress action) {
+            super(x, y, w, h, Component.literal(label), action, DEFAULT_NARRATION);
+            this.selected = selected;
+        }
+
+        @Override
+        protected void extractContents(GuiGraphicsExtractor g, int mouseX, int mouseY, float delta) {
+            boolean hover = this.active && this.isHoveredOrFocused();
+            int x = this.getX(), y = this.getY(), w = this.getWidth(), h = this.getHeight();
+            int fill = this.selected ? GOLD : !this.active ? BUBBLE_OFF : hover ? BUBBLE_HOVER : BUBBLE;
+            g.fill(x + 1, y, x + w - 1, y + h, EDGE);
+            g.fill(x, y + 1, x + w, y + h - 1, EDGE);
+            g.fill(x + 1, y + 1, x + w - 1, y + h - 1, fill);
+            if (!this.selected) g.fill(x + 1, y + 1, x + w - 1, y + 2, this.active ? EDGE_LIGHT : BUBBLE_OFF);
+            var font = Minecraft.getInstance().font;
+            int ink = this.selected ? EDGE : this.active ? INK : MUTED;
+            String label = font.plainSubstrByWidth(this.getMessage().getString(), w - 4);
+            g.text(font, label, x + (w - font.width(label)) / 2, y + (h - 8) / 2 + 1, ink, false);
         }
     }
 

@@ -1,0 +1,440 @@
+{
+  "early": [
+    "A story? From me? You've only just learned to crouch properly. Come and sit under the eave a few more times first.",
+    "We don't hand our stories to people we've only just met. They're mostly made of people we've let go. Talk to me a while longer.",
+    "Mm. There's something on my mind, yes. It can stay there a little longer, until I know your step better.",
+    "Ask me again when I can tell it's you without turning round. That won't take long. You're very quiet.",
+    {"text": "The vials hold other people's goodbyes. Mine I keep somewhere harder to reach. Visit me more, and maybe I'll tell you where.", "when": {"job": "Tearkeeper"}},
+    {"text": "I'd sing it to you, but you don't know the tune yet. Come and listen to the ordinary songs for a while first.", "when": {"job": "Songwarden"}},
+    {"text": "You don't show someone a tear in the cloth until you trust their hands. Yours are still strangers to me. Nice strangers.", "when": {"job": "Mender"}},
+    {"text": "I sweep all day and think all day. Some of the thinking I don't hand to just anyone. Come back a few more times.", "when": {"job": "Ashsweeper"}},
+    {"text": "I watch the sky for a living. I'll watch you a little longer too, before I tell you anything. Don't take it to heart.", "when": {"job": "Drift-watcher"}},
+    {"text": "Out here my story is mostly smoke. Come by a few more times and I'll find the shape of it for you.", "when": {"place": "wild"}}
+  ],
+
+  "child": [
+    "A story? I haven't got one yet! Mama says you get your story with your first proper cry. I'm in no hurry.",
+    "My story is that I'm going to float higher than the top pod. That's not a story yet. It's a plan. Don't tell anyone.",
+    "I haven't let anyone go yet, so I haven't got a story. I've got a secret, though. I hum to the ghasts. Shh.",
+    "Grown-ups' stories are all sad and they never finish them. When I get one, mine's going to have an ending. A good one.",
+    "I haven't got a story. I've got a very good rock. It's basalt, but if you squint it looks like an Ashbell.",
+    {"text": "You're my friend, so I'll tell you my wish instead. I want to see water fall out of the sky, like in your world. Don't laugh.", "when": {"level": [3, 5]}}
+  ],
+
+  "waiting": [
+    "Thank you again. The rest of it isn't ready yet. Let it sit a day. Things settle, down here, like ash.",
+    "Not yet. I'm still deciding how much of it to tell, and how much to let the smoke keep. Come back another day.",
+    "There's more, but I'd like to know you a little better before I say it. Visit me. Bring nothing. Just come.",
+    "I've been thinking about what you brought. I haven't finished thinking. We're slow at finishing. You may have noticed.",
+    "Come back when we're a little closer. Some things I can only say to someone whose step I'd know in the dark.",
+    {"text": "Not yet. A tear has to settle in the vial before it's any use. So does the rest of what I have to say.", "when": {"job": "Tearkeeper"}},
+    {"text": "The next part isn't ready. Come back another day, and I'll have found the note it starts on.", "when": {"job": "Songwarden"}},
+    {"text": "I'm still stitching the rest of it together in my head. Come back another day. I'll have tied off the ends.", "when": {"job": "Mender"}},
+    {"text": "The ash has to fall a few more times before I can say the next part. Come back another day.", "when": {"job": "Ashsweeper"}},
+    {"text": "Let me watch the sky a little longer first. When I'm ready, I'll have seen you coming.", "when": {"job": "Drift-watcher"}}
+  ],
+
+  "ready": [
+    "You came back. Good. There's more to what I asked you for. Will you listen? Quietly, the way you do.",
+    "Sit with me. I said I'd tell you why it mattered. I think I can now, if you'll listen.",
+    "I've had a day to think, and I've decided you should hear the rest. Will you?",
+    "Come closer. Not too close. There. Now I can tell you the part I left out. Will you listen?",
+    {"text": "It's settled now, like a tear in the vial. Will you hear the rest?", "when": {"job": "Tearkeeper"}},
+    {"text": "I found the note the rest of it starts on. Will you listen?", "when": {"job": "Songwarden"}},
+    {"text": "I've tied off the ends. Here's the rest of it, if you'll hear it.", "when": {"job": "Mender"}},
+    {"text": "I've swept everything there is to sweep, so I've nothing left to hide behind. Will you hear the rest?", "when": {"job": "Ashsweeper"}},
+    {"text": "I saw you coming and I thought, now. Now I can tell it. Will you listen?", "when": {"job": "Drift-watcher"}}
+  ],
+
+  "stories": [
+    {
+      "id": "top_shelf_vial",
+      "jobs": ["Tearkeeper"],
+      "title": "The Vial on the Top Shelf",
+      "intro": [
+        "The tear store is nearly out of vials. Ghast fire caught the far gallery and burned half a dozen of us, and I used every bottle I had. Some twice. Don't tell anyone that.",
+        "Now there's nothing to catch a tear in. Someone cries at the pool and it just falls in and is nobody's. I need bottles. Plain, empty ones. Will you help?"
+      ],
+      "request": {
+        "item": "minecraft:glass_bottle",
+        "count": 16,
+        "ask": "Bring me sixteen glass bottles. Empty, please. Things that come full have usually been somewhere I'd rather not know about.",
+        "thanks": "Sixteen. Oh, the racks will look like themselves again. Thank you. I'll fill these slowly, and only with goodbyes."
+      },
+      "confide": [
+        "While I was out of bottles, a child scraped her arm on the vines. There was one vial left, on the top shelf. I didn't use it. I made her wait for a fresh tear, and she leaked a little.",
+        "That vial is mine. My own proper cry, from when I was {former}. I don't know who it was for. I only know I've never been able to pour it, and never been able to ask myself why.",
+        "I can't keep making children wait on a shelf. Should I use it on the next hurt that comes in? Or is it all right to keep one thing that's only mine?"
+      ],
+      "endings": [
+        {
+          "ask": "Use it on the next hurt.",
+          "text": "Yes. That's what it was for, whoever they were. I'd like to think they'd enjoy mending a knee. Most people would, if they got the chance.",
+          "memory": "You told {name} to use their own old tear on the next hurt that came in."
+        },
+        {
+          "ask": "Keep it. It's yours.",
+          "text": "Then it stays on the top shelf, labelled with nothing, and I'll stop feeling guilty every time I dust it. Mostly. Thank you for letting me be a little selfish.",
+          "memory": "You told {name} to keep the one tear that was only theirs."
+        }
+      ],
+      "reward": {"item": "minecraft:ghast_tear", "count": 3},
+      "after": [
+        "The racks are full of empty bottles. It's the most hopeful thing in the Eave. Don't let anyone tell you otherwise.",
+        "I dusted the top shelf earlier. I always dust it last. Some habits outlive their reasons.",
+        "If you're hurt, come straight to me. I've plenty of bottles now, and you know exactly where they came from."
+      ]
+    },
+
+    {
+      "id": "something_sweet",
+      "jobs": ["Tearkeeper"],
+      "title": "Something Sweet Instead",
+      "intro": [
+        "There's a young one who keeps coming to the tear store asking for a tear to drink. Not for a wound. For a heart. Someone they love chose someone else, and they'd like to forget it.",
+        "I keep saying no. Tears are for wounds, and that kind of hurt isn't one. But they look so tired, and I've nothing else to give them. I've heard your world bottles sweetness. Is that true?"
+      ],
+      "request": {
+        "item": "minecraft:honey_bottle",
+        "count": 4,
+        "ask": "Bring me four bottles of honey. If it's half as sweet as outsiders say, it'll be the first sweet thing ever handed over my counter.",
+        "thanks": "*sniffs one, very carefully* Oh. Oh, that's unfair. Your world just has this lying about? Thank you. I may have to keep one. For testing."
+      },
+      "confide": [
+        "Shall I tell you why I won't give them the tear? Long ago, I drank one. A tear meant for a cut. I drank it to forget someone who didn't love me back.",
+        "It worked. I know I loved someone. I know they didn't. I don't know who. Some days I pass someone on the gallery and wonder if it's them, and whether they remember what I can't.",
+        "So when the young one comes back, what do I do? Tell them what it cost me? Or just give them the honey, and a seat by the windows, and say nothing?"
+      ],
+      "endings": [
+        {
+          "ask": "Tell them the truth.",
+          "text": "Then I'll tell them, all of it, and put the honey in their hands, and let them choose. They're grown. It's theirs to choose. I only want them to choose knowing.",
+          "memory": "You told {name} to tell the young one what drinking a tear had cost them."
+        },
+        {
+          "ask": "Just give them the honey.",
+          "text": "Honey and a long sit by the windows, then. Heartache wears off on its own. Slower than a tear, but it leaves you everything else. My story can stay where it is.",
+          "memory": "You told {name} to give the young one honey and say nothing of the past."
+        }
+      ],
+      "reward": {"item": "minecraft:brewing_stand", "count": 1},
+      "after": [
+        "The young one came by again. They didn't ask for a tear. They asked if there was any more honey. I'd call that mending.",
+        "That brewing stand was my spare. Everything in a tear store has a spare, except the tears.",
+        "I had a little of the honey myself. For testing. It tested very well. You may need to bring more, just so I can be sure."
+      ]
+    },
+
+    {
+      "id": "shortest_verse",
+      "jobs": ["Songwarden"],
+      "title": "The Shortest Verse",
+      "intro": [
+        "There's a verse in the Weeping Song only three notes long. I sing it between breaths. Every time, it's over before I've properly started, and the Hall goes quiet too soon.",
+        "I'd like it to ring a little longer. Outsiders say there's a purple stone in your world that sings when you touch it. Chimes of that, hung over the pool, might carry it on after I stop."
+      ],
+      "request": {
+        "item": "minecraft:amethyst_shard",
+        "count": 8,
+        "ask": "Bring me eight amethyst shards. Three for its notes, and five for the quiet after, which is the longest part of it.",
+        "thanks": "*taps one against another, and it rings* Oh. Oh, listen. It keeps going after you stop. That's exactly it. Thank you."
+      },
+      "confide": [
+        "Short verses are for short lives. Everybody knows that, and nobody says it. I don't know whose this one is. Songwardens never do. That's how the songs stay bearable.",
+        "But when I sing it, my hands go out to the height of a small someone, as if to lift them. I was {former} once. I think {former} lifted someone that size, often, and then...",
+        "Anyway. The chimes. I could tune them so the verse rings on a while, longer than it was. Or I could leave it three notes. Which is kinder?"
+      ],
+      "endings": [
+        {
+          "ask": "Let it ring longer.",
+          "text": "Then the chimes will carry it past where it stopped. Not much. A little more time. That's all anyone ever wanted for it, I think.",
+          "memory": "You told {name} to let the shortest verse ring on a little longer."
+        },
+        {
+          "ask": "Leave it as it was.",
+          "text": "Yes. Three notes. Making it longer would be a lie, a kind one. I'll hang the chimes anyway, and let the Ashbells bump them. They can ring for whatever they like.",
+          "memory": "You told {name} to leave the shortest verse three notes long."
+        }
+      ],
+      "reward": {"item": "minecraft:ghast_tear", "count": 2},
+      "after": [
+        "Listen. That's the chimes in the Hall. An Ashbell bumped them. It does that on purpose, I think.",
+        "The tears I gave you are from the long sing. People cry at the verses, and a Songwarden keeps what falls. Use them gently.",
+        "I don't lift my hands at the short verse anymore. Or I do, and I've stopped minding. One of those."
+      ]
+    },
+
+    {
+      "id": "song_that_ends",
+      "jobs": ["Songwarden"],
+      "title": "A Song That Ends",
+      "intro": [
+        "The children asked me for a song that ends. Every one of ours stops on the note before the last. It's how we sing. A song that finished would be... well. Nobody's ever tried.",
+        "I've been trying. In secret. But my pod is glass and the Eave hears everything, and I'm not ready for the whole pillar to hear me get it wrong. I need to muffle the walls."
+      ],
+      "request": {
+        "item": "minecraft:white_wool",
+        "count": 12,
+        "ask": "Bring me twelve white wool, so I can line my pod and sing badly in private. Twelve. I sing very badly.",
+        "thanks": "Soft. So soft. I can already hear how little anyone will hear. Thank you. I'll stuff the cracks myself. You'd only giggle."
+      },
+      "confide": [
+        "Can I tell you a secret? It isn't really for the children. When I was {former}, I promised someone I'd finish a song for them. I don't know who. The promise is all {former} left me.",
+        "And I've found it. The last note. I sang it into the wool and nothing terrible happened. The pillar didn't fall. I didn't drift. I just felt finished, for a breath.",
+        "Now I don't know what to do with it. Sing it to you, here, so one person has heard a song of ours end? Or keep it for whoever it was promised to?"
+      ],
+      "endings": [
+        {
+          "ask": "Sing it to me.",
+          "text": "*three notes, soft and falling, and then, very gently, the fourth* ...There. You're the only one who's heard a song of ours end. Don't tell anyone. They'd all want one.",
+          "memory": "You heard {name} sing the only Ghastkin song that ever ended."
+        },
+        {
+          "ask": "Keep it for them.",
+          "text": "For whoever {former} promised. Yes. I'll keep it in the wool until I remember who, or until it stops mattering. Either way it'll be ready. That's the main thing with songs.",
+          "memory": "You told {name} to keep the song's ending for whoever it was promised to."
+        }
+      ],
+      "reward": {"item": "minecraft:music_disc_pigstep", "count": 1},
+      "after": [
+        "My pod is very quiet now. Everyone thinks I've gone shy. I've let them.",
+        "That round black thing came down from a Bastion in somebody's pack. It sings, I'm told, if you have the box for it. It's loud, and it ends. I envied it.",
+        "The children still want a song that ends. I've told them I'm working on it. I'm a terrible liar, so I'm being very careful to be working on it."
+      ]
+    },
+
+    {
+      "id": "cords_for_crossing",
+      "jobs": ["Mender"],
+      "title": "Cords for the Crossing",
+      "intro": [
+        "When we cross open ground we lead an Ashbell on a cord, and the ghasts hold their fire. I braid the cords. Lately they've been fraying faster than I can braid.",
+        "Ash-silk is soft, but it isn't strong. Weft silk would be, but I won't go begging off the ones who net us. Your world has string, I'm told. Spiders make it. How rude of them to be useful."
+      ],
+      "request": {
+        "item": "minecraft:string",
+        "count": 16,
+        "ask": "Bring me sixteen string. I'll braid it in with the ash-silk, and no Ashbell of ours will slip its cord again.",
+        "thanks": "*runs it through careful fingers* Oh, this is strong. Ugly, but strong. Like a good friend. Thank you. I'll start now."
+      },
+      "confide": [
+        "You've seen my hands shake. You were polite about it. Long ago, a cord I braided snapped on a crossing. The Ashbell drifted up, and a ghast over the delta saw who was left below.",
+        "It wasn't the ghast's fault. It had forgotten what it was. I cried once, properly, and I don't know now who it was for. I only remember the cord. Hands keep what the head lets go.",
+        "These new cords will hold. I know they will. But should I braid them myself, shaking? Or teach someone younger, whose hands have never dropped anything?"
+      ],
+      "endings": [
+        {
+          "ask": "Braid them yourself.",
+          "text": "Yes. These hands owe it. They'll shake, and the cords will come out straight anyway. That's the kind of mending I can still do.",
+          "memory": "You told {name} to braid the new cords with their own hands."
+        },
+        {
+          "ask": "Teach someone younger.",
+          "text": "...I hadn't thought of handing it on. The children climb the vines all day. They know knots better than I do. Yes. Let the cords start in hands that don't remember.",
+          "memory": "You told {name} to teach the children to braid the Ashbell cords."
+        }
+      ],
+      "reward": {"item": "minecraft:lead", "count": 3},
+      "after": [
+        "Those cords I gave you are the strong kind. Lead an Ashbell gently with one, and no ghast will take aim at you.",
+        "Nothing has slipped its cord since you came. I check every one, twice. Then once more, for the hands.",
+        "My hands still shake. The cords don't. I've decided that's a fair trade."
+      ]
+    },
+
+    {
+      "id": "veil_on_the_rail",
+      "jobs": ["Mender"],
+      "title": "The Veil on the Rail",
+      "intro": [
+        "When one of us drifts, the veil usually stays behind, caught on the gallery rail. I've been keeping one mended for a long while. It's grey with ash now. It wants washing.",
+        "The pool would clean it, but things washed in tears come out a little vaguer. I washed a cloak there once and it forgot it was a cloak. I need water that's only water."
+      ],
+      "request": {
+        "item": "minecraft:water_bucket",
+        "count": 1,
+        "ask": "Bring me one bucket of water. Your world's water, that nobody had to cry. I've heard it's heavy, and I've heard it doesn't forget anything.",
+        "thanks": "*leans over the bucket, very still* It just sits there being water. Nobody's goodbye at all. Oh, thank you. What a thing to carry all this way."
+      },
+      "confide": [
+        "The veil is my sister's. She drifted. Nobody cries for a drifted one; you can't, they aren't dead. So nobody lets them go, either. I've been holding her by the hem all this while.",
+        "I keep it mended in case she comes home. I know. Nobody comes home. The Drift-watchers say not yet, and I've decided to hear the yet.",
+        "So it's clean now. Do I keep it hung in my pod, ready for her? Or give it to someone who'd wear it, so it's a veil again, and not a waiting?"
+      ],
+      "endings": [
+        {
+          "ask": "Keep it ready for her.",
+          "text": "Then it hangs in my pod, clean, smelling of your world's water. If she ever comes home, there'll be something waiting that remembers her shape.",
+          "memory": "You told {name} to keep their drifted sister's veil clean and ready."
+        },
+        {
+          "ask": "Let someone wear it.",
+          "text": "...Yes. A veil should be worn. There's a girl whose eyes closed for the first time not long ago. It'll fit her. Let it be hers now. I'll mend it when she tears it.",
+          "memory": "You told {name} to give their sister's veil to someone who would wear it."
+        }
+      ],
+      "reward": {"item": "minecraft:soul_lantern", "count": 4},
+      "after": [
+        "I mended four lanterns while the veil dried. You have them now. They burn blue, and never too hot.",
+        "Everything I wash now, I wash in what's left of your water. It all comes out remembering perfectly. It's a little unnerving.",
+        "I still look at the gallery rail every time I pass. Nothing's caught there. Nothing needs to be."
+      ]
+    },
+
+    {
+      "id": "ash_that_melts",
+      "jobs": ["Ashsweeper"],
+      "title": "Ash That Melts",
+      "intro": [
+        "An outsider told me that in your world white ash falls from the sky, cold, and then goes away on its own. Nobody sweeps it. It just leaves. I laughed in their face. Politely.",
+        "Then a second outsider said the same thing. Two liars agreeing is unusual. I'd like to see this ash that leaves by itself. You can pack it into balls, they say."
+      ],
+      "request": {
+        "item": "minecraft:snowball",
+        "count": 16,
+        "ask": "Bring me sixteen snowballs. If they're what you say, I'll believe you. If they're not, I'll know you're a liar, and I'll like you anyway.",
+        "thanks": "*holds one in both hands* It's cold. It's cold! And it isn't going anywhere. You said it leaves on its own. ...Only when it's warm? Clever ash. Thank you."
+      },
+      "confide": [
+        "I'll tell you what they're really for. The children. Their eyes are still open. One day each of them will cry for someone, properly, and close them, and get quieter.",
+        "I've watched it happen to a few. To... well. Before theirs close, I'd like them to have thrown something cold and white and silly at each other. Just once.",
+        "Only, my tentacles are itching too. I've never thrown anything in my life. Do I give the children every last one? Or keep one back for me?"
+      ],
+      "endings": [
+        {
+          "ask": "Give them every one.",
+          "text": "You're right. Grown-ups have had their turn at everything. I'll hand them out and float very still in the middle. A sweeper is good at being underfoot.",
+          "memory": "You told {name} to give every snowball to the children."
+        },
+        {
+          "ask": "Keep one for yourself.",
+          "text": "*a soft, sly laugh* Just the one. I know exactly whose hood it's going down. Don't look so worried. They'll laugh. Eventually. Probably.",
+          "memory": "You told {name} to keep one snowball back to throw."
+        }
+      ],
+      "reward": {"item": "minecraft:gold_ingot", "count": 4},
+      "after": [
+        "The children have been finding white crumbs in their tentacles for days. They are very proud of it.",
+        "I swept that gold up by the Hall steps. Some Piglin's dropped savings, I suppose. I didn't want it near the pool. You'll know someone who likes it.",
+        "Ash that leaves on its own. I still think about it. Imagine being a sweeper in your world. You'd just wait."
+      ]
+    },
+
+    {
+      "id": "step_swept_twice",
+      "jobs": ["Ashsweeper"],
+      "title": "The Step Swept Twice",
+      "intro": [
+        "I sweep the steps of the Weeping Hall. The top one I sweep twice, because that's where people sit before they go in to cry. I've swept it so long I've worn a dip in the stone.",
+        "Now the ash pools in the dip and blows in under the door, toward the water. I'd like to lay a new step, flat and dark, before the pool starts to cloud."
+      ],
+      "request": {
+        "item": "minecraft:polished_blackstone_bricks",
+        "count": 16,
+        "ask": "Bring me sixteen polished blackstone bricks. Enough for the top step, and some over for the next one, which I've also been unkind to.",
+        "thanks": "Good, clean edges. Nothing pools on these. Thank you. I'll lay them slowly. The old step deserves a slow goodbye."
+      },
+      "confide": [
+        "Do you want to know who sits on that step the most? Me. I sit there and look at the door, and then I get up and sweep, and I never go in.",
+        "Someone of mine died. A while ago now. Longer than is wise. If I cry for her properly, I'll forget her. So I sweep instead. My face isn't going round yet. I check, in the pool.",
+        "The new step is laid. Will you sit on it, back to the door, while I go in? Or should I wait, and sweep a little longer, until I'm ready on my own?"
+      ],
+      "endings": [
+        {
+          "ask": "I'll sit. Go in.",
+          "text": "...All right. Back to the door, eyes on the windows, the way it's done. Don't watch. Whoever comes out will thank you. I'm told I'm very polite afterwards.",
+          "memory": "You sat on the new step of the Weeping Hall while {name} went in to cry."
+        },
+        {
+          "ask": "Wait until you're ready.",
+          "text": "Then I'll sweep a while longer. Not too long. I'll know, and so will the pool. When I'm ready I'll send for you, so someone sits on the step who knew me before.",
+          "memory": "You told {name} to wait until they were ready to go in."
+        }
+      ],
+      "reward": {"item": "minecraft:crying_obsidian", "count": 4},
+      "after": [
+        "The new step is flat and dark, and the ash just sits on it, politely, waiting to be swept. I like it. It doesn't remember anyone.",
+        "That crying stone I gave you weeps and never finishes. I kept it by the step a long time, so I'd remember what not to become. You hold it now.",
+        "Sit on the step when you pass, if you like. You've earned the warm spot."
+      ]
+    },
+
+    {
+      "id": "lopsided_one",
+      "jobs": ["Drift-watcher"],
+      "title": "The Lopsided One",
+      "intro": [
+        "There's a ghast that passes the Eave now and then. It drifts lopsided, leaning to the left. Everyone says ghasts all look alike. They don't. Not if you watch for a living.",
+        "I'd like to hang a light on the gallery rail. Not blue soul fire. A warm, yellow light, bright enough to see from the far side of the delta. The kind a ghast might remember from before."
+      ],
+      "request": {
+        "item": "minecraft:glowstone_dust",
+        "count": 16,
+        "ask": "Bring me sixteen glowstone dust. I'll pack it into the lantern on the rail, and it'll be the brightest thing the delta has seen in a long while.",
+        "thanks": "*holds a pinch up to the smoke* Oh, it's warm. Warmer than anything we light. Thank you. The lopsided one could see this from very far off. If it looks."
+      },
+      "confide": [
+        "My brother floated lopsided. Everyone teased him. He leaned left, as if someone was always talking to him from that side. Usually it was me.",
+        "He drifted, after the fevers. I can't cry for him. He isn't dead. So I watch. I don't know if the lopsided one is him. I've been very careful not to let myself know.",
+        "The light is up. If it comes close, should I hum him the song we had when we were small? Or just leave the light burning, and keep quiet, and let it be any ghast at all?"
+      ],
+      "endings": [
+        {
+          "ask": "Hum him your song.",
+          "text": "Then I'll hum it, low, from the left side. If it's him, he might stop crying for a breath. If it isn't, someone else's brother gets a song. Both are good.",
+          "memory": "You told {name} to hum the old song to the lopsided ghast."
+        },
+        {
+          "ask": "Just leave the light.",
+          "text": "Yes. A light asks nothing back. If it's him, he'll come or he won't. I'll keep it burning and watch. Watching is the one thing I've never been bad at.",
+          "memory": "You told {name} to leave the light burning and keep quiet."
+        }
+      ],
+      "reward": {"item": "minecraft:spyglass", "count": 1},
+      "after": [
+        "That seeing-tube was traded to me long ago, before I remembered my eyes don't open. It's done me no good at all. You'll see further with it than I ever did.",
+        "The lopsided one went past again. Close, this time. It didn't fire. It didn't stop crying, either. Close is something.",
+        "Look at the rail. See the light? That's yours, as much as mine."
+      ]
+    },
+
+    {
+      "id": "unfinished_tears",
+      "jobs": ["Drift-watcher"],
+      "title": "Tears That Never Finished",
+      "intro": [
+        "You've been all over the Nether. You've met ghasts. I know how outsiders meet ghasts. No, don't. I'm not asking about that. I'm asking something else.",
+        "A ghast's tear is a cry that never finished. It falls over the delta and nobody catches it. I'd like to carry a few to the pool, where finished cries go. Some of them, at least, could end."
+      ],
+      "request": {
+        "item": "minecraft:ghast_tear",
+        "count": 3,
+        "ask": "Bring me three ghast tears. Only three. And please, never tell me where they came from.",
+        "thanks": "*holds them a long while without speaking* Three. Somebody's somebody, three times over. Thank you. I won't ask. I said I wouldn't."
+      },
+      "confide": [
+        "When I was {former}, I watched the sky with someone. We gave the ghasts silly names so they'd seem less sad. Hiccup. Grumbles. Old Puffcheek. Her idea, mostly. She was funny.",
+        "Then one day she stopped counting and started crying, for someone we'd both lost, and she couldn't finish. I watched her face go round. I'm a Drift-watcher. I watched. That's all I...",
+        "I have three tears that never finished. I could pour them into the pool and let them end. Or I could keep them, in case one of them is hers. What would you do?"
+      ],
+      "endings": [
+        {
+          "ask": "Let the pool finish them.",
+          "text": "Yes. All three, into the still water, and they'll stop going round. If one was hers, then she's finished one cry, at least. More than she managed with me beside her.",
+          "memory": "You told {name} to pour the three unfinished tears into the pool."
+        },
+        {
+          "ask": "Keep them, just in case.",
+          "text": "...Thank you for letting me. I'll keep them in the vial on my cord. It isn't a wise thing. I'll watch myself for it, the way I watch everyone else.",
+          "memory": "You told {name} to keep the three tears, in case one of them was hers."
+        }
+      ],
+      "reward": {"item": "minecraft:respawn_anchor", "count": 1},
+      "after": [
+        "That anchor came from the ruins at the delta's edge. Outsiders fall and come back, I'm told, if there's somewhere to come back to. Use it. Come back. Somebody ought to.",
+        "I'd stopped naming the ghasts. Well. I called one Hiccup again, not long ago. Old habits drift back.",
+        "I still watch. That isn't going to change. But I watch differently now. Less like waiting."
+      ]
+    }
+  ]
+}

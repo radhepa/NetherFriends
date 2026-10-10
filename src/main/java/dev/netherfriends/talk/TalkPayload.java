@@ -14,12 +14,13 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
  * Server to client: one conversation window's worth of state. {@code people} is the {@link
  * dev.netherfriends.entity.People} ordinal (it picks the window's meter icon and voice); {@code level} is the 0-5
  * friendship level, {@code floor} and {@code next} the points where it and the next level start.
- * {@code refused} means they won't talk: the window offers only Goodbye.
+ * {@code refused} means they won't talk: the window offers only Goodbye. {@code tab} is the tab shown: "talk",
+ * "story" or "journal" (a Journal page appears at once instead of typing out).
  */
 public record TalkPayload(int entityId, UUID residentId, int people, String name, String subtitle, String levelName, int level,
                           int points, int floor, int next, String line, String status, List<Choice> choices, boolean opening,
-                          boolean levelUp, boolean canGift, boolean canBarter, boolean refused) implements CustomPacketPayload {
-    public static final int MAX_CHOICES = 8;
+                          boolean levelUp, boolean canGift, boolean canBarter, boolean refused, String tab) implements CustomPacketPayload {
+    public static final int MAX_CHOICES = 8, MAX_LINE = 16384;
 
     /** Something the player can say. {@code fresh} marks a topic they haven't heard about yet. */
     public record Choice(String id, String label, boolean fresh) {}
@@ -37,7 +38,7 @@ public record TalkPayload(int entityId, UUID residentId, int people, String name
                 buf.writeVarInt(v.points);
                 buf.writeVarInt(v.floor);
                 buf.writeVarInt(v.next);
-                buf.writeUtf(v.line, 2048);
+                buf.writeUtf(v.line, MAX_LINE);
                 buf.writeUtf(v.status, 256);
                 buf.writeVarInt(v.choices.size());
                 for (Choice c : v.choices) {
@@ -50,6 +51,7 @@ public record TalkPayload(int entityId, UUID residentId, int people, String name
                 buf.writeBoolean(v.canGift);
                 buf.writeBoolean(v.canBarter);
                 buf.writeBoolean(v.refused);
+                buf.writeUtf(v.tab, 16);
             },
             buf -> {
                 int entity = buf.readVarInt();
@@ -57,13 +59,13 @@ public record TalkPayload(int entityId, UUID residentId, int people, String name
                 int people = buf.readVarInt();
                 String name = buf.readUtf(128), subtitle = buf.readUtf(256), levelName = buf.readUtf(64);
                 int level = buf.readVarInt(), points = buf.readVarInt(), floor = buf.readVarInt(), next = buf.readVarInt();
-                String line = buf.readUtf(2048), status = buf.readUtf(256);
+                String line = buf.readUtf(MAX_LINE), status = buf.readUtf(256);
                 int count = buf.readVarInt();
                 if (count < 0 || count > MAX_CHOICES) throw new IllegalArgumentException("Invalid choice count " + count);
                 List<Choice> choices = new ArrayList<>();
                 for (int i = 0; i < count; i++) choices.add(new Choice(buf.readUtf(64), buf.readUtf(64), buf.readBoolean()));
                 return new TalkPayload(entity, id, people, name, subtitle, levelName, level, points, floor, next, line, status,
-                        List.copyOf(choices), buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readBoolean());
+                        List.copyOf(choices), buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readUtf(16));
             });
 
     @Override
@@ -71,7 +73,10 @@ public record TalkPayload(int entityId, UUID residentId, int people, String name
         return TYPE;
     }
 
-    /** Client to server: what the player pressed. "topic:&lt;id&gt;", "reply:&lt;n&gt;", "chatter", "gift", "barter" or "bye". */
+    /**
+     * Client to server: what the player pressed. "topic:&lt;id&gt;", "reply:&lt;n&gt;", "chatter", "gift", "barter", "bye",
+     * "tab:talk|story|journal", "story:next|begin|bring|end:&lt;n&gt;" or "journal:memories|about|notes".
+     */
     public record Action(int entityId, UUID residentId, String action) implements CustomPacketPayload {
         public static final Type<Action> TYPE = new Type<>(NetherFriends.id("talk_action"));
         public static final StreamCodec<FriendlyByteBuf, Action> CODEC = StreamCodec.of(

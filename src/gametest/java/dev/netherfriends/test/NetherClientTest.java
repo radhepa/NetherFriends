@@ -13,6 +13,8 @@ import dev.netherfriends.entity.People;
 import dev.netherfriends.piglin.GoldRule;
 import dev.netherfriends.talk.Bonds;
 import dev.netherfriends.talk.Folk;
+import dev.netherfriends.talk.Journal;
+import dev.netherfriends.talk.Story;
 import dev.netherfriends.talk.Talk;
 import dev.netherfriends.talk.TalkPayload;
 import dev.netherfriends.world.BuildingPiece;
@@ -57,7 +59,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
  * Drives the real game. "Peoples": every look of every people in a lit pen, photographed. "Villages": each kind
  * of village is found by natural world generation in a fresh Nether (as /locate would), visited, checked for
  * residents (each with a name and a job) and photographed from a few sides. "Talk": a conversation with each people,
- * through the real window: greeting, a topic, a gift and a level-up. "Creatures": the Cairnback, Silkgrub and Ashbell,
+ * through the real window: greeting, a topic, a gift and a level-up. "Story": every people's stories load, and one
+ * resident's story is played through on the Story tab, then read back on the Journal tab's three pages.
+ * "Creatures": the Cairnback, Silkgrub and Ashbell,
  * photographed, then each one's use tried for real (relighting, shearing, calming a ghast). Screenshots land in build/run/clientGameTest/screenshots.
  *   gradlew runClientGameTest -PtestHeap=3g [-PnetherTests=Villages]
  */
@@ -101,6 +105,7 @@ public class NetherClientTest implements FabricClientGameTest {
             }
             if (wanted("Peoples")) peoples(ctx, world, server);
             if (wanted("Talk")) talk(ctx, world, server);
+            if (wanted("Story")) story(ctx, world, server);
             if (wanted("Creatures")) creatures(ctx, world, server);
             if (wanted("Villages")) villages(ctx, world, server);
         }
@@ -316,6 +321,149 @@ public class NetherClientTest implements FabricClientGameTest {
     static String targetName(Piglin piglin) {
         LivingEntity target = target(piglin);
         return target == null ? "nobody" : target.getName().getString();
+    }
+
+    // -- a story, and the journal ---------------------------------------------------------------------------------
+
+    /** Press something in the open window (as its button would) and wait for the answer. */
+    static TalkPayload press(ClientGameTestContext ctx, String action) {
+        TalkPayload before = ctx.computeOnClient(client -> ((TalkScreen) client.gui.screen()).payload());
+        ctx.runOnClient(client -> ClientPlayNetworking.send(new TalkPayload.Action(before.entityId(), before.residentId(), action)));
+        ctx.waitFor(client -> client.gui.screen() instanceof TalkScreen t && t.payload() != before, 100);
+        ctx.waitTicks(3);
+        return ctx.computeOnClient(client -> ((TalkScreen) client.gui.screen()).payload());
+    }
+
+    static boolean offers(TalkPayload p, String id) {
+        return p.choices().stream().anyMatch(c -> c.id().equals(id));
+    }
+
+    /** Let the line finish typing (as Space does) and photograph the window. */
+    static void shootLine(ClientGameTestContext ctx, String name) {
+        ctx.getInput().pressKey(KEY_SPACE);
+        ctx.waitTicks(4);
+        shoot(ctx, name);
+    }
+
+    void story(ClientGameTestContext ctx, TestSingleplayerContext world, TestServerContext server) {
+        // every people's stories load, and every job has one
+        String loaded = server.computeOnServer(srv -> {
+            List<String> counts = new ArrayList<>();
+            for (People people : People.values()) {
+                Story.Book book = Story.book(people);
+                check(!book.tales().isEmpty() && !book.child().isEmpty() && !book.early().isEmpty(), people.plural + " have no stories");
+                for (String job : Folk.JOBS.get(people)) {
+                    check(book.tales().stream().anyMatch(t -> t.jobs().contains(job)), people.plural + ": no story for a " + job);
+                }
+                // what they ask for is held in one hand, so it has to fit in one stack (and so does the reward)
+                for (Story.Tale t : book.tales()) {
+                    for (ItemStack st : List.of(t.request().stack(), t.reward())) {
+                        check(!st.isEmpty() && st.getCount() <= st.getMaxStackSize(), people.plural + " story " + t.id() + ": " + Story.things(st)
+                                + " doesn't fit in one stack (" + st.getMaxStackSize() + ")");
+                    }
+                }
+                counts.add(people.plural + " " + book.tales().size());
+            }
+            return String.join(", ", counts);
+        });
+        server.runCommand("tp @a 0 150 -10 0 10");
+        world.getConnection().waitForChunksRender();
+        ctx.waitTicks(20);
+        for (String cmd : List.of("fill -8 149 -8 8 149 8 blackstone", "fill -8 150 -8 8 158 8 air", "fill -8 150 8 8 155 8 nether_bricks",
+                "kill @e[type=!player]", "gamemode survival @a", "clear @a", "effect give @a resistance 600 4 true", "tp @a 0 150 -3 0 0",
+                "summon netherfriends:magmari 0 150 0.5 {NoAI:1b,PersistenceRequired:1b,Rotation:[180f,0f],Gender:1}")) {
+            server.runCommand(cmd);
+        }
+        ctx.waitTicks(10);
+        ctx.waitFor(client -> client.level.getEntitiesOfClass(LivingEntity.class, new AABB(-4, 148, -4, 4, 154, 4), e -> People.of(e) != null).size() == 1, 200);
+        // a friend of level 2: the story opens
+        String title = server.computeOnServer(srv -> {
+            ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+            LivingEntity resident = speakerNear(srv);
+            Bonds.put(resident, player.getUUID(), new Bonds.Bond(Bonds.THRESHOLDS[Story.OPENS_AT], Story.OPENS_AT, -1, -1, List.of()));
+            Talk.open(player, resident);
+            Story.Tale tale = Story.tale(resident, Folk.of(resident), Journal.get(resident, player.getUUID()));
+            return tale.title() + " (" + Folk.of(resident).job() + ")";
+        });
+        ctx.waitForScreen(TalkScreen.class);
+        ctx.waitTicks(5);
+        TalkPayload p = press(ctx, "tab:story");
+        check(p.tab().equals("story") && !p.choices().isEmpty(), "the Story tab offers nothing: " + p.line());
+        shootLine(ctx, "nether-story-1-intro");
+        for (int i = 0; i < 4 && offers(p, "story:next"); i++) p = press(ctx, "story:next");
+        check(offers(p, "story:begin"), "no way to begin the story: " + p.choices());
+        p = press(ctx, "story:begin");
+        check(offers(p, "story:bring"), "the story asked for nothing: " + p.line());
+        shootLine(ctx, "nether-story-2-request");
+        // bring what they asked for
+        server.runOnServer(srv -> {
+            ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+            LivingEntity resident = speakerNear(srv);
+            Story.Tale tale = Story.tale(resident, Folk.of(resident), Journal.get(resident, player.getUUID()));
+            player.setItemInHand(InteractionHand.MAIN_HAND, tale.request().stack().copy());
+        });
+        int before = p.points();
+        p = press(ctx, "story:bring");
+        check(p.points() == before + Story.BROUGHT_POINTS, "bringing it should give " + Story.BROUGHT_POINTS + " points: " + before + " -> " + p.points());
+        shootLine(ctx, "nether-story-3-brought");
+        // later: close enough, and another day
+        server.runOnServer(srv -> {
+            ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+            LivingEntity resident = speakerNear(srv);
+            long day = srv.overworld().getGameTime() / 24000L;
+            Bonds.put(resident, player.getUUID(), new Bonds.Bond(Bonds.THRESHOLDS[Story.CONFIDES_AT], Story.CONFIDES_AT, day, -1, List.of()));
+            Journal.put(resident, player.getUUID(), Journal.get(resident, player.getUUID()).brought(day - 1));
+        });
+        p = press(ctx, "tab:story");
+        check(offers(p, "story:next"), "they should be ready to tell the rest: " + p.line() + " / " + p.status());
+        for (int i = 0; i < 5 && offers(p, "story:next"); i++) p = press(ctx, "story:next");
+        check(offers(p, "story:end:0") && offers(p, "story:end:1"), "no endings to choose: " + p.choices());
+        shootLine(ctx, "nether-story-4-confide");
+        p = press(ctx, "story:end:0");
+        check(p.status().contains("finished"), "the story didn't finish: " + p.status());
+        shootLine(ctx, "nether-story-5-ending");
+        String reward = server.computeOnServer(srv -> {
+            ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+            LivingEntity resident = speakerNear(srv);
+            Journal.Entry entry = Journal.get(resident, player.getUUID());
+            check(entry.chapter() == Journal.FINISHED && entry.ending() == 0, "the Journal doesn't have the story finished");
+            Story.Tale tale = Story.tale(resident, Folk.of(resident), entry);
+            check(player.getInventory().contains(st -> st.is(tale.reward().getItem())), "no reward in the inventory");
+            return Story.things(tale.reward());
+        });
+        // the Journal
+        p = press(ctx, "tab:journal");
+        check(p.tab().equals("journal") && p.line().startsWith("Memories with") && p.line().contains("You met"), "the Journal's memories: " + p.line());
+        shoot(ctx, "nether-journal-1-memories");
+        p = press(ctx, "journal:about");
+        check(p.line().contains("Friendship:"), "the About page: " + p.line());
+        shoot(ctx, "nether-journal-2-about");
+        p = press(ctx, "journal:notes");
+        check(p.line().contains("Done: Answered them"), "the story notes: " + p.line());
+        shoot(ctx, "nether-journal-3-notes");
+        String notes = p.line();
+        p = press(ctx, "tab:talk");
+        check(p.tab().equals("talk") && !p.choices().isEmpty(), "back on the Talk tab there are no topics");
+        goodbye(ctx);
+        ctx.waitFor(client -> client.gui.screen() == null, 40);
+        // a child has no story yet
+        server.runCommand("kill @e[type=!player]");
+        server.runCommand("summon netherfriends:withren 0 150 0.5 {NoAI:1b,PersistenceRequired:1b,Rotation:[180f,0f],Age:-24000}");
+        ctx.waitTicks(10);
+        ctx.waitFor(client -> client.level.getEntitiesOfClass(LivingEntity.class, new AABB(-4, 148, -4, 4, 154, 4), e -> People.of(e) != null).size() == 1, 200);
+        server.runOnServer(srv -> Talk.open(srv.getPlayerList().getPlayers().getFirst(), speakerNear(srv)));
+        ctx.waitForScreen(TalkScreen.class);
+        ctx.waitTicks(5);
+        p = press(ctx, "tab:story");
+        check(p.status().startsWith("Children"), "a child's Story tab: " + p.status());
+        shootLine(ctx, "nether-story-child");
+        goodbye(ctx);
+        ctx.waitFor(client -> client.gui.screen() == null, 40);
+        server.runCommand("kill @e[type=!player]");
+        server.runCommand("gamemode creative @a");
+        server.runCommand("clear @a");
+        System.out.println("[netherfriends] story: " + loaded + System.lineSeparator() + "played: " + title + ", reward " + reward
+                + System.lineSeparator() + notes);
     }
 
     // -- the creatures ----------------------------------------------------------------------------------------------

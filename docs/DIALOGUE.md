@@ -17,6 +17,8 @@ you talk. `python tools/check_talk.py` checks every file (run it after any edit)
   over your hotbar).
 - If they won't talk (a Weft whose forest you cut, anyone you just hit), they say a **refuse** line and offer
   nothing else.
+- Under the friendship card are three tabs: **Talk** (all of the above), **Story** and **Journal**. Those two, and
+  the story files, are in `STORIES.md`.
 
 ## Friendship
 

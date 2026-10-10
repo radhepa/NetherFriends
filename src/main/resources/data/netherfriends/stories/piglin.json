@@ -1,0 +1,591 @@
+{
+  "early": [
+    {"text": "Story. Later. Know you first. Hrm.", "when": {"job": "Brute"}},
+    {"text": "Hrm. No. Come back more.", "when": {"job": "Brute"}},
+    {"text": "A story's worth gold. So far your friendship's worth a few nuggets. Come back when it weighs more. Ha!", "when": {"job": "Bartermaster"}},
+    {"text": "Down here everybody's got a story, and most of them are on fire. Talk to me a while longer before I tell you mine.", "when": {"place": "bastion"}},
+    {"text": "Out on the road you learn who to tell things to. Not you. Not yet. Come round a few more times.", "when": {"job": "Wanderer"}},
+    "My story? Ha! Stories cost more than you've got. Talk to me a while longer. Then maybe.",
+    "You want what's on my mind? I've barely learned your face. Come back shiny a few more times.",
+    "Piglins tell their stories to friends. You're a stranger who glints. It's a start. Keep at it.",
+    "Ha! Nice try. First we talk, then we shout a bit, then we laugh. Then stories. That's the order."
+  ],
+
+  "child": [
+    {"text": "My story is I live in a burned castle. It's the best castle. Ask anyone. Ask the soot.", "when": {"place": "bastion"}},
+    "My story? I haven't got one! I'm going to have the biggest one. With gold in it. And a hoglin.",
+    "Secret: I buried a nugget somewhere. A good somewhere. When I'm big it'll be a whole Hoard. That's my story.",
+    "I'm too little for a story. Grown-ups have them. Theirs are mostly shouting.",
+    "When I get my first helmet, THEN I'll have a story. You can come and hear it. Bring gold.",
+    "I wish I could ride a big hoglin. Not a little one. A BIG one. That's my wish. Don't tell the herder."
+  ],
+
+  "waiting": [
+    {"text": "Hrm. Not yet. Later.", "when": {"job": "Brute"}},
+    {"text": "Later. Thinking. Hrm.", "when": {"job": "Brute"}},
+    {"text": "Patience. A hunter waits for the shot. You wait for the story. Come back another day.", "when": {"job": "Hunter"}},
+    {"text": "The rest of it's still in the furnace. It needs time. Come back another day, when it's cooled.", "when": {"job": "Smelter"}},
+    "That's all for now. The rest is heavier. Come back another day, when I've chewed on it.",
+    "Not yet. You've heard the easy part. The hard part waits till I know you better.",
+    "Ha! Greedy for stories, are you? I like that. Still no. Come back another day.",
+    "Thank you for what you brought. Really. Now go away a while. I'm thinking. It's loud in here.",
+    "The rest of it? Later. When you're more of a friend and I'm less of a coward. Don't tell anyone I said coward."
+  ],
+
+  "ready": [
+    {"text": "More. Listen?", "when": {"job": "Brute"}},
+    {"text": "Hrm. You. Stand here. More to tell.", "when": {"job": "Brute"}},
+    {"text": "Come in, out of the ash. Sit on the warm stone. There's more to it. Will you listen?", "when": {"place": "bastion"}},
+    "You came back. Good. There's more to it, and I've decided you're the one to hear it. Will you listen?",
+    "Stand here. Closer. Nobody else needs to hear this part. Will you listen?",
+    "I've been holding the rest of it like a hot coal. Want it? Listen, then.",
+    "There's more. Not the loud part. The quiet part. Piglins aren't good at quiet. Will you hear it anyway?"
+  ],
+
+  "stories": [
+    {
+      "id": "bartermaster_ring_meet",
+      "jobs": ["Bartermaster"],
+      "title": "The Ring-Meet",
+      "intro": [
+        "Big news. Biggest. The old Bartermaster of the far Holds is coming to our ring. Murga Gild-Tongue. Never lost a haggle in her life. Never. I'm going to beat her.",
+        "Problem. You can't haggle Murga with a thin purse. She smells it. She laughs. Then you've lost before you've opened your mouth. I need weight in my hand when she walks in.",
+        "One gold block. Not ingots, a block. A block says 'I am serious'. Will you get me one?"
+      ],
+      "request": {
+        "item": "minecraft:gold_block",
+        "count": 1,
+        "ask": "Bring me one gold block. Solid. I'll hold it where she can see it, and I won't even wobble.",
+        "thanks": "Ohh. Feel the weight of that. Murga takes one look at this and... well. She'll look at it. Ha! Thank you, shiny one."
+      },
+      "confide": [
+        "Murga isn't just any Bartermaster. She's my mother. She left the {clan} when I was this high, off to the far Holds to haggle. She never came back. Not once.",
+        "I learned the ring so I'd be good at the thing she loved more than us. Now I'm the best this side of the lava, and she's coming, and I've no idea what to say to her.",
+        "So. Do I beat her at her own game, so she sees what she missed? Or do I put the block down and just say hello?"
+      ],
+      "endings": [
+        {"ask": "Beat her at the ring.", "text": "Ha! I did. Haggled her down to her last nugget. She laughed till she cried, then said, 'That's my litter.' She's staying a while. To win it back, she says.", "memory": "You told {name} to out-haggle Murga at the barter ring."},
+        {"ask": "Just say hello.", "text": "I put the block down and said hello. She stared. Then she hugged me. We never haggled once. She's staying a while. First time I ever didn't haggle. Felt rich anyway.", "memory": "You told {name} to put the gold down and greet Murga."}
+      ],
+      "reward": {"item": "minecraft:ender_pearl", "count": 8},
+      "after": [
+        "Murga's still here. She stands at the ring and tells me I'm doing it wrong. I'm not. I'm doing it louder.",
+        "I kept the gold block on the counter. Every haggler who sees it gets nervous. Ha! Best thing you ever brought me."
+      ]
+    },
+
+    {
+      "id": "bartermaster_honest_weight",
+      "jobs": ["Bartermaster"],
+      "title": "Honest Weight",
+      "intro": [
+        "See this? Looks like an ingot. Shines like an ingot. It's a nether brick rolled in gold dust. I keep it under the counter. Don't laugh. Fine, laugh a little.",
+        "I want proper weights for the ring. Stone ones, cut true, so every ingot weighs the same for everyone. Polished blackstone. Nothing else cuts so clean. Sixteen pieces."
+      ],
+      "request": {
+        "item": "minecraft:polished_blackstone",
+        "count": 16,
+        "ask": "Bring me sixteen polished blackstone. I'll cut the weights myself. Nobody else touches them.",
+        "thanks": "Good stone. Heavy, true, black as a Withren joke. Ha! These will make fine weights."
+      },
+      "confide": [
+        "When I was small, a trader at the ring gave me that brick for my grandsire's tusk-ring. I thought I'd made us rich. I ran home shouting. We went hungry a long while after.",
+        "Grandsire never shouted at me. That was the worst bit. He just said, 'Now you know what a lie weighs.' I became Bartermaster so no little one gets fooled at my ring. Ever.",
+        "The weights are cut. Now the old brick. Do I throw it in the lava at last? Or keep it on the counter, where every little one can see it?"
+      ],
+      "endings": [
+        {"ask": "Throw it in the lava.", "text": "Plop. Gone. Ha! It sank like the lie it was. I feel lighter. Strange thing, for a Bartermaster to like feeling lighter.", "memory": "You told {name} to throw the fake ingot in the lava."},
+        {"ask": "Keep it where they see it.", "text": "On the counter, then, next to the weights. When the little ones ask, I tell them. Then I make them bite it. Nobody forgets the taste of brick.", "memory": "You told {name} to keep the fake ingot on the counter for the little ones."}
+      ],
+      "reward": {"item": "minecraft:gold_ingot", "count": 6},
+      "after": [
+        "Every ingot weighed on your stones comes out honest. Some traders don't like that. Those are the ones I watch.",
+        "Grandsire would have liked the new weights. He'd have pretended not to. Then he'd have liked them."
+      ]
+    },
+
+    {
+      "id": "hunter_one_tusk",
+      "jobs": ["Hunter"],
+      "title": "The One-Tusk",
+      "intro": [
+        "There's a hoglin in the crimson with one tusk. Big as a longhouse door. I've hunted it three times. It's won three times. I've the scars to prove it. Want to see? Later.",
+        "This time I do it right. No shouting till the end. Lots of bolts. I need twenty-four arrows. Proper ones. I used all mine up bouncing them off its head."
+      ],
+      "request": {
+        "item": "minecraft:arrow",
+        "count": 24,
+        "ask": "Bring me twenty-four arrows. I'll need every one. That head is thick.",
+        "thanks": "Twenty-four! Straight shafts, good heads. The One-Tusk won't know what hit it. Well. It'll know. It's clever."
+      },
+      "confide": [
+        "I went tracking with your arrows. Found it by the old lava falls. It's slow now. Grey round the snout. It didn't even charge. Just looked at me.",
+        "We've fought since I was young and had all my tusks. I'm grey round the snout too. I think we're the last two out there who remember each other.",
+        "I had a clean shot. I didn't take it. Not yet. So you tell me. Do I finish the hunt, like a hunter should? Or let the old thing grow older?"
+      ],
+      "endings": [
+        {"ask": "Finish the hunt.", "text": "I went back. One bolt, clean. It didn't run. I sat with it a long while after. The Hold ate well and I told the story loud. That's how a hunter says goodbye.", "memory": "You told {name} to finish the hunt for the One-Tusk."},
+        {"ask": "Let it grow old.", "text": "I left it be. I still go out there. It watches me, I watch it. Nobody else may hunt it. I told the Hold so. Loudly. Twice.", "memory": "You told {name} to let the One-Tusk live out its days."}
+      ],
+      "reward": {"item": "minecraft:crossbow", "count": 1},
+      "after": [
+        "Keep that old crossbow. It missed the One-Tusk three times. It won't miss anything else.",
+        "The crimson's quieter now. I miss being beaten. Don't tell anyone I said that."
+      ]
+    },
+
+    {
+      "id": "hunter_bell_shot",
+      "jobs": ["Hunter"],
+      "title": "Bell-Shot",
+      "intro": [
+        "You've heard what they call me. Bell-Shot. I loosed at a ghast whelp over the Hold and hit the horn tower bell instead. BONG. Everyone heard. Everyone.",
+        "My string snapped. That's what happened. Snapped clean. I need new string, plenty of it, so I can restring and show them a real shot. Twelve string."
+      ],
+      "request": {
+        "item": "minecraft:string",
+        "count": 12,
+        "ask": "Bring me twelve string. Strider string, spider string, I don't care which. Strong.",
+        "thanks": "Good. Strong stuff. Look at that. It'll never snap. Not that my last one did. Well. It did. Officially."
+      },
+      "confide": [
+        "The string didn't snap. There. I said it. That whelp came down low over the crags. I had it. Then it opened its eyes, and it had hands. Little hands. A Ghastkin child, lost.",
+        "I pulled the shot up into the bell. Loudest miss this Hold ever heard. The little one fled home, I hope. Every Piglin here has called me Bell-Shot since.",
+        "I've never told anyone. A Piglin who spares a Ghastkin gets laughed out of the longhouse. So. Do I tell them the truth? Or let them keep laughing?"
+      ],
+      "endings": [
+        {"ask": "Tell them the truth.", "text": "I told them at the hearth. Big silence. Then {neighbour} said, 'Good shot, then.' Nobody calls me Bell-Shot now. They call me Soft-Bolt. Ha! I'll take it.", "memory": "You told {name} to tell the Hold why the shot hit the bell."},
+        {"ask": "Let them laugh.", "text": "Bell-Shot it is. Let them laugh. Somewhere out there a little one is still learning to cry, because I missed. Worth every bong.", "memory": "You told {name} to keep the secret and wear the name Bell-Shot."}
+      ],
+      "reward": {"item": "minecraft:spectral_arrow", "count": 12},
+      "after": [
+        "Whenever the bell rings, I still flinch. Then I grin. You know why.",
+        "The new string's good. I hit everything now. Everything I mean to."
+      ]
+    },
+
+    {
+      "id": "forager_netted",
+      "jobs": ["Forager"],
+      "title": "Netted",
+      "intro": [
+        "The longhouse hearth wants shroomlights. Gold light, warm light. Everyone expects me to fetch them. I'm the Forager. I always fetch them. From the warped canopy.",
+        "Only I'm not going back up there. Not scared! Busy. Very busy. So you'll go. Eight shroomlights. Crimson or warped, they glow the same."
+      ],
+      "request": {
+        "item": "minecraft:shroomlight",
+        "count": 8,
+        "ask": "Bring me eight shroomlights. And if anything clicks at you up there, don't click back.",
+        "thanks": "Eight! Look at that glow. Nobody needs to know I didn't climb for them. Nobody. Not even you. Oh. You know."
+      },
+      "confide": [
+        "Last time I climbed the canopy, the Weft netted me. Hung me up like a ham. I hung there a long while, shouting. Nobody came. Then one did. A little Weft, two arms, all eyes.",
+        "It clicked at me. Then it pushed a crimson fungus through the net, and stayed. Kept me company. When the grown ones came it ran. I cut myself loose and never went back.",
+        "I keep thinking it was only minding its home. Like I mind mine. Do I leave something at the forest edge for it? Or keep the whole thing to myself?"
+      ],
+      "endings": [
+        {"ask": "Leave it a gift.", "text": "I left a gold nugget on a stem at the edge of the warped. Next time I looked, it was gone. In its place, a spool of string. Ha! A Weft that barters. There's hope for them.", "memory": "You told {name} to leave a gift at the edge of the warped forest."},
+        {"ask": "Keep it to yourself.", "text": "Then it stays between us two. Three, with you. I'll take my shroomlights from the crimson from now on. Out of respect. And because the nets itch.", "memory": "You told {name} to keep the little Weft a secret."}
+      ],
+      "reward": {"item": "minecraft:ghast_tear", "count": 2},
+      "after": [
+        "The hearth's never glowed brighter. {neighbour} says I'm getting soft. I said the light's getting soft. Ha!",
+        "If you're ever netted up there, don't shout. Wait. Sometimes somebody small comes."
+      ]
+    },
+
+    {
+      "id": "forager_secret_patch",
+      "jobs": ["Forager"],
+      "title": "The Secret Patch",
+      "intro": [
+        "Piglins don't plant. Piglins take. Everyone knows that. So nobody knows about my patch. Behind the pens, under the big fungus. Crimson fungus. Growing. On purpose.",
+        "It's slow. Too slow. I need bone meal to wake it. Skeletons out in the soul valleys drop bones, and bones grind down. Twenty-four bone meal, and I'll have a proper crop."
+      ],
+      "request": {
+        "item": "minecraft:bone_meal",
+        "count": 24,
+        "ask": "Bring me twenty-four bone meal. Quietly. If anyone asks, it's for polishing.",
+        "thanks": "Bone meal! Not a word to anyone. If they ask, I found you lost and gave you directions."
+      },
+      "confide": [
+        "My mother was a Forager. Best there was. She ranged further than anyone, out to the far crimson. I'd wait at the edge of the Hold for her to come home with her arms full.",
+        "One time she didn't. I waited a long, long while. So I started the patch. If the food grows here, nobody's mother has to go far. Nobody's little one waits at the edge.",
+        "It's growing well now, thanks to you. Should I show the Hold and teach them, even if they laugh? Or keep it my own quiet thing?"
+      ],
+      "endings": [
+        {"ask": "Show the Hold.", "text": "They laughed. Then they ate. Then {neighbour} asked how. Now there are three patches and a fight over the best spot. Ha! That's Piglins for you. Mother would laugh too.", "memory": "You told {name} to show the Hold the fungus patch."},
+        {"ask": "Keep it your own.", "text": "Mine, then. I'll still range, but not far. And when some little one waits at the edge too long, I'll walk them home past my patch, and say nothing.", "memory": "You told {name} to keep the fungus patch a quiet secret."}
+      ],
+      "reward": {"item": "minecraft:nether_wart", "count": 12},
+      "after": [
+        "The patch is coming up thick. Red as a hoglin's temper. Best thing I ever grew. Only thing I ever grew.",
+        "That wart I gave you? Off a Withren terrace. They count names, not wart. Ha!"
+      ]
+    },
+
+    {
+      "id": "smelter_eyebrows",
+      "jobs": ["Smelter"],
+      "title": "Eyebrows",
+      "intro": [
+        "My brother's mating feast is coming. And who stands up as speaker for the {clan}? Me! Loud voice, good tusks, fine bristles. And no eyebrows. Not one hair.",
+        "There's a salve. Magma cream, rubbed on hot. Grows them back thick, they say. Smells awful. I need six magma cream. The cubes out on the wastes are full of it."
+      ],
+      "request": {
+        "item": "minecraft:magma_cream",
+        "count": 6,
+        "ask": "Bring me six magma cream. Bounce the cubes till they burst. Don't get bounced yourself.",
+        "thanks": "Six! Warm and sticky. Ugh, the smell. Perfect. My brows will be back before the feast. Bushy. Magnificent."
+      },
+      "confide": [
+        "Our father was a Smelter too. Never had eyebrows either. He spoke at every feast with a bare face and a big laugh, and nobody ever looked at his brow. They looked at him.",
+        "He's gone now. When I look in a polished helmet, I see his bare face looking back. Maybe that's why I want the brows. So it's not him I see. Or maybe I want to see him.",
+        "The salve's ready. So. Do I rub it on and stand up bushy? Or stand up bare, the way he did?"
+      ],
+      "endings": [
+        {"ask": "Grow them back.", "text": "Ha! Bushy as a hoglin's back! The whole feast stared. My brother cried laughing. Then I burned them off again at the furnace after. Worth it for one feast.", "memory": "You told {name} to grow their eyebrows back for the feast."},
+        {"ask": "Go bare, like him.", "text": "Bare it was. I stood up, I spoke loud, and an old aunt said, 'You sound just like him.' Nobody looked at my brow. They looked at me. Like with him.", "memory": "You told {name} to speak at the feast bare-browed, like their father."}
+      ],
+      "reward": {"item": "minecraft:gold_ingot", "count": 8},
+      "after": [
+        "My brother's mated now. He says it was the best feast ever. Mostly because of my face. I choose to take that well.",
+        "Leftover salve's under the bench. Want some? No? Your brows are fine. For now. Stand back from the furnace."
+      ]
+    },
+
+    {
+      "id": "smelter_melted_gold",
+      "jobs": ["Smelter"],
+      "title": "What the Fire Melted",
+      "intro": [
+        "The Hold wants more gold in the Hoard. More ingots, faster. So I smelt and smelt. And every time, somebody looks at the lump on my shelf. The one I never melt.",
+        "If I fill the Hoard fast enough, maybe they'll stop asking about it. Your world has raw gold in its rocks, I hear. Twelve raw gold, and I'll pour till nobody can complain."
+      ],
+      "request": {
+        "item": "minecraft:raw_gold",
+        "count": 12,
+        "ask": "Bring me twelve raw gold from your world. I'll shake the rot off them first. Just in case.",
+        "thanks": "Raw gold! Lumpy, ugly, beautiful. Doesn't smell rotten. Hm. I'll smelt it anyway. Fire cleans everything."
+      },
+      "confide": [
+        "That lump on the shelf was my grandsire's. His helmet and his tusk-ring, melted together when the Wither burned his bastion. He was wearing them. That's all that came out.",
+        "Every Smelter of the {clan} has kept it. Never melted. But gold isn't for a shelf. Gold goes in the Hoard, with the clan, where it's counted. That's the old law.",
+        "So. Do I melt him into the Hoard, where every Piglin counts him? Or keep him whole on the shelf, the way he came out of the fire?"
+      ],
+      "endings": [
+        {"ask": "Melt it into the Hoard.", "text": "I poured him myself. Slow. One ingot, marked with the {clan} tusk. It's in the Hoard now. When they count it, they count him. He'd like being counted.", "memory": "You told {name} to melt their grandsire's gold into the Hoard."},
+        {"ask": "Keep it whole.", "text": "He stays on the shelf. Your raw gold filled the Hoard, so nobody asks now. And when the little ones ask what it is, I tell them. Every time. Loud.", "memory": "You told {name} to keep the melted gold whole on the shelf."}
+      ],
+      "reward": {"item": "minecraft:gold_block", "count": 2},
+      "after": [
+        "The furnace roars, I roar back. The gold comes out shining. Grandsire would roar too, if he could.",
+        "Twelve raw gold, and not a speck of rot in it. Maybe your world isn't all bad. Don't tell anyone I said that."
+      ]
+    },
+
+    {
+      "id": "goldsmith_steady_hands",
+      "jobs": ["Goldsmith"],
+      "title": "Steady Hands",
+      "intro": [
+        "I'm making a crown. For the pedestal at the barter ring. The finest thing ever hammered in this Hold. Every Goldsmith makes one great piece. This is mine.",
+        "It wants stones. White ones, set round the brow. Nether quartz, the cleanest you can find. Sixteen pieces. I'll pick the best and grind the rest into polish."
+      ],
+      "request": {
+        "item": "minecraft:quartz",
+        "count": 16,
+        "ask": "Bring me sixteen nether quartz. Clean pieces. No cracks. I can tell.",
+        "thanks": "Good quartz. Hold it to the light. See? Like frozen fire. You've a good eye. Nearly as good as mine. Nearly."
+      },
+      "confide": [
+        "Look at my hands. No. Closer. See them shake? It started a while ago. Small at first. Now I can't set a rivet without three tries. I tell everyone the anvil's crooked.",
+        "My apprentice, young Tikka, has steady hands. Clumsy, loud, but steady. Tikka could set every stone true. And I'd stand there, holding nothing, watching.",
+        "My great piece. Do I finish it myself, slow and shaky, every stone mine? Or hand Tikka the hammer and let the crown be both of ours?"
+      ],
+      "endings": [
+        {"ask": "Finish it yourself.", "text": "It took forever. Some stones sit a hair crooked. Nobody else can see it. I can. I love those crooked ones best. They're the ones my hands fought for.", "memory": "You told {name} to finish the crown with their own hands."},
+        {"ask": "Hand Tikka the hammer.", "text": "Tikka set every stone. I talked the whole time. 'Gently. Talk to it. Now hit it.' The crown's perfect. And when they ask who made it, Tikka says 'us'. Ha!", "memory": "You told {name} to let Tikka set the stones."}
+      ],
+      "reward": {"item": "minecraft:golden_chestplate", "count": 1},
+      "after": [
+        "The crown sits on the pedestal now. It shines every time someone barters. Go and look. Bow a little.",
+        "The anvil's still crooked, by the way. That's my story and I'm keeping it."
+      ]
+    },
+
+    {
+      "id": "goldsmith_first_helmet",
+      "jobs": ["Goldsmith"],
+      "title": "The First Helmet",
+      "intro": [
+        "When a little one's tusks come in, their clan pays me for their first gold helmet. It's the day they become a Piglin. Big day. Big shouting. Big price.",
+        "There's a little one here, Nubb, tusks coming and no clan to pay. Parents went raiding the striders and didn't come back. I don't work for free. Everyone knows that.",
+        "But if somebody brought me five gold ingots... nobody would have to know who paid. Would they?"
+      ],
+      "request": {
+        "item": "minecraft:gold_ingot",
+        "count": 5,
+        "ask": "Bring me five gold ingots. A helmet's worth. Don't tell anyone. Especially not Nubb.",
+        "thanks": "Five. Good. I'll start at once. A small helmet, tusk-holes cut wide for growing. Shh. Not a word."
+      },
+      "confide": [
+        "Nubb isn't the first. Long ago there was another little one with no clan. Thin, loud, always hungry. The old Goldsmith made that one a helmet and asked nothing. Only said, 'Pay me by being loud.'",
+        "That little one was me. I've been loud ever since, paying him back. He's long gone now, and I never told him how much it meant.",
+        "The helmet's done. Do I give it to Nubb myself and tell the whole story? Or leave it on Nubb's bench, so it's just there, like gold falling from the roof?"
+      ],
+      "endings": [
+        {"ask": "Give it, and tell it.", "text": "I put it on Nubb's head and told the whole Hold the story. Nubb shouted so loud the hoglins hid. That's the payment. I made sure everyone heard it.", "memory": "You told {name} to give Nubb the helmet and tell the old story."},
+        {"ask": "Leave it on the bench.", "text": "I left it on the bench. Nubb found it and ran round the barter ring three times, screaming. Nobody knows who made it. Well. You know. That's enough.", "memory": "You told {name} to leave the helmet on Nubb's bench without a word."}
+      ],
+      "reward": {"item": "minecraft:golden_apple", "count": 2},
+      "after": [
+        "Nubb wears that helmet everywhere. Sleeps in it. Eats in it. Bites anyone who touches it. Perfect.",
+        "Next time a little one comes along with no clan, you know where the helmets come from. Don't tell. Do bring ingots."
+      ]
+    },
+
+    {
+      "id": "herder_old_gristle",
+      "jobs": ["Hoglin-herder"],
+      "title": "Old Gristle",
+      "intro": [
+        "Gristle's off his food. Gristle! He's bitten everything in this Hold at least once. Three boots, a door, a Brute. Now he lies in the corner of the pen and sighs.",
+        "Crimson fungus is what he likes best. The fat red caps. I've fed him all of mine. Sixteen more, and maybe he'll get up and bite me again."
+      ],
+      "request": {
+        "item": "minecraft:crimson_fungus",
+        "count": 16,
+        "ask": "Bring me sixteen crimson fungus. Fresh ones. He knows when they're stale.",
+        "thanks": "Sixteen! Gristle, look! Look, you old grump. ...He sniffed it. He sniffed it! That's more than he's done in days."
+      },
+      "confide": [
+        "Gristle was my father's hoglin. Father raised him from a piglet, and Gristle bit him every day for twenty years. Father said that's how you know a hoglin loves you.",
+        "Father's gone. Gristle's all that's left of him that still snorts. He's old now. Old hoglins wander off into the crimson at the end, back where they started. Herders let them go.",
+        "I could open the gate for him. Or keep him here with me till he's done. What would you do?"
+      ],
+      "endings": [
+        {"ask": "Open the gate.", "text": "I opened it. He stood a long while. Then he bit me, one last time, and walked into the crimson. Slow. Proud. Like Father walked. I didn't watch. I did. I watched.", "memory": "You told {name} to open the gate and let Gristle go."},
+        {"ask": "Keep him close.", "text": "He stays. I sleep by the pen now. He eats a cap or two a day, and bites my ear when I snore. He'll go when he goes, and I'll be right there.", "memory": "You told {name} to keep Gristle close till the end."}
+      ],
+      "reward": {"item": "minecraft:name_tag", "count": 1},
+      "after": [
+        "That name tag? Give it to something you love. Something that bites you. That's how you'll know it loves you back.",
+        "Father would have done what you said. I'm sure of it. Almost sure. Sure enough."
+      ]
+    },
+
+    {
+      "id": "herder_loose_hoglins",
+      "jobs": ["Hoglin-herder"],
+      "title": "Loose in the Crimson",
+      "intro": [
+        "Somebody dropped warped fungus by my pens. The hoglins went mad, smashed the fence, and three of them are loose in the crimson. Three! Bitey, Bitey Two and the new one.",
+        "I can coax them back with fungus. But not into a pen with no fence. Twelve crimson fences, and I can mend it before they get bored and come home angry."
+      ],
+      "request": {
+        "item": "minecraft:crimson_fence",
+        "count": 12,
+        "ask": "Bring me twelve crimson fences. Fast. Bitey gets bored fast.",
+        "thanks": "Twelve! Good, sturdy. Hoglin-proof. Well, hoglin-resistant. I'll have the pen mended before Bitey Two finishes eating that tree."
+      },
+      "confide": [
+        "I know who dropped the fungus. My little one, Gub. Found the stalk in Gub's pocket. Gub cried and said, 'You love the hoglins more than me. You live in the pens.'",
+        "And... I do live in the pens. Early, late, always. My father was the same, and I swore I wouldn't be. Here I am, smelling of hoglin, and my own little one wants them gone.",
+        "What do I do with Gub? Bring Gub into the pens and teach the herding? Or leave the pens a while and just be with Gub?"
+      ],
+      "endings": [
+        {"ask": "Teach Gub the herding.", "text": "Gub's in the pens with me now. Got bitten the first day. Laughed! A herder after all. We talk the whole time. The hoglins hate it. Ha!", "memory": "You told {name} to teach Gub the herding."},
+        {"ask": "Spend time with Gub.", "text": "I left the pens to the others and took Gub out to see the lava falls. Gub talked the whole way. I never knew Gub talked so much. I want to hear all of it.", "memory": "You told {name} to leave the pens a while and spend the time with Gub."}
+      ],
+      "reward": {"item": "minecraft:saddle", "count": 1},
+      "after": [
+        "That saddle? Hoglins won't wear one. I tried. Twice. Put it on a strider. If you can stand the smell.",
+        "Gub drew me in soot on the pen gate. Huge tusks. Very accurate. Nobody's allowed to wash it off."
+      ]
+    },
+
+    {
+      "id": "brute_small_axe",
+      "jobs": ["Brute"],
+      "title": "The Small Axe",
+      "intro": [
+        "Little one. Follows me. Every day. Stands like me. Glares like me. Hrm.",
+        "Wants axe. Like mine. Too small for mine. Needs small one. Gold.",
+        "Can't leave gate. You bring. One golden axe."
+      ],
+      "request": {
+        "item": "minecraft:golden_axe",
+        "count": 1,
+        "ask": "One golden axe. Small. For small one.",
+        "thanks": "Hrm. Good axe. Light. Right size."
+      },
+      "confide": [
+        "Was small once. Ugly. Big feet. Nobody looked. One Brute did. Old. Scarred.",
+        "Gave me stick. Said, 'Guard this.' Guarded it. Every day. Became Brute. He's gone. Kept stick.",
+        "Little one now. Like me. Give axe? Or stick first. Like him. Which?"
+      ],
+      "endings": [
+        {"ask": "Give the axe.", "text": "Gave axe. Little one held it up. Shouted. Loud. Everyone heard. Hrm. Good.", "memory": "You told {name} to give the little one the golden axe."},
+        {"ask": "Give a stick first.", "text": "Gave stick. Said, 'Guard this.' Little one guards it. Every day. Axe waits. Later. Hrm. Proud.", "memory": "You told {name} to give the little one a stick to guard first."}
+      ],
+      "reward": {"item": "minecraft:cooked_porkchop", "count": 12},
+      "after": [
+        "Little one guards now. Badly. Getting better.",
+        "Eat the meat. Get big. Hrm."
+      ]
+    },
+
+    {
+      "id": "brute_counting",
+      "jobs": ["Brute"],
+      "title": "Thirty Nuggets",
+      "intro": [
+        "Guard gold. Every day. Others count it. Shout numbers. Laugh. Hrm.",
+        "Brute can't count. Never learned. Want to learn. Can't use gold I guard. Need own.",
+        "Bring nuggets. Thirty. Learn on those."
+      ],
+      "request": {
+        "item": "minecraft:gold_nugget",
+        "count": 30,
+        "ask": "Thirty gold nuggets. Bring. Then show me.",
+        "thanks": "Hrm. One. Two. Many. ...Show again."
+      },
+      "confide": [
+        "Small, I counted. Pebbles. Liked it. Then big feet, big arms. They took pebbles. Gave axe. Said, 'Brutes guard. Others count.'",
+        "Counted all of yours. Thirty. Right. Counted twice. Thirty. Right again. Hrm. Felt good.",
+        "Now. Count the gold I guard? Out loud. Everyone hears. Or quiet. Just me. Which?"
+      ],
+      "endings": [
+        {"ask": "Count it out loud.", "text": "Counted out loud. All of it. Took long. Others stopped. Listened. Got it right. One laughed. Not at me. With me. Hrm. Good.", "memory": "You told {name} to count the guarded gold out loud."},
+        {"ask": "Count it quietly.", "text": "Counted quiet. Just me. Every day now. Know the number. Nobody knows I know. Hrm. Mine.", "memory": "You told {name} to count the gold quietly, a number only they know."}
+      ],
+      "reward": {"item": "minecraft:gold_nugget", "count": 39},
+      "after": [
+        "Gave you thirty-nine. Counted.",
+        "Hrm. Somebody took one nugget. Knew right away. Counting. Good.",
+        "Teach little ones pebbles now. Brute or not."
+      ]
+    },
+
+    {
+      "id": "bastion_warm_room",
+      "jobs": ["Bastion-dweller"],
+      "title": "The Warm Room",
+      "intro": [
+        "Down in the deep rooms the stones are still warm from the fire. Best sleeping in the Nether. Every Piglin here fights for the warmest room. I always win. Always.",
+        "But I'm... let's say I'm tired of winning. My back is, anyway. I want a warm floor of my own, somewhere nobody fights over. Twelve magma blocks would do it."
+      ],
+      "request": {
+        "item": "minecraft:magma_block",
+        "count": 12,
+        "ask": "Bring me twelve magma blocks. I'll lay them myself. Don't watch me bend.",
+        "thanks": "Twelve! Warm already. Ow. Very warm. That's the idea. Ha! I'll lay them in the old guard room. Nobody wants that one. Draughty."
+      },
+      "confide": [
+        "Here's the truth. That warmest room was my family's. My mother slept there, and her mother before her. She snored like a hoglin with a cold. I slept curled against her back.",
+        "When I sleep in that room I can almost hear her. That's why I fight for it. Not the warmth. The snoring. Ha. Don't tell the young ones. They think I'm just mean.",
+        "Now I have your warm floor too. Do I keep fighting for the old room? Or give it to the young ones, so it holds somebody's snoring again?"
+      ],
+      "endings": [
+        {"ask": "Keep the old room.", "text": "Then I keep fighting for it, and winning. The young ones grumble. Good for them. Grumbling makes you strong. And some sleeps, I swear I hear her.", "memory": "You told {name} to keep the old warm room."},
+        {"ask": "Give it to the young ones.", "text": "I gave it to the two youngest. Now they snore in there like a pair of hoglins with colds. I lie on your magma floor next door and listen. Sounds right.", "memory": "You told {name} to give the warm room to the young ones."}
+      ],
+      "reward": {"item": "minecraft:crying_obsidian", "count": 6},
+      "after": [
+        "That weeping black stone I gave you? Found it in the deep rooms. It cries purple. Creepy. Better you than me.",
+        "Your magma floor's good. Burns the feet, warms the back. Like most good things."
+      ]
+    },
+
+    {
+      "id": "bastion_black_walls",
+      "jobs": ["Bastion-dweller"],
+      "title": "The Black Walls",
+      "intro": [
+        "The young ones want to scrub the soot off the great hall. Gild the cracks, they say. Make it shine like before the fire. They've been at me about it a long while.",
+        "If we do it, we do it right. Gilded blackstone, the old stone with gold in it, to fill the cracks. Six blocks. Not from our walls, mind. From another Remnant."
+      ],
+      "request": {
+        "item": "minecraft:gilded_blackstone",
+        "count": 6,
+        "ask": "Bring me six gilded blackstone. Not from here! Pick at our walls and they'll kill you. From another Remnant.",
+        "thanks": "Six! Gold-flecked, every one. Ha! Some other Remnant is grumbling at its walls. Not my problem. Good work."
+      },
+      "confide": [
+        "My grandmother was a piglet in this hall when the Wither came. She hid under the feast table. When she came out, the walls were black, and the black was everyone who stood here.",
+        "We never scrubbed it. You keep some things where you can see them. But the young ones were born into soot, and they want gold. Living Piglins want gold. That's right too.",
+        "So. Do we gild the hall and let it shine for the living? Or keep the black, so nobody forgets who stood here?"
+      ],
+      "endings": [
+        {"ask": "Gild the hall.", "text": "We gilded it. Scrubbed every wall but one, by the feast table, where she hid. That one stays black. The rest shines. The young ones danced. I danced too. Badly.", "memory": "You told {name} to gild the great hall for the living."},
+        {"ask": "Keep the black.", "text": "I told them no. They sulked. Then I told them her story, all of it, in the hall. Nobody sulked after. We set your gold stones round the door instead.", "memory": "You told {name} to keep the soot on the great hall's walls."}
+      ],
+      "reward": {"item": "minecraft:netherite_scrap", "count": 2},
+      "after": [
+        "That scrap I gave you? Dug out of the old vault. Not gold, so not ours. Ha! Do something clever with it.",
+        "Every time I cross the hall I touch the wall by the feast table. Habit. Grandmother's habit, too."
+      ]
+    },
+
+    {
+      "id": "wanderer_spinning_needle",
+      "jobs": ["Wanderer"],
+      "title": "The Spinning Needle",
+      "intro": [
+        "I met an outsider on the road once. Pink-skin, like you. They had a little round thing with a needle that always pointed home. Always! Wherever they stood.",
+        "I want one. Your folk call it a compass. It's iron, I know. I'll hold it with a rag. One compass. Bring me one and I'll find out where home is."
+      ],
+      "request": {
+        "item": "minecraft:compass",
+        "count": 1,
+        "ask": "Bring me one compass. I'll pay in news. Good news. Most of it true.",
+        "thanks": "That's it? So small! Let me look. ...It's spinning. Round and round. Is it broken? Did you break it? Ha! Wait. Let me think about this."
+      },
+      "confide": [
+        "It's not broken, is it. It's the Nether. Your needle doesn't know where home is down here. Ha! Neither do I. Isn't that something.",
+        "I was born on the road. My mother walked Hold to Hold, and so did I. Every Hold says come in, stay. I never did. I always thought one day I'd just know which one.",
+        "The needle can't tell me. So you tell me. Is home where you stop? Or is home the road, and I just keep walking?"
+      ],
+      "endings": [
+        {"ask": "Home is where you stop.", "text": "Then I'll stop. Next Hold that shouts loudest at me, I stay. Unpack. Grow fat. Ha! Come and find me. Follow the noise.", "memory": "You told {name} that home is where you stop."},
+        {"ask": "Home is the road.", "text": "Ha! I knew it. The road, then. I'll keep your needle. It spins like me. Wherever it points, that's where I'm going next.", "memory": "You told {name} that home is the road."}
+      ],
+      "reward": {"item": "minecraft:golden_carrot", "count": 8},
+      "after": [
+        "Still got your needle. Still spinning. I find it a comfort now. Like a friend who's lost too.",
+        "Eat those carrots slow. Gold on the outside, good on the inside. Like me."
+      ]
+    },
+
+    {
+      "id": "wanderer_rotted_twin",
+      "jobs": ["Wanderer"],
+      "title": "The Twin in Green",
+      "intro": [
+        "You've seen the Rotted out on the wastes? Green, slow, walking nowhere. One of them I follow. I keep the others off him. He used to be my twin. Drekk.",
+        "Outsiders say a golden apple from your world cures the rot. I've heard it in three Holds. I don't believe it. I want one anyway. One golden apple, to hold out to him."
+      ],
+      "request": {
+        "item": "minecraft:golden_apple",
+        "count": 1,
+        "ask": "Bring me one golden apple. From your world. I'll scrub it twice.",
+        "thanks": "Gold all over! Red inside, they say. It smells of your world. Doesn't smell like rot. Smells like... nothing I know."
+      },
+      "confide": [
+        "Drekk went through a portal after gold. I told him not to. He said, 'Just a look.' He came back green. He walked right past me. He walks past me every day.",
+        "I know the apple won't work on a Piglin. Your folk told me that too. I only listened to the part I wanted. That's what twins do. Ha. That's what I do.",
+        "So. Do I hold it out to him anyway, and see what he does? Or let him be, and eat it myself, and keep walking?"
+      ],
+      "endings": [
+        {"ask": "Hold it out to him.", "text": "I held it out. He stopped. He never stops. He looked at it a long while. Then he walked on. But he stopped. Drekk stopped for me.", "memory": "You told {name} to hold the golden apple out to Drekk."},
+        {"ask": "Let him be.", "text": "I ate it, sitting where he passes. Sweet. He walked by like always. I said, 'It's good, brother.' Then I let him go on, and I went the other way. First time.", "memory": "You told {name} to let Drekk be and eat the apple."}
+      ],
+      "reward": {"item": "minecraft:obsidian", "count": 10},
+      "after": [
+        "That obsidian? I carried it to wall up the portal he went through. Never did. You take it. You know how to come back.",
+        "Keep your gold on, and stay out of portals. Well. You came out of one. Keep coming back out whole."
+      ]
+    }
+  ]
+}

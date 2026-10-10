@@ -13,7 +13,8 @@ and none of them at peace with the others.
 
 Right-click anyone to talk: Piglins only while you wear gold, Ghastkin only if you come up quietly (sneak). Every
 resident has a name and a job, and remembers how you treat them. Become a Piglin's Ingot-friend (friendship level 3)
-and that Piglin leaves you be even with your gold off.
+and that Piglin leaves you be even with your gold off. Every grown resident also has a story of their own (the Story
+tab: hear it, bring what they need, hear the rest, answer them), and the Journal tab keeps what you've shared.
 
 Three creatures live alongside them: the Withren's **Cairnback** (a bone-plated tortoise whose shell fire relights
 torches and lanterns as soul ones), the Weft's **Silkgrub** (a caterpillar you shear for string) and the Ghastkin's
@@ -22,6 +23,7 @@ torches and lanterns as soul ones), the Weft's **Silkgrub** (a caterpillar you s
 - `docs/PEOPLE.md`: who the peoples are, their lore and the decisions behind them.
 - `docs/VILLAGES.md`: every village and building, and how the villages are generated.
 - `docs/DIALOGUE.md`: conversations, friendship and the dialogue files (`python tools/check_talk.py` checks them).
+- `docs/STORIES.md`: the Story and Journal tabs and the story files (`python tools/check_stories.py` checks them).
 - `docs/CONVERSATION_UI.md`: the conversation window, taken from Village Friends and recoloured netherrack.
 
 ## Building

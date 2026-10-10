@@ -1,0 +1,529 @@
+{
+  "early": [
+    {"text": "I have heard a great many confessions in my tower and made very few. Yours is a face I am still learning. Come back.", "when": {"job": "Remembrancer"}},
+    {"text": "An Ashwarden does not speak of their troubles to a stranger at the post. You are less a stranger than you were. Not yet enough.", "when": {"job": "Ashwarden"}},
+    {"text": "I tell my troubles to the lanterns. They keep them very well. When you have kept a few of my words, I may tell you.", "when": {"job": "Lantern-keeper"}},
+    {"text": "Wart does not come up the day it is planted. Neither does this. Visit a while longer.", "when": {"job": "Wart-grower"}},
+    {"text": "I do not hand an unfinished carving to someone I barely know. Talk with me a while. Then we will see what shape this is.", "when": {"job": "Bonecarver"}},
+    {"text": "Some things must steep before they are poured. This is one. Come and talk a while longer, and we will both be readier.", "when": {"job": "Brewer"}},
+    {"text": "Out here I tell my troubles to the basalt. It does not ask questions. Walk with me a few more times and perhaps you will hear.", "when": {"place": "wild"}},
+    "There is something on my mind, yes. There usually is. But we tell such things to faces we have learned, and I have only begun on yours.",
+    "Not yet. Talk with me a while longer. A name has to be said a few times before it can carry anything.",
+    "We tell our troubles to the Wall first and to friends second. You are not yet either. Come back. We have plenty of time, and so, I hope, do you.",
+    "Sit with me on a few more visits. Then ask again. I would rather tell it to someone who will remember it."
+  ],
+
+  "child": [
+    "My story? I have not got one yet. At my first Vigil I choose someone to keep, and then I will have their story and mine. Two!",
+    "Stories are for after your first Vigil. Before that you only have things that happened. Lots of things happened. None of them were solemn.",
+    "I have a secret instead. I keep a bone bead under my bedroll. The Bonecarver dropped it. Now you know. Do not tell the Bonecarver.",
+    "I have a wish instead of a story. I wish the Cairnback would carry me to the Hall. It never goes to the Hall. It never goes anywhere.",
+    "I practise saying names in the brewery, because it echoes. They sound very important in there. That is my whole story so far.",
+    "My story is that I am waiting. The grown-ups say waiting is most of being Withren. I am already very good at it. Mostly."
+  ],
+
+  "waiting": [
+    {"text": "The rest is still steeping. In me, I mean. The pot is fine. Come back another day.", "when": {"job": "Brewer"}},
+    {"text": "Give it another day. I mean the rest of what I have to tell you, but the wart would agree.", "when": {"job": "Wart-grower"}},
+    {"text": "I am on watch, and the rest of it is not a thing for the post. Another day, when we know each other better.", "when": {"job": "Ashwarden"}},
+    {"text": "I have written down what you brought, and when. The rest I have not written. I am still choosing the words. Come back.", "when": {"job": "Remembrancer"}},
+    "Thank you for what you brought. The rest of it is not ready to be said. Some things want a quiet day first. Come back another day.",
+    "I have not yet decided how to tell you the rest. Come back another day. I will have found the words, or they will have found me.",
+    "Not yet. We know each other better than we did. A little better still, and I will tell you the rest.",
+    "I said {kept}'s name over what you brought. That is a start. The rest wants another day, and perhaps another talk.",
+    "The rest is heavy. I would rather hand it to someone I know well. You are nearly that. Nearly is a word we respect here.",
+    "Come back when the lanterns have burned a while longer. I do not mean anything by it. It is only how long these things take."
+  ],
+
+  "ready": [
+    {"text": "I have told the rest of this to nobody but the Wall. The Wall has kept it well. Now I would like a living ear. Yours, if you will lend it.", "when": {"job": "Remembrancer"}},
+    {"text": "Let me trim this wick first. There. Now I can talk. There is more to what I asked of you, if you will hear it.", "when": {"job": "Lantern-keeper"}},
+    {"text": "Put down whatever you are holding. Not because it matters. Because this does. There is more. Will you listen?", "when": {"job": "Bonecarver"}},
+    "There is more to it. I have kept it long enough. Will you listen?",
+    "Sit down, if you would. I have decided to tell you the rest. It is easier said sitting.",
+    "You came back. Good. The rest of it has been waiting for you, and so, I find, have I. Will you hear it?",
+    "I told {kept} about you after your last visit. They did not object. So. There is more, if you will listen."
+  ],
+
+  "stories": [
+    {
+      "id": "halveths_sign",
+      "jobs": ["Remembrancer"],
+      "title": "The Name Nobody Chooses",
+      "intro": [
+        "There is a sign low on the Name Wall that I have painted fresh more often than any other. It fades faster than the rest. Or I look at it more. One of the two.",
+        "The name is Halveth. Their keeper died long ago and the name came to my stole. Vigil after Vigil, the children walk the Wall past it. None of them stops.",
+        "I mean to letter it again in the old way: soot ground with glowstone, so it shows in the dark of the Wall. For that I need glowstone dust, and I have none."
+      ],
+      "request": {
+        "item": "minecraft:glowstone_dust",
+        "count": 8,
+        "ask": "Bring me eight glowstone dust. The old Remembrancers mixed it with soot so that a name could not hide in the dark.",
+        "thanks": "Thank you. It glitters a little in the hand. I will grind it fine. Halveth will be the brightest name on the Wall, and the least visited."
+      },
+      "confide": [
+        "Under Halveth's name, an old Remembrancer cut two small words: who asked. The children can read. That is why they walk past.",
+        "Halveth sat in the council at the end of the War. It was Halveth who stood and asked Ashrin, Velmir and Thalys. Thalys was young. Halveth asked anyway.",
+        "When I letter the sign again, I could leave those two words off. Nobody would stop me. Or I could paint them as bright as the name. What would you do?"
+      ],
+      "endings": [
+        {
+          "ask": "Leave only the name.",
+          "text": "Only the name, then. Halveth has carried those two words long enough. Let some child see a name and nothing else, and wonder. Wondering is how keeping starts.",
+          "memory": "You told {name} to letter Halveth's sign with the name alone."
+        },
+        {
+          "ask": "Paint all of it, bright.",
+          "text": "Yes. Whoever chooses Halveth should choose all of them, the asking too. It will glow. Someone brave will stop for it. I will wait. I am good at waiting.",
+          "memory": "You told {name} to paint Halveth's sign whole, the two hard words as bright as the name."
+        }
+      ],
+      "reward": {"item": "minecraft:wither_rose", "count": 2},
+      "after": [
+        "Halveth's sign glows now. I catch the children reading it. They still walk on. But they read it first. That is new.",
+        "I say Halveth's name when I pass, though it is not mine to keep. The Wall does not mind. The Wall has heard worse.",
+        "The Three said yes. Someone had to ask. I think about that more than a Remembrancer should."
+      ]
+    },
+
+    {
+      "id": "book_of_the_living",
+      "jobs": ["Remembrancer"],
+      "title": "A Book for the Living",
+      "intro": [
+        "I remember every name on the Wall, every letter, every fade. I could not tell you where I left my hood. The children have noticed. The children notice everything.",
+        "It is worse than the hood. I remember the dead perfectly and the living hardly at all. I want to write the living down, while they are still saying things.",
+        "Your world makes books you can write in, with a quill. We have nothing like it here. That is what I need."
+      ],
+      "request": {
+        "item": "minecraft:writable_book",
+        "count": 1,
+        "ask": "Bring me one book and quill, from your world. I want blank pages. Every page we have here has a name on it already.",
+        "thanks": "Blank. Every page of it. I have not held anything so empty in years. It is a little frightening. Thank you."
+      },
+      "confide": [
+        "My parent is on the Wall. I painted their sign myself. I know every letter of their name. I do not remember their voice. Not one word of it.",
+        "The Wall keeps names. It was never meant to keep voices. So I have begun. What the children say at play. What the Wart-grower mutters at the Cairnback. Small things.",
+        "Should I show it to them now, while they can still laugh at what they said? Or keep it closed until each of them is on the Wall?"
+      ],
+      "endings": [
+        {
+          "ask": "Show it to them now.",
+          "text": "Now, then. They will laugh at themselves. The dead cannot do that. Let the living have it while they can. I will read out the Cairnback's page first. It is short.",
+          "memory": "You told {name} to show their book of the living to the living."
+        },
+        {
+          "ask": "Keep it for after.",
+          "text": "After, then. One day a child will choose one of them from the Wall, and I will open the book, and they will have a voice to keep. Not only a name.",
+          "memory": "You told {name} to keep their book of the living closed until it was needed."
+        }
+      ],
+      "reward": {"item": "minecraft:name_tag", "count": 1},
+      "after": [
+        "I wrote you in the book. Only a line: what you said when you brought it. I got every word right. I did check.",
+        "I still lose my hood. I have written down every place I lose it. It has not helped. It has made a very good page.",
+        "That tag I gave you is blank. Put a name on something living. It is good practice, and names are not only for the dead."
+      ]
+    },
+
+    {
+      "id": "bones_from_the_fortress",
+      "jobs": ["Ashwarden"],
+      "title": "Bring Them Home",
+      "intro": [
+        "Your kind goes into the old fortresses. I know. You come back with blaze rods and bruises, and you do not always come back. An Ashwarden cannot leave the post to follow.",
+        "When you fight the Hollowed there, and you will, they leave bone behind. You leave it on the floor. Everybody does. It is the bone of our own people.",
+        "Bring some of it home. We will lay it under the soul sand of the Vigil, where it belongs."
+      ],
+      "request": {
+        "item": "minecraft:bone",
+        "count": 10,
+        "ask": "Bring me ten bones from the Hollowed. Not valley bone. Theirs. I will know the difference, or I will pretend to.",
+        "thanks": "*takes them in both hands* Ten. Ten of us, or pieces of ten. Thank you. They have walked those halls long enough."
+      },
+      "confide": [
+        "The Wall says {kept} was a fortress-warden at the end of the War. It says they were inside when the Last Answer turned and came back for the fortresses.",
+        "It does not say they died. It says they did not come home. So {kept} may still be walking those halls, hollow, with a stone sword, not knowing their own name.",
+        "Every bone you brought might be theirs. Or none of them. Should I go on hoping one is {kept}, or keep every one as if it were?"
+      ],
+      "endings": [
+        {
+          "ask": "Keep hoping.",
+          "text": "Then I will. Hope is a poor guard, but it stands its post. If one day it is {kept} you bring home, I would like to think I will know.",
+          "memory": "You told {name} to keep hoping that one of the bones was {kept}."
+        },
+        {
+          "ask": "Keep every one of them.",
+          "text": "Every one. Yes. If I cannot know which, I will keep them all as if each one were. An Ashwarden's chest is broad. There is room under the ribs.",
+          "memory": "You told {name} to keep every Hollowed bone as if it were {kept}."
+        }
+      ],
+      "reward": {"item": "minecraft:rib_armor_trim_smithing_template", "count": 1},
+      "after": [
+        "The bones are under the soul sand by the Hall. I stand my post facing them now. The other Ashwardens think I have the angle wrong. I do not.",
+        "If you are in the fortresses again, say a name over the Hollowed. {kept} will do, if you have none. I would not mind sharing.",
+        "The pattern I gave you is the one on my chest. It was cut in the fortresses, before. The Hollowed will not know it. Wear it near them anyway."
+      ]
+    },
+
+    {
+      "id": "the_ashwardens_eyes",
+      "jobs": ["Ashwarden"],
+      "title": "A Glass for the Post",
+      "intro": [
+        "I have been saluting a bone post at the end of the lane for some while. It never salutes back. I had begun to think it rude.",
+        "It is not rude. It is a post. My eyes are going dim, slowly, from the far end inward. I see you perfectly. I see the valley edge as a sort of soup.",
+        "Outsiders carry a glass that brings far things near. I would like one. Do not tell the other Ashwardens why."
+      ],
+      "request": {
+        "item": "minecraft:spyglass",
+        "count": 1,
+        "ask": "Bring me one spyglass. If anyone asks, it is for looking at the ceiling. We do a great deal of looking at the ceiling here.",
+        "thanks": "*holds it to one eye* Oh. The valley edge has rocks on it. I had forgotten. Thank you. The thing at the end of the lane is still a post."
+      },
+      "confide": [
+        "{kept} was an Ashwarden, the Wall says. They stood their post until they could not see past their own hand. Then they stood it anyway, by sound.",
+        "I used to think that was the bravest thing on the Wall. Now I wonder who stood behind them, seeing for them, and never got a line on any sign.",
+        "With this glass I can keep the post a while longer. Or I can tell the others now, and teach someone younger where the lane dips. Which?"
+      ],
+      "endings": [
+        {
+          "ask": "Tell them now.",
+          "text": "Now, then. At the next Vigil, in front of everyone, so I cannot take it back. I will teach the young one every stone. Then I will stand behind them.",
+          "memory": "You told {name} to tell the other Ashwardens that their eyes were failing."
+        },
+        {
+          "ask": "Keep the post.",
+          "text": "Then I keep it, with your glass, a while longer. When the glass is not enough, I will say so myself. Not before. Not much after, either. I promise.",
+          "memory": "You told {name} to keep their post a while longer, with your spyglass."
+        }
+      ],
+      "reward": {"item": "minecraft:blaze_rod", "count": 4},
+      "after": [
+        "I saw a strider out on the lava past the valley edge. Through the glass. It looked very pleased with itself. I had not seen one in years.",
+        "Those rods came off a blaze that strayed past my post long ago, when my eyes were good. I hit it first time. Remember that about me.",
+        "I still salute the post at the end of the lane. Now I do it on purpose. It has been very loyal."
+      ]
+    },
+
+    {
+      "id": "the_lantern_that_goes_out",
+      "jobs": ["Lantern-keeper"],
+      "title": "The Lantern That Goes Out",
+      "intro": [
+        "One lantern on the lane keeps going out. I trim the wick. I feed the soul fire. I say the name until it catches. Then, a while later, it is dark again.",
+        "I would like to set candles round the foot of its post, so that when it goes out there is still some light there for them.",
+        "Candles are dear here. They want wax, and wax wants bees, and we have no bees. Your world has plenty, I am told."
+      ],
+      "request": {
+        "item": "minecraft:candle",
+        "count": 6,
+        "ask": "Bring me six candles. Any colour. The dead are not particular, and I cannot afford to be.",
+        "thanks": "Six. I will set them round the post in a ring. Even if the lantern sulks, someone will see a light there. Thank you."
+      },
+      "confide": [
+        "The lantern is for Morrel, who kept these lanes before me and taught me to trim a wick. Morrel's keeper died not long ago, and the name went to the Remembrancer's stole.",
+        "Nobody says it every day now. That is why it goes out. I say it anyway, under my breath, though I keep {kept}, and one keeping each is the rule.",
+        "Is it wrong, saying a name I have no right to? Should I go on saying it until a child chooses Morrel, or walk a child past that lantern and hope they stop?"
+      ],
+      "endings": [
+        {
+          "ask": "Keep saying it.",
+          "text": "Then I will, quietly, until a child chooses Morrel. If the Remembrancer asks, I was trimming a wick. I am always trimming a wick. It is the perfect excuse.",
+          "memory": "You told {name} to keep saying Morrel's name until a child chose it."
+        },
+        {
+          "ask": "Bring a child to it.",
+          "text": "Yes. I will walk the next young one down the lane and tell them who lit it before me. Morrel was a good teacher. Perhaps Morrel can teach once more.",
+          "memory": "You told {name} to walk a child past Morrel's lantern before their first Vigil."
+        }
+      ],
+      "reward": {"item": "minecraft:soul_lantern", "count": 8},
+      "after": [
+        "Morrel's lantern has not gone out since the candles. I do not think the candles did it. I think you did, a little.",
+        "Light those lanterns for whoever you like. Say the name each time. A lantern without a name is only a lamp.",
+        "I trimmed every wick on the lane just now and said a name for each. Then one more, very quietly. You know whose."
+      ]
+    },
+
+    {
+      "id": "a_song_about_a_wick",
+      "jobs": ["Lantern-keeper"],
+      "title": "A Song About a Wick",
+      "intro": [
+        "I am writing a song about wicks, for the Vigil. Nobody has ever made one, and I am beginning to see why. Nothing rhymes with wick that is not unkind.",
+        "It needs a sound under it, to carry the tune when I cannot. Chains, I think. The lanterns hang on chains, and in the draught they talk to each other.",
+        "I would hang more on the bone posts and let the valley play along. But iron is scarce here, and I have used all of mine on lanterns."
+      ],
+      "request": {
+        "item": "minecraft:iron_chain",
+        "count": 8,
+        "ask": "Bring me eight iron chains. Iron, not gold. If the Piglins heard gold singing in our lanes, they would come to see who was rich.",
+        "thanks": "*shakes one gently* Listen. That is the second verse already. Thank you. I will hang them where the draught is kindest."
+      },
+      "confide": [
+        "{kept} kept these lanterns long before me, the Wall says. Trimmed wicks a whole life. The Wall gives them one line. Nobody remembers anything they did.",
+        "That is the trouble with dull work done well: it leaves nothing to remember. So I am making something to remember it by. Even if it is only a song about wicks.",
+        "Shall I sing it at the Vigil myself? Or teach it to the children, and let them sing it?"
+      ],
+      "endings": [
+        {
+          "ask": "Sing it yourself.",
+          "text": "Then I will, badly, in the Hall. Everyone will be very solemn about it, which is worse than laughing. It will still be a song about a wick. The first one.",
+          "memory": "You told {name} to sing their song about wicks at the Vigil themselves."
+        },
+        {
+          "ask": "Teach it to the children.",
+          "text": "The children. Yes. They will sing it wrong and loud for years and never forget a word. That is the most a wick could hope for. More than {kept} ever hoped.",
+          "memory": "You told {name} to teach their song about wicks to the children."
+        }
+      ],
+      "reward": {"item": "minecraft:respawn_anchor", "count": 1},
+      "after": [
+        "The chains caught the tune. I hear the second verse whenever the draught comes down the lane. It is better than the first. Do not tell the first.",
+        "That anchor is a light that remembers where you rested. We do not need one. We always know where we are. You, I suspect, do not.",
+        "I found something that rhymes with wick. I will not tell you what. It is for the Vigil."
+      ]
+    },
+
+    {
+      "id": "the_new_terrace",
+      "jobs": ["Wart-grower"],
+      "title": "The New Terrace",
+      "intro": [
+        "I am cutting a new terrace below the old ones. Wart takes a long time to love new ground. If I start now, it will crop well in a long while. Longer than me, perhaps.",
+        "It needs soul sand. I will not dig it near the Hall: that sand was the Last Answer's body once. Nor from the lanes. People walk there, and so do the remembered.",
+        "So it must come from some other valley than ours, and my knees do not go to other valleys any more."
+      ],
+      "request": {
+        "item": "minecraft:soul_sand",
+        "count": 24,
+        "ask": "Bring me twenty-four soul sand. From somewhere else, please. Not from the lanes, and never from round the Hall.",
+        "thanks": "Good sand. Strangers in it, but strangers are how every terrace begins. Thank you. I will turn it in slowly."
+      },
+      "confide": [
+        "The first crop of every terrace goes to the brewery, and the first brew to the Hall of the Three. That is the rule. I have kept it all my life. It is a good rule.",
+        "But this terrace will crop after I am on the Wall. Someone will keep me then. I do not know who. I would like to leave them something. The first of my last ground.",
+        "Shall I let the first crop go to the Hall, as it always has? Or tell the Remembrancer it is for whoever keeps me?"
+      ],
+      "endings": [
+        {
+          "ask": "Give it to the Hall.",
+          "text": "The Hall, then. The Three gave everything. They can have the first of my wart. Whoever keeps me can have the second. It will be better by then.",
+          "memory": "You told {name} to give the new terrace's first crop to the Hall."
+        },
+        {
+          "ask": "Give it to your keeper.",
+          "text": "Then I will tell the Remembrancer, and they will sigh, and write it down. A small thing to leave for someone who will carry me so far.",
+          "memory": "You told {name} to leave the new terrace's first crop to whoever keeps them."
+        }
+      ],
+      "reward": {"item": "minecraft:ancient_debris", "count": 1},
+      "after": [
+        "When I cut the terrace I struck that dark stone I gave you, very deep. It would not burn. I have no use for things that will not burn. You might.",
+        "The new terrace has its first green. It is small and crooked. I have told it so. It does not care. Good. It will need not to.",
+        "Mind the new terrace. Nobody walks on it. Not even me, much."
+      ]
+    },
+
+    {
+      "id": "the_old_cairnback",
+      "jobs": ["Wart-grower"],
+      "title": "The Cairnback on the Terrace",
+      "intro": [
+        "The Cairnback on my terrace eats the good wart. Always the good wart. It walks past the poor rows to reach it. It is the slowest thief in the Nether, and the surest.",
+        "It is old. Its fire is lower than it was. I would like a young one on the terrace before the old one stops. They breed for wart, of course. What else would they breed for.",
+        "I cannot feed them from my own rows. The Brewer counts my rows. The Brewer would know."
+      ],
+      "request": {
+        "item": "minecraft:nether_wart",
+        "count": 12,
+        "ask": "Bring me twelve nether wart. Wild wart, from the fortress stairwells, or from anywhere the Brewer has never counted.",
+        "thanks": "Uncounted wart. Lovely. The Brewer will never know. The Cairnback knew at once. It is looking at you now."
+      },
+      "confide": [
+        "At my first Vigil I was frightened of the Name Wall. So many signs. I walked it three times and could not choose. This Cairnback walked beside me every time.",
+        "It did not hurry me. Nobody hurries a Cairnback. When I chose {kept} at last, it sat down in the lane, as if to say: about time.",
+        "When the old one's fire goes out, the young one will need a name. Shall I give it the old one's name, so it goes on? Or a name of its own?"
+      ],
+      "endings": [
+        {
+          "ask": "Give it the old name.",
+          "text": "Then the name walks on, and the old one a little with it. The Remembrancer will say that is irregular. Irregular things grow very well here.",
+          "memory": "You told {name} to give the young Cairnback the old one's name."
+        },
+        {
+          "ask": "Give it its own name.",
+          "text": "Its own. Yes. The old one keeps its name on my tongue, where it belongs, and the young one gets to be somebody new. I will choose slowly. It will not mind.",
+          "memory": "You told {name} to give the young Cairnback a name of its own."
+        }
+      ],
+      "reward": {"item": "minecraft:nether_wart", "count": 32},
+      "after": [
+        "The young one has found the good wart already. It walked straight past the poor rows. It has a great future.",
+        "The old one's fire is low, but it still comes to the terrace. I have stopped chasing it off. I leave it a row. Do not tell the Brewer.",
+        "That wart I gave you is from the one row the Cairnbacks have not found. Yet. Plant it quickly."
+      ]
+    },
+
+    {
+      "id": "the_loom_weight",
+      "jobs": ["Bonecarver"],
+      "title": "The Loom Weight",
+      "intro": [
+        "I found something in the valley, half under the sand. A Weft loom weight, by the groove for the thread. Bone. Not valley bone. I know valley bone the way you know your hand.",
+        "I have carried it on my belt since. My hands know what to do with valley bone. They do not know what to do with this.",
+        "It should rest by the Name Wall, under a small cairn of the same stone as the Wall. I have the hands for it. I do not have the stone."
+      ],
+      "request": {
+        "item": "minecraft:polished_blackstone_bricks",
+        "count": 12,
+        "ask": "Bring me twelve polished blackstone bricks. The Wall is built of them. Whoever this was should lie against something they know.",
+        "thanks": "Good, clean stone. I will cut the cairn myself, slowly. Thank you. It has hung in a stranger's cloth long enough."
+      },
+      "confide": [
+        "Under the thread groove there is a tally mark, scratched small. Only a Remembrancer cuts marks like that, one for each name they hold. This was one of ours.",
+        "The Weft took it off a field after the War, carved it, and hung it in their Long Cloth. It held down a row of their history far longer than it held up its owner.",
+        "I cannot know whose it was. Shall I carve a name on the cairn, a guess, the best I can make? Or leave the stone blank?"
+      ],
+      "endings": [
+        {
+          "ask": "Carve your best guess.",
+          "text": "A guess, then. The oldest Remembrancer on the Wall. If I am wrong, they will forgive me. Remembrancers forgive everything except spelling.",
+          "memory": "You told {name} to carve their best guess at a name on the loom weight's cairn."
+        },
+        {
+          "ask": "Leave it blank.",
+          "text": "Blank. A plain stone among all those names. Everyone who passes will wonder who it was. Wondering is a kind of keeping. Perhaps the oldest kind.",
+          "memory": "You told {name} to leave the loom weight's cairn without a name."
+        }
+      ],
+      "reward": {"item": "minecraft:bone_block", "count": 12},
+      "after": [
+        "The cairn is at the end of the Wall. Children leave bone beads on it. Nobody told them to. I have stopped carving beads and started watching.",
+        "Those blocks I gave you were cut for my own cairn, one day. I will not need them for a long while. Build something with them that is not a grave.",
+        "I check every bone in my stock twice now. Valley bone. Only valley bone. My hands are slower for it. Good."
+      ]
+    },
+
+    {
+      "id": "a_toy_for_the_children",
+      "jobs": ["Bonecarver"],
+      "title": "Something Nobody Can Stack",
+      "intro": [
+        "I carved the children a skull to play with. It was a very good skull. The Ashwardens took it away for being too good. I have been told this is a compliment.",
+        "Now the children sit by my bench and look at me. Very solemnly. They are learning from the grown-ups. It is unbearable. I must carve them something else.",
+        "A Cairnback, I think. Nobody can stack a Cairnback. But a Cairnback wants whole blocks to carve from, not the scraps I have left."
+      ],
+      "request": {
+        "item": "minecraft:bone_block",
+        "count": 4,
+        "ask": "Bring me four bone blocks. Whole ones. A Cairnback is a solid sort of animal, and so is a good toy.",
+        "thanks": "Four. Good weight. I can already see the shell in this one. The children saw you bring them. Now I have to finish quickly."
+      },
+      "confide": [
+        "When I was small, I stacked two skulls in the Hall of the Three. Only two. Nothing happened. Nothing can, with two. Nobody told me that until much later.",
+        "Nobody struck me. The Remembrancer sat me down and said the Three's names, slowly, very many times. I still hear it. That is why I carve toys. Small hands want something else to hold.",
+        "It is finished. Shall I give it straight to the children? Or show it to the Ashwardens first, so nobody takes it away again?"
+      ],
+      "endings": [
+        {
+          "ask": "Give it to the children.",
+          "text": "Straight to them, before anyone frowns. If the Ashwardens come, I will say it is a Cairnback. It is very hard to stack a Cairnback. I tried. On purpose.",
+          "memory": "You told {name} to give the bone Cairnback straight to the children."
+        },
+        {
+          "ask": "Show the Ashwardens first.",
+          "text": "Sensible. They will turn it over three times, find nothing wrong, and be quietly disappointed. Then the children can have it, and nobody can take it back.",
+          "memory": "You told {name} to show the bone Cairnback to the Ashwardens before the children."
+        }
+      ],
+      "reward": {"item": "minecraft:skeleton_skull", "count": 1},
+      "after": [
+        "The children walk the bone Cairnback round the terraces in procession. Very slowly. They are taking it seriously. I have never been so proud.",
+        "That skull is the one the Ashwardens took. They gave it back to me, not to the children. It is valley bone. It wakes nothing. Still, keep it single.",
+        "The children have asked for a toy Ashwarden next. I have said I will think about it. The real ones have asked me not to."
+      ]
+    },
+
+    {
+      "id": "a_bad_brew",
+      "jobs": ["Brewer"],
+      "title": "The Worst Brew on the Wall",
+      "intro": [
+        "Behind the oldest stand in the brewery, someone scratched a recipe into the basalt. Very small. Very old. The Wall says {kept} worked in this brewery once.",
+        "I would like to brew it properly, once, for the Vigil. But I have run out of bottles. The Nether has no sand for glass that is not somebody.",
+        "I will fill what the recipe asks for, and give the rest back to you, with something in them."
+      ],
+      "request": {
+        "item": "minecraft:glass_bottle",
+        "count": 12,
+        "ask": "Bring me twelve glass bottles. Clean ones, if you can. If not, I will clean them. I have cleaned worse.",
+        "thanks": "Twelve. Clinking. Thank you. I will set the pot going now. Stand back a little. Further. There."
+      },
+      "confide": [
+        "I have made it. It is dreadful. Thick and black, and it tastes of burnt wart and old boots. It is exactly as bad as the Wall says {kept} was at brewing.",
+        "I have never felt nearer to them. Every mouthful, I can see someone standing where I stand, being proud of something awful. I like them very much now.",
+        "Shall I serve it at the Vigil just as {kept} wrote it? Or mend the recipe a little first, so that people can finish a cup?"
+      ],
+      "endings": [
+        {
+          "ask": "Serve it as it is.",
+          "text": "As it is. Everyone will make the face. Then everyone will say {kept}'s name, to complain. That is still saying it. Louder than usual, even.",
+          "memory": "You told {name} to serve {kept}'s dreadful brew at the Vigil just as it was written."
+        },
+        {
+          "ask": "Mend it a little.",
+          "text": "A little. A pinch less wart, a little less fire. Then it is {kept}'s brew and mine, and the two of us can be bad at it together.",
+          "memory": "You told {name} to mend {kept}'s old recipe a little before the Vigil."
+        }
+      ],
+      "reward": {"item": "minecraft:experience_bottle", "count": 8},
+      "after": [
+        "The bottles I gave back to you glow. I do not know why. I have never made anything that glowed before. Do not drink them. Throw them.",
+        "I scratched my own recipe under {kept}'s. Smaller. Someone will find it one day and wonder how anybody drank either.",
+        "The Vigil drank it. Most of it. Some of it went on the terraces. The wart has not complained."
+      ]
+    },
+
+    {
+      "id": "isks_stand",
+      "jobs": ["Brewer"],
+      "title": "The Stand That Went Cold",
+      "intro": [
+        "My friend Isk died not long ago. The name is on the Wall now, the paint barely dry. I keep {kept}, so I could not keep Isk. One keeping each. That is the rule.",
+        "Isk worked the stand beside mine for most of our lives and kept its fire fed. Since Isk went on the Wall, I keep letting it go cold. I forget. I never forget anything.",
+        "I want to brew one last pot of Isk's on that stand. The fire will need feeding, and I have let the powder run out."
+      ],
+      "request": {
+        "item": "minecraft:blaze_powder",
+        "count": 6,
+        "ask": "Bring me six blaze powder. Isk always kept a little by the stand. I have let it run out, as you see.",
+        "thanks": "*pours it into the stand slowly* There. It catches. Isk would have done that in one motion and made a joke about it. Thank you."
+      },
+      "confide": [
+        "At the last Vigil a child chose Isk. A good child. They say the name loudly and cheerfully, the way you say a name that has not hurt you yet.",
+        "I have been jealous of a child. For a long while. I am not proud of it. The pot I am brewing is Isk's. I mean to give it to that child, and tell them everything.",
+        "Should I teach them who Isk was, every stir of it? Or give them the brew and let them find their own Isk?"
+      ],
+      "endings": [
+        {
+          "ask": "Teach them all of it.",
+          "text": "Then I will. That Isk laughed through their nose. That Isk burned every second pot. It is a great deal to carry. I will carry it beside them, for a while.",
+          "memory": "You told {name} to teach Isk's young keeper everything about Isk."
+        },
+        {
+          "ask": "Let them find their own.",
+          "text": "Their own Isk. Yes. A keeping is not a copy. I will give them the brew, say nothing, and wait to be asked. If they ask, I will be here. I am always here.",
+          "memory": "You told {name} to let Isk's young keeper find their own Isk."
+        }
+      ],
+      "reward": {"item": "minecraft:brewing_stand", "count": 1},
+      "after": [
+        "That stand I gave you was Isk's. It should be used, not kept cold. We keep names here, not stands.",
+        "The child came to the brewery and stirred with me. They did not say Isk's name once. They did not need to. I said it for both of us.",
+        "The fire under my own stand has not gone out since. I have stopped forgetting. Mostly. I say Isk's name when I feed it."
+      ]
+    }
+  ]
+}

@@ -66,6 +66,9 @@ public final class Bonds {
     public static final AttachmentType<Map<String, Bond>> BONDS = AttachmentRegistry.create(NetherFriends.id("bonds"),
             b -> b.initializer(Map::<String, Bond>of).persistent(Codec.unboundedMap(Codec.STRING, Bond.CODEC)));
 
+    /** Loads the class, so the attachment is registered before any world (and its residents) loads. */
+    public static void init() {}
+
     public static int levelFor(int points) {
         int level = 0;
         while (level < MAX_LEVEL && points >= THRESHOLDS[level + 1]) level++;

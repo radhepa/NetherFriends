@@ -114,6 +114,9 @@ public final class Folk {
     }
 
     /** This resident's profile, made now if they never had one (a Bastion Piglin, a spawn egg). */
+    /** Loads the class, so the attachment is registered before any world (and its residents) loads. */
+    public static void init() {}
+
     public static Profile of(LivingEntity entity) {
         Profile profile = entity.getAttached(PROFILE);
         if (profile != null) return profile;

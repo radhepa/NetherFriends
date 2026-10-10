@@ -166,7 +166,7 @@ public final class Dialogue {
         }
     }
 
-    private static List<Line> lines(@Nullable JsonArray array) {
+    static List<Line> lines(@Nullable JsonArray array) {
         List<Line> out = new ArrayList<>();
         if (array == null) return out;
         for (JsonElement e : array) {
@@ -217,7 +217,7 @@ public final class Dialogue {
         return o.has(key) ? o.get(key).getAsBoolean() : null;
     }
 
-    private static Item item(String id) {
+    static Item item(String id) {
         return BuiltInRegistries.ITEM.getValue(Identifier.parse(id));
     }
 

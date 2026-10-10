@@ -1,0 +1,418 @@
+{
+  "early": [
+    {"text": "*shiver* A story? I can't even feel my seams. Come back when I'm warm and we know each other better.", "when": {"cold": true}},
+    {"text": "I'll carry you over the sea for a fare, but my troubles cost more than that. Talk to me a while longer first.", "when": {"job": "Ferrier"}},
+    {"text": "A guest gets a seat and a hot stone straight away. A story takes longer. Keep coming to the hearth.", "when": {"job": "Hearthkeeper"}},
+    {"text": "A link's tested before it's trusted. So are shore-feet. Keep coming round, and we'll see how you hold.", "when": {"job": "Chainwright"}},
+    {"text": "Some of my charts took years to scratch. My troubles won't take that long to tell, but longer than a few chats.", "when": {"job": "Chartmaker"}},
+    "A story? From me? Sit at the hearth a few more times first. I don't give my troubles away. I don't even haggle them away.",
+    "There's something on my mind, yes. But that sort of thing is for friends, and we've only just started haggling. Talk to me a while longer.",
+    "Ha! You want the inside of my crest already? Come back, sit, warm up to me. I'll warm up to you.",
+    "Bring gossip, bring coal, bring yourself a few more times. Stories come out easier once the seat's warm."
+  ],
+
+  "child": [
+    {"text": "*brrr* My story is I went too far from the hearth. Again. That's the whole story. The end.", "when": {"cold": true}},
+    "A story? I haven't got one yet. I'm too small. But I hopped three gaps in a row once. Is that a story? It should be.",
+    "Grown-ups have stories. I've only got secrets. Here's one: I can hold a magma cream in my mouth without biting it. Nearly.",
+    "My story is I'm going to be a Ferrier and carry you anywhere. That hasn't happened yet. It's a story for later.",
+    "I wished on the hearth that Wobbles would let me ride her. She hasn't yet. That's my whole story so far.",
+    "I'm going to grow a fourth crest nub. Nobody has four. When I do, that'll be my story. Don't laugh!"
+  ],
+
+  "waiting": [
+    {"text": "*shiver* Not now. Grey's no colour for telling things. Come back another day, when I'm warm.", "when": {"cold": true}},
+    {"text": "You've been kind. Be kind a while longer, and I'll tell you why it mattered so much.", "when": {"level": [0, 2]}},
+    {"text": "We're close to it now, you and me. Close. Come back another day and ask again.", "when": {"level": [3, 5]}},
+    {"text": "I'm turning it over on every crossing. Come back another day. I'll have turned it enough by then.", "when": {"job": "Ferrier"}},
+    {"text": "I've been sitting with it at the hearth. Let me sit a while longer. Come back another day.", "when": {"job": "Hearthkeeper"}},
+    "Not yet. I've said more than I meant to already. Come back another day and I'll have found the rest of the words.",
+    "The rest of it? Later. Some things you only say to someone you've known a good while.",
+    "Thank you again for what you brought. The rest is still cooling. Give it a day, and give us a little longer.",
+    "Sit with me a few more times first. Haggle me over something small. Then ask me again."
+  ],
+
+  "ready": [
+    {"text": "*shiver* I'm grey, but I'll tell you anyway. I've put it off long enough. Will you listen?", "when": {"cold": true}},
+    {"text": "I've the rest of it scratched out in my head, every line. Will you hear it?", "when": {"job": "Chartmaker"}},
+    {"text": "Every link of it's forged now. Sit, and I'll show you the whole chain. Will you listen?", "when": {"job": "Chainwright"}},
+    "There's more to it than what you brought. Sit close. Will you listen?",
+    "I've turned it over long enough. I'd like to tell you the rest, if you'll hear it.",
+    "*seams glow steady* You came back. Good. There's a part I didn't tell you. Will you listen?",
+    "Pull your seat nearer the hearth. This part's better said warm. Ready?"
+  ],
+
+  "stories": [
+    {
+      "id": "ferrier_tally_chain",
+      "jobs": ["Ferrier"],
+      "title": "The Tally Chain",
+      "intro": [
+        "See the chain hung at the back of my hut, where nobody sits? A tally. One link for every barge my grandmother's grandmother carried over the sea in the war.",
+        "Two hundred and forty links. I've kept it since I took the dock, and I'm tired of keeping it. But hearth lava won't touch good iron. That takes blaze heat.",
+        "Blaze rods cost more than a Ferrier earns, and I won't haggle anyone over this. Not this. I need five of them."
+      ],
+      "request": {
+        "item": "minecraft:blaze_rod",
+        "count": 5,
+        "ask": "Bring me five blaze rods. And don't haggle me on this one. Well. A little, if you must. It's only polite.",
+        "thanks": "Five. *holds them close* Hot as anything. Thank you. Now I can't put it off any longer, can I? That's what I was afraid of."
+      },
+      "confide": [
+        "My grandmother counted those links for me when I was small, one by one, like stories. Forty axes, this one. This one, a Brute who tipped well. She was proud of every link.",
+        "Then the Wither came over the sea and burned the decks those fares had built. My family watched from the deep lava, and kept the chain anyway. Nobody ever told me why.",
+        "I have the heat now. I could melt it into something new. Or hang it on the dock, where every guest I carry would see it and ask. Which would you do?"
+      ],
+      "endings": [
+        {"ask": "Melt it into something new.", "text": "*seams flare* Then it's done. I'll forge a new tow chain for the barge from it. Every link starts again, carrying guests. Only guests, and only fair fares.", "memory": "You told {name} to melt the old tally chain into a new tow chain."},
+        {"ask": "Hang it on the dock.", "text": "On the dock, then. Every shore-foot I carry will ask what it is, and every time I'll tell them. That's the harder one. Maybe that's why it's right.", "memory": "You told {name} to hang the old tally chain on the dock where every guest can see it."}
+      ],
+      "reward": {"item": "minecraft:magma_cream", "count": 10},
+      "after": [
+        "The barge feels lighter. It isn't. I weighed it, twice. But it feels lighter.",
+        "Some things you can't haggle your way out of. You carry them, or you set them down. Thank you for helping me choose."
+      ]
+    },
+
+    {
+      "id": "ferrier_steady",
+      "jobs": ["Ferrier"],
+      "title": "Steady, Called Wobbles",
+      "intro": [
+        "My barge strider's off her food. Steady, her name is. She's carried me twenty years, and my mother before that, and she's never once turned her nose up at fungus.",
+        "Now she sniffs it and looks at me like I've insulted her family. Old striders get picky. The only thing that might tempt her is warped fungus, fresh from the forest.",
+        "The Weft drop nets on any of us who go near their forest. You they might let pass. I need ten warped fungus. Fresh, mind. She can tell."
+      ],
+      "request": {
+        "item": "minecraft:warped_fungus",
+        "count": 10,
+        "ask": "Bring me ten warped fungus, fresh from the forest. Don't let the Weft net you. I can't spare a crossing to fetch you out.",
+        "thanks": "Look at her eat! Like a calf again. *crest puffs* Don't look at me like that. My eyes are just hot. Thank you."
+      },
+      "confide": [
+        "Here's the thing. The little ones call her Wobbles. They think I don't know. The whole Mooring knows. Sometimes, when it's just us on the sea, I call her Wobbles too.",
+        "She's old. She wobbles because her legs ache, not to be funny. The crossing is the thing she loves most, and it's getting hard for her.",
+        "I could put her to rest in the pen, where the little ones would spoil her rotten. Or I could let her keep crossing till she's done. What would you do?"
+      ],
+      "endings": [
+        {"ask": "Let her rest in the pen.", "text": "The pen, then. The little ones will feed her till she's round as a magma cube. And I'll visit after every crossing. She'll pretend she doesn't care.", "memory": "You told {name} to let old Steady rest in the strider pen with the little ones."},
+        {"ask": "Let her keep crossing.", "text": "Then she crosses. Slowly, mind. The fare goes up for slow crossings. *laughs* No, it doesn't. She can take as long as she likes.", "memory": "You told {name} to let old Steady keep crossing the sea."}
+      ],
+      "reward": {"item": "minecraft:saddle", "count": 1},
+      "after": [
+        "Steady sends her greetings. Well, she sniffed in your direction. That's greetings, for a strider.",
+        "Don't tell the little ones I call her Wobbles. They'd never let me forget it. *crest puffs* It suits her, though."
+      ]
+    },
+
+    {
+      "id": "hearthkeeper_bare_hands",
+      "jobs": ["Hearthkeeper"],
+      "title": "Carried in Bare Hands",
+      "intro": [
+        "This fire is older than these decks. When the Wither burned the old Moorings, the Hearthkeepers carried it across the sea in their bare hands. It's never gone dark since.",
+        "Every keeper carries it once, round the ring, to show they could. My apprentice's turn is coming, and the old magma ring is cracked through. I won't have them walk on cracks.",
+        "I need ten magma blocks for a new ring. Good ones, glowing all the way through."
+      ],
+      "request": {
+        "item": "minecraft:magma_block",
+        "count": 10,
+        "ask": "Bring me ten magma blocks, and I'll lay the ring myself. Nobody else touches the hearth ring. Not even you, sorry.",
+        "thanks": "*seams brighten* Warm, every one. Feel that? No, don't, you'd lose a hand. Thank you. The ring will be ready in time."
+      },
+      "confide": [
+        "My teacher's hands were black to the wrist from her carrying. She told me it didn't hurt. It did. I watched her face the whole way round.",
+        "My own hands are the same now. And my apprentice is frightened. Brave, but frightened. I could let them carry it in an iron pot on a chain. Nobody would stop me.",
+        "But the old ones used their hands, and the fire remembers. Should I hold my apprentice to the old way, or let them carry it in the pot?"
+      ],
+      "endings": [
+        {"ask": "Hold to the old way.", "text": "The old way. I'll walk beside them, step for step, and hold their arm when it hurts. My teacher never did that for me. I'll do that part better.", "memory": "You told {name} to keep the old way of carrying the hearth fire."},
+        {"ask": "Let them use the pot.", "text": "The pot. *long breath* The fire won't mind. It only wants carrying. Maybe the old ones would have used pots too, if anyone had forged them one.", "memory": "You told {name} to let the apprentice carry the hearth fire in an iron pot."}
+      ],
+      "reward": {"item": "minecraft:campfire", "count": 3},
+      "after": [
+        "The new ring glows lovely. Sit by it. Guests sit nearest, that's the rule, and you're more than a guest now.",
+        "My apprentice asks about you. I said a shore-foot brought the stones for the ring. They didn't believe me. Shore-feet don't usually care about rings."
+      ]
+    },
+
+    {
+      "id": "hearthkeeper_causeway_lights",
+      "jobs": ["Hearthkeeper"],
+      "title": "Lights on the Causeway",
+      "intro": [
+        "Guests come in off the causeway cold and stumbling. It's dark out there, and the edge of the sea doesn't light much. I've watched shore-feet nearly walk straight in.",
+        "Your kind carry little fires on sticks. Torches, yes? A hearth you can hold! I'd like a row of them along the way in, so every guest can find my ring.",
+        "Sixteen torches would do it. One every few steps from the shore to the hearth."
+      ],
+      "request": {
+        "item": "minecraft:torch",
+        "count": 16,
+        "ask": "Bring me sixteen torches. I'd make them myself, but my sticks keep catching fire before I'm done.",
+        "thanks": "Sixteen little hearths! *turns one over* They burn so small and polite. Thank you. I'll set them out the moment you're done sitting."
+      },
+      "confide": [
+        "I've never been off this Mooring. Not once. My mother kept the hearth, and when she cooled for good, nobody else would take it. So I did. A hearth can't go dark.",
+        "Guests are how I travel. Every one tells me where they've been: blue forests, grey valleys, a world where water falls out of the sky. I keep every story like a coal.",
+        "{neighbour} says they'd mind the hearth for a day, so I could walk the causeway and see the shore myself. Should I go, or keep gathering the world one guest at a time?"
+      ],
+      "endings": [
+        {"ask": "Go and see the shore.", "text": "*crest flares* The shore! Cold, I expect. Horrible. I'll hate every step. Then I'll come back and tell the whole hearth about it. Thank you.", "memory": "You told {name} to walk the causeway and see the shore for once."},
+        {"ask": "Keep gathering stories.", "text": "Then sit, and tell me one of yours, and I'll go further with it than my feet ever could. That's the best kind of travel. No cold toes.", "memory": "You told {name} to stay by the hearth and keep gathering guests' stories."}
+      ],
+      "reward": {"item": "minecraft:coal_block", "count": 4},
+      "after": [
+        "See the torches? Every guest who comes in now says, how kind. I say, a shore-foot's idea. Half of it, anyway.",
+        "Tell me where you've been since. Leave nothing out. Especially the warm parts."
+      ]
+    },
+
+    {
+      "id": "angler_the_anchor",
+      "jobs": ["Lava-angler"],
+      "title": "The Anchor That Got Away",
+      "intro": [
+        "I've hooked something on the sea floor. Something big. Every time I haul, the line goes tight and the whole deck creaks. An anchor from one of the old Moorings, I'd bet.",
+        "And I did bet. A whole block of coal, with {neighbour}. My arms won't land it alone, but a strider pulling the right way would have it up in no time.",
+        "Striders only pull where the fungus points. I need a warped fungus on a stick."
+      ],
+      "request": {
+        "item": "minecraft:warped_fungus_on_a_stick",
+        "count": 1,
+        "ask": "Bring me one warped fungus on a stick. The strider follows the fungus, and the anchor follows the strider. Simple. Nothing's ever simple.",
+        "thanks": "There it is! The strider's drooling already. Thank you. Stand back from the edge when I haul. Further. Further than that."
+      },
+      "confide": [
+        "I landed it. *glances round* It's a rock. A lump of basalt shaped a bit like an anchor, if you squint. If you squint very hard, in bad light.",
+        "Everyone thinks it got away. I said the line snapped. Now it's the best story at the hearth: the great anchor that got away, bigger every time I tell it.",
+        "The rock's hidden under my hut. I could show them and take the laughing, or keep the story going. What do I do?"
+      ],
+      "endings": [
+        {"ask": "Show them the rock.", "text": "*crest puffs* Fine. They'll laugh for a long while. Then we'll use it as a hearth seat, and every time someone sits on it, they'll laugh again. Worth it.", "memory": "You told {name} to own up and show everyone the anchor-shaped rock."},
+        {"ask": "Keep the story going.", "text": "Then it got away. A great iron anchor, wide as a hut. Dragged my strider halfway to the shore. You saw it. Didn't you? Good. Say so loudly.", "memory": "You told {name} to keep telling the story of the anchor that got away."}
+      ],
+      "reward": {"item": "minecraft:netherite_scrap", "count": 1},
+      "after": [
+        "Ask me about the anchor sometime. Go on. Ask me in front of {neighbour}.",
+        "I've hooked something else now. Smaller. Probably a rock. Probably. Could be a lantern. You never know with the sea."
+      ]
+    },
+
+    {
+      "id": "angler_cold_child",
+      "jobs": ["Lava-angler"],
+      "title": "The Little One Who Runs Cold",
+      "intro": [
+        "My little one runs cold. Every child on these decks runs hot except mine. Born half grey, and greyer still if she's away from the hearth for a breath.",
+        "Magma cream helps. It keeps a little warmth in you for later. But the catch has been poor, and the magma cubes have gone deep where my line won't reach.",
+        "If you can find six magma cream, I'll owe you more than I can haggle."
+      ],
+      "request": {
+        "item": "minecraft:magma_cream",
+        "count": 6,
+        "ask": "Bring me six magma cream. For her, not me. Though if you found a seventh, I wouldn't say no.",
+        "thanks": "Six! She'll have one every day and pull a face every day. Thank you. Look at me, not haggling. Don't get used to it."
+      },
+      "confide": [
+        "Here's the odd part. She doesn't mind the cold. Not like we do. She sits at the end of the pier, where I'd go grey in a breath, and she hums.",
+        "She wants to be a Quartzcutter. Out on the shore cliffs, where the rest of us come back shaking. She says the cold isn't frightening if you've always had it.",
+        "Every part of me wants her by the hearth. But maybe the thing I worried over all her life is her gift. Do I let her try the cliffs?"
+      ],
+      "endings": [
+        {"ask": "Let her try the cliffs.", "text": "The cliffs, then. I'll pack her cream and walk her to the causeway, and wave like it's nothing. Then I'll come home and sit in the hearth up to my crest.", "memory": "You told {name} to let the little one try the cold shore cliffs."},
+        {"ask": "Keep her on the sea.", "text": "Here with me, then, a while longer. I'll teach her the line. Anglers sit at the cold end of the pier anyway. She'll be the best of us. You'll see.", "memory": "You told {name} to keep the little one on the sea and teach her angling."}
+      ],
+      "reward": {"item": "minecraft:iron_chain", "count": 8},
+      "after": [
+        "She asks after you. The shore-foot who brought the cream. She thinks you must run cold too. I didn't argue.",
+        "Every link I pull from the sea floor, I keep. I gave you some of the best. Somebody forged them. Somebody should use them."
+      ]
+    },
+
+    {
+      "id": "chainwright_own_link",
+      "jobs": ["Chainwright"],
+      "title": "A Link of My Own",
+      "intro": [
+        "When one of us is born, a link is forged and hung on the hearth post. I've forged nearly every link on ours. Every one but mine.",
+        "I was born on a barge, out on the open sea between Moorings. No post, no link. Nobody ever got round to it. I never minded. I mind now.",
+        "A birth link wants the best iron there is. Bring me nine iron ingots and I'll do it right."
+      ],
+      "request": {
+        "item": "minecraft:iron_ingot",
+        "count": 9,
+        "ask": "Bring me nine iron ingots. Clean ones. I'll know if they're not.",
+        "thanks": "*turns an ingot over* Good iron. All nine. Thank you. My hands are itching already. That's a Chainwright's way of saying thank you twice."
+      },
+      "confide": [
+        "Thing is, you don't forge your own link. That's the custom. Someone forges it for you, because you can't choose to be born. Someone has to want you here.",
+        "I've never asked anyone. What if they made a face? What if they forged it badly? I'd have to hang a bad link on the post forever, and smile.",
+        "I could forge it myself and hang it quietly. Or I could ask {neighbour} to forge it for me. Which should I do?"
+      ],
+      "endings": [
+        {"ask": "Forge it yourself.", "text": "Myself, then. Custom can bend a little for a Chainwright. I'll make it the finest link on the post, and nobody will dare say a word. Well. They'll say several.", "memory": "You told {name} to forge their own birth link."},
+        {"ask": "Ask someone to forge it.", "text": "*crest flushes* Ask. Yes. I'll ask, and watch them forge it badly, and hang it anyway, and it'll be the best one there. That's how it works, isn't it?", "memory": "You told {name} to ask a neighbour to forge their birth link."}
+      ],
+      "reward": {"item": "minecraft:chainmail_helmet", "count": 1},
+      "after": [
+        "Every time I pass the hearth post, I touch it. Just once. Don't tell anyone. They'd think I'm soft.",
+        "That helm was forged for a head with no crest. Yours, as it turns out. Wear it near our fires and everyone will know whose work it is."
+      ]
+    },
+
+    {
+      "id": "chainwright_singing_bridge",
+      "jobs": ["Chainwright"],
+      "title": "The Bridge That Sings",
+      "intro": [
+        "Hear that twang when someone crosses the long bridge? It sings. Everyone's sick of it. {neighbour} says it sets their crest on edge. I say it's character.",
+        "It was my first bridge. Forged it as an apprentice. I've finally agreed to look at it properly, and for that I need the forge hotter than it's been in years.",
+        "Coal's dear out here, and the good stuff dearer. Three blocks of coal would do it. Packed tight, not loose lumps."
+      ],
+      "request": {
+        "item": "minecraft:coal_block",
+        "count": 3,
+        "ask": "Bring me three blocks of coal. I'd pay you back, but I'm a Chainwright, so I'll owe you instead. Owing's a kind of chain.",
+        "thanks": "*sniffs* Real coal, packed tight. You've no idea what this costs out here. Well. You do now. Thank you."
+      },
+      "confide": [
+        "Here's why it sings. One link in that bridge is bad. I knew it the moment I made it. My teacher looked at it and said, a chain's only as strong as its worst link.",
+        "I was ashamed, so I hid it in the middle where it wouldn't show. She's cooled for good now. And every time someone crosses, that link sings, and I hear her.",
+        "With this coal I could cut it out and forge a good one. Or I could leave it be, and keep her voice on the bridge. What would you do?"
+      ],
+      "endings": [
+        {"ask": "Fix the worst link.", "text": "Fixed, then. She'd say that. She'd say it twice. I'll wear the old link on my sash, where I can hear it rattle. That's close enough.", "memory": "You told {name} to cut out the bad link and fix the singing bridge."},
+        {"ask": "Let the bridge sing.", "text": "Let it sing. I've tested it with my own weight a hundred times, and it holds. It'll hold a hundred more. {neighbour} can complain to the bridge.", "memory": "You told {name} to leave the bad link in and let the bridge keep singing."}
+      ],
+      "reward": {"item": "minecraft:anvil", "count": 1},
+      "after": [
+        "That anvil I gave you was hers. Hit it hard, but kindly. That's how she taught me.",
+        "Cross the long bridge sometime and listen. Whatever you hear, it's better than it was."
+      ]
+    },
+
+    {
+      "id": "quartzcutter_bone_ledge",
+      "jobs": ["Quartzcutter"],
+      "title": "Gifts on the Cliff Ledge",
+      "intro": [
+        "Out on the shore cliffs there's a ledge where I rest when I'm cutting. I left a quartz chip there once. Next trip, there was a little carving in its place. Bone.",
+        "We've traded like that for a year. Quartz for bone. A strider, a hearth, a tiny chain. You know who carves bone. Grey folk, with blue fires they like for some reason.",
+        "I want to leave something better, something they'd love. Two soul lanterns. Cold fire. I can't abide it, so I need you to bring them."
+      ],
+      "request": {
+        "item": "minecraft:soul_lantern",
+        "count": 2,
+        "ask": "Bring me two soul lanterns. Hold them away from me, would you? Cold fire gives me the shivers just looking at it.",
+        "thanks": "*leans away* Ugh. Blue and cold and horrible. They'll love them. Thank you. I'll wrap them in vine and carry them at arm's length."
+      },
+      "confide": [
+        "My family's oldest link on the hearth post is scorched black from the Last Answer. My grandmother would never forgive me for trading with the Withren. Not one chip.",
+        "But whoever it is carves like they've watched our striders for years. Patient work. Kind work. The last one was a Magmari with a quartz point, cutting at a cliff. Me.",
+        "Next trip I could wait at the ledge and meet them. Or keep it a ledge, and never know a face. What should I do?"
+      ],
+      "endings": [
+        {"ask": "Wait and meet them.", "text": "*crest flickers* Wait, then. I'll sit on that cliff and go grey and wait. If they come, I'll say thank you. What comes after that, nobody knows yet.", "memory": "You told {name} to wait at the cliff ledge and meet the bone-carver."},
+        {"ask": "Keep it a ledge.", "text": "A ledge, then. Quartz and bone and no faces. Maybe that's as much peace as two peoples can carry. It's more than we had.", "memory": "You told {name} to keep trading at the ledge without meeting the carver."}
+      ],
+      "reward": {"item": "minecraft:quartz_block", "count": 16},
+      "after": [
+        "There was a new carving on the ledge. A lantern, blue fire and all. I keep it at the back of my hut, where nobody looks.",
+        "Don't tell anyone at the hearth about the ledge. Some things stay between you and the cliff."
+      ]
+    },
+
+    {
+      "id": "quartzcutter_warm_hut",
+      "jobs": ["Quartzcutter"],
+      "title": "The Warmest Hut",
+      "intro": [
+        "The hut nearest the hearth is coming free. The warmest on the Mooring. Everyone wants it, and it goes to whoever haggles best. Which is me. Obviously.",
+        "But {neighbour} has been saving quartz for a year, and I spent mine on... never mind what. I need a pile big enough to make my rival weep.",
+        "Twenty-four quartz should do it. That's a long, cold day on the cliffs, and I've had enough cold days lately."
+      ],
+      "request": {
+        "item": "minecraft:quartz",
+        "count": 24,
+        "ask": "Bring me twenty-four quartz. Raw is fine. I'll cut it pretty myself, and then I'll be insufferable.",
+        "thanks": "*runs claws through the pile* Twenty-four! Oh, they're going to hate me. Thank you. I'll win this before the hearth's been fed twice."
+      },
+      "confide": [
+        "I won. Of course I won. But here's the thing: the hut's not for me. It's for my father. He's grey half the time now, and too proud to sit nearer the fire.",
+        "If I offer it to him, he'll say no. He'll say he's warm enough. He's never been warm enough. Not one day in his life.",
+        "I could tell him plainly it's for him. Or say I won it for me, then beg him to mind it while I'm out on the cliffs. Which way do I do it?"
+      ],
+      "endings": [
+        {"ask": "Tell him plainly.", "text": "Plainly. *sigh* He'll argue. I'll argue back. We'll haggle over whether he deserves it till the hearth needs feeding. Then he'll take it. Thank you.", "memory": "You told {name} to tell their father plainly that the warm hut is his."},
+        {"ask": "Let him mind it for you.", "text": "Mind it for me. He'll grumble, and stay, and get warm, and never once admit it. And I'll pretend not to notice. That's love, out here.", "memory": "You told {name} to ask their father to mind the warm hut for them."}
+      ],
+      "reward": {"item": "minecraft:blaze_rod", "count": 4},
+      "after": [
+        "My father's sitting by that hut door right now, warm as anything, pretending it's no great thing. Don't let him see you looking.",
+        "Those blaze rods were his. He said, give the shore-foot something good. He's never said that about anyone. Mind you, he's never been this warm."
+      ]
+    },
+
+    {
+      "id": "chartmaker_lost_mooring",
+      "jobs": ["Chartmaker"],
+      "title": "A Mooring Not There",
+      "intro": [
+        "This chart is older than my grandmother's grandmother. Scratched on basalt, crumbling at the edges. It shows a Mooring that isn't there any more: the Mooring of the Bright Span.",
+        "Nobody of that chain is left to remember it. The old basalt is going soft. Another few years and the whole thing flakes away into the sea.",
+        "I need eight polished basalt to copy it onto. Polished takes a scratch clean and keeps it."
+      ],
+      "request": {
+        "item": "minecraft:polished_basalt",
+        "count": 8,
+        "ask": "Bring me eight polished basalt. Smooth faces, no cracks. I'll be scratching on these for a long time.",
+        "thanks": "*runs a claw over one* Clean. Good stone. Thank you. I'll start with the pillars. Pillars are always the easy part."
+      },
+      "confide": [
+        "The Bright Span carried more war-bands than any Mooring on this sea. So the Wither came to it first. The chart marks where every deck stood, and nothing after.",
+        "Some at the hearth say leave it blank. Let the sea forget the ones who carried the most. But somebody forged those chains. Somebody kept that hearth, and sang there.",
+        "When I copy it, should I chart it as it was, decks and all? Or as it is now, open sea with a name beside it?"
+      ],
+      "endings": [
+        {"ask": "Chart it as it was.", "text": "Decks and bridges and all. Every hearth seat. If the sea won't remember them, the stone will. I'll scratch it slow and get it right.", "memory": "You told {name} to chart the lost Mooring as it was, decks and all."},
+        {"ask": "Chart it as it is.", "text": "Open sea, then, and the name beside it, scratched deep. That's true too. Anyone who reads it will know something stood there, and what it cost.", "memory": "You told {name} to chart the lost Mooring as open sea, with its name beside it."}
+      ],
+      "reward": {"item": "minecraft:lodestone", "count": 1},
+      "after": [
+        "The new chart's half done. Come and look. Don't breathe on it. Shore-feet breathe wet.",
+        "Set that lodestone somewhere you call home, and a needle will always find it. Even out here, where needles spin. That's a Chartmaker's gift."
+      ]
+    },
+
+    {
+      "id": "chartmaker_drift_line",
+      "jobs": ["Chartmaker"],
+      "title": "The Drift Line",
+      "intro": [
+        "I chart where the sky-mourners drift. Most wander. But one, a big one with a torn side, has flown the same loop over this sea for thirty years. I've charted every pass.",
+        "I've never seen its face. From the deck it's only a shape and the crying. Your kind have a glass that brings far things near, they say. A spyglass.",
+        "I need one spyglass. Just the one. Bring it, and I'll make the walk worth your while."
+      ],
+      "request": {
+        "item": "minecraft:spyglass",
+        "count": 1,
+        "ask": "Bring me one spyglass. I've no idea what goes into one, so I can't even haggle you. That's not fair, and I'm letting it go.",
+        "thanks": "*holds it to one eye, then the other* Oh. The far pillars are right there. Thank you. I'll be on the high deck for days."
+      },
+      "confide": [
+        "When I was small I wandered off on a loose barge and drifted out of sight of every Mooring. Cold, alone, wailing. Then that one came over me, crying too.",
+        "Its tears hit my hand. That's this dark spot, see. It stung for a year. But the Ferrier heard the crying from far off, followed it, and found me. It led them to me.",
+        "I've always charted it as a drift line, like all the others. Now I've seen its face. Should I give it a name on my charts, like a Mooring, or leave it a line?"
+      ],
+      "endings": [
+        {"ask": "Give it a name.", "text": "A name. Hm. Something soft. I'll scratch it beside the loop, small, where only a Chartmaker would look. It found me once. I can find it a name.", "memory": "You told {name} to give the old sky-mourner a name on the charts."},
+        {"ask": "Leave it a drift line.", "text": "A line, then. It never asked for a name. It just cries and flies its loop. I'll chart every pass, so it's never lost. That's a kind of name too.", "memory": "You told {name} to leave the old sky-mourner a drift line on the charts."}
+      ],
+      "reward": {"item": "minecraft:ghast_tear", "count": 1},
+      "after": [
+        "That tear fell on the barge beside me, all those years ago. I kept it in a quartz box. I couldn't throw it away, and I can't hold it. It's better with you.",
+        "It passed over again a while ago. I waved. It didn't wave back. They never do. I waved anyway."
+      ]
+    }
+  ]
+}

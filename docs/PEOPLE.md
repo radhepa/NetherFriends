@@ -231,4 +231,7 @@ quick hat clicks, Ghastkin chimes that fall through the line.
 Names: every resident has one from the moment the world generates them (see `world/Names.java`), with a job from
 the building they live in. Walking into a village shows its name ("Gildmaw Hold", "the Mooring of the Slow Glow").
 
-Not built yet: trading for the four new peoples, the Ferrier's ferry (Travel), and the Story and Journal tabs.
+Tabs under the friendship card: **Talk**, **Story** (every grown resident's own story in four steps, 64 stories
+across the five peoples, two for every job) and **Journal** (memories, About, story notes). See `STORIES.md`.
+
+Not built yet: trading for the four new peoples, and the Ferrier's ferry (Travel).

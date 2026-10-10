@@ -1,0 +1,405 @@
+{
+  "early": [
+    {"text": "*click... click* I have a hundred and twenty rows of stories. You have had a few words of me. Come back when you have had more.", "when": {"job": "Clothkeeper"}},
+    {"text": "*click* I watch before I talk. I have not finished watching you yet. Stand where I can see you a while longer.", "when": {"job": "Netcaster"}},
+    {"text": "*wipes teal from all four hands* My story is in the vats, and the vats are not for strangers. Talk with me more first.", "when": {"job": "Dyer"}},
+    "*click* A story is a long thread. I do not hand the end of it to someone I have only just tied on to. Talk with me a while longer.",
+    "*click click* Not yet. You are still a loose thread to me, outsider. Come back, and let me get used to your face.",
+    "We do not tell our rows to strangers. Sit with me another day or two. Then, perhaps.",
+    "Patience. *click* You want the whole bolt at once. Outsiders always do. Talk with me first."
+  ],
+
+  "child": [
+    "A story? *click click* I haven't got one yet. I haven't even got all my arms.",
+    "My row is {row}. That's all my story so far. It's very short, but it's near the top, so everyone sees it.",
+    "*whispers* I've got a secret instead. I hid a spool in the net under the bridge. Don't tell. That's the whole story.",
+    "Grown-ups get stories when they get shuttles. When my lower arms wake up I'll have one. *click*",
+    "I wish I could see your world. Is it true water falls out of the sky there? *click* That's my wish. It's not a story.",
+    "*click* Ask the Clothkeeper. They have all the stories. I just have a silkgrub, and it doesn't talk."
+  ],
+
+  "waiting": [
+    {"text": "*click... click* I have waited sixty rows for some things. You can wait a few days for this.", "when": {"job": "Clothkeeper"}},
+    {"text": "*stirs the vat* The colour has not set yet. Neither has what I mean to tell you. Another day.", "when": {"job": "Dyer"}},
+    {"text": "*click* Come back. I talk better when I have watched you a while longer.", "when": {"job": "Netcaster"}},
+    "*click* You brought what I asked. The rest is still on the spool. Come back another day.",
+    "Not yet. A thread wound too fast tangles. Give it a day, and give me a little longer to know you.",
+    "*click click* I am still deciding how to say it. Precisely, I hope. Come back.",
+    "The rest of it is heavier than what you carried. Another day, when we know each other better.",
+    "*the lower hands keep working* I am not ready. You will be the first to know when I am.",
+    "Patience. *click* You have been very good at it so far. Be good at it a little longer."
+  ],
+
+  "ready": [
+    {"text": "*click... click* The rest is old. Older than you. Sit down, outsider, and do not touch the Cloth.", "when": {"job": "Clothkeeper"}},
+    {"text": "*climbs down the stalk head first* Ready. Listen closely. Stalks and stories both go hollow if you rush them.", "when": {"job": "Canopy-tender"}},
+    "*click* There is more to it. I have wound it up neatly. Will you listen?",
+    "*sets the shuttle down with all four hands* I am ready to tell you the rest. Sit.",
+    "*click click* I have thought about it long enough. Too long, perhaps. Will you hear it?",
+    "You came back. Good. There is a knot under all this, and I want you to see it. Will you listen?"
+  ],
+
+  "stories": [
+    {
+      "id": "slow_argument",
+      "jobs": ["Clothkeeper"],
+      "title": "The Slow Argument",
+      "intro": [
+        "*click... click* There is a Clothkeeper at another Loom, three days' climb from here. For forty rows we have argued about one thread in row Ten-Eighty-One.",
+        "They say it is blue. I say it is teal, faded. Nothing blue grows in the Nether. *click* But I have never seen true blue, so I cannot prove it. I need some from your world."
+      ],
+      "request": {
+        "item": "minecraft:lapis_lazuli",
+        "count": 6,
+        "ask": "Bring me six lapis lazuli. Six true blues, laid beside the old thread, and we shall see who is right.",
+        "thanks": "*holds a stone to each pair of eyes in turn* So this is blue. *click* Hm. Leave it with me. I want to look at it for a day before I say anything."
+      },
+      "confide": [
+        "*click* I held your blue against the thread. It is blue. They were right. They have been right for forty rows.",
+        "The other Clothkeeper is my sister. We have not said a kind word to each other since our mother's knot was tied. But twice a row, we argue about this thread. It is all the talk we have left.",
+        "If I send word that she is right, the argument is over. *click* And then what do we talk about? Should I tell her, or keep the question open?"
+      ],
+      "endings": [
+        {"ask": "Tell her she was right.", "text": "*click... click* Yes. And then I will ask her about row Ten-Ninety. There is a knot in it I have always thought crooked. She will say it is straight.", "memory": "You told {name} to admit to their sister that the thread was blue."},
+        {"ask": "Keep the question open.", "text": "*click click* Then I will send word that your blue proves nothing, and she will send back that I am stubborn. And so we go on. Thank you for that.", "memory": "You told {name} to keep the old argument with their sister going."}
+      ],
+      "reward": {"item": "minecraft:name_tag", "count": 2},
+      "after": [
+        "*click* A knotted cord came from my sister's Loom. Four knots, every one of them about thread. I read it nine times.",
+        "I keep one of your blue stones beside the Cloth. When the young ones ask what it is, I say: an argument.",
+        "Blue. *click* I am still getting used to it. Your world must be very strange to look at."
+      ]
+    },
+    {
+      "id": "last_knot",
+      "jobs": ["Clothkeeper"],
+      "title": "The Last Knot",
+      "intro": [
+        "*click... click* When a Weft dies, the Clothkeepers tie one knot in their row. I have tied hundreds. Someone will tie mine before long, and I have been thinking about its colour.",
+        "I want it orange. Shroomlight orange, dyed with my own hands while they are steady. *click* Not taken from our canopy. It must be given."
+      ],
+      "request": {
+        "item": "minecraft:shroomlight",
+        "count": 4,
+        "ask": "Bring me four shroomlights, from the crimson trees if you can. Not from ours.",
+        "thanks": "*click* They smell of somewhere else. Good. *sets them in a row of four* Thank you. I will begin the vat slowly."
+      },
+      "confide": [
+        "I was a young weaver when the Wither came. For sixty rows every thread I spun came out black. I wove Eleven-Ninety with these hands, and Twelve-Forty-Nine.",
+        "My hands still remember black. *click* I dyed a test thread in your orange, and it came out orange. I wept a little. Do not tell the Ghastkin. They would want the water.",
+        "Now I wonder. Should I tie my knot myself, now, in orange? Or leave it to the young Clothkeepers to choose my colour, as it has always been done?"
+      ],
+      "endings": [
+        {"ask": "Tie it yourself, now.", "text": "*click* Then I will. A small knot, orange, at the edge of my row where no one will brush it. *click click* It feels like finishing a hem.", "memory": "You told {name} to tie their own knot in orange while their hands were steady."},
+        {"ask": "Let the young ones choose.", "text": "*click... click* Yes. I will give them the orange thread and say nothing. If they choose black, it will be because they loved me. That is allowed.", "memory": "You told {name} to leave the colour of their knot to the young Clothkeepers."}
+      ],
+      "reward": {"item": "minecraft:ender_pearl", "count": 4},
+      "after": [
+        "*click* I sleep better now. Old Weft are not supposed to admit that.",
+        "Whoever ties my knot, and whatever colour, it will be tied with care. *click* I know that now. I did not before.",
+        "Orange. *click click* After all these rows, orange. You do not know what you carried up that ladder."
+      ]
+    },
+    {
+      "id": "war_weights",
+      "jobs": ["Weaver"],
+      "title": "Weights of the War",
+      "intro": [
+        "*the shuttle stops* Hear that? One of my loom weights has cracked. It clacks wrong. *click* A loom that clacks wrong weaves wrong.",
+        "The weights are old bone, from the war. I want to carve new ones from clean bone, bone from your world that nobody here will ask about."
+      ],
+      "request": {
+        "item": "minecraft:bone_block",
+        "count": 4,
+        "ask": "Bring me four bone blocks. Four will make a full set of weights, with some to spare for mistakes.",
+        "thanks": "*taps a block with a lower knuckle* Clean. It rings like nothing at all. *click* That is exactly how I wanted it to sound."
+      },
+      "confide": [
+        "My mother carved those weights. She took the bone from the dead of both sides, in the war. She never wove with them. She gave me the loom and said they were heavier than they looked.",
+        "I have woven every shawl I ever made on them. *click* Every one of them hung on the dead. They hold a warp straighter than anything. That is the trouble.",
+        "I have enough of your bone for a whole set now. Should I change only the cracked one, or all of them, and lay my mother's weights to rest?"
+      ],
+      "endings": [
+        {"ask": "Change only the cracked one.", "text": "*click* Yes. The war is in the warp whether I like it or not. One new weight among the old. My mother would have called that honest.", "memory": "You told {name} to change only the cracked loom weight and keep the rest."},
+        {"ask": "Change all of them.", "text": "*click... click* Then the old weights go to the war rows, a bone bead each. My loom will swing lighter. I will have to learn it again, like a child with new hands.", "memory": "You told {name} to replace every loom weight and lay the war bone to rest."}
+      ],
+      "reward": {"item": "minecraft:orange_wool", "count": 16},
+      "after": [
+        "*the loom clacks evenly* Hear it? That is the right sound. *click* Thank you for it.",
+        "The first shawl off the mended loom went to the first one who asked for it. It seemed the right way to begin.",
+        "My mother said the weights were heavier than they looked. *click* She was precise. I am trying to be."
+      ]
+    },
+    {
+      "id": "endless_hem",
+      "jobs": ["Weaver"],
+      "title": "The Hem That Never Ends",
+      "intro": [
+        "*click* You may have heard about me. Nine rows on the same hem. They say it is the finest hem in the Loom. It is. *click click* It is also not finished.",
+        "It wants one last edge in the finest thread I can get. Silkgrub silk is a little thick for it. Your world's string is finer, I am told."
+      ],
+      "request": {
+        "item": "minecraft:string",
+        "count": 12,
+        "ask": "Bring me twelve string. Your world's, the even kind. Twelve, and I can weave the last edge.",
+        "thanks": "*runs it between three fingers* So even. *click* Something with eight legs spun this. I am a little jealous. Thank you."
+      },
+      "confide": [
+        "The shawl is for my brother. He went to another Loom when he took a mate, nine rows ago. He asked me to weave him something to remember us by.",
+        "I began that day. *click* While the hem is unfinished, I think of him every time I sit down. When it is done, I must carry it to him. And then what will I think of?",
+        "*click... click* So. Should I finish it and take it to him myself, or keep weaving, and let the hem go on a little longer?"
+      ],
+      "endings": [
+        {"ask": "Finish it. Go to him.", "text": "*click* Three days' climb. He will say the hem is crooked. It is not. We will argue about it, and it will be as if he never left.", "memory": "You told {name} to finish the hem and carry the shawl to their brother."},
+        {"ask": "Keep weaving a while.", "text": "*click click* Then one row of hem a year, like the Cloth. When I am old he will have the longest hem any Weft ever wore. He will complain. Good.", "memory": "You told {name} to keep weaving the hem a little longer."}
+      ],
+      "reward": {"item": "minecraft:cyan_banner", "count": 2},
+      "after": [
+        "*click* Your string is in the hem now. The best edge I ever wove. I touch it every time I pass the loom.",
+        "My brother would like you. He never had enough patience either. *click click* That is a compliment, from me.",
+        "Nine rows, and now it has an outsider in it. The hem has become more interesting."
+      ]
+    },
+    {
+      "id": "eight_legs",
+      "jobs": ["Spinner"],
+      "title": "Eight Legs",
+      "intro": [
+        "*a thread runs out behind you* Your world's string is very even. *click* Something with eight legs spins it, I hear. I have been thinking about them for a long time.",
+        "My teacher spun the finest thread in the Loom. It hangs in the Cloth. I have spun for forty rows and never matched it. I want to see how your eight-legged spinners do it."
+      ],
+      "request": {
+        "item": "minecraft:cobweb",
+        "count": 6,
+        "ask": "Bring me six cobwebs. Whole ones, from your world's dark places. Six, and I will unpick them strand by strand.",
+        "thanks": "*holds a web up to all six eyes* Oh. *click click* A net and a thread at once. Leave them with me. I want to unpick these slowly."
+      },
+      "confide": [
+        "*click* I unpicked every web. Do you know what I found? They are not even. Not one. Thick strands and thin, and a knot wherever the spinner stopped to rest.",
+        "They are not perfect. Only patient. *click* Perhaps my teacher was the same. I only ever saw the finished thread, never the knots.",
+        "So. Should I keep chasing my teacher's thread, or spin my own, knots and all, and call it mine?"
+      ],
+      "endings": [
+        {"ask": "Spin your own thread.", "text": "*click click* Knots and all. Then the next spinner who tries to match me will have a very confusing time. *click* Good.", "memory": "You told {name} to stop chasing their teacher's thread and spin their own."},
+        {"ask": "Keep chasing it.", "text": "*click* Yes. Now that I know it is made of knots and rests, I can chase it properly. Slowly. For forty rows more, perhaps.", "memory": "You told {name} to keep chasing their teacher's perfect thread."}
+      ],
+      "reward": {"item": "minecraft:lead", "count": 4},
+      "after": [
+        "*click* I leave a small knot in every spool now, where I stop to rest. Like your eight-legged ones.",
+        "If you meet one of your spinners, tell it a Weft says it does good work. Not perfect. Good.",
+        "Forty rows at the spindle, and I learned the most from six webs. *click* Do not tell my teacher's row. It hangs right there, listening."
+      ]
+    },
+    {
+      "id": "walking_backward",
+      "jobs": ["Spinner"],
+      "title": "Walking Backward",
+      "intro": [
+        "*click* You know about me, I suppose. I spin walking backward along the bridge, and I have never once fallen. Everyone in the Loom knows it.",
+        "Lately my two low eyes are dimming, the side ones that watch the rope. *click* I want a guide line along the spinning walk, so a hand can always find the edge."
+      ],
+      "request": {
+        "item": "minecraft:twisting_vines",
+        "count": 16,
+        "ask": "Bring me sixteen twisting vines. Sixteen will make a guide line the length of the spinning walk.",
+        "thanks": "*twists two strands together in the lower hands without looking* Good vine. Springy. *click* I will lay the line when nobody is on the bridge."
+      },
+      "confide": [
+        "*click... click* I laid the line, and then I took it down again. If it hangs there, everyone will see it, and everyone will know why.",
+        "I am the Spinner Who Never Fell. *click* It is a foolish thing to be proud of. It is also the only thing anyone ever says about me.",
+        "There is a young one who watches me on the walk. Should I hang the line and keep walking, or teach the young one the walk and spin sitting down?"
+      ],
+      "endings": [
+        {"ask": "Hang the line. Keep walking.", "text": "*click* Then I am the Spinner Who Never Fell And Used A Rope. *click click* Longer to say, but still true. I will hang it in plain sight.", "memory": "You told {name} to hang the guide line and keep spinning on the walk."},
+        {"ask": "Teach the young one.", "text": "*click... click* Yes. The young one will fall, the first few times. Into the net. And I will be there to say: I never did. That is how it is taught.", "memory": "You told {name} to teach the spinning walk to the young one."}
+      ],
+      "reward": {"item": "minecraft:string", "count": 32},
+      "after": [
+        "*click* I still count the steps of the walk. Backward. Two hundred and six. Some things you keep.",
+        "My low eyes are no better. *click* My hands, it turns out, never needed them as much as I thought.",
+        "The young one asked what you brought me. I said vine. *click* It was more than vine."
+      ]
+    },
+    {
+      "id": "hollow_stalk",
+      "jobs": ["Canopy-tender"],
+      "title": "The Hollow Stalk",
+      "intro": [
+        "*climbs down the stalk head first* I listen to every stalk. For forty rows none was sick. Now one sounds hollow, low down, near the root. *click*",
+        "I do not prune. I do not cut. I feed, and I wait. This one wants feeding badly, more bone meal than I have in my baskets."
+      ],
+      "request": {
+        "item": "minecraft:bone_meal",
+        "count": 24,
+        "ask": "Bring me twenty-four bone meal. Twenty-four, worked in at the root, and we will hear if the hollow fills.",
+        "thanks": "*works it into the nylium with all four hands at once* There. *click* Now we listen. Come back another day, and we will know more."
+      },
+      "confide": [
+        "That stalk grew from a single fungus my father planted the year I was born. Row {row}. *click* It is as old as I am, to the row.",
+        "It is a little better. Not well. *click* It may stay hollow for good. The deck on its cap is my home.",
+        "I could plant a young fungus beside it, to take the deck over slowly, across many rows. Or I could keep feeding the old one for as long as it stands. Which would you do?"
+      ],
+      "endings": [
+        {"ask": "Plant a young one beside it.", "text": "*click* Yes. The young one will lean on the old one for a while, and then the old one on the young. *click click* That is how a Loom grows.", "memory": "You told {name} to plant a young fungus beside their old stalk."},
+        {"ask": "Keep feeding the old one.", "text": "*click... click* Yes. It stood for me every row I have had. I can stand by it for the rows it has left. *pats the stalk with two hands*", "memory": "You told {name} to keep feeding the old stalk as long as it stands."}
+      ],
+      "reward": {"item": "minecraft:shroomlight", "count": 3},
+      "after": [
+        "*knocks on the stalk* Hear that? Less hollow. *click* Not nothing. Less.",
+        "Bone meal at the root, patience at the cap. *click* You have given both now. That makes you a little bit of a canopy-tender.",
+        "*click* I told my father's stalk about you. It did not answer. Stalks are like that."
+      ]
+    },
+    {
+      "id": "lost_strider",
+      "jobs": ["Canopy-tender"],
+      "title": "The Eighth Fungus",
+      "intro": [
+        "*click* Magmari came to the forest edge again and pulled warped fungus out of the nylium, for their striders. Every one they take is a giant that will never grow.",
+        "I mean to plant the bare patch before the nylium forgets what grew there. But I have none to spare. *click* Our fungi are for decks."
+      ],
+      "request": {
+        "item": "minecraft:warped_fungus",
+        "count": 8,
+        "ask": "Bring me eight warped fungus. Eight, for the bare patch at the forest edge.",
+        "thanks": "*counts them twice* Eight. *click* Thank you. Seven go in the ground at the forest edge. The eighth... I will tell you about the eighth another day."
+      },
+      "confide": [
+        "Many rows ago I found a Magmari child at the forest edge. Gone grey with cold, lost, and its strider would not walk. *click* I tied a fungus to a stick for it myself.",
+        "It got home. Since then, once a row, it comes back. Grown now. It never pulls a thing. It waits at the edge until I bring one fungus, and pays me, because Magmari always pay.",
+        "*click* The Loom would call that theft from the warp. The eighth fungus is for it. Do I go on giving, or plant it where they wait and let them watch it grow?"
+      ],
+      "endings": [
+        {"ask": "Give it the fungus.", "text": "*click click* One fungus a row. The forest can spare one. I have decided that it can. *click* Do not tell the netcasters.", "memory": "You told {name} to go on giving one fungus a row to the Magmari."},
+        {"ask": "Plant it where they wait.", "text": "*click* Yes. A fungus growing at the edge, theirs to watch and not to pull. If they want more, they will have to wait for it. Like a Weft.", "memory": "You told {name} to plant the eighth fungus where the Magmari waits."}
+      ],
+      "reward": {"item": "minecraft:saddle", "count": 1},
+      "after": [
+        "*click* The Magmari came again. It did not haggle at all. I think it was worried you would hear.",
+        "Seven fungus at the forest edge, and all seven took. *click* The nylium remembered.",
+        "A Weft and a Magmari with a secret between them. *click click* The Clothkeeper would need a new colour for it."
+      ]
+    },
+    {
+      "id": "tally_thread",
+      "jobs": ["Dyer"],
+      "title": "The Tally Thread",
+      "intro": [
+        "*shows a thread wound round a lower wrist, thick with knots* A knot for each thing I must not forget. My mate's name. My child's row. The way to my hut. *click* It grows.",
+        "The vats take things. You know what we use for water. I want to try a vat with water that washes nothing away. Your world has water that falls frozen, I am told."
+      ],
+      "request": {
+        "item": "minecraft:snow_block",
+        "count": 12,
+        "ask": "Bring me twelve snow blocks. Twelve will melt into one vat, and I will dye with nothing else in it.",
+        "thanks": "*sets a block in the vat and watches it go soft* Water that forgot how to move. *click click* It is very cold. I like it."
+      },
+      "confide": [
+        "*click* The snow vat sets a pale teal. Paler than ours. But my head is clear after it, clearer than it has been in many rows.",
+        "Before you came, I found a knot on my wrist I could not remember tying. *click* I still do not know what it was for. I have stopped sleeping near the vats.",
+        "Your snow will not last. The tears will. Should I keep dyeing for as long as I can, or give the vats to someone younger while I still remember why I love them?"
+      ],
+      "endings": [
+        {"ask": "Keep dyeing.", "text": "*click* Yes. Pale teal when I can get snow, and tears when I cannot. *click click* And I will tie the knots tighter.", "memory": "You told {name} to keep working the dye vats."},
+        {"ask": "Pass the vats on.", "text": "*click... click* Yes. I will teach the young one everything, and tie it all on a thread for them too. Then I will weave by the Great Loom, far from the water.", "memory": "You told {name} to hand the vats to someone younger while they still remember."}
+      ],
+      "reward": {"item": "minecraft:orange_dye", "count": 16},
+      "after": [
+        "*touches the tally thread* I tied a knot for you. *click* Snow. That is what it says, if anyone asks.",
+        "Pale teal. *click* The weavers complained. Then they asked for more.",
+        "I still do not know what the strange knot was for. *click* I have decided it was for something good."
+      ]
+    },
+    {
+      "id": "black_vat",
+      "jobs": ["Dyer"],
+      "title": "The Black Vat",
+      "intro": [
+        "*click* We keep a black vat in the dye house. It has stayed shut since row Twelve-Forty-Nine. The Clothkeepers have asked me to fill it again.",
+        "You come from where outsiders make Withers. *click* They want black ready, in case. I will not use Nether black. I want ink from your world's water, that never mourned anything."
+      ],
+      "request": {
+        "item": "minecraft:ink_sac",
+        "count": 10,
+        "ask": "Bring me ten ink sacs. Ten, and the black vat will be full.",
+        "thanks": "*squeezes one into the vat and watches it spread* *click* Black that knows nothing. Good. I will let it settle a day."
+      },
+      "confide": [
+        "My grandmother dyed the black for all sixty rows. She said the vats would take no other colour, whatever she put in. She was the one who shut the black vat.",
+        "When she died, her knot was tied in black too. *click* I promised myself I would never open that vat. Now it is full again, because of where you come from. That is not your fault.",
+        "*click... click* So. Should I keep the black vat full and ready, in case? Or empty it into the forest floor, and trust you outsiders?"
+      ],
+      "endings": [
+        {"ask": "Keep it ready.", "text": "*click* Yes. Full, and shut. If it is ever needed, it will not be a dyer's grief that colours the rows. Only your world's ink. That is something.", "memory": "You told {name} to keep the black vat full and ready."},
+        {"ask": "Empty it. Trust us.", "text": "*click click* Into the nylium, then. The floor will be black for a while, and then it will forget. *click* Do not make me regret it, outsider.", "memory": "You told {name} to empty the black vat and trust outsiders."}
+      ],
+      "reward": {"item": "minecraft:cyan_wool", "count": 16},
+      "after": [
+        "*click* I asked the Clothkeeper to tie one teal thread into my grandmother's knot. They did. No one has unpicked it.",
+        "Your ink is very black. *click* Blacker than ours. I do not know what to make of that.",
+        "I look at the hands of every outsider who climbs up here. *click* Yours were full of ink. That was a good sign."
+      ]
+    },
+    {
+      "id": "piglin_in_the_net",
+      "jobs": ["Netcaster"],
+      "title": "The Piglin in the Net",
+      "intro": [
+        "*click* Every row, the same Piglin falls into my net under the east bridge. It does not steal. It does not shout. It sits in the net, and waits for me.",
+        "I let it go while it is quiet, as we do. Next row it comes back. *click* I have decided to greet it properly. Piglins know a friend by gold.",
+        "We never wear gold. It makes a poor thread. But I want gold on my head when I untie that Piglin. Just once."
+      ],
+      "request": {
+        "item": "minecraft:golden_helmet",
+        "count": 1,
+        "ask": "Bring me one golden helmet. One, and I will wear it, and the Piglin will know.",
+        "thanks": "*puts it on with the upper hands, all six eyes rolling up to the brim* *click* Heavy. Shiny. Ridiculous. *click click* Perfect."
+      },
+      "confide": [
+        "Long ago I netted a Piglin child who fell from the bridge on a raid. Very young, very quiet. I sat with it until it stopped shaking, and I let it go.",
+        "It came back the next row. And the next. *click* Grown now, with tusks. It falls in on purpose. I think it is the only way it knows to visit.",
+        "When it comes again, should I put on the helmet and untie it as a friend, or hang the helmet in the net for it to find, and watch from the lookout?"
+      ],
+      "endings": [
+        {"ask": "Wear it. Greet them.", "text": "*click click* I will look absurd. It will laugh, loudly, for a long time. *click* Then perhaps it will sit with me, and not in the net.", "memory": "You told {name} to wear the golden helmet and greet the Piglin as a friend."},
+        {"ask": "Leave it in the net.", "text": "*click* Yes. A gift, with no Weft in gold standing over it. Piglins are proud. It can wear it home and tell any story it likes.", "memory": "You told {name} to leave the golden helmet in the net for the Piglin."}
+      ],
+      "reward": {"item": "minecraft:spyglass", "count": 1},
+      "after": [
+        "*click* It came. It went home in gold. What passed in between is between it and me.",
+        "If a Piglin in a golden helmet ever spares you for no reason, now you know the reason. *click*",
+        "*watches the east bridge* Not this row, yet. I check that net more often than I need to."
+      ]
+    },
+    {
+      "id": "air_net",
+      "jobs": ["Netcaster"],
+      "title": "The Hole in the Air Net",
+      "intro": [
+        "*click* The air net past the lookout has a hole in it. A clean one. The other netcasters will notice soon, and ask what tore it.",
+        "I mean to mend it before they do. I need weeping vines. *click* They do not grow here. Only in the red forest, where the Piglins are."
+      ],
+      "request": {
+        "item": "minecraft:weeping_vines",
+        "count": 12,
+        "ask": "Bring me twelve weeping vines from the crimson forest. Twelve will close it, if I weave tight.",
+        "thanks": "*weaves the vines into the hole with all four hands, very fast* There. *click* You did not ask what tore it. I noticed. Thank you."
+      },
+      "confide": [
+        "Nothing tore it. I cut it. *click* With a blade. I have never cut anything in my life.",
+        "A Ghastkin child drifted in. Eyes still open: too young to cry, no use to the vats. The others said leave it. The grown ones would come for it, and they would cry.",
+        "So I cut it loose. *click* The net is mended now. Should I say nothing, or tell the Loom what I did, and why?"
+      ],
+      "endings": [
+        {"ask": "Say nothing.", "text": "*click* Then it stays between us and the net. And the next small one that drifts in will find a hole, somehow. Nets tear. It happens.", "memory": "You told {name} to keep the cut in the air net a secret."},
+        {"ask": "Tell the Loom why.", "text": "*click... click* Yes. They will be angry. Then some of them will go quiet. *click* The quiet ones are the ones I am hoping for.", "memory": "You told {name} to tell the Loom that they cut a Ghastkin child loose."}
+      ],
+      "reward": {"item": "minecraft:ghast_tear", "count": 2},
+      "after": [
+        "*click* I hang the air net a little higher now. The small ones drift low.",
+        "I still have the blade. I do not use it. *click* I keep it so I remember that I could.",
+        "*looks out past the lookout, into the smoke* Nothing drifting. Good. *click* Some days I hope for nothing."
+      ]
+    }
+  ]
+}

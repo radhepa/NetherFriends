@@ -56,7 +56,8 @@ import org.jspecify.annotations.Nullable;
  * Conversations, run on the server. Right-click a resident (a Piglin only while you wear gold, a Ghastkin only
  * while you sneak) and the server picks their greeting and the topics you can raise from their people's dialogue
  * bank ({@link Dialogue}), sends it to your window ({@link TalkPayload}) and answers what you press. While you
- * talk they stand still and face you. Friendship ({@link Bonds}) grows as you talk, listen and give gifts.
+ * talk they stand still and face you. Friendship ({@link Bonds}) grows as you talk, listen and give gifts. The
+ * window has three tabs: Talk (topics and small talk), Story ({@link Story}) and Journal ({@link Journal}).
  */
 public final class Talk {
     private Talk() {}
@@ -65,6 +66,7 @@ public final class Talk {
     static final double REACH_SQR = 8 * 8;
     static final int IDLE_TICKS = 20 * 180;
     static final int GIFT_LOVED = 4, GIFT_LIKED = 2, GIFT_NEUTRAL = 1, GIFT_DISLIKED = -1;
+    static final String TAB_TALK = "talk", TAB_STORY = "story", TAB_JOURNAL = "journal";
 
     /** One player's conversation with one resident. */
     static final class Session {
@@ -77,6 +79,10 @@ public final class Talk {
         List<Reply> pending = List.of();
         boolean refused;
         int idle;
+        /** The tab the window shows, the page of the story being told, and the last line said on the Talk tab. */
+        String tab = TAB_TALK;
+        int page;
+        String talkLine = "";
 
         Session(LivingEntity resident) {
             this.resident = resident.getUUID();
@@ -93,6 +99,9 @@ public final class Talk {
     private static final Map<UUID, UUID> LISTENING = new HashMap<>();
 
     public static void init() {
+        Folk.init();
+        Bonds.init();
+        Journal.init();
         PayloadTypeRegistry.clientboundPlay().register(TalkPayload.TYPE, TalkPayload.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(TalkPayload.Action.TYPE, TalkPayload.Action.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(TalkPayload.Action.TYPE, (payload, context) -> act(context.player(), payload));
@@ -152,11 +161,22 @@ public final class Talk {
         String text = say(greet, ctx, s, resident);
         String status = "";
         long day = day(player);
+        Journal.Entry entry = Journal.get(resident, player.getUUID());
+        if (ctx.first()) entry = entry.remember(day, "You met " + Folk.fullName(profile, people) + whereabouts(profile, people) + ".");
         if (bond.talkDay() != day) {
             bond = bond.talked(day).add(1);
             status = "Talked today: +1";
+            entry = entry.visit(day);
         }
+        Journal.put(resident, player.getUUID(), entry);
+        s.talkLine = text;
         finish(player, resident, s, bond, text, status, true);
+    }
+
+    private static String whereabouts(Folk.Profile profile, People people) {
+        String village = Folk.village(profile, people);
+        if (village != null) return " in " + village;
+        return profile.place().equals("bastion") ? " in a Bastion Remnant" : " out in the wild";
     }
 
     /** Why they won't talk, or null: a Weft whose forest you cut, or anyone fighting you. */
@@ -198,6 +218,11 @@ public final class Talk {
         Ctx ctx = ctx(resident, profile, player, bond, null);
         String text;
         String status = "";
+        if (a.startsWith("tab:") || a.startsWith("story:") || a.startsWith("journal:")) {
+            tabs(player, resident, s, bond, ctx, a);
+            return;
+        }
+        s.tab = TAB_TALK;
         if (a.startsWith("topic:")) {
             String id = a.substring(6);
             Optional<Topic> topic = bank.topics().stream().filter(t -> t.id().equals(id) && Dialogue.open(t, ctx)).findFirst();
@@ -242,6 +267,13 @@ public final class Talk {
             text = say(Dialogue.pick(bank.giftLines().getOrDefault(kind, List.of()), ctx, s.random, Set.copyOf(s.recent)), ctx, s, resident);
             if (!kind.equals("empty") && !kind.equals("again")) {
                 String gift = held.getHoverName().getString();
+                Journal.put(resident, player.getUUID(), Journal.get(resident, player.getUUID()).learn(kind, Story.itemId(held))
+                        .remember(day, "Gift: " + gift + ". " + Folk.name(resident) + switch (kind) {
+                            case "loved" -> " loved it.";
+                            case "liked" -> " liked it.";
+                            case "disliked" -> " didn't like it.";
+                            default -> " took it.";
+                        }));
                 if (!player.hasInfiniteMaterials()) held.shrink(1);
                 bond = bond.gifted(day).add(points);
                 status = "Gave " + gift + ": " + (points > 0 ? "+" : "") + points;
@@ -256,11 +288,44 @@ public final class Talk {
         } else {
             return;
         }
+        s.talkLine = text;
         finish(player, resident, s, bond, text, status, false);
+    }
+
+    /** The Story and Journal tabs, and back to Talk. */
+    private static void tabs(ServerPlayer player, LivingEntity resident, Session s, Bond bond, Ctx ctx, String a) {
+        if (a.equals("tab:" + TAB_STORY)) {
+            s.tab = TAB_STORY;
+            s.page = 0;
+            Story.View view = Story.view(player, resident, s, bond, ctx);
+            send(player, resident, s, view.text(), view.status(), view.choices(), false, false);
+        } else if (a.equals("tab:" + TAB_JOURNAL) || a.startsWith("journal:")) {
+            s.tab = TAB_JOURNAL;
+            String page = a.startsWith("journal:") ? a.substring(8) : "memories";
+            send(player, resident, s, Journal.page(page, player, resident, bond), "", Journal.choices(resident), false, false);
+        } else if (a.equals("tab:" + TAB_TALK)) {
+            s.tab = TAB_TALK;
+            Bank bank = Dialogue.bank(People.of(resident));
+            send(player, resident, s, s.talkLine.isEmpty() ? "..." : s.talkLine, "", choices(s, bank, ctx, bond), false, false);
+        } else if (a.startsWith("story:")) {
+            s.tab = TAB_STORY;
+            Story.Outcome outcome = Story.act(player, resident, s, bond, ctx, a.substring(6));
+            if (outcome == null) return;
+            Bond after = outcome.bond();
+            Story.View view = Story.view(player, resident, s, after, ctx(resident, Folk.of(resident), player, after, null));
+            finish(player, resident, s, after, outcome.said() != null ? outcome.said() : view.text(),
+                    outcome.status().isEmpty() ? view.status() : outcome.status(), false, view.choices());
+        }
     }
 
     /** Save the bond, play any level-ups (with their gifts) and send the window its new state. */
     private static void finish(ServerPlayer player, LivingEntity resident, Session s, Bond bond, String text, String status, boolean opening) {
+        finish(player, resident, s, bond, text, status, opening, null);
+    }
+
+    /** Save the bond, play any level-ups (with their rewards, and a Journal memory each) and send the window. */
+    private static void finish(ServerPlayer player, LivingEntity resident, Session s, Bond bond, String text, String status, boolean opening,
+                               @Nullable List<TalkPayload.Choice> choices) {
         People people = People.of(resident);
         Bank bank = Dialogue.bank(people);
         Folk.Profile profile = Folk.of(resident);
@@ -279,13 +344,17 @@ public final class Talk {
                 } else {
                     status = "Friendship: " + bank.levels().get(n) + "!";
                 }
+                String memory = "You became " + Folk.name(resident) + "'s " + bank.levels().get(n) + ".";
+                if (people == People.PIGLIN && n == GoldRule.TRUST_LEVEL && !resident.isBaby()) memory += " Gold or no gold, they won't attack you now.";
+                Journal.remember(resident, player.getUUID(), day(player), memory);
             }
             bond = bond.reached(level);
             levelUp = true;
         }
         Bonds.put(resident, player.getUUID(), bond);
         Ctx ctx = ctx(resident, profile, player, bond, null);
-        send(player, resident, s, text, status, choices(s, bank, ctx, bond), false, levelUp, opening);
+        if (choices == null) choices = s.tab.equals(TAB_JOURNAL) ? Journal.choices(resident) : choices(s, bank, ctx, bond);
+        send(player, resident, s, text, status, choices, false, levelUp, opening);
     }
 
     private static void farewell(ServerPlayer player, LivingEntity resident, Session s) {
@@ -329,7 +398,7 @@ public final class Talk {
 
     // -- lines ---------------------------------------------------------------------------------------------------
 
-    private static String line(List<Line> lines, Ctx ctx, Session s, LivingEntity resident) {
+    static String line(List<Line> lines, Ctx ctx, Session s, LivingEntity resident) {
         return say(Dialogue.pick(lines, ctx, s.random, Set.copyOf(s.recent)), ctx, s, resident);
     }
 
@@ -344,7 +413,7 @@ public final class Talk {
         return fill(line.text(), ctx, resident);
     }
 
-    private static String fill(String text, Ctx ctx, LivingEntity resident) {
+    static String fill(String text, Ctx ctx, LivingEntity resident) {
         People people = People.of(resident);
         Folk.Profile p = Folk.of(resident);
         Map<String, String> values = new HashMap<>();
@@ -378,7 +447,7 @@ public final class Talk {
                 bond.talkDay() < 0, player, profile.place(), state);
     }
 
-    private static long day(Player player) {
+    static long day(Player player) {
         return player.level().getGameTime() / 24000L;
     }
 
@@ -408,7 +477,7 @@ public final class Talk {
         int next = level >= Bonds.MAX_LEVEL ? Bonds.THRESHOLDS[Bonds.MAX_LEVEL] : Bonds.THRESHOLDS[level + 1];
         ServerPlayNetworking.send(player, new TalkPayload(resident.getId(), resident.getUUID(), people.ordinal(), Folk.name(resident),
                 String.join(" · ", bits), bank.levels().get(level), level, bond.points(), Bonds.THRESHOLDS[level], next, text, status,
-                choices.subList(0, Math.min(choices.size(), TalkPayload.MAX_CHOICES)), opening, levelUp, canGift, canBarter, refused));
+                choices.subList(0, Math.min(choices.size(), TalkPayload.MAX_CHOICES)), opening, levelUp, canGift, canBarter, refused, s.tab));
     }
 
     // -- while talking -------------------------------------------------------------------------------------------
