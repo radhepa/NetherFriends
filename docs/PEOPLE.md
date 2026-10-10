@@ -1,6 +1,6 @@
 # The Peoples of the Nether (design draft 4)
 
-Working title of the mod: **Nether Expansion** (mod id `netherexpansion`, set in one place: `tools/mobkit.py`).
+The mod: **Nether Friends** (mod id `netherfriends`, set in one place: `tools/mobkit.py`).
 This is a separate mod and repo from Village Friends and End Expansion. From Village Friends we take only the
 look and layout of the conversation screen (see `CONVERSATION_UI.md`), recoloured netherrack. All dialogue is
 new. No animations yet.

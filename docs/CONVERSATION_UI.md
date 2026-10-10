@@ -1,16 +1,16 @@
 # What we take from Village Friends: the conversation UI only
 
-Built: `src/client/java/dev/netherexpansion/client/TalkScreen.java` (the window), `talk/TalkPayload.java` (both
+Built: `src/client/java/dev/netherfriends/client/TalkScreen.java` (the window), `talk/TalkPayload.java` (both
 messages), `talk/Talk.java` (the server side). The rest of this file is the plan it was built from.
 
 Read from the Village Friends graphify graph (`Village-Friends-Minecraft-Mod/graphify-out/graph.json`, built from
 origin/main 4317f18, community "Friendship & Pet Screens"). Only the client-side look and layout come across.
 Village Friends' dialogue bank (`talk/Talk`, `TalkWorld`, `tools/dialogue/`), friendship levels, routines and
-everything server-side stay behind; Nether Expansion writes its own.
+everything server-side stay behind; Nether Friends writes its own.
 
 ## The pieces
 
-| Village Friends | File | What it does | In Nether Expansion |
+| Village Friends | File | What it does | In Nether Friends |
 |---|---|---|---|
 | `FriendshipScreen` | `src/client/java/dev/villagefriends/client/FriendshipScreen.java` | The screen (`extends Screen`). `drawCard` (friendship card), `drawRibbon` (name ribbon), `panel` / `pill` / `frame` (boxes), `heart` (meter icon), `scrollbar`, typed text (`typing`, `advanceTyping`, `layoutTyping`, `restartTyping`, `finishLine`, `visibleLines`), `speaking` (gesture while a line types), `react`, `drawEmote`, `drawLevelUp`, `playUi` (blip/pop sounds), `keyPressed` (1-8, space), `isPauseScreen` false. | Copy the layout and typing logic, new palette constants, `heart` becomes a per-people meter icon (gold nugget / soul flame / ember). |
 | `ReplyButton` | same file | Numbered reply bubble. | Same, netherrack bubble with a gold number badge. |

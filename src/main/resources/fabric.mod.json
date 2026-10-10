@@ -1,18 +1,21 @@
 {
 	"schemaVersion": 1,
-	"id": "netherexpansion",
+	"id": "netherfriends",
 	"version": "${version}",
-	"name": "Nether Expansion",
-	"description": "The Nether stops being empty. Five peoples live there, each in its own villages and none at peace with the others: Piglin Holds, Withren Vigils in the soul valleys, Magmari Moorings on the lava seas, Weft Looms in the warped canopy and Ghastkin Eaves in the Basalt Deltas.",
+	"name": "Nether Friends",
+	"description": "The Nether stops being empty. Five peoples live there, each in its own villages and none at peace with the others: Piglin Holds, Withren Vigils in the soul valleys, Magmari Moorings on the lava seas, Weft Looms in the warped canopy and Ghastkin Eaves in the Basalt Deltas. Talk to them, make friends, and meet their creatures: the Cairnback, the Silkgrub and the Ashbell.",
 	"authors": ["minal"],
+	"contact": {
+		"sources": "https://github.com/radhepa/NetherFriends"
+	},
 	"license": "MIT",
 	"environment": "*",
 	"entrypoints": {
-		"main": ["dev.netherexpansion.NetherExpansion"],
-		"client": ["dev.netherexpansion.client.NetherExpansionClient"]
+		"main": ["dev.netherfriends.NetherFriends"],
+		"client": ["dev.netherfriends.client.NetherFriendsClient"]
 	},
 	"mixins": [
-		"netherexpansion.mixins.json"
+		"netherfriends.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.19.5",

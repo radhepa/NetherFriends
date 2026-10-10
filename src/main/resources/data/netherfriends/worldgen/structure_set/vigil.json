@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "netherfriends:vigil",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 22,
+    "separation": 8,
+    "salt": 1846203118,
+    "exclusion_zone": {
+      "other_set": "minecraft:nether_complexes",
+      "chunk_count": 8
+    }
+  }
+}

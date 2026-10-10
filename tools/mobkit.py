@@ -1,4 +1,4 @@
-"""Nether Expansion model kit (adapted from Not-So-Vanilla Mobs): one Python file per creature describes its model (parts and cubes, in Minecraft
+"""Nether Friends model kit (adapted from Not-So-Vanilla Mobs): one Python file per creature describes its model (parts and cubes, in Minecraft
 model space) and paints its pixel texture face by face.
 
 Output, per mob:
@@ -27,7 +27,7 @@ from typing import Callable, Dict, List, Optional, Sequence
 
 from PIL import Image
 
-MOD_ID = "netherexpansion"   # working title; the only place the mod id lives in the tools
+MOD_ID = "netherfriends"   # working title; the only place the mod id lives in the tools
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GEOMETRY_DIR = os.path.join(ROOT, "src", "client", "resources", "assets", MOD_ID, "geometry")
 TEXTURE_DIR = os.path.join(ROOT, "src", "main", "resources", "assets", MOD_ID, "textures", "entity")

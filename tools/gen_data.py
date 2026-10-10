@@ -14,8 +14,8 @@ from mobkit import spawn_egg  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "src", "main", "resources", "data")
-ASSETS = os.path.join(ROOT, "src", "main", "resources", "assets", "netherexpansion")
-NS = "netherexpansion"
+ASSETS = os.path.join(ROOT, "src", "main", "resources", "assets", "netherfriends")
+NS = "netherfriends"
 
 
 def write(path, obj):
@@ -182,20 +182,20 @@ for i, (mob, (base, spots, accent)) in enumerate(EGGS.items()):
           {"parent": "minecraft:item/generated", "textures": {"layer0": f"{NS}:item/{mob}_spawn_egg"}})
 
 LANG = {
-    "entity.netherexpansion.withren": "Withren",
-    "entity.netherexpansion.magmari": "Magmari",
-    "entity.netherexpansion.weft": "Weft",
-    "entity.netherexpansion.ghastkin": "Ghastkin",
-    "item.netherexpansion.withren_spawn_egg": "Withren Spawn Egg",
-    "item.netherexpansion.magmari_spawn_egg": "Magmari Spawn Egg",
-    "item.netherexpansion.weft_spawn_egg": "Weft Spawn Egg",
-    "item.netherexpansion.ghastkin_spawn_egg": "Ghastkin Spawn Egg",
-    "entity.netherexpansion.cairnback": "Cairnback",
-    "entity.netherexpansion.silkgrub": "Silkgrub",
-    "entity.netherexpansion.ashbell": "Ashbell",
-    "item.netherexpansion.cairnback_spawn_egg": "Cairnback Spawn Egg",
-    "item.netherexpansion.silkgrub_spawn_egg": "Silkgrub Spawn Egg",
-    "item.netherexpansion.ashbell_spawn_egg": "Ashbell Spawn Egg",
+    "entity.netherfriends.withren": "Withren",
+    "entity.netherfriends.magmari": "Magmari",
+    "entity.netherfriends.weft": "Weft",
+    "entity.netherfriends.ghastkin": "Ghastkin",
+    "item.netherfriends.withren_spawn_egg": "Withren Spawn Egg",
+    "item.netherfriends.magmari_spawn_egg": "Magmari Spawn Egg",
+    "item.netherfriends.weft_spawn_egg": "Weft Spawn Egg",
+    "item.netherfriends.ghastkin_spawn_egg": "Ghastkin Spawn Egg",
+    "entity.netherfriends.cairnback": "Cairnback",
+    "entity.netherfriends.silkgrub": "Silkgrub",
+    "entity.netherfriends.ashbell": "Ashbell",
+    "item.netherfriends.cairnback_spawn_egg": "Cairnback Spawn Egg",
+    "item.netherfriends.silkgrub_spawn_egg": "Silkgrub Spawn Egg",
+    "item.netherfriends.ashbell_spawn_egg": "Ashbell Spawn Egg",
 }
 write(os.path.join(ASSETS, "lang", "en_us.json"), LANG)
 print("data written")

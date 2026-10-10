@@ -1,6 +1,6 @@
 # Dialogue
 
-Every people has one dialogue file: `src/main/resources/data/netherexpansion/talk/<people>.json` (`piglin`,
+Every people has one dialogue file: `src/main/resources/data/netherfriends/talk/<people>.json` (`piglin`,
 `withren`, `magmari`, `weft`, `ghastkin`). The server reads it when the game starts and picks lines from it as
 you talk. `python tools/check_talk.py` checks every file (run it after any edit).
 

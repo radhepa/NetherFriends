@@ -1,13 +1,13 @@
 {
 	"schemaVersion": 1,
-	"id": "netherexpansion-gametest",
+	"id": "netherfriends-gametest",
 	"version": "1.0.0",
-	"name": "Nether Expansion game tests",
+	"name": "Nether Friends game tests",
 	"environment": "*",
 	"entrypoints": {
-		"fabric-client-gametest": ["dev.netherexpansion.test.NetherClientTest"]
+		"fabric-client-gametest": ["dev.netherfriends.test.NetherClientTest"]
 	},
 	"depends": {
-		"netherexpansion": "*"
+		"netherfriends": "*"
 	}
 }

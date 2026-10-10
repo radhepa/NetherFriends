@@ -1,8 +1,8 @@
 # Villages
 
 Each of the five peoples lives in its own kind of village, in its own part of the Nether. No village is ever
-shared. All five come from normal world generation in any new Nether (`/locate structure netherexpansion:hold`,
-or `#netherexpansion:village` for all of them).
+shared. All five come from normal world generation in any new Nether (`/locate structure netherfriends:hold`,
+or `#netherfriends:village` for all of them).
 
 | Village | People | Where | Look |
 |---|---|---|---|
@@ -93,7 +93,7 @@ roof. So each village kind is its own structure type (`world/village/*Village.ja
    of a village's chunks (`VillageClearing`), so the village stands in a clearing in its biome.
 
 Villages are placed last in generation (`top_layer_modification`), and no monsters (ghasts included) spawn
-naturally inside one. Spacing is data (`data/netherexpansion/worldgen/structure_set`). Every village keeps 8
+naturally inside one. Spacing is data (`data/netherfriends/worldgen/structure_set`). Every village keeps 8
 chunks clear of Bastions and Fortresses, and villages of different peoples never overlap: where two could
 (near a biome border, or a Mooring off a shore), the later kind in the order Hold, Vigil, Loom, Eave, Mooring
 gives way. A village's heart must sit on level ground, so none perches on the lip of a drop.

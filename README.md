@@ -1,4 +1,4 @@
-# Nether Expansion
+# Nether Friends
 
 A Fabric mod for Minecraft 26.3. The Nether stops being empty: five peoples live there, each in its own villages,
 and none of them at peace with the others.

@@ -1,4 +1,4 @@
-"""Checks the dialogue files in src/main/resources/data/netherexpansion/talk against docs/DIALOGUE.md.
+"""Checks the dialogue files in src/main/resources/data/netherfriends/talk against docs/DIALOGUE.md.
 
     python tools/check_talk.py              every people
     python tools/check_talk.py weft         one file
@@ -14,7 +14,7 @@ import sys
 import zipfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TALK = os.path.join(ROOT, "src", "main", "resources", "data", "netherexpansion", "talk")
+TALK = os.path.join(ROOT, "src", "main", "resources", "data", "netherfriends", "talk")
 PEOPLES = ["piglin", "withren", "magmari", "weft", "ghastkin"]
 JOBS = {
     "piglin": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Brute", "Bastion-dweller", "Wanderer"],
