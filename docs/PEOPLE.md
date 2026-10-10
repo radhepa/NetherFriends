@@ -64,6 +64,10 @@ PNGs to the repo.
 - **Wearing gold:** right-click opens the conversation screen. Talk, barter (right-click holding a gold ingot as
   in vanilla, or Barter in the dock), friendship counted in gold nuggets. Thieves are still attacked (chests, gold blocks, the Hoard).
   Taking your gold off in front of them makes them attack.
+- **Friends don't need gold:** once you're a Piglin's Ingot-friend (friendship level 3), that one Piglin knows your
+  face. It won't attack you with your gold off, still talks to you, and stays out of it when the others pick a fight
+  with you. Every other Piglin still wants gold. Hitting your friend, or robbing a chest or gold block in front of
+  it, angers it as usual; a Brute friend still guards the Bastion vault. (`GoldRule.trusts`, the sensor mixin.)
 - **Other changes:** homes, jobs, routines in Holds; memory of the player; babies follow gold-wearers; Piglins
   attack Withren and Magmari on sight (gold melts on Magmari skin, so they can never show it); zombified piglins
   unchanged.
@@ -217,8 +221,8 @@ young Silkgrub no silk. The three peoples talk about their creatures (a topic ea
 ## Conversation screen
 
 Built: Village Friends' layout in netherrack (see `CONVERSATION_UI.md`), with every line new (`DIALOGUE.md`,
-about 1,400 lines across the five peoples). Right-click a resident to talk; Piglins only while you wear gold,
-Ghastkin only while you sneak. Panel `#6a2b29` over a netherrack tile, nether-brick edge `#260d0c`, bevel `#b35d53`,
+about 1,400 lines across the five peoples). Right-click a resident to talk; Piglins only while you wear gold
+(or without it, once you're their Ingot-friend), Ghastkin only while you sneak. Panel `#6a2b29` over a netherrack tile, nether-brick edge `#260d0c`, bevel `#b35d53`,
 ink `#fbeee2`, muted `#dcb0a2`, status gold `#f2c14e`. Friendship (six levels, named by each people) shows as
 gold nuggets, soul flames, embers, spools or tears. Dock: Talk (small talk), Gift, Barter (Piglins), Goodbye. Voices
 are note-block blips: Piglins bass grunts, Withren a low flute, Magmari a warm guitar (lower when cold), Weft

@@ -6,6 +6,7 @@
 		"HoglinAccess",
 		"PiglinAiMixin",
 		"PiglinBruteAiMixin",
+		"PiglinSpecificSensorMixin",
 		"FeaturePlacerMixin",
 		"SignAccess",
 		"MobMixin"

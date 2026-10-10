@@ -72,6 +72,13 @@ public final class Bonds {
         return level;
     }
 
+    /** The player's friendship level with this resident, without creating a bond (cheap enough for AI checks). */
+    public static int level(LivingEntity resident, UUID player) {
+        Map<String, Bond> all = resident.getAttached(BONDS);
+        Bond bond = all == null ? null : all.get(player.toString());
+        return bond == null ? 0 : bond.level();
+    }
+
     public static Bond get(LivingEntity resident, UUID player) {
         return resident.getAttachedOrCreate(BONDS).getOrDefault(player.toString(), Bond.NEW);
     }

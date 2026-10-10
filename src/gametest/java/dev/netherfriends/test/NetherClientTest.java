@@ -10,6 +10,7 @@ import dev.netherfriends.entity.Cairnback;
 import dev.netherfriends.entity.NetherEntities;
 import dev.netherfriends.entity.Silkgrub;
 import dev.netherfriends.entity.People;
+import dev.netherfriends.piglin.GoldRule;
 import dev.netherfriends.talk.Bonds;
 import dev.netherfriends.talk.Folk;
 import dev.netherfriends.talk.Talk;
@@ -33,6 +34,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.item.ItemStack;
@@ -250,10 +253,69 @@ public class NetherClientTest implements FabricClientGameTest {
         report.add("gift: '" + gifted.line() + "' / " + gifted.status());
         goodbye(ctx);
         ctx.waitFor(client -> client.gui.screen() == null, 40);
+        friendRule(ctx, server, report);
         server.runCommand("kill @e[type=!player]");
         server.runCommand("gamemode creative @a");
         server.runCommand("clear @a");
         System.out.println("[netherfriends] talk:" + System.lineSeparator() + String.join(System.lineSeparator(), report));
+    }
+
+    /**
+     * Gold off: a Piglin whose Ingot-friend you are leaves you be (and stays out of it when another Piglin calls for
+     * help against you); a stranger attacks. Hit the friend itself and it fights back.
+     */
+    void friendRule(ClientGameTestContext ctx, TestServerContext server, List<String> report) {
+        for (String cmd : List.of("kill @e[type=!player]", "clear @a", "effect give @a resistance 60 4 true", "tp @a 0 150 -3 0 0",
+                "summon piglin -2 150 1 {PersistenceRequired:1b,IsImmuneToZombification:1b,Tags:[\"friend\"]}",
+                "summon piglin 2 150 1 {PersistenceRequired:1b,IsImmuneToZombification:1b,Tags:[\"stranger\"]}")) {
+            server.runCommand(cmd);
+        }
+        server.runOnServer(srv -> {
+            ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+            Bonds.put(tagged(srv, "friend"), player.getUUID(),
+                    new Bonds.Bond(Bonds.THRESHOLDS[GoldRule.TRUST_LEVEL], GoldRule.TRUST_LEVEL, -1, -1, List.of()));
+        });
+        ctx.waitTicks(80);
+        String noGold = server.computeOnServer(srv -> {
+            ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+            check(GoldRule.showsGold(tagged(srv, "friend"), player), "an Ingot-friend Piglin should talk without gold");
+            check(!GoldRule.showsGold(tagged(srv, "stranger"), player), "a stranger Piglin should want gold");
+            String targets = "friend -> " + targetName(tagged(srv, "friend")) + ", stranger -> " + targetName(tagged(srv, "stranger"));
+            check(target(tagged(srv, "friend")) != player, "the friend Piglin attacked the gold-less player: " + targets);
+            check(target(tagged(srv, "stranger")) == player, "the stranger Piglin ignored the gold-less player: " + targets);
+            // the player hits the stranger, which calls the others in
+            Piglin stranger = tagged(srv, "stranger");
+            stranger.hurtServer(srv.overworld(), player.damageSources().playerAttack(player), 1.0F);
+            return targets;
+        });
+        ctx.waitTicks(40);
+        String rallied = server.computeOnServer(srv -> {
+            ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+            Piglin friend = tagged(srv, "friend");
+            check(target(friend) != player, "the friend Piglin joined the stranger's fight: friend -> " + targetName(friend));
+            friend.hurtServer(srv.overworld(), player.damageSources().playerAttack(player), 1.0F);
+            return "friend -> " + targetName(friend);
+        });
+        ctx.waitTicks(40);
+        String hit = server.computeOnServer(srv -> {
+            Piglin friend = tagged(srv, "friend");
+            check(target(friend) == srv.getPlayerList().getPlayers().getFirst(), "a friend Piglin you hit should fight back");
+            return "friend -> " + targetName(friend);
+        });
+        report.add("friend rule, gold off: " + noGold + " / after hitting the stranger: " + rallied + " / after hitting the friend: " + hit);
+    }
+
+    static Piglin tagged(net.minecraft.server.MinecraftServer srv, String tag) {
+        return srv.overworld().getEntitiesOfClass(Piglin.class, new AABB(-8, 145, -8, 8, 160, 8), e -> e.entityTags().contains(tag)).getFirst();
+    }
+
+    static @org.jspecify.annotations.Nullable LivingEntity target(Piglin piglin) {
+        return piglin.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).orElse(null);
+    }
+
+    static String targetName(Piglin piglin) {
+        LivingEntity target = target(piglin);
+        return target == null ? "nobody" : target.getName().getString();
     }
 
     // -- the creatures ----------------------------------------------------------------------------------------------

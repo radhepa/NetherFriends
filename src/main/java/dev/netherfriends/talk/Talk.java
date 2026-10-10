@@ -16,6 +16,7 @@ import dev.netherfriends.entity.Ghastkin;
 import dev.netherfriends.entity.Magmari;
 import dev.netherfriends.entity.People;
 import dev.netherfriends.entity.Weft;
+import dev.netherfriends.piglin.GoldRule;
 import dev.netherfriends.talk.Bonds.Bond;
 import dev.netherfriends.talk.Dialogue.Bank;
 import dev.netherfriends.talk.Dialogue.Ctx;
@@ -107,7 +108,10 @@ public final class Talk {
 
     // -- starting ------------------------------------------------------------------------------------------------
 
-    /** Piglins are vanilla mobs: their interaction is caught here. Holding gold still barters, as in vanilla. */
+    /**
+     * Piglins are vanilla mobs: their interaction is caught here. Holding gold still barters, as in vanilla. They
+     * talk to you while you wear gold, or without it once you're their friend (GoldRule).
+     */
     private static InteractionResult piglinInteract(Player player, Level level, InteractionHand hand, Entity entity, @Nullable EntityHitResult hit) {
         if (!(entity instanceof AbstractPiglin piglin) || hand != InteractionHand.MAIN_HAND || player.isSpectator() || !piglin.isAlive()) {
             return InteractionResult.PASS;
@@ -115,7 +119,7 @@ public final class Talk {
         ItemStack held = player.getMainHandItem();
         if (held.is(Items.NAME_TAG) || held.getItem() instanceof SpawnEggItem) return InteractionResult.PASS;
         if (piglin instanceof Piglin p && !p.isBaby() && held.is(PiglinAi.BARTERING_ITEM)) return InteractionResult.PASS;
-        if (!PiglinAi.isWearingSafeArmor(player)) return InteractionResult.PASS;
+        if (!GoldRule.showsGold(piglin, player)) return InteractionResult.PASS;
         if (level.isClientSide()) return InteractionResult.SUCCESS;
         if (player instanceof ServerPlayer sp) open(sp, piglin);
         return InteractionResult.SUCCESS_SERVER;

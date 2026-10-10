@@ -7,7 +7,8 @@ you talk. `python tools/check_talk.py` checks every file (run it after any edit)
 ## How a conversation goes
 
 - Right-click a resident to open the conversation window. Piglins only talk while you wear gold (golden armour or
-  any armour with a gold trim). Ghastkin only while you are sneaking: walk up normally and they drift away.
+  any armour with a gold trim), except a Piglin whose Ingot-friend (level 3) you are: it talks to you, and leaves you
+  be, with your gold off. Ghastkin only while you are sneaking: walk up normally and they drift away.
 - They open with a **greeting**. Their **topics** sit on the right as numbered replies (keys 1-6). Pick one and
   they answer with one of that topic's lines. Some answers offer **replies** of your own; what you say can win or
   lose friendship.
@@ -70,6 +71,7 @@ All listed conditions must hold. Lines without `when` can always be said.
 | `holding` | item id | the player holds it in their main hand |
 | `place` | `"village"` / `"bastion"` / `"wild"` | where they live (`bastion`: Piglins in a Bastion Remnant) |
 | `state` | `"grudge"` / `"angry"` | (refuse lines) a Weft's grudge for cutting the forest / they're fighting you |
+| `gold` | `true` / `false` | (Piglins) the player is wearing gold. Only a friend (level 3+) ever talks to you with `false` |
 
 When several greetings match, the most specific one wins often (lines with more conditions are picked more).
 Put the plain lines last as fallbacks; every list must have lines with no `when` (or that cover every case).

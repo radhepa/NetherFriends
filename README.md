@@ -12,7 +12,8 @@ and none of them at peace with the others.
 | **Ghastkin**, the ghasts' gentle kin | Eave | Basalt Deltas |
 
 Right-click anyone to talk: Piglins only while you wear gold, Ghastkin only if you come up quietly (sneak). Every
-resident has a name and a job, and remembers how you treat them.
+resident has a name and a job, and remembers how you treat them. Become a Piglin's Ingot-friend (friendship level 3)
+and that Piglin leaves you be even with your gold off.
 
 Three creatures live alongside them: the Withren's **Cairnback** (a bone-plated tortoise whose shell fire relights
 torches and lanterns as soul ones), the Weft's **Silkgrub** (a caterpillar you shear for string) and the Ghastkin's

@@ -25,7 +25,7 @@ JOBS = {
 }
 COMMON_PLACEHOLDERS = {"name", "epithet", "job", "player", "village", "neighbour"}
 OWN_PLACEHOLDERS = {"piglin": {"clan"}, "withren": {"kept"}, "magmari": {"chain"}, "weft": {"row"}, "ghastkin": {"former"}}
-WHEN_KEYS = {"level", "child", "gender", "job", "cold", "first", "carrying", "holding", "place", "state"}
+WHEN_KEYS = {"level", "child", "gender", "job", "cold", "first", "carrying", "holding", "place", "state", "gold"}
 MAX_TEXT, MAX_ASK = 200, 30
 MINIMUMS = {"greet": 14, "chatter": 16, "farewell": 5, "refuse": 3}
 
@@ -94,11 +94,13 @@ class Checker:
             elif k == "level":
                 if not (isinstance(v, list) and len(v) == 2 and all(isinstance(n, int) and 0 <= n <= 5 for n in v) and v[0] <= v[1]):
                     self.bad(where, f"level must be [min, max] within 0-5: {v}")
-            elif k in ("child", "cold", "first"):
+            elif k in ("child", "cold", "first", "gold"):
                 if not isinstance(v, bool):
                     self.bad(where, f"{k} must be true or false")
                 if k == "cold" and self.people != "magmari":
                     self.bad(where, "cold is for Magmari only")
+                if k == "gold" and self.people != "piglin":
+                    self.bad(where, "gold is for Piglins only")
             elif k == "gender":
                 if v not in ("male", "female"):
                     self.bad(where, f"gender must be male or female: {v}")
@@ -245,7 +247,7 @@ class Checker:
                 return False
             if k == "first" and v != ctx["first"]:
                 return False
-            if k in ("carrying", "holding"):
+            if k in ("carrying", "holding", "gold"):
                 return False
             if k == "place" and v != ctx["place"]:
                 return False

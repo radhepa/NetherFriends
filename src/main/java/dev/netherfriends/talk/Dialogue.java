@@ -24,6 +24,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -42,8 +43,8 @@ public final class Dialogue {
 
     public record When(int minLevel, int maxLevel, @Nullable Boolean child, @Nullable Boolean female, Set<String> jobs,
                        @Nullable Boolean cold, @Nullable Boolean first, @Nullable Item carrying, @Nullable Item holding,
-                       @Nullable String place, @Nullable String state, int specificity) {
-        static final When ALWAYS = new When(0, 5, null, null, Set.of(), null, null, null, null, null, null, 0);
+                       @Nullable String place, @Nullable String state, @Nullable Boolean gold, int specificity) {
+        static final When ALWAYS = new When(0, 5, null, null, Set.of(), null, null, null, null, null, null, null, 0);
 
         public boolean test(Ctx c) {
             if (c.level < this.minLevel || c.level > this.maxLevel) return false;
@@ -55,6 +56,7 @@ public final class Dialogue {
             if (this.carrying != null && !c.player.getInventory().contains(s -> s.is(this.carrying))) return false;
             if (this.holding != null && !c.player.getMainHandItem().is(this.holding)) return false;
             if (this.place != null && !this.place.equals(c.place)) return false;
+            if (this.gold != null && this.gold != PiglinAi.isWearingSafeArmor(c.player)) return false;
             return this.state == null || this.state.equals(c.state);
         }
     }
@@ -208,7 +210,7 @@ public final class Dialogue {
         return new When(min, max, bool(o, "child"), o.has("gender") ? o.get("gender").getAsString().equals("female") : null, Set.copyOf(jobs),
                 bool(o, "cold"), bool(o, "first"), o.has("carrying") ? item(o.get("carrying").getAsString()) : null,
                 o.has("holding") ? item(o.get("holding").getAsString()) : null, o.has("place") ? o.get("place").getAsString() : null,
-                o.has("state") ? o.get("state").getAsString() : null, o.size());
+                o.has("state") ? o.get("state").getAsString() : null, bool(o, "gold"), o.size());
     }
 
     private static @Nullable Boolean bool(JsonObject o, String key) {
