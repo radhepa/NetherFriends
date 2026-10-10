@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "dev.netherexpansion.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"mixins": [
+		"HoglinAccess",
+		"PiglinAiMixin",
+		"PiglinBruteAiMixin",
+		"FeaturePlacerMixin",
+		"SignAccess"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

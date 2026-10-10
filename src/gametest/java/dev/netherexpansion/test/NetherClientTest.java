@@ -1,0 +1,350 @@
+package dev.netherexpansion.test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import dev.netherexpansion.NetherExpansion;
+import dev.netherexpansion.client.TalkScreen;
+import dev.netherexpansion.entity.NetherEntities;
+import dev.netherexpansion.entity.People;
+import dev.netherexpansion.talk.Bonds;
+import dev.netherexpansion.talk.Folk;
+import dev.netherexpansion.talk.Talk;
+import dev.netherexpansion.talk.TalkPayload;
+import dev.netherexpansion.world.BuildingPiece;
+
+import net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
+import net.fabricmc.fabric.api.client.gametest.v1.context.TestServerContext;
+import net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext;
+import net.minecraft.client.gui.screens.worldselection.WorldCreationUiState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.status.ChunkStatus;
+import net.minecraft.world.level.levelgen.presets.WorldPresets;
+import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.StructurePiece;
+import net.minecraft.world.level.levelgen.structure.StructureStart;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+
+/**
+ * Drives the real game. "Peoples": every look of every people in a lit pen, photographed. "Villages": each kind
+ * of village is found by natural world generation in a fresh Nether (as /locate would), visited, checked for
+ * residents (each with a name and a job) and photographed from a few sides. "Talk": a conversation with each people,
+ * through the real window: greeting, a topic, a gift and a level-up. Screenshots land in build/run/clientGameTest/screenshots.
+ *   gradlew runClientGameTest -PtestHeap=3g [-PnetherTests=Villages]
+ */
+@SuppressWarnings("UnstableApiUsage")
+public class NetherClientTest implements FabricClientGameTest {
+    static final String[] VILLAGES = {"hold", "vigil", "mooring", "loom", "eave"};
+
+    static void check(boolean ok, String what) {
+        if (!ok) throw new AssertionError(what);
+    }
+
+    static boolean wanted(String test) {
+        String only = System.getProperty("netherexpansion.tests");
+        return only == null || only.isBlank() || List.of(only.split(",")).contains(test);
+    }
+
+    static void shoot(ClientGameTestContext ctx, String name) {
+        ctx.runOnClient(client -> client.gui.toastManager().clear());
+        ctx.takeScreenshot(name);
+    }
+
+    @Override
+    public void runTest(ClientGameTestContext ctx) {
+        ctx.getInput().resizeWindow(1600, 900);
+        // a normal world with structures on: the villages must come from real Nether generation
+        String seed = System.getProperty("netherexpansion.seed", "7");
+        try (TestSingleplayerContext world = ctx.worldBuilder().adjustSettings(ui -> {
+            var normal = ui.getSettings().worldgenLoadContext().lookupOrThrow(Registries.WORLD_PRESET).getOrThrow(WorldPresets.NORMAL);
+            ui.setWorldType(new WorldCreationUiState.WorldTypeEntry(normal));
+            ui.setGenerateStructures(true);
+            ui.setSeed(seed);
+        }).create()) {
+            world.getConnection().waitForChunksRender();
+            ctx.runOnClient(client -> {
+                if (!client.gui.hud.isHidden()) client.gui.hud.toggle();
+            });
+            TestServerContext server = world.getServer();
+            for (String cmd : List.of("gamemode creative @a", "gamerule advance_time false", "gamerule advance_weather false",
+                    "gamerule spawn_mobs false", "time set 6000", "weather clear", "effect give @a night_vision infinite 0 true")) {
+                server.runCommand(cmd);
+            }
+            if (wanted("Peoples")) peoples(ctx, world, server);
+            if (wanted("Talk")) talk(ctx, world, server);
+            if (wanted("Villages")) villages(ctx, world, server);
+        }
+    }
+
+    // -- the peoples, every look -------------------------------------------------------------------------------
+
+    record Sitter(String type, String nbt) {}
+
+    void peoples(ClientGameTestContext ctx, TestSingleplayerContext world, TestServerContext server) {
+        List<Sitter> row = List.of(
+                new Sitter("withren", "Role:0"), new Sitter("withren", "Role:1"), new Sitter("withren", "Role:2"), new Sitter("withren", "Age:-24000"),
+                new Sitter("magmari", "Gender:0"), new Sitter("magmari", "Gender:1"), new Sitter("magmari", "Role:1"), new Sitter("magmari", "Age:-24000"),
+                new Sitter("magmari", "Gender:0,Cold:1b,Warmth:0"), new Sitter("magmari", "Gender:1,Cold:1b,Warmth:0"), new Sitter("magmari", "Age:-24000,Cold:1b,Warmth:0"),
+                new Sitter("weft", "Gender:0"), new Sitter("weft", "Gender:1"), new Sitter("weft", "Age:-24000"),
+                new Sitter("ghastkin", "Gender:0"), new Sitter("ghastkin", "Gender:1"), new Sitter("ghastkin", "Age:-24000"));
+        int perRow = 6;
+        // a pen of blackstone in the open air, a nether-brick wall behind
+        server.runCommand("tp @a 0 150 -10 0 10");
+        world.getConnection().waitForChunksRender();
+        ctx.waitTicks(20);
+        for (String cmd : List.of("fill -16 149 -8 16 149 16 blackstone", "fill -16 150 -8 16 162 16 air",
+                "fill -16 150 16 16 155 16 nether_bricks", "kill @e[type=!player]")) {
+            server.runCommand(cmd);
+        }
+        ctx.waitTicks(20);
+        for (int i = 0; i < row.size(); i++) {
+            Sitter s = row.get(i);
+            double x = (i % perRow - (perRow - 1) / 2.0) * 3.0, z = 1 + (i / perRow) * 4.0;
+            server.runCommand(String.format("summon netherexpansion:%s %.1f 150 %.1f {NoAI:1b,PersistenceRequired:1b,Rotation:[180f,0f],%s}",
+                    s.type, x, z, s.nbt));
+        }
+        world.getConnection().waitForClientboundEntityUpdates(NetherEntities.GHASTKIN);
+        ctx.waitTicks(40);
+        for (NetherEntities.Entry e : NetherEntities.all()) {
+            long n = row.stream().filter(s -> s.type.equals(e.id())).count();
+            int found = server.computeOnServer(srv -> srv.overworld().getEntities(e.type(), new AABB(-20, 146, -10, 20, 164, 20), x -> true).size());
+            check(found == n, e.id() + ": expected " + n + ", found " + found);
+        }
+        shoot(ctx, "nether-01-peoples");
+        server.runCommand("tp @a 0 152 -7 0 18");
+        ctx.waitTicks(10);
+        shoot(ctx, "nether-02-peoples-high");
+        for (int r = 0; r < 3; r++) {
+            server.runCommand(String.format("tp @a 0 150.5 %.1f 0 6", -4.5 + r * 4.0));
+            ctx.waitTicks(10);
+            shoot(ctx, "nether-0" + (3 + r) + "-peoples-row" + (r + 1));
+        }
+        server.runCommand("kill @e[type=!player]");
+    }
+
+    // -- talking ------------------------------------------------------------------------------------------------------
+
+    record Speaker(String type, String nbt, String label, boolean sneak) {}
+
+    static final int KEY_SPACE = 32, KEY_1 = 49;
+
+    static LivingEntity speakerNear(net.minecraft.server.MinecraftServer srv) {
+        return srv.overworld().getEntitiesOfClass(LivingEntity.class, new AABB(-4, 148, -4, 4, 154, 4), e -> People.of(e) != null).getFirst();
+    }
+
+    /**
+     * Leave the conversation as Escape or Goodbye does. (26.3 knows Escape by its scancode, which the test's
+     * simulated key press doesn't carry, so this calls the window's close directly.)
+     */
+    static void goodbye(ClientGameTestContext ctx) {
+        ctx.runOnClient(client -> client.gui.screen().onClose());
+    }
+
+    void talk(ClientGameTestContext ctx, TestSingleplayerContext world, TestServerContext server) {
+        server.runCommand("tp @a 0 150 -10 0 10");
+        world.getConnection().waitForChunksRender();
+        ctx.waitTicks(20);
+        for (String cmd : List.of("fill -8 149 -8 8 149 8 blackstone", "fill -8 150 -8 8 158 8 air", "fill -8 150 8 8 155 8 nether_bricks",
+                "kill @e[type=!player]", "gamemode survival @a", "clear @a", "item replace entity @a armor.head with golden_helmet")) {
+            server.runCommand(cmd);
+        }
+        List<Speaker> speakers = List.of(
+                new Speaker("minecraft:piglin", "IsImmuneToZombification:1b", "piglin", false),
+                new Speaker("netherexpansion:withren", "Role:1", "withren", false),
+                new Speaker("netherexpansion:magmari", "Gender:1", "magmari", false),
+                new Speaker("netherexpansion:weft", "Gender:0", "weft", false),
+                new Speaker("netherexpansion:ghastkin", "Gender:1", "ghastkin", true),
+                new Speaker("netherexpansion:withren", "Age:-24000", "withren-child", false));
+        List<String> report = new ArrayList<>();
+        for (Speaker sp : speakers) {
+            server.runCommand("kill @e[type=!player]");
+            server.runCommand("tp @a 0 150 -3 0 0");
+            server.runCommand("summon " + sp.type + " 0 150 0.5 {NoAI:1b,PersistenceRequired:1b,Rotation:[180f,0f]," + sp.nbt + "}");
+            ctx.waitTicks(10);
+            ctx.waitFor(client -> client.level.getEntitiesOfClass(LivingEntity.class, new AABB(-4, 148, -4, 4, 154, 4), e -> People.of(e) != null).size() == 1, 200);
+            // open as a right-click would (a Ghastkin only while you sneak)
+            String opened = server.computeOnServer(srv -> {
+                ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+                LivingEntity resident = speakerNear(srv);
+                player.setShiftKeyDown(sp.sneak);
+                Talk.open(player, resident);
+                player.setShiftKeyDown(false);
+                Folk.Profile p = Folk.of(resident);
+                return Folk.fullName(p, People.of(resident)) + " (" + p.job() + ")";
+            });
+            ctx.waitForScreen(TalkScreen.class);
+            ctx.waitTicks(10);
+            ctx.getInput().pressKey(KEY_SPACE);
+            ctx.waitTicks(5);
+            TalkPayload greeting = ctx.computeOnClient(client -> ((TalkScreen) client.gui.screen()).payload());
+            check(!greeting.refused(), sp.label + " refused to talk");
+            check(greeting.choices().size() >= 3, sp.label + " offers only " + greeting.choices().size() + " topics");
+            check(!greeting.name().isBlank() && !greeting.line().isBlank(), sp.label + " has no name or no greeting");
+            shoot(ctx, "nether-talk-" + sp.label + "-1-greeting");
+            // ask the first topic
+            ctx.getInput().pressKey(KEY_1);
+            ctx.waitFor(client -> client.gui.screen() instanceof TalkScreen t && !t.payload().line().equals(greeting.line()), 100);
+            ctx.waitTicks(5);
+            ctx.getInput().pressKey(KEY_SPACE);
+            ctx.waitTicks(5);
+            TalkPayload topic = ctx.computeOnClient(client -> ((TalkScreen) client.gui.screen()).payload());
+            check(topic.points() > greeting.points(), sp.label + ": a new topic gave no friendship");
+            shoot(ctx, "nether-talk-" + sp.label + "-2-topic");
+            report.add(sp.label + ": " + opened + " says '" + greeting.line() + "' / asked '" + greeting.choices().getFirst().label() + "': '"
+                    + topic.line() + "'");
+            goodbye(ctx);
+            ctx.waitFor(client -> client.gui.screen() == null, 40);
+        }
+        // a gift and a level-up, with a Magmari: a lava bucket is loved, and the bond is close to level 4
+        server.runCommand("kill @e[type=!player]");
+        server.runCommand("summon netherexpansion:magmari 0 150 0.5 {NoAI:1b,PersistenceRequired:1b,Rotation:[180f,0f],Gender:0}");
+        server.runCommand("item replace entity @a weapon.mainhand with lava_bucket");
+        ctx.waitTicks(10);
+        ctx.waitFor(client -> client.level.getEntitiesOfClass(LivingEntity.class, new AABB(-4, 148, -4, 4, 154, 4), e -> People.of(e) != null).size() == 1, 200);
+        server.runOnServer(srv -> {
+            ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+            LivingEntity resident = speakerNear(srv);
+            Bonds.put(resident, player.getUUID(), new Bonds.Bond(21, 3, srv.overworld().getGameTime() / 24000L, -1, List.of()));
+            Talk.open(player, resident);
+        });
+        ctx.waitForScreen(TalkScreen.class);
+        ctx.waitTicks(5);
+        TalkPayload before = ctx.computeOnClient(client -> client.gui.screen() instanceof TalkScreen t ? t.payload() : null);
+        check(before != null, "the Magmari's window closed by itself");
+        ctx.runOnClient(client -> {
+            TalkPayload p = before;
+            ClientPlayNetworking.send(new TalkPayload.Action(p.entityId(), p.residentId(), "gift"));
+        });
+        ctx.waitFor(client -> client.gui.screen() instanceof TalkScreen t && t.payload().levelUp(), 100);
+        ctx.waitTicks(12);
+        TalkPayload gifted = ctx.computeOnClient(client -> ((TalkScreen) client.gui.screen()).payload());
+        check(gifted.level() == 4, "a loved gift should reach level 4, got " + gifted.level() + " (" + gifted.points() + " points)");
+        shoot(ctx, "nether-talk-gift-levelup");
+        report.add("gift: '" + gifted.line() + "' / " + gifted.status());
+        goodbye(ctx);
+        ctx.waitFor(client -> client.gui.screen() == null, 40);
+        server.runCommand("kill @e[type=!player]");
+        server.runCommand("gamemode creative @a");
+        server.runCommand("clear @a");
+        System.out.println("[netherexpansion] talk:" + System.lineSeparator() + String.join(System.lineSeparator(), report));
+    }
+
+    // -- the villages ----------------------------------------------------------------------------------------------
+
+    void villages(ClientGameTestContext ctx, TestSingleplayerContext world, TestServerContext server) {
+        server.runCommand("gamemode spectator @a");
+        List<String> report = new ArrayList<>();
+        String only = System.getProperty("netherexpansion.villages", "");
+        for (String village : only.isBlank() ? VILLAGES : only.split(",")) {
+            BlockPos centre = server.computeOnServer(srv -> locate(srv.getLevel(Level.NETHER), village));
+            check(centre != null, "no " + village + " generated within reach of the Nether's origin");
+            report.add(village + " at " + centre.toShortString());
+            // visit: load the village from its centre, then photograph it from three sides with a clear view
+            server.runCommand(String.format("execute in minecraft:the_nether run tp @a %d %d %d 0 20", centre.getX(), centre.getY() + 3, centre.getZ()));
+            world.getConnection().waitForChunksRender();
+            ctx.waitTicks(40);
+            List<double[]> views = server.computeOnServer(srv -> clearViews(srv.getLevel(Level.NETHER), centre));
+            for (int v = 0; v < views.size(); v++) {
+                double[] cam = views.get(v);
+                double dx = centre.getX() + 0.5 - cam[0], dy = centre.getY() + 3 - cam[1], dz = centre.getZ() + 0.5 - cam[2];
+                float yaw = (float) Math.toDegrees(Math.atan2(-dx, dz));
+                float pitch = (float) Math.toDegrees(Math.atan2(-dy, Math.sqrt(dx * dx + dz * dz)));
+                server.runCommand(String.format("execute in minecraft:the_nether run tp @a %.1f %.1f %.1f %.1f %.1f", cam[0], cam[1], cam[2], yaw, pitch));
+                world.getConnection().waitForChunksRender();
+                ctx.waitTicks(20);
+                shoot(ctx, "nether-village-" + village + "-" + (v + 1));
+            }
+            People people = switch (village) {
+                case "hold" -> People.PIGLIN;
+                case "vigil" -> People.WITHREN;
+                case "mooring" -> People.MAGMARI;
+                case "loom" -> People.WEFT;
+                default -> People.GHASTKIN;
+            };
+            int residents = server.computeOnServer(srv -> {
+                ServerLevel nether = srv.getLevel(Level.NETHER);
+                List<Entity> all = nether.getEntities((Entity) null, new AABB(centre).inflate(56, 40, 56), e -> People.of(e) == people);
+                return all.size();
+            });
+            report.add("  " + residents + " " + people.plural);
+            check(residents >= 4, village + " has only " + residents + " " + people.plural);
+            // every resident the village spawned has a name, a job and a home
+            List<String> folk = server.computeOnServer(srv -> {
+                ServerLevel nether = srv.getLevel(Level.NETHER);
+                List<String> out = new ArrayList<>();
+                for (Entity e : nether.getEntities((Entity) null, new AABB(centre).inflate(56, 40, 56), e -> People.of(e) == people)) {
+                    Folk.Profile p = e.getAttached(Folk.PROFILE);
+                    if (p == null) {
+                        out.add("!" + e);
+                        continue;
+                    }
+                    out.add(Folk.fullName(p, people) + ", " + Folk.epithet(p, people, ((LivingEntity) e).isBaby()) + " (" + p.job() + ")"
+                            + (p.village().map(centre::equals).orElse(false) ? "" : " !village"));
+                }
+                return out;
+            });
+            for (String f : folk) check(!f.startsWith("!") && !f.endsWith("!village"), village + ": resident without a proper profile: " + f);
+            report.add("  " + dev.netherexpansion.world.Names.village(people, centre) + ": " + String.join("; ", folk.subList(0, Math.min(6, folk.size()))));
+        }
+        System.out.println("[netherexpansion] villages:\n" + String.join("\n", report));
+    }
+
+    /**
+     * Up to three camera spots round the centre, from different sides, 16-32 blocks out and 6-18 up, each standing in
+     * air with an unbroken line of sight to the centre (so the photos aren't of the inside of a hill).
+     */
+    static List<double[]> clearViews(ServerLevel level, BlockPos centre) {
+        List<double[]> views = new ArrayList<>();
+        Vec3 target = Vec3.atCenterOf(centre.above(3));
+        for (int sector = 0; sector < 3; sector++) {
+            search:
+            for (int step = 0; step < 8; step++) {
+                double angle = Math.toRadians(sector * 120 + 35 + (step % 2 == 0 ? step : -step) * 12);
+                for (int dist : new int[]{30, 24, 18}) {
+                    for (int h : new int[]{14, 18, 10, 6}) {
+                        Vec3 cam = new Vec3(centre.getX() + 0.5 + Math.cos(angle) * dist, centre.getY() + h, centre.getZ() + 0.5 + Math.sin(angle) * dist);
+                        if (!level.getBlockState(BlockPos.containing(cam)).isAir()) continue;
+                        HitResult hit = level.clip(new ClipContext(cam, target, ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty()));
+                        if (hit.getType() == HitResult.Type.MISS || hit.getLocation().distanceTo(target) < 4) {
+                            views.add(new double[]{cam.x, cam.y, cam.z});
+                            break search;
+                        }
+                    }
+                }
+            }
+        }
+        if (views.isEmpty()) views.add(new double[]{centre.getX() + 0.5, centre.getY() + 3, centre.getZ() - 6.5});
+        return views;
+    }
+
+    /** Find the nearest village of this kind as /locate does, and return its centre (from its pieces). */
+    static BlockPos locate(ServerLevel level, String village) {
+        ResourceKey<Structure> key = ResourceKey.create(Registries.STRUCTURE, NetherExpansion.id(village));
+        Holder<Structure> holder = level.registryAccess().lookupOrThrow(Registries.STRUCTURE).getOrThrow(key);
+        BlockPos found = level.findNearestMapStructure(HolderSet.direct(holder), BlockPos.ZERO, 150, false);
+        if (found == null) return null;
+        ChunkAccess chunk = level.getChunk(found.getX() >> 4, found.getZ() >> 4, ChunkStatus.STRUCTURE_STARTS);
+        StructureStart start = chunk.getStartForStructure(holder.value());
+        if (start == null || !start.isValid()) return null;
+        for (StructurePiece piece : start.getPieces()) {
+            if (piece instanceof BuildingPiece building) return building.village();
+        }
+        return null;
+    }
+}

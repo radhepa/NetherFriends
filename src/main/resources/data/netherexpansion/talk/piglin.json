@@ -1,0 +1,451 @@
+{
+  "levels": ["Pink-skin", "Shiny Stranger", "Nugget-friend", "Ingot-friend", "Hoard-friend", "Tusk-kin"],
+
+  "greet": [
+    {"text": "Stop right there! Gold on you? Gold on you. Good. I'm {name} {clan}. Without that gold you'd be dead. Welcome!", "when": {"first": true, "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Wanderer"]}},
+    {"text": "Ooh! Shiny! You're shiny all over! Are you rich? Can I have a bit? Just a small bit?", "when": {"first": true, "child": true}},
+    {"text": "Gold. Hrm. You live.", "when": {"first": true, "job": "Brute"}},
+    {"text": "Gold, in our Bastion? Most outsiders come down here to take gold, not wear it. Speak, shiny one.", "when": {"first": true, "place": "bastion", "job": "Bastion-dweller"}},
+    {"text": "A stranger in {village}, and wearing gold! Wait. Stay here. I want to brag about you before the others see you.", "when": {"first": true, "place": "village", "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Wanderer"]}},
+
+    {"text": "Pink-skin. You glint, so you live. Talk fast. I'm busy being important.", "when": {"level": [0, 0], "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "Your gold's still on. Smart. Keep it on and we'll keep being polite.", "when": {"level": [0, 0], "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "The shiny one again! Ha! Gold still on, head still on. Good for both of us.", "when": {"level": [1, 2], "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "You came back! Most outsiders don't. Mostly because of us. Ha!", "when": {"level": [1, 2], "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "Ingot-friend! Come here! Your gold looks heavier than last time. Or I'm greedy. Both, probably.", "when": {"level": [3, 3], "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "Hoard-friend! I told {neighbour} you'd be back. They bet against you. Now they owe me three nuggets.", "when": {"level": [4, 4], "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "Tusk-kin! Everyone look! The finest gold-wearer in the Nether came to see ME!", "when": {"level": [5, 5], "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "My Tusk-kin! I'd know your shine from across a lava sea. Come, stand by me so they all see who my friends are.", "when": {"level": [5, 5], "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+
+    {"text": "Did you bring gold? Grown-ups say ask nicely. Gold, please! Now, please!", "when": {"child": true, "level": [0, 1]}},
+    {"text": "It's you! I told everyone you're my friend! {neighbour} said I was lying. Stand here so they can see.", "when": {"child": true, "level": [2, 5]}},
+    {"text": "*snort* Shiny! You're back! Can I hold your gold? I'll give it back. Probably.", "when": {"child": true}},
+
+    {"text": "Hrm.", "when": {"job": "Brute"}},
+    {"text": "Gold. Fine. Don't touch the Hoard.", "when": {"job": "Brute", "level": [0, 2]}},
+    {"text": "You. Good. Stand near. Nobody bothers you here.", "when": {"job": "Brute", "level": [3, 5]}},
+    {"text": "Vault's below. Not for you. Gold or no gold.", "when": {"job": "Brute", "place": "bastion"}},
+
+    {"text": "Mind the floor. The fire ate half of it and we sold the rest. Ha! What do you want?", "when": {"place": "bastion", "job": "Bastion-dweller"}},
+    {"text": "Gold-friend in the old halls! Come in, come in. There's a warm room the fire forgot to take.", "when": {"place": "bastion", "job": "Bastion-dweller", "level": [3, 5]}},
+    {"text": "Welcome to {village}! Loudest Hold in the Nether. Ask anyone. They'll shout it at you.", "when": {"place": "village", "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Wanderer"]}},
+
+    {"text": "Got an ingot? I've got a deal. Got two? I've got a better deal. Got none? Got lost.", "when": {"job": "Bartermaster"}},
+    {"text": "Stand in the light. Let me see your gold. Hm. Who made that? Sloppy rivets. I'd have done it better.", "when": {"job": "Goldsmith"}},
+    {"text": "You smell like you've been near my pens. Good. The hoglins hate you a little less now.", "when": {"job": "Hoglin-herder"}},
+    {"text": "Stand back from the furnace! Or don't. Your eyebrows, not mine. Mine are long gone.", "when": {"job": "Smelter"}},
+    {"text": "Quiet! Oh. Just you. You walk heavy, like a hoglin. I nearly shot you. That's a compliment.", "when": {"job": "Hunter"}},
+    {"text": "See this shroomlight? Pinched it off the warped canopy. Netted twice. Worth it. What do you want?", "when": {"job": "Forager"}},
+    {"text": "Another gold-wearer on the road! Then there are two of us out here. Ha! The other one's me.", "when": {"job": "Wanderer"}},
+
+    {"text": "Is that an ingot in your hand? For me? Say it's for me.", "when": {"holding": "minecraft:gold_ingot"}},
+    {"text": "You're carrying a Hollowed skull. I can smell it. Throw it in the lava. Then we talk.", "when": {"carrying": "minecraft:wither_skeleton_skull"}},
+
+    "Gold! Good. What do you want? Speak up. I can't hear quiet folk.",
+    "Your gold catches the light nicely. Mine catches it better. What is it?",
+    "Oi! Shiny! Over here! What do you need?"
+  ],
+
+  "chatter": [
+    {"text": "{neighbour} said they could bite through a nugget. I said prove it. They broke a tusk. I won nine nuggets.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "Last time {neighbour} tried to barter with a hoglin, the hoglin won. Took a boot and half a trouser leg.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "If {neighbour} says they beat me at arm-wrestling, it's a lie. I let them. Twice. Three times.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "I heard {neighbour} polished their helmet so hard it went thin. Now it dents if you look at it. So I look at it a lot.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "I'm sure {neighbour} owes me an ingot from the last brawl. Or I owe them. I forget. I'll say they owe me.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "Never eat {neighbour}'s porkchops. The last one who did is still running. Round and round and round.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "So {neighbour} counted the Hoard twice and got two different numbers. Now we're all counting. Loudly.", "when": {"place": "village", "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Wanderer"]}},
+    {"text": "You should hear {neighbour} sing at the hearth. The hoglins put up with it. That tells you how tough hoglins are.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "{neighbour} says Overworld folk are soft. Are you soft?", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}, "replies": [
+      {"ask": "Hit me and find out.", "text": "Ha! No, no. I'd win, and then we couldn't be friends. I'll tell them you're hard as blackstone.", "points": 2},
+      {"ask": "A little.", "text": "Ha! Soft and honest. That's a rare pair. Still soft, though.", "points": -1},
+      {"ask": "Are YOU soft?", "text": "Me? Feel this arm! No, don't feel it. Just look at it. Hard as blackstone.", "points": 1}
+    ]},
+
+    {"text": "Gold doesn't rust, doesn't rot and doesn't lie. That's three things better than most Piglins I know.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "I bit a gold nugget once to see if it was real. It was. Best tooth I ever lost.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "A hoglin charged me once. I charged back. We both stopped. Stared. Now we nod at each other.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "Brutes don't laugh. I made one laugh once. Then I ran, very fast. Still not sure why.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "Ghasts shriek at the walls. I shout back. I think I'm winning.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "Ever smelled a strider up close? No? Lucky. The Magmari ride them. That explains the Magmari.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "Never throw gold in the lava. Never. I'd have to kill you, and then I'd be sad, and you'd be dead.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "Iron? Pah. Iron is what you wear when you're poor and want everyone to know it.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "I brought you nothing. I bring nothing to anybody. That's how I got rich.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "The Rotted came near the edge again. We waved. They didn't wave back. They never wave back.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "If the horn blows, run toward it if you're with us. Run away if you're not. Easy rule.", "when": {"place": "village", "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Wanderer"]}},
+
+    {"text": "You stand like a fighter. Are you a fighter?", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}, "replies": [
+      {"ask": "The best you'll ever see.", "text": "Ha! A boaster! Boasters fight hardest. They've got so much to live up to.", "points": 1},
+      {"ask": "Want to find out?", "text": "HA! Not now. Later. After I've eaten. I fight better full.", "points": 2},
+      {"ask": "Not really.", "text": "Then stand like a sack, so nobody gets fooled.", "points": -1}
+    ]},
+    {"text": "Do you like my helmet? Be honest. No, be nice.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}, "replies": [
+      {"ask": "It's magnificent.", "text": "MAGNIFICENT! Hear that? Everyone hear that?", "points": 2},
+      {"ask": "Mine's shinier.", "text": "Lies! Beautiful lies. Let me see. Hm. Fine. Close.", "points": 1},
+      {"ask": "It's a bit dented.", "text": "Dents are stories! You've got no dents. So no stories. Hmph.", "points": -1}
+    ]},
+    {"text": "Tell me true. How much gold have you got?", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}, "replies": [
+      {"ask": "More than you.", "text": "Ha! A lie, but a bold one. I respect a bold liar.", "points": 1},
+      {"ask": "Not much.", "text": "Then barter with me. I'll make you rich. Richer. A bit.", "points": 0},
+      {"ask": "That's my business.", "text": "Gold is EVERYONE'S business! Rude.", "points": -1}
+    ]},
+    {"text": "I'm the strongest in this Hold. Agreed?", "when": {"place": "village", "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Wanderer"]}, "replies": [
+      {"ask": "Agreed.", "text": "Smart! Say it louder when {neighbour} walks past.", "points": 1},
+      {"ask": "Prove it.", "text": "Ha! I lifted a hoglin once. A small one. It still counts.", "points": 1},
+      {"ask": "The Brutes are stronger.", "text": "Brutes are BIGGER. Not stronger. Big difference. Go away.", "points": -2}
+    ]},
+    {"text": "Overworld folk wear iron, I heard. All grey. Is it true?", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}, "replies": [
+      {"ask": "Sadly, yes.", "text": "Grey! Like ash! Poor things. Bring them here. We'll shine them up.", "points": 1},
+      {"ask": "Iron is useful.", "text": "Useful! Rocks are useful! Nobody wears rocks!", "points": -1}
+    ]},
+
+    {"text": "My father had the biggest tusks in the {clan}. Mine are bigger. I measured. He disagrees. Loudly.", "when": {"gender": "male", "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+    {"text": "My mother could out-shout a ghast. I can out-shout my mother. That's how the {clan} gets louder every litter.", "when": {"gender": "female", "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+
+    {"text": "You're carrying a gold block. I can smell it. Don't ask how. Just know that I know.", "when": {"carrying": "minecraft:gold_block"}},
+    {"text": "Why do you smell like the Rotted? Scrub yourself. Scrub twice. With ash.", "when": {"carrying": "minecraft:rotten_flesh"}},
+
+    {"text": "This was the grandest place in the Nether. Then the fire. Now it's the grandest ruin. Still grand.", "when": {"place": "bastion", "job": "Bastion-dweller"}},
+    {"text": "The stones are still warm in the deep rooms. We sleep on those. Best beds in the Nether. Only beds, too.", "when": {"place": "bastion", "job": "Bastion-dweller"}},
+    {"text": "{neighbour} found a lump of melted gold in the rubble. Shaped like a hoglin, if you squint. We all squint.", "when": {"place": "bastion", "job": "Bastion-dweller"}},
+
+    {"text": "Barter tip: shout. Whoever shouts last wins. I always shout last. I've got the lungs for it.", "when": {"job": "Bartermaster"}},
+    {"text": "Fresh hoglin tracks by the fungus. Big one. Mine. Don't even look at it.", "when": {"job": "Hunter"}},
+    {"text": "Crimson fungus, warped fungus, nether wart. I can tell them apart by smell. Can you? Don't sniff that one.", "when": {"job": "Forager"}},
+    {"text": "Melt it, beat it, wear it, boast about it. That's goldsmithing. The boasting is the hard part.", "when": {"job": "Goldsmith"}},
+    {"text": "My eyebrows have burned off three times. They grow back angrier every time.", "when": {"job": "Smelter"}},
+    {"text": "My hoglins have names. Bitey, Bitey Two and Snorrk. Snorrk bites most. Don't tell the Biteys.", "when": {"job": "Hoglin-herder"}},
+    {"text": "Every Hold says it's the loudest Hold. I've heard them all. They're all right. It's very loud out here.", "when": {"job": "Wanderer"}},
+
+    {"text": "Hrm.", "when": {"job": "Brute"}},
+    {"text": "Gate stays shut.", "when": {"job": "Brute"}},
+    {"text": "Thieves. I smell them. Not you. Yet.", "when": {"job": "Brute"}},
+    {"text": "Gold on you. Good. Keep it on.", "when": {"job": "Brute"}},
+    {"text": "Axe is sharp. Sharpened it. Twice.", "when": {"job": "Brute"}},
+    {"text": "You. Fight?", "when": {"job": "Brute"}, "replies": [
+      {"ask": "Any time.", "text": "Hrm! Good. Later.", "points": 2},
+      {"ask": "No, thanks.", "text": "Hrm. Smart.", "points": 0}
+    ]},
+
+    {"text": "I found a nugget! It's mine! You can look. Don't touch. Fine, touch. Gently.", "when": {"child": true}},
+    {"text": "Watch me run with gold! *snort snort* Nobody can catch me! Except grown-ups. And Brutes.", "when": {"child": true}},
+    {"text": "I rode a baby hoglin! It bit my ear. Worth it. Want to see the ear?", "when": {"child": true}},
+    {"text": "{neighbour} says I'm too small to wear gold. I'm going to wear SO much gold. All of it.", "when": {"child": true}},
+    {"text": "Are you rich? You look rich.", "when": {"child": true}, "replies": [
+      {"ask": "Very rich.", "text": "Wow! Can I be rich too? Will you show me how?", "points": 1},
+      {"ask": "Not really.", "text": "Then why are you shiny? Is it pretend gold? Can I bite it?", "points": 0}
+    ]}
+  ],
+
+  "topics": [
+    {"id": "who_you_are", "ask": "Who are you?", "when": {"child": false}, "lines": [
+      {"text": "I am {name} {clan}! Say it back. Louder. Good. Now you'll remember it.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+      {"text": "{name} of the {clan}. Best clan in the Nether. Every clan says that. We say it loudest, so we win.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+      {"text": "The {clan} name is older than the fire. We lost the bastions, the gold, half our tusks. We kept the name. Names don't melt."},
+      {"text": "I'm {name}, {job}, of the {clan}. And you're the pink-skin who wears gold. What are you to us?", "when": {"level": [0, 2], "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}, "replies": [
+        {"ask": "A friend of your clan.", "text": "Ha! Bold. I like bold. Keep saying it until it's true.", "points": 2},
+        {"ask": "Just passing through.", "text": "Nobody just passes through wearing gold. Gold always means something.", "points": 0},
+        {"ask": "Nobody special.", "text": "Nobody special doesn't wear gold. Stand up straight. You're shaming your helmet.", "points": -1}
+      ]},
+      {"text": "Between us? My grandsire won the {clan} name in a bet. Still counts. A bet is a bet. Don't tell the clan.", "when": {"level": [3, 5], "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+      {"text": "{name}. {clan}. Brute. Enough.", "when": {"job": "Brute"}}
+    ]},
+
+    {"id": "gold", "ask": "Why all the gold?", "when": {"child": false}, "lines": [
+      "Gold is rank. More gold, more say. Less gold, less say. No gold, no say. Also no head.",
+      "Gold is savings. It doesn't rot, it doesn't rust, it doesn't run off. It just sits there being beautiful.",
+      "Gold is the handshake. You show gold, I show gold, nobody stabs anybody. That's peace, the Piglin way.",
+      "We first wore it in the war, so we'd know our own in the smoke. Nobody else would touch the stuff. Still true. Except you.",
+      {"text": "First you tell me. What is gold to you?", "replies": [
+        {"ask": "Everything.", "text": "EVERYTHING! Yes! You understand! I knew it the moment you shone!", "points": 2},
+        {"ask": "Good for trading.", "text": "Trading, yes. That's the second-best thing gold does. The first is shining.", "points": 1},
+        {"ask": "Just shiny metal.", "text": "Just shiny... Out of my sight. No. Stay. I'll fix you. It'll take a while.", "points": -2}
+      ]}
+    ]},
+
+    {"id": "this_place", "ask": "Tell me about this place.", "when": {"child": false}, "lines": [
+      {"text": "{village}! Three longhouses, one Hoard, one horn, and the loudest barter ring this side of the lava.", "when": {"place": "village"}},
+      {"text": "The barter ring is the heart of the Hold. Gold block on the pedestal. Touch it and find out what we're like. Actually, don't.", "when": {"place": "village"}},
+      {"text": "Longhouse life: one hearth, one gold block, too many Piglins, all snoring. You get used to it. Or you go deaf. Same thing.", "when": {"place": "village"}},
+      {"text": "Climb the horn tower if you like. The Brute up top won't stop you. He'll just stare until you climb back down.", "when": {"place": "village"}},
+      {"text": "The forge is where the gold gets pretty. Don't touch the cauldron. It's lava, not soup. {neighbour} learned that one.", "when": {"place": "village"}},
+      {"text": "This was a bastion, the greatest in the Nether. Then the Wither came. Outsiders call it a Remnant now. We call it home.", "when": {"place": "bastion"}},
+      {"text": "See the black on the walls? Soot from the fire. We never scrubbed it off. Some things you keep where you can see them.", "when": {"place": "bastion"}},
+      {"text": "Our Bastion. Burned, broken, ours. What do you think of it?", "when": {"place": "bastion"}, "replies": [
+        {"ask": "It's magnificent.", "text": "Even burned! Even burned it's better than anything up in your rotting world.", "points": 2},
+        {"ask": "It needs work.", "text": "Everything needs work. You need work. Ha!", "points": 0},
+        {"ask": "It's a ruin.", "text": "A RUIN? It's a home with a bad past. Watch your mouth this close to the lava.", "points": -2}
+      ]},
+      {"text": "This? This is nowhere. Lava and fungus. My Hold is wherever my gold is, and my gold is on me.", "when": {"place": "wild"}},
+      {"text": "Out here there's no horn to call your friends. Just me, my crossbow and my mouth. The mouth works best.", "when": {"place": "wild"}}
+    ]},
+
+    {"id": "your_work", "ask": "What work do you do?", "when": {"child": false}, "lines": [
+      {"text": "I run the barter ring. You give gold, I give things. Which things? Whatever the gold decides. Gold has moods.", "when": {"job": "Bartermaster"}},
+      {"text": "Bartermaster. I'm fair, I'm fast, and if you argue I count slower. Want a tip?", "when": {"job": "Bartermaster"}, "replies": [
+        {"ask": "Please.", "text": "Never show your whole purse. Show a bit, and look sad. Not with me, though. You're with me.", "points": 1},
+        {"ask": "I don't need tips.", "text": "Ha! Everyone needs tips. That's why I'm rich and you're the one asking.", "points": -1}
+      ]},
+      {"text": "I hunt wild hoglins in the crimson. Not the penned ones. Those are herd. Mean herd, but herd.", "when": {"job": "Hunter"}},
+      {"text": "Crossbow, quiet feet, and a lot of shouting at the end. That's hunting. The shouting is the best part.", "when": {"job": "Hunter"}},
+      {"text": "Fungus, wart, quartz, shroomlight. If it grows or glints out there, I bring it home and brag about it.", "when": {"job": "Forager"}},
+      {"text": "The best shroomlights hang in the warped canopy. The Weft drop nets on you. Worth it. Mostly. Once it wasn't.", "when": {"job": "Forager"}},
+      {"text": "I melt raw gold into ingots. Hot work. Good work. Smell my bristles. That's the smell of success.", "when": {"job": "Smelter"}},
+      {"text": "The blast furnace roars, I roar back. The gold comes out shining. My eyebrows never come out at all.", "when": {"job": "Smelter"}},
+      {"text": "I make the armour that keeps gold-wearers alive down here. Every Piglin in this Hold wears my work. You may bow a little.", "when": {"job": "Goldsmith"}},
+      {"text": "Gold is soft. That's the trick. You don't fight it. You talk to it, hit it, then talk to it again.", "when": {"job": "Goldsmith"}},
+      {"text": "I keep the pens. Crimson fungus in, warped fungus far away, fingers attached. That's the whole job.", "when": {"job": "Hoglin-herder"}},
+      {"text": "Penned hoglins are herd, not game. Nobody hunts them. You want one for the fire, you ask me. Then I say no.", "when": {"job": "Hoglin-herder"}},
+      {"text": "Guard. Gate. Gold. Three words. Good job.", "when": {"job": "Brute"}},
+      {"text": "Stand. Watch. Hit thieves. Don't sit.", "when": {"job": "Brute"}},
+      {"text": "Work? I live in a bastion the Wither burned. Staying alive in it is the work.", "when": {"job": "Bastion-dweller"}},
+      {"text": "We sweep the ash, guard the old vault, and fight over who sleeps in the warm rooms. I always win.", "when": {"job": "Bastion-dweller"}},
+      {"text": "I walk from Hold to Hold carrying news. News costs a nugget. That bit was free.", "when": {"job": "Wanderer"}},
+      {"text": "No Hold of my own. I sleep wherever my gold is safe. Usually on top of it.", "when": {"job": "Wanderer"}}
+    ]},
+
+    {"id": "the_rotted", "ask": "Who are the Rotted?", "when": {"child": false}, "lines": [
+      "Piglins who went through to your world. They came back green, slow and gold-blind. That's what your world does to us.",
+      "Your world rots us. Everyone knows it. Somehow it doesn't rot you. Suspicious. Very suspicious.",
+      "Don't hit the Rotted. Hit one and they all come. They forgot their names. They didn't forget each other.",
+      {"text": "You came out of the Overworld and you smell fine. How?", "replies": [
+        {"ask": "I was born there.", "text": "Born in the rot and not rotted. Huh. Maybe it's slow. Check your ears now and then.", "points": 0},
+        {"ask": "I'm tougher than you.", "text": "Tougher than a Piglin? Ha! No. But I like the nerve. Keep it.", "points": 1},
+        {"ask": "Maybe I'm rotting.", "text": "Don't say that! Stand over there. Further. Further.", "points": -1}
+      ]},
+      {"text": "My uncle went through a portal after gold. He came back Rotted. He still walks the wastes. I wave. He doesn't.", "when": {"level": [2, 5]}, "replies": [
+        {"ask": "I'm sorry.", "text": "Don't be sorry. Be careful. Keep your gold on and stay out of portals. Well. You came out of one.", "points": 1},
+        {"ask": "He looked happy.", "text": "HAPPY? He's rotting on his feet! Don't joke about the Rotted. Not to me. Not ever.", "points": -2}
+      ]}
+    ]},
+
+    {"id": "the_war", "ask": "The War of the Hoard?", "when": {"child": false, "level": [2, 5]}, "lines": [
+      "There was gold under the soul valleys. Rivers of it. The Withren sat on it and called it theirs. Sitting on a thing doesn't make it yours.",
+      "The Magmari carried our war-bands over the lava seas. For pay. Then they wept when it went wrong. They should have charged more.",
+      "After every fight the Weft crept in and took bones. Ours and theirs. Their looms still click with our grandsires.",
+      "We wore gold so we'd know our own in the smoke. Nobody else would wear it. That's why gold-wearers live here and the rest don't.",
+      {"text": "We were winning. Remember that. Whatever the ash-faces tell you, we were winning.", "replies": [
+        {"ask": "I believe you.", "text": "Good. Gold-wearing AND smart. Rare.", "points": 1},
+        {"ask": "Then what happened?", "text": "Then the Withren cheated. Ask me about the fire some time. Not yet. When I trust you more.", "points": 0},
+        {"ask": "Were you, though?", "text": "WERE WE? We were winning with our TUSKS! Go away before I show you!", "points": -2}
+      ]}
+    ]},
+
+    {"id": "the_wither", "ask": "What burned the bastions?", "when": {"child": false, "level": [3, 5]}, "lines": [
+      "The Withren made a monster out of three of their own. The Last Answer, they call it. Answer to what? To us. We were the question.",
+      "It came over the wastes with three heads screaming. The bastions went up like kindling. Gold ran down the walls like lava.",
+      "It didn't stop with us. It burned the Moorings, then the Withren's own forts. They made a thing that ate its makers. Ha. Not funny. A bit funny.",
+      {"text": "You're standing in what it left. The black on these walls isn't paint, and the cracks aren't old age.", "when": {"place": "bastion"}},
+      {"text": "Outsiders make Withers now, from Hollowed skulls. Your folk. Would you ever?", "replies": [
+        {"ask": "Never.", "text": "Good. Then you can stay. Say never again. Good.", "points": 2},
+        {"ask": "Only to beat it.", "text": "Beat it? It doesn't fight, it burns! You don't beat fire. You just lose to it slower.", "points": -1},
+        {"ask": "Maybe.", "text": "MAYBE? Out! No. Stay. But I'm watching your hands now.", "points": -2}
+      ]}
+    ]},
+
+    {"id": "the_withren", "ask": "What about the Withren?", "when": {"child": false}, "lines": [
+      "Ash-dark skin, Wither faces, and a name for every dead thing. They sat on the gold under the valleys like it was an egg.",
+      "The Withren remember every name they ever lost. We remember every bastion they burned. Fair trade.",
+      "A Withren never shouts. Never laughs. Never haggles. How do you trust somebody like that? You don't.",
+      "They light everything with soul fire. Blue, cold, nasty stuff. We can't stand near it. They know that. They do it on purpose.",
+      {"text": "Ever been to a Vigil? Did they bore you to death?", "replies": [
+        {"ask": "Nearly.", "text": "Ha! They tried that on us for a whole war. When boring us didn't work, they made the Wither.", "points": 1},
+        {"ask": "Never been.", "text": "Don't go. Too quiet. A Piglin would go mad from all that quiet.", "points": 0},
+        {"ask": "They were kind to me.", "text": "Kind. Kind is how they get you. Watch your back. Watch your gold.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "the_magmari", "ask": "And the Magmari?", "when": {"child": false}, "lines": [
+      "Lava-walkers. They ferried us to war for pay, and the Wither burned their Moorings for it. Bad bargain. Their own fault.",
+      "Gold melts on their skin. Imagine! Can't wear it, can't hold it. No wonder they shiver and grumble so much.",
+      "Their striders are fat and slow and full of good meat. We borrow one now and then. They call it raiding. We call it borrowing.",
+      "A Magmari never shows gold. So a Magmari is never a friend. Not my rule. Gold's rule.",
+      {"text": "Did a Magmari ever ferry you anywhere?", "replies": [
+        {"ask": "Yes, on a strider.", "text": "Ha! Did they haggle the whole way? They haggle the whole way. Count your fingers when you land.", "points": 0},
+        {"ask": "No. I walk.", "text": "Good. Walk on your own feet, wear your own gold, owe nobody. That's the Piglin way.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "the_weft", "ask": "What of the Weft?", "when": {"child": false}, "lines": [
+      "Four arms, six eyes, and not one honest bone. Well. Plenty of bones. Ours. They took them after the war.",
+      "We climb the warped canopy for shroomlights. They drop nets on us. We cut the nets. They make more nets. It goes on and on.",
+      "They weave everything into one long cloth. History, they say. I bet we're in it, looking bad.",
+      {"text": "Ever been caught in a Weft net?", "replies": [
+        {"ask": "Never.", "text": "Lucky. They leave you hanging there and click at you. *click click* Like that. Awful.", "points": 0},
+        {"ask": "Yes. It was awful.", "text": "Ha! Then you're one of us! We sit round the hearth and complain about it. Loudly.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "the_ghastkin", "ask": "And the Ghastkin?", "when": {"child": false}, "lines": [
+      "Pale, floaty, always crying. From below they look like ghast whelps, so the crossbows go up. Mostly they were whelps. Mostly.",
+      "They cry for everybody. Even for Piglins, I heard. Waste of tears. Nobody should cry for a Piglin. They should cheer.",
+      "The ghasts that shriek at our walls were Ghastkin once, they say. Then they should come and collect them.",
+      "A Ghastkin never wears gold. A pity. Gold would cheer them right up."
+    ]},
+
+    {"id": "hoglins", "ask": "Tell me about hoglins.", "when": {"child": false}, "lines": [
+      "Hoglins: tusks, temper, and the best meat in the Nether. Like a Piglin, but less charming.",
+      "Wild ones we hunt. Penned ones we keep. Don't mix them up. The herder will bite you, not the hoglin.",
+      "Never bring warped fungus near the pens. Hoglins hate it. The herder hates you for it more.",
+      {"text": "My hoglins? Beautiful. Every one. Even the one that ate my boot. Especially that one. Good taste.", "when": {"job": "Hoglin-herder"}},
+      {"text": "Ever fought a hoglin?", "replies": [
+        {"ask": "Plenty of them.", "text": "Ha! A hoglin-fighter! You're tougher than you look. You look soft.", "points": 1},
+        {"ask": "Not yet.", "text": "Do it once. Then never again. That's how everyone learns.", "points": 0},
+        {"ask": "They're just pigs.", "text": "JUST PIGS? Say that in the pens. Go on. I'll watch from up here.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "the_hoard", "ask": "What's in the Hoard?", "when": {"child": false, "level": [3, 5]}, "lines": [
+      "Gold blocks. Chests. Things older than the fire. And a Brute who'd eat you before you got halfway to any of it.",
+      {"text": "Every Piglin in the Hold puts in. Every Piglin can count it. We count it a lot. It's the best game there is.", "when": {"place": "village"}},
+      "The Hoard isn't for spending. It's for having. Having is the whole point. Your folk never understand having.",
+      "Take from the Hoard and every Piglin near comes for you, gold or no gold. That's the oldest law there is.",
+      {"text": "The vaults below still hold the old Hoards. The fire couldn't eat the gold. It only melted it into new shapes.", "when": {"place": "bastion"}},
+      {"text": "Want to see the Hoard some time?", "replies": [
+        {"ask": "Just to admire it.", "text": "Admire. From the gate. With your hands where the Brute can see them. Good answer.", "points": 1},
+        {"ask": "I'd love a bit of it.", "text": "THIEF TALK! I'll pretend I didn't hear that. Once.", "points": -2}
+      ]}
+    ]},
+
+    {"id": "brutes", "ask": "What makes a Brute?", "when": {"child": false}, "lines": [
+      {"text": "Brutes are the biggest and the meanest. They don't barter, they don't laugh. They carry axes and they stand there.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+      {"text": "Every Hold keeps two Brutes. One at the Hoard, one on the horn. Both of them are glaring at you. Right now.", "when": {"place": "village", "job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Wanderer"]}},
+      {"text": "Brutes respect gold. Except in a bastion vault. Down there, gold is just what they take off your body.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+      {"text": "Want a secret? Brutes are born small, like the rest of us. They just never stop being angry about it.", "when": {"job": ["Bartermaster", "Hunter", "Forager", "Smelter", "Goldsmith", "Hoglin-herder", "Bastion-dweller", "Wanderer"]}},
+      {"text": "Me. Big. Axe. Done.", "when": {"job": "Brute"}},
+      {"text": "Brute doesn't talk much. Talk is for traders. Brute is for gates.", "when": {"job": "Brute"}},
+      {"text": "You. Strong?", "when": {"job": "Brute"}, "replies": [
+        {"ask": "Strong enough.", "text": "Hrm. Good.", "points": 1},
+        {"ask": "Stronger than you.", "text": "Hrm. No. Brave, though. Brave is good.", "points": 1},
+        {"ask": "Not really.", "text": "Hrm. Then stay behind me.", "points": 0}
+      ]}
+    ]},
+
+    {"id": "grow_up", "ask": "What will you be?", "when": {"child": true}, "lines": [
+      "A Brute! No, a Bartermaster! No, a Brute who barters! Nobody would ever say no to me.",
+      "I'm going to have the biggest gold pile in the whole Hold. Bigger than the Hoard. Bigger than {neighbour}'s.",
+      "When my tusks come in I'm going to bite a hoglin back. The one that bit me. I know which one.",
+      {"text": "Will you help me get rich? Please? Lots?", "replies": [
+        {"ask": "Of course I will.", "text": "YES! You're the best gold-wearer ever! I'm telling everyone!", "points": 2},
+        {"ask": "Work hard first.", "text": "Work? That's what grown-ups say. Boring grown-ups. Are you a boring grown-up?", "points": -1}
+      ]}
+    ]},
+
+    {"id": "games", "ask": "What do you play?", "when": {"child": true}, "lines": [
+      "Hoglin riding! You climb on a little one and hold on. It bites. You win if you don't cry.",
+      "Snatch! You grab some gold and run. Grown-ups chase you. Best game in the Nether.",
+      "Horn! One of us is the horn and shouts, and everybody jumps on {neighbour}. They don't like this game.",
+      {"text": "Secret: {neighbour} cried when their baby hoglin ran off. Big crying. Don't tell. I didn't tell you.", "when": {"level": [2, 5]}}
+    ]},
+
+    {"id": "scared", "ask": "Are you scared of anything?", "when": {"child": true}, "lines": [
+      "Not scared of anything! Except the blue fire. And the Rotted. And the Brute on the horn when he sneezes.",
+      "Grown-ups say if you go through a portal you come back Rotted. I'm never going. Unless there's gold. Then maybe.",
+      "Ghasts! They cry so loud. I hide under the bench. Not scared. Just hiding bravely.",
+      {"text": "Secret: Brutes are scared of the blue fire too. I saw one jump. I didn't laugh. Out loud.", "when": {"level": [2, 5]}}
+    ]},
+
+    {"id": "treasure", "ask": "Got any treasure?", "when": {"child": true}, "lines": [
+      "I've got a nugget! Two nuggets! One's a pebble I rubbed on the other one. Don't tell.",
+      "I found a golden carrot. Well, I found it in {neighbour}'s hand. I ate it. It was hard on the teeth.",
+      "My treasure's buried under the hearth. Wait. Forget that. My treasure's somewhere else. Far away.",
+      {"text": "Want to see my treasure? You have to say please.", "replies": [
+        {"ask": "Please?", "text": "Hmm... NO! Ha! Maybe later. If you give me a nugget. Two nuggets.", "points": 1},
+        {"ask": "I'll just take it.", "text": "THIEF! I'm telling! I'm telling the Brutes!", "points": -2}
+      ]}
+    ]}
+  ],
+
+  "gift": {
+    "loved": ["minecraft:gold_ingot", "minecraft:gold_block", "#minecraft:piglin_loved"],
+    "liked": ["minecraft:gold_nugget", "#minecraft:piglin_food", "minecraft:crimson_fungus", "minecraft:shroomlight", "minecraft:crossbow", "minecraft:arrow", "minecraft:quartz", "minecraft:leather"],
+    "disliked": ["#minecraft:piglin_repellents", "minecraft:rotten_flesh", "minecraft:warped_fungus", "minecraft:wither_rose", "minecraft:wither_skeleton_skull", "minecraft:iron_ingot"],
+    "lines": {
+      "loved": [
+        "GOLD! For me? Hold still, I need to look at it. *snort* Look at it! Everyone, look at it!",
+        "Ooh. Ohhh. Right now you're my favourite. Maybe forever. Let's say forever.",
+        "Now THAT is a handshake. You and I are going to get along.",
+        "I'll put it with my best things. Right next to my other best things. It'll be the best of them.",
+        {"text": "Hrm. Gold. Good.", "when": {"job": "Brute"}},
+        {"text": "For ME? Mine! Nobody touch it! *snort* It's the shiniest thing I've got!", "when": {"child": true}}
+      ],
+      "liked": [
+        "Good. Not gold, but good. I'll eat it, or wear it, or bite it. One of those.",
+        "Ha! You know what a Piglin likes. Not as well as gold, but close.",
+        "That'll do nicely. Hand it over. No, I'll take it. There.",
+        "Useful! I approve. I'd approve more if it shone.",
+        {"text": "Hrm. Good.", "when": {"job": "Brute"}},
+        {"text": "For me? Thank you! Is it gold next time?", "when": {"child": true}}
+      ],
+      "neutral": [
+        "What is it? Huh. Fine. I'll find a use. Or I'll throw it at {neighbour}.",
+        "That's not gold. Did you know that's not gold? Just checking.",
+        "Hm. Thanks. It goes on the pile of things that aren't gold. Big pile, that one.",
+        "A gift is a gift. Not a good one. But a gift.",
+        {"text": "Hrm. Not gold.", "when": {"job": "Brute"}},
+        {"text": "Is it gold? It's not gold. Fine. I'll keep it anyway.", "when": {"child": true}}
+      ],
+      "disliked": [
+        "Get that away from me! What are you, a Withren?",
+        "Rot! Ash! Bad luck! Take it back. Take it far back.",
+        "Is this a joke? Ha. Ha. Not funny. Take it away before I get funny.",
+        "You hand a Piglin THIS? Walk carefully, gold-wearer.",
+        {"text": "Hrm. No.", "when": {"job": "Brute"}},
+        {"text": "Ew! No! That's horrible! I'm telling!", "when": {"child": true}}
+      ],
+      "again": [
+        "You already gave me something. I'm greedy, not stupid. Well. Greedy. Come back later.",
+        "Another one? Ha! Keep it for next time. I'll be just as greedy then.",
+        "No more! I'm still admiring the last one.",
+        "Slow down. Give me everything now and what will you bribe me with later?",
+        {"text": "Hrm. Enough.", "when": {"job": "Brute"}},
+        {"text": "You already gave me a thing! Grown-ups say one is polite. I say more is better. But fine.", "when": {"child": true}}
+      ],
+      "empty": [
+        "Your hand's empty. I can see it's empty. Why are you showing me an empty hand?",
+        "Nothing? You offer a Piglin nothing? Bold.",
+        "An empty hand is a sad thing. Fill it. With gold, ideally.",
+        "Ha! The old empty-hand trick. Very funny. Now give me something real.",
+        {"text": "Hrm. Empty.", "when": {"job": "Brute"}},
+        {"text": "There's nothing in your hand! Is it invisible gold? Can I have the invisible gold?", "when": {"child": true}}
+      ]
+    }
+  },
+
+  "levelup": [
+    {"text": "You came back! Nobody comes back. Fine, you're a Shiny Stranger now. Here, five nuggets. Don't spend them. Admire them.", "when": {"level": [1, 1]}, "reward": {"item": "minecraft:gold_nugget", "count": 5}},
+    {"text": "Hrm. You came back. Fine.", "when": {"level": [1, 1], "job": "Brute"}},
+    {"text": "You came back! You're my Shiny Stranger! Here, a nugget. It's only a bit bitten.", "when": {"level": [1, 1], "child": true}, "reward": {"item": "minecraft:gold_nugget", "count": 1}},
+    {"text": "Nugget-friend! I told {neighbour} all about you. Well, I said 'the shiny one'. Here, eat. Thin folk drop their gold.", "when": {"level": [2, 2]}, "reward": {"item": "minecraft:cooked_porkchop", "count": 4}},
+    {"text": "Ingot-friend! Two ingots for you. One is yours. The other is for you to give back to me as a gift. That's friendship.", "when": {"level": [3, 3]}, "reward": {"item": "minecraft:gold_ingot", "count": 2}},
+    {"text": "Hoard-friend. You may stand at the Hoard gate and nobody hits you first. Take my second-best sword. The best one is mine.", "when": {"level": [4, 4]}, "reward": {"item": "minecraft:golden_sword", "count": 1}},
+    {"text": "TUSK-KIN! Everyone hear it! Take this. Out of an old bastion vault, kept since the fire. Eat it or keep it. I'd keep it.", "when": {"level": [5, 5]}, "reward": {"item": "minecraft:enchanted_golden_apple", "count": 1}},
+    {"text": "Tusk-kin. Take axe. Spare one. Good axe.", "when": {"level": [5, 5], "job": "Brute"}, "reward": {"item": "minecraft:golden_axe", "count": 1}},
+    {"text": "You're my Tusk-kin forever! Here, my best treasure. I found it. Mostly found it. Don't tell {neighbour}.", "when": {"level": [5, 5], "child": true}, "reward": {"item": "minecraft:golden_apple", "count": 1}}
+  ],
+
+  "farewell": [
+    "Go! Come back richer!",
+    "Keep your gold on out there. Somebody always wants it. Usually me.",
+    "Off you go, shiny. Don't take that gold off until you're far away. Very far.",
+    "Leaving already? Ha! Fine. I'll tell everyone you couldn't keep up.",
+    "Don't let your world rot you. Come back shining.",
+    {"text": "Hrm. Go.", "when": {"job": "Brute"}},
+    {"text": "Bye! Bring gold next time! Lots!", "when": {"child": true}},
+    {"text": "Bye! *snort* Race you to the edge! I win!", "when": {"child": true}},
+    {"text": "Mind the broken bridges on your way out. The lava is patient.", "when": {"place": "bastion"}},
+    {"text": "Tell everyone {village} was the loudest Hold you ever saw. Because it was.", "when": {"place": "village", "child": false}},
+    {"text": "Go well, Tusk-kin. Anyone gives you trouble, tell me their name. I'll shout it at them.", "when": {"level": [5, 5], "child": false}},
+    {"text": "Next time bring more ingots. I'm worth more ingots.", "when": {"job": "Bartermaster"}}
+  ],
+
+  "refuse": [
+    {"text": "You hit me! Gold or no gold, I'm hitting back!", "when": {"state": "angry"}},
+    {"text": "THIEF! Hoard-thief! Somebody blow the horn!", "when": {"state": "angry"}},
+    {"text": "No talk! Only swinging now!", "when": {"state": "angry"}},
+    {"text": "Your shiny helmet won't save you now!", "when": {"state": "angry"}},
+    {"text": "Friend or not, you don't do that! Stand still so I can hit you!", "when": {"state": "angry", "level": [3, 5], "child": false}},
+    {"text": "Thief in the Bastion! To the vault, everyone! Don't let them out!", "when": {"state": "angry", "place": "bastion"}},
+    {"text": "HRRAAH!", "when": {"state": "angry", "job": "Brute"}},
+    {"text": "You're mean! I'm getting a Brute! A big one!", "when": {"state": "angry", "child": true}}
+  ]
+}

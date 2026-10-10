@@ -1,0 +1,414 @@
+{
+  "levels": ["Cold stranger", "Dock guest", "Hearth guest", "Fair haggler", "Ember-friend", "Chain-kin"],
+
+  "greet": [
+    {"text": "A shore-foot on our deck! Come in, out of the cold. I'm {name} {epithet}. Mind the edge: the sea's lovely, but it won't hold you.", "when": {"first": true, "child": false, "cold": false}},
+    {"text": "Well! A visitor who walked all this way on cold stone. Sit by the hearth before you go grey. I'm {name}, and you're welcome here.", "when": {"first": true, "child": false, "cold": false}},
+    {"text": "*shiver* A stranger. Lovely. I'd welcome you properly if I could feel my seams. Hearth first. Talk after.", "when": {"first": true, "child": false, "cold": true}},
+    {"text": "Whoa, you don't glow anywhere! Are you sick? Feel my crest, it's the hottest thing you'll ever touch!", "when": {"first": true, "child": true, "cold": false}},
+    {"text": "*brrr* Who are you? I'm not cold. I'm a bit cold. Are you cold too? You look cold all over.", "when": {"first": true, "child": true, "cold": true}},
+    {"text": "Need a crossing? I'm {name}, Ferrier of {chain}. I carry shore-feet over the sea for a fair fare. First we talk, then we haggle.", "when": {"first": true, "job": "Ferrier", "cold": false}},
+
+    {"text": "Stranger, you look pale as ash. Come nearer the seams, we don't bite. We haggle, but we don't bite.", "when": {"level": [0, 0], "child": false, "cold": false}},
+    {"text": "Come in, come in. Anyone who walks this far from shore deserves a warm seat and a fair price. Well. A warm seat.", "when": {"level": [0, 0], "child": false, "cold": false}},
+    {"text": "Ah, it's you! Come, the hearth's hot and I've got gossip that won't keep.", "when": {"level": [1, 2], "child": false, "cold": false}},
+    {"text": "You again, and still not glowing. Never mind. Sit close, warm your hands, and tell me what you'd pay for a good chain.", "when": {"level": [1, 2], "child": false, "cold": false}},
+    {"text": "Welcome back to {village}! Nothing's changed but the price of coal, and that's gone up, of course.", "when": {"level": [1, 2], "child": false, "cold": false, "place": "village"}},
+    {"text": "There's my favourite haggler! I've been saving up an argument for you.", "when": {"level": [3, 4], "child": false, "cold": false}},
+    {"text": "Friend! Sit nearer the ring, the good seats are for friends. The cold seats are for Piglins, if they ever ask.", "when": {"level": [3, 4], "child": false, "cold": false}},
+    {"text": "*crest puffs* You came back. I told {neighbour} you would, and now they owe me a coal.", "when": {"level": [3, 4], "child": false, "cold": false}},
+    {"text": "Chain-kin! Come here. You're of {chain} now, so this hearth is yours as much as mine.", "when": {"level": [5, 5], "child": false, "cold": false}},
+    {"text": "There you are, kin. Take my seat, it's the warmest. No, I insist. Fine, we'll share it.", "when": {"level": [5, 5], "child": false, "cold": false}},
+
+    {"text": "*shiver* Too cold for chatter. Talk fast or talk later.", "when": {"level": [0, 1], "child": false, "cold": true}},
+    {"text": "Hm. I've gone grey, and grey means grumpy. Keep it short.", "when": {"level": [0, 1], "child": false, "cold": true}},
+    {"text": "Oh, it's you. *teeth chatter* Sorry. My seams have gone dark. Talk to me while I shiver.", "when": {"level": [2, 5], "child": false, "cold": true}},
+    {"text": "Friend. Cold. So cold. Stand close, would you? You're not warm, but you're something.", "when": {"level": [2, 5], "child": false, "cold": true}},
+    {"text": "*crust creaks* What. Sorry. What is it? I'm too far from the fire to be polite.", "when": {"child": false, "cold": true}},
+
+    {"text": "Crossing or chatting? Either way, the strider's saddled and the fare's open to haggling.", "when": {"job": "Ferrier", "cold": false}},
+    {"text": "Friend! For you the fare's half. Well. Three quarters. We'll argue about it on the way.", "when": {"job": "Ferrier", "cold": false, "level": [3, 5]}},
+    {"text": "*shiver* Barge is ready. I'm not. Give me a moment to stop rattling.", "when": {"job": "Ferrier", "cold": true}},
+
+    {"text": "Hi! Hi! I'm {name}! Feel my crest nubs, they're the hottest on the whole deck!", "when": {"child": true, "cold": false}},
+    {"text": "You're back! Want to see me hop the gap between the decks? Don't tell anyone.", "when": {"child": true, "cold": false, "level": [1, 5]}},
+    {"text": "It's my friend! I saved you a warm spot. I sat on it so it stays warm.", "when": {"child": true, "cold": false, "level": [3, 5]}},
+    {"text": "*brrrr* I went too far from the hearth again. My nubs are all grey. Don't tell.", "when": {"child": true, "cold": true}},
+    {"text": "I'm n-not cold. I'm a little cold. I'm very cold. Can we talk by the fire?", "when": {"child": true, "cold": true}},
+
+    {"text": "A shore-foot, out here? I'm far from any Mooring myself. Good to see a face, even a pale one.", "when": {"place": "wild", "child": false, "cold": false}},
+    {"text": "Is that water? On my deck? Put that bucket behind you, slowly, and nobody gets hurt. By nobody, I mean me.", "when": {"holding": "minecraft:water_bucket", "child": false}},
+    {"text": "Mind that gold, friend. It melts on our skin. Hold it the other way, if you must hold it at all.", "when": {"holding": "minecraft:gold_ingot", "child": false}},
+    {"text": "I smell lava on you. A whole bucket of it? You've good taste, shore-foot.", "when": {"carrying": "minecraft:lava_bucket", "child": false, "cold": false}},
+
+    "Come, sit near the heat. I'll sit nearer.",
+    "Welcome to the warm side of the Nether."
+  ],
+
+  "chatter": [
+    {"text": "Guess what {neighbour} tried to sell me? A chain with a cracked link! I paid half, of course. I'm not a monster.", "when": {"child": false, "cold": false}},
+    {"text": "Don't buy coal from {neighbour}. Half their lumps are ash. Buy from me. Only a quarter of mine are ash.", "when": {"child": false, "cold": false}},
+    {"text": "Did you see {neighbour} at the hearth? Stood so close they started to bubble. Showing off, I call it.", "when": {"child": false, "cold": false}},
+    {"text": "Word from {neighbour} is the sky-mourners drift lower lately. I say they drift where they like, and we keep our heads down.", "when": {"child": false, "cold": false}},
+    {"text": "So {neighbour} has a new strider calf. Ugly little thing. Lovely. I'll offer two links for it and get laughed off the deck.", "when": {"child": false, "cold": false}},
+    {"text": "Have you seen the new hip cloth on {neighbour}? Weeping vine, hung long, nearly to the ankle. Very bold. I'd never.", "when": {"child": false, "cold": false}},
+    {"text": "Four links, {neighbour} owes me, from an old haggle. I bring it up every time we sit. It's tradition now.", "when": {"child": false, "cold": false}},
+    {"text": "If {neighbour} offers you a fair price, check it twice. If they offer you a good price, check it three times.", "when": {"child": false, "cold": false}},
+    {"text": "Me and {neighbour} argued over one quartz chip so long the hearth needed feeding twice. I won. I think I won.", "when": {"child": false, "cold": false}},
+    {"text": "What would you give for a good iron chain? Go on, name a price. I promise to look offended.", "when": {"child": false, "cold": false}, "replies": [
+      {"ask": "A fair price, and thanks.", "text": "Fair, and thanks! You've done this before. I'll sigh a little and then say yes.", "points": 1},
+      {"ask": "Whatever you ask.", "text": "Whatever I ask? Where's the fun in that? Haggle, shore-foot. It's only polite.", "points": -1},
+      {"ask": "Two coal and a smile.", "text": "Two coal and a smile! The smile's worth nothing, but I'll take it anyway.", "points": 1}
+    ]},
+    {"text": "You're shivering. Are you shivering? Shore-feet always look cold to me.", "when": {"child": false, "cold": false}, "replies": [
+      {"ask": "I'm warm enough, thanks.", "text": "Warm enough! Lucky you. I've never once been warm enough.", "points": 1},
+      {"ask": "You're the cold one.", "text": "*crest flares* Me? Cold? I'm perfectly... well. A little. Don't tell anyone.", "points": -1}
+    ]},
+    {"text": "Will you sit at our hearth a while? Guests sit nearest the fire. That's the rule.", "when": {"child": false, "cold": false}, "replies": [
+      {"ask": "Thank you, I'd be honoured.", "text": "Honoured! Listen to that. Manners like a Hearthkeeper. Sit, sit.", "points": 2},
+      {"ask": "I'll stand, thanks.", "text": "Stand? Standing's for bridges. Suit yourself, but you'll be colder for it.", "points": 0}
+    ]},
+    {"text": "Can you swim, shore-foot? In water, I mean. The wet stuff.", "when": {"child": false, "cold": false}, "replies": [
+      {"ask": "Yes, I swim often.", "text": "*shudders* Don't. Don't tell me any more. My seams went dim just hearing it.", "points": -1},
+      {"ask": "Let's talk of warmer things.", "text": "Yes. Yes, let's. Thank you. Warmer things. Coal. Lovely coal.", "points": 1}
+    ]},
+    {"text": "Never trust a stranger who won't haggle. Either they're rich or they're a Piglin, and both are trouble.", "when": {"child": false, "cold": false}},
+    {"text": "A good guest brings fuel and leaves gossip. You've brought neither yet, but I'm patient. Mostly.", "when": {"child": false, "cold": false}},
+    {"text": "The hearth's running hot. I can feel it in my crest. Every vent's humming.", "when": {"child": false, "cold": false}},
+    {"text": "If you see one of us standing very still on a deck, don't wake them. They're warming through.", "when": {"child": false, "cold": false}},
+    {"text": "I priced a blaze rod at twelve links once and someone paid it. I still feel bad. Not bad enough to give it back.", "when": {"child": false, "cold": false}},
+    {"text": "These chain loops on my ridges? One for every haggle I've won. I'll need a third ridge soon.", "when": {"child": false, "cold": false, "gender": "female"}},
+    {"text": "My sash? Every link in it is from a chain I forged or won. Heavy, yes. Heavy is how you know it's good.", "when": {"child": false, "cold": false, "gender": "male"}},
+    {"text": "The striders are restless. Either a sky-mourner's about, or someone's been eating their warped fungus again.", "when": {"child": false, "cold": false}},
+    {"text": "They say in your world water falls out of the sky. That's a story to frighten children, surely?", "when": {"child": false, "cold": false}, "replies": [
+      {"ask": "It's true. It's called rain.", "text": "*crust crackles* Rain. Even the word is wet. Never say it on my deck again.", "points": -1},
+      {"ask": "Not near here, I promise.", "text": "Not near here. Good. Far away, I hope. Further than that.", "points": 1}
+    ]},
+    {"text": "Old Ferriers say they once carried whole crowds across this sea. Now it's one shore-foot at a time.", "when": {"child": false, "cold": false}, "replies": [
+      {"ask": "War-bands, you mean?", "text": "*seams dim* We don't say that at the hearth. Pick a kinder word, or none.", "points": -2},
+      {"ask": "One at a time is better.", "text": "It is. Safer, quieter, and every fare gets haggled properly.", "points": 1}
+    ]},
+    {"text": "A Mooring without a hearth is just pillars standing in the sea, waiting to go cold.", "when": {"child": false, "cold": false}},
+    {"text": "The lava's calm out past the strider pen. Good wading, if you're the wading kind. You're not, are you.", "when": {"child": false, "cold": false}},
+    {"text": "I hear a Weft strung a net between two fungus caps just to catch one falling ember. Patient folk. Strange folk.", "when": {"child": false, "cold": false}},
+    {"text": "Piglins came sniffing round the causeway again. We pulled the bridges up and they went home shouting.", "when": {"child": false, "cold": false}},
+    {"text": "Know any good stories? Warm ones? We trade stories at the hearth, same as coal.", "when": {"child": false, "cold": false}, "replies": [
+      {"ask": "Here's one about a forge.", "text": "A forge story! Best kind. Any story with a fire in it is worth two links.", "points": 1},
+      {"ask": "I know one about snow.", "text": "Snow? *shudder* That's not a story, that's a threat.", "points": -1}
+    ]},
+
+    {"text": "*shiver* Can't talk long. Need the hearth. Need it more than gossip, and that's saying something.", "when": {"child": false, "cold": true}},
+    {"text": "Grey. I've gone grey. Don't look at me. Don't look at {neighbour} either, they're greyer.", "when": {"child": false, "cold": true}},
+    {"text": "If you were kind you'd find me a coal. Just one. I'd haggle, but I'm too cold to haggle.", "when": {"child": false, "cold": true}},
+    {"text": "*crust creaks* Don't haggle with me now. I'd give it all away for one warm seat.", "when": {"child": false, "cold": true}},
+    {"text": "Too long away from the fire. My seams are dark and my temper's darker.", "when": {"child": false, "cold": true}},
+    {"text": "*shiver* Stand closer. You're no fire, but you block the chill.", "when": {"child": false, "cold": true}, "replies": [
+      {"ask": "Of course. Here.", "text": "Mm. Thank you. That's the kindest thing a shore-foot's done for me in ages.", "points": 1},
+      {"ask": "Go warm up, then.", "text": "Go warm up, it says. As if I hadn't thought of that. Hmph.", "points": -1}
+    ]},
+
+    {"text": "I can hold my hand in the hearth longer than anyone. Longer than {neighbour}! They wouldn't try, so I win.", "when": {"child": true, "cold": false}},
+    {"text": "When I'm big I'll be a Ferrier and carry you anywhere. For free! Well. For a little.", "when": {"child": true, "cold": false}},
+    {"text": "See the saddled strider in the pen? I named her Wobbles. Don't tell the Ferrier, they call her something boring.", "when": {"child": true, "cold": false}},
+    {"text": "My mother says I run hot. That means I'm good at being hot. I'm the best at it.", "when": {"child": true, "cold": false}},
+    {"text": "*brrr* I went to look at the shore and now I'm grey. Running hot doesn't help when you cool twice as fast.", "when": {"child": true, "cold": true}},
+    {"text": "M-my nubs are cold. All three. Can you carry me to the hearth? No? Then walk slow so I can keep up.", "when": {"child": true, "cold": true}},
+    {"text": "Guess what? {neighbour} said if I wandered off the deck I'd come back grey. They were right. Don't tell!", "when": {"child": true, "cold": true}}
+  ],
+
+  "topics": [
+    {"id": "who_you_are", "ask": "Who are you?", "when": {"child": false}, "lines": [
+      "I'm {name} {epithet}. {name} is my own; the rest belongs to the Mooring. Everyone here is of {chain}, and proud of it.",
+      "{name}, of {chain}, before you ask. Out here a name's half yours and half your Mooring's, like a bridge between two decks.",
+      "A {job}, a haggler, a hearth-sitter, and {name} {epithet}. In that order, mostly.",
+      {"text": "Our names come from the fire: ash words, rock words, the sound lava makes when it bubbles. What's yours from?", "replies": [
+        {"ask": "Mine's from my family.", "text": "Family! Good. Then you're half your kin, same as us. We'll get on.", "points": 1},
+        {"ask": "I'd rather not say.", "text": "A careful one. Fine. I'll call you shore-foot until you warm up.", "points": 0}
+      ]},
+      {"text": "{name}. Cold. Ask me again by the fire.", "when": {"cold": true}}
+    ]},
+
+    {"id": "the_mooring", "ask": "Tell me about this place.", "when": {"child": false}, "lines": [
+      {"text": "This is {village}. Decks on basalt pillars, two blocks over the sea, every pillar rooted in the sea floor. Wade between them, or take the chain bridges.", "when": {"place": "village"}},
+      {"text": "The hearth's in the middle: a lava pool in a magma ring, seats all round, chain posts with lanterns. Every bridge leads to it. That's on purpose.", "when": {"place": "village"}},
+      {"text": "The domed huts are homes, with doorways three blocks high because we hate ducking. The strider pen's past the decks, the ferry dock at the end of the long pier.", "when": {"place": "village"}},
+      {"text": "If there's shore near enough, we build a causeway to it. For guests. And trade. Mostly trade.", "when": {"place": "village"}, "replies": [
+        {"ask": "A kind thing to build.", "text": "Kind and clever. Guests bring coal, coal makes us kind. It goes round.", "points": 1},
+        {"ask": "And for raiders?", "text": "*grins* That's what the chain bridges are for. Pull them up, throw a little magma. Raiders cool off quickly.", "points": 0}
+      ]},
+      {"text": "No Mooring for me just now. I wade where the sea's warm and rest where the lava's deep. I'll find a hearth again soon enough.", "when": {"place": "wild"}},
+      {"text": "A Mooring's a hearth with decks round it, and I'm on the wrong deck. Too far. Ask me later.", "when": {"cold": true}}
+    ]},
+
+    {"id": "the_cold", "ask": "Are you always cold?", "when": {"child": false}, "lines": [
+      "Always. Lava's the only place we're properly warm. Step off it and the heat leaks out of us like smoke from a vent.",
+      "When we cool, our seams go dark and our crust goes the colour of old ash. Then we get slow. Then grumpy. Then grumpier.",
+      {"text": "Cold's the worst thing there is. Worse than Piglins. Worse than a bad haggle. You don't feel it like we do, do you?", "replies": [
+        {"ask": "Not like you do.", "text": "Lucky. Or unlucky. You'll never know how good a hearth feels, then.", "points": 0},
+        {"ask": "I've seen real cold. Snow.", "text": "*shudders* Don't. I don't want to know what snow is. I want to forget you said it.", "points": -1},
+        {"ask": "I'll bring you coal.", "text": "Now that's a friend talking. Bring it, and I'll take back half the rude things I've said about shore-feet.", "points": 2}
+      ]},
+      {"text": "*shiver* Why am I cold? Because I'm here talking to you instead of sitting in the hearth. Make it quick.", "when": {"cold": true}},
+      {"text": "Cold. Yes. Thank you for noticing. Now do something about it.", "when": {"cold": true}}
+    ]},
+
+    {"id": "walking_lava", "ask": "How do you walk on lava?", "when": {"child": false}, "lines": [
+      "Same way you walk on stone, only nicer. Long legs, bent back, slow steps. Lava's thick. It holds you up if you let it.",
+      "The trick is not to hurry. Hurry on lava and you splash, and splashing wastes good heat.",
+      "You can't, before you ask. Don't try. We'd have to fish you out, and there'd be nothing left to fish.",
+      {"text": "When I was small, my mother walked me out into the deep lava and let go. I floated. I cried, then I laughed. That's how we all learn.", "replies": [
+        {"ask": "That sounds wonderful.", "text": "It was. Warmest I've ever been. Every one of us remembers their first wade.", "points": 1},
+        {"ask": "In water we'd drown.", "text": "*seams flicker* Why would you go in water? Why would anyone? Never mind. Don't tell me.", "points": -1}
+      ]},
+      {"text": "Lava's warm. Lava's lovely. I'm standing on cold stone instead. You see my problem.", "when": {"cold": true}}
+    ]},
+
+    {"id": "striders", "ask": "What are striders to you?", "when": {"child": false}, "lines": [
+      "Cattle and boats both. They carry us, they carry our goods, and they hardly ever complain.",
+      "We keep them in a pen past the decks: open lava with a ring walk round it. One's always saddled, in case someone needs to be somewhere.",
+      "They go purple and shivery off the lava, same as us. You can't help loving a creature that suffers the way you do.",
+      "Warped fungus on a stick and they'll go where you point. The fungus comes from the Weft's forest, which the Weft don't like. Not our fault striders have tastes.",
+      {"text": "A strider's the best friend a Magmari has, after the hearth. Have you ever ridden one?", "replies": [
+        {"ask": "Not yet. I'd like to.", "text": "Then find a Ferrier and haggle hard. They love it.", "points": 1},
+        {"ask": "Are they good to eat?", "text": "*crest flares* Eat? We eat with them, not them! Shame on you.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "your_work", "ask": "What work do you do?", "when": {"child": false}, "lines": [
+      {"text": "I'm the Ferrier. Strider barges across the sea, anywhere the lava goes. Outsiders only. Never one of the other four peoples. Never again.", "when": {"job": "Ferrier"}},
+      {"text": "Every fare's haggled. A shore-foot who pays my first price makes me sad. Go on, try me.", "when": {"job": "Ferrier"}, "replies": [
+        {"ask": "Half your first price.", "text": "Half! Cheek. I like it. Three quarters, and we'll shake on it. Not hands. Too hot for you.", "points": 1},
+        {"ask": "Your price is fine.", "text": "Fine? It's never fine. It's an opening. You've hurt my feelings a little.", "points": -1}
+      ]},
+      {"text": "Out on the open sea it's just me, the strider and the sky-mourners crying overhead. Keep your head low and your chain short.", "when": {"job": "Ferrier"}},
+      {"text": "I keep the hearth. The lava pool stays full, the magma ring stays bright, and whoever's coldest sits nearest. That's the whole job, and it's everything.", "when": {"job": "Hearthkeeper"}},
+      {"text": "A hearth can't go dark. Not ever. When the Moorings burned, the Hearthkeepers carried the fire out across the sea in their bare hands.", "when": {"job": "Hearthkeeper"}},
+      {"text": "Guests are my work too. Anyone who comes in cold gets a seat and a hot stone to hold before anyone asks their business.", "when": {"job": "Hearthkeeper"}},
+      {"text": "Lava-angler. I drop a chain line into the deep and see what bites. Little magma cubes, mostly. They render down into good cream.", "when": {"job": "Lava-angler"}},
+      {"text": "Half of what I pull up is old chain from the Moorings that burned. I keep every link. Somebody forged it.", "when": {"job": "Lava-angler"}},
+      {"text": "Best catch I ever had was a lantern, still lit, up from the sea floor. Nobody believes me. Do you?", "when": {"job": "Lava-angler"}, "replies": [
+        {"ask": "I believe you.", "text": "Ha! A believer. Sit down, then. I'll tell you about the anchor next.", "points": 1},
+        {"ask": "Lanterns don't stay lit.", "text": "That's what everyone says. That's why it was the best catch.", "points": 0}
+      ]},
+      {"text": "Chainwright. I forge the chain for the bridges, the posts, the sashes and the loops. Every link I make, I test with my own weight.", "when": {"job": "Chainwright"}},
+      {"text": "Rope burns. Vine burns. Iron just glows a little and keeps holding. That's why the whole Mooring hangs on my work.", "when": {"job": "Chainwright"}},
+      {"text": "I cut quartz from the shore cliffs. White, hard, never melts, never rots. The best thing there is for haggling.", "when": {"job": "Quartzcutter"}},
+      {"text": "Quartzcutting is cold work, out on the shore, far from the sea. I come back grey every time. That's why my prices are what they are.", "when": {"job": "Quartzcutter"}},
+      {"text": "I chart the sea: where the lava runs deep, where the pillars stand, where the sky-mourners like to drift. Scratched on basalt with a quartz point.", "when": {"job": "Chartmaker"}},
+      {"text": "Paper burns. Hide burns. Basalt keeps. Some of my charts are older than my grandmother, and show Moorings that aren't there any more.", "when": {"job": "Chartmaker"}}
+    ]},
+
+    {"id": "chainwrighting", "ask": "Why chains?", "when": {"child": false}, "lines": [
+      "Because chain holds. Bridges, lanterns, strider tethers, our sashes and loops. Everything here that matters hangs on a chain.",
+      "Every Mooring has a chain name, and ours is {chain}. When one of us is born, a link is forged and hung on the hearth post.",
+      {"text": "A chain's only as strong as its worst link. So we don't hide our worst links. We fix them.", "replies": [
+        {"ask": "That's wise.", "text": "Chainwright talk, but it holds for kin as well as iron.", "points": 1},
+        {"ask": "Sounds like hard work.", "text": "It is! Hard work, fair pay. Speaking of pay...", "points": 0}
+      ]},
+      {"text": "Keep coming back and in time we might forge a link for you. Don't ask the price. It isn't for sale.", "when": {"level": [3, 4]}},
+      {"text": "There's a link for you on our hearth post now. You're of {chain}, kin. A chain doesn't let go.", "when": {"level": [5, 5]}}
+    ]},
+
+    {"id": "sky_mourners", "ask": "What are sky-mourners?", "when": {"child": false}, "lines": [
+      "The big pale ones that drift and cry. They saw the Wither, long ago, and they never stopped crying. We keep our heads down when they pass.",
+      "Don't hate them. They're sad, that's all. Sad and loud, and they throw fire. The fire we can take. The crying's worse.",
+      "Never stand under one. A tear is a little bit of water, and water puts our glow out wherever it lands.",
+      {"text": "Some say the sky-mourners were Ghastkin once, who grieved too long and forgot their hands. Sad, if it's true.", "replies": [
+        {"ask": "Poor things.", "text": "Yes. Poor things. That's the right thing to say, and you said it.", "points": 1},
+        {"ask": "I could ask the Ghastkin.", "text": "Ask from far off, then. And don't bring any of their tears back here.", "points": 0}
+      ]}
+    ]},
+
+    {"id": "war_of_hoard", "ask": "The War of the Hoard?", "when": {"child": false, "level": [2, 5]}, "lines": [
+      "The Piglins wanted the gold under the valleys, and the valleys are a long way over the sea. Somebody had to carry them. We were paid to.",
+      {"text": "We ferried. Barge after barge of Piglins and axes, and the fares were very good. Don't look at me like that.", "replies": [
+        {"ask": "You carried war-bands.", "text": "*seams dim* We carried fares. I know what they were. I don't need a shore-foot to tell me.", "points": -2},
+        {"ask": "You couldn't have known.", "text": "We knew. We just never thought it would come back across the sea to us. Thank you for saying it, though.", "points": 1},
+        {"ask": "That was long ago.", "text": "Long ago. Yes. The lava forgets. Magmari don't, quite.", "points": 1}
+      ]},
+      "They paid in what wouldn't melt on us: chain, quartz, coal. Piglins hate paying in anything but gold. They paid anyway. They wanted that crossing.",
+      {"text": "The Withren blame us for carrying the Piglins. We blame them for the Wither. Neither side will ever stop, so we just don't talk.", "when": {"level": [3, 5]}},
+      {"text": "We never ferry the other peoples now. Not Piglins, not Withren, not Weft, not Ghastkin. Shore-feet like you, yes. Never them again.", "when": {"level": [3, 5]}}
+    ]},
+
+    {"id": "the_burning", "ask": "What burned the Moorings?", "when": {"child": false, "level": [3, 5]}, "lines": [
+      "The Withren made a Wither. The Last Answer, they call it. It burned the bastions, then it came for every Mooring that had carried the Piglins over.",
+      "My grandmother's grandmother stood in the deep lava and watched our decks go up. The chains glowed white and held to the very last.",
+      "We built again on the old pillars wherever the basalt was sound. Under these decks there's stone older than the burning.",
+      {"text": "Your kind make Withers now, they say. Three skulls of the Hollowed and up it comes. Is that true, shore-foot?", "replies": [
+        {"ask": "Some do. Not me.", "text": "Not you. Good. Keep it that way, and keep it far from any sea of ours.", "points": 1},
+        {"ask": "Maybe, some time.", "text": "*crest goes dark* Then do it nowhere near the lava. We've burned once already.", "points": -2}
+      ]}
+    ]},
+
+    {"id": "piglins", "ask": "What about the Piglins?", "when": {"child": false}, "lines": [
+      "Loud, greedy, and dressed in the one thing that melts on our skin. You can't shake hands with a Piglin. Not even if you wanted to.",
+      "They raid our pens for striders and ride them off, fat with fungus. We pull the bridges up and throw magma, and they go home shouting.",
+      "Gold is everything to them: rank, savings, handshake. To us it's a burn waiting to happen. You can guess how talks go.",
+      {"text": "You wear gold sometimes, don't you? To talk to them. I can smell it on you.", "replies": [
+        {"ask": "Only to get by.", "text": "Only to get by. Fine. Keep it off my deck, and off my skin.", "points": 0},
+        {"ask": "Never near you.", "text": "That's manners. Thank you. My skin thanks you too.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "withren", "ask": "What about the Withren?", "when": {"child": false}, "lines": [
+      "Grey folk with Wither heads. Polite, quiet, very sure of themselves. They keep the names of their dead, and they made the thing that burned us.",
+      "They say we carried the Piglins to their valleys, so we had it coming. We say they made the Wither, so they can keep their sayings.",
+      "If Withren raiders come over the causeway, we pull up the chain bridges and throw a little magma. The sea does the rest of the talking.",
+      "Their fires burn blue and cold. Soul fire. How can a fire be cold? Only a Withren would want one."
+    ]},
+
+    {"id": "weft", "ask": "What about the Weft?", "when": {"child": false}, "lines": [
+      "Four-armed weavers in the blue forest. Very smug about the arms. They string nets everywhere and click at you while they think.",
+      "We fetch warped fungus from their forest for the striders. They call it raiding. We call it gathering. They drop nets on us either way.",
+      {"text": "Their whole forest is fuel, and they won't sell a single stalk. Can you imagine? All that heat, just standing about.", "replies": [
+        {"ask": "It's their home.", "text": "*sigh* Yes, yes. It's their home. It's still a lot of fuel.", "points": 0},
+        {"ask": "I'll haggle for you.", "text": "Would you? A shore-foot haggling with the Weft for us. Now that's a story for the hearth.", "points": 1}
+      ]},
+      "They weave their history into one long cloth. Cloth! In the Nether! One stray spark and there goes everything that ever happened."
+    ]},
+
+    {"id": "ghastkin", "ask": "What about the Ghastkin?", "when": {"child": false}, "lines": [
+      "Weepers, out in the Deltas. Soft voices, sad eyes, and their whole village sits round a pool of water. Water. On purpose.",
+      "A Ghastkin tear puts out a Magmari's glow wherever it lands. Just one drop, and you've a dark spot that takes ages to come back.",
+      "They're not cruel, I'll grant them that. They just cry, and crying near us is like throwing ash on a hearth.",
+      {"text": "I've a dark patch on my shoulder from a Ghastkin tear. I don't show it to many. There. Don't touch it.", "when": {"level": [2, 5]}, "replies": [
+        {"ask": "Does it hurt?", "text": "Not hurt. Cold. A cold that won't leave. Thank you for asking gently.", "points": 1},
+        {"ask": "It's just a bit of water.", "text": "*steps back* Just water. Just water, it says. Go and stand somewhere else.", "points": -2}
+      ]}
+    ]},
+
+    {"id": "child_crest", "ask": "What are those bumps?", "when": {"child": true}, "lines": [
+      "My crest nubs! I've got three. When I'm big they'll be tall stone chimneys, and every one will puff.",
+      "Press one. Go on. See? Hot! I'm hotter than the grown-ups. They say I'll cool down when I'm older. Boring.",
+      "I heard {neighbour} say I'll grow a fourth nub if I eat all my magma cream. I don't believe it, but I'm eating it anyway.",
+      {"text": "They're grey now. Don't look! Little ones go grey quick. I'll be bright again by the hearth.", "when": {"cold": true}}
+    ]},
+
+    {"id": "child_games", "ask": "What do you play?", "when": {"child": true}, "lines": [
+      "Gap-hopping! You jump between the decks without touching the lava. Grown-ups hate it. I don't know why, lava's nice.",
+      "Ember-catch. You throw a hot stone and the other one catches it before it cools. I always win. I've got hot hands.",
+      "Strider-whisper. You whisper to a strider and see if it does what you say. It never does. That's the game.",
+      {"text": "Want to play? You can't hop gaps, you'd fall in. But you can watch. Watching's a job too.", "replies": [
+        {"ask": "I'll watch you.", "text": "Yay! Watch this! ...Did you see? Did you see that?", "points": 1},
+        {"ask": "Maybe later.", "text": "That's what everyone says. Grown-ups and shore-feet both.", "points": 0}
+      ]}
+    ]},
+
+    {"id": "child_staring", "ask": "Why are you staring?", "when": {"child": true}, "lines": [
+      "You don't glow anywhere! Not your arms, not your head. Where do you keep your fire? Inside? Deep inside?",
+      "Your feet are so small and flat. Can you wade? Can you float? No? What do you do when you want to be warm?",
+      {"text": "Are you cold all the time? Like grown-ups when they're far from the hearth?", "replies": [
+        {"ask": "I'm warm inside.", "text": "Inside! Like a hut with the door shut! That's clever.", "points": 1},
+        {"ask": "I come from the cold.", "text": "*eyes go wide* On purpose? You live in the cold on purpose? That's the scariest thing I ever heard.", "points": -1}
+      ]},
+      {"text": "You're not shivering and I am. That's not fair. Why aren't you shivering?", "when": {"cold": true}}
+    ]},
+
+    {"id": "child_secret", "ask": "Got a secret?", "when": {"child": true, "level": [2, 5]}, "lines": [
+      "Lean down. Closer. There's a gap under the strider pen walk where it's extra warm. That's my hiding place. Now it's yours too.",
+      "I touched a sky-mourner's tear once. It made a grey spot on my finger for ages. It went away! Don't tell anyone.",
+      "I've got a quartz chip shaped like a strider. I'm going to haggle it for the biggest blaze rod ever. Don't tell {neighbour}, they'll want it."
+    ]}
+  ],
+
+  "gift": {
+    "loved": [
+      "minecraft:magma_block", "minecraft:blaze_rod", "minecraft:blaze_powder", "minecraft:fire_charge",
+      "minecraft:coal", "minecraft:charcoal", "minecraft:coal_block", "minecraft:lava_bucket", "minecraft:campfire"
+    ],
+    "liked": [
+      "minecraft:warped_fungus", "minecraft:warped_fungus_on_a_stick", "minecraft:quartz", "minecraft:quartz_block",
+      "#minecraft:chains", "minecraft:iron_ingot", "minecraft:magma_cream", "minecraft:basalt", "minecraft:lantern", "minecraft:saddle"
+    ],
+    "disliked": [
+      "minecraft:snowball", "minecraft:snow_block", "minecraft:snow", "minecraft:ice", "minecraft:packed_ice", "minecraft:blue_ice",
+      "minecraft:powder_snow_bucket", "minecraft:water_bucket", "minecraft:ghast_tear",
+      "minecraft:gold_ingot", "minecraft:gold_nugget", "#minecraft:piglin_loved"
+    ],
+    "lines": {
+      "loved": [
+        {"text": "*crest flares bright* Oh, that's the good stuff! You've warmed me right up to the vents. Come back often.", "when": {"child": false}},
+        {"text": "For me? Heat you can hold! I'm going to sit with it in my lap and say nothing for a while.", "when": {"child": false}},
+        {"text": "That's a proper gift, the kind you give kin. I won't forget it, and neither will the hearth.", "when": {"child": false}},
+        {"text": "Look at my seams! Brighter already. Sit, sit. Anything you want to know, ask.", "when": {"child": false}},
+        {"text": "Warm. Warm! *seams flicker back on* Oh, you've no idea. You've saved my temper, and maybe my toes.", "when": {"child": false, "cold": true}},
+        {"text": "Whoa! Is it for me? Really mine? I'm going to hold it till I glow like a grown-up!", "when": {"child": true}}
+      ],
+      "liked": [
+        {"text": "Now that's useful. Not warm, but useful. Thank you!", "when": {"child": false}},
+        {"text": "Good quality, too. I'd have paid you two links for this. Don't tell anyone I said that.", "when": {"child": false}},
+        {"text": "Kind of you. This'll go to good use on the decks, I promise.", "when": {"child": false}},
+        {"text": "A fair gift. You've manners, for someone who doesn't glow.", "when": {"child": false}},
+        {"text": "Ooh. I'll put it with my shiny things. I've got a quartz shaped like a strider!", "when": {"child": true}}
+      ],
+      "neutral": [
+        {"text": "Hm. Not sure what I'll do with it, but it's the thought. The thought's warm, at least.", "when": {"child": false}},
+        {"text": "A gift! An odd one. I'll put it somewhere, find it later and wonder.", "when": {"child": false}},
+        {"text": "Thank you, I suppose. If it burned, I'd know what to do with it.", "when": {"child": false}},
+        {"text": "Kindly meant. I'll trade it on to {neighbour}, they'll take anything.", "when": {"child": false}},
+        {"text": "What is it? Does it do anything? Does it get hot? ...Oh. Thanks anyway!", "when": {"child": true}}
+      ],
+      "disliked": [
+        {"text": "*steps back* Get that away from my seams! Do you want me grey? Is that what this is?", "when": {"child": false}},
+        {"text": "No. No, no. Not near the hearth. Take it back where it came from, far from here.", "when": {"child": false}},
+        {"text": "That's a cruel sort of gift, shore-foot. I'll suppose you didn't know. Once.", "when": {"child": false}},
+        {"text": "Gold, cold or wet, it's all the same to my skin: bad. Keep it.", "when": {"child": false}},
+        {"text": "*shiver* I'm cold already and you hand me that? Unbelievable.", "when": {"child": false, "cold": true}},
+        {"text": "I'm telling! That's a cold thing! You don't give little ones cold things!", "when": {"child": true}}
+      ],
+      "again": [
+        {"text": "Another one? You'll spoil me. Save it for your next visit, then I can look surprised.", "when": {"child": false}},
+        {"text": "Enough gifts for now, friend. Too many and I'll feel I owe you, and I hate owing.", "when": {"child": false}},
+        {"text": "Hold on to it. A guest who gives twice in one sitting is a guest who's bad at haggling.", "when": {"child": false}},
+        {"text": "You already gave me something! Give this one to someone else. Give it to {neighbour}!", "when": {"child": true}}
+      ],
+      "empty": [
+        {"text": "Your hands are empty, shore-foot. Was that a handshake? We don't do those. Too hot for you.", "when": {"child": false}},
+        {"text": "Nothing? Ah, the oldest haggle there is. Offer nothing, see what I say. I say: nothing back.", "when": {"child": false}},
+        {"text": "An empty hand. Well, at least it's not holding gold.", "when": {"child": false}},
+        {"text": "There's nothing in your hand! Is it invisible? Is it an invisible hot thing?", "when": {"child": true}}
+      ]
+    }
+  },
+
+  "levelup": [
+    {"text": "You've come back enough that I'll stop calling you stranger. Dock guest, then. Three links of chain: one for coming, one for staying, one for coming back.", "when": {"level": [1, 1], "child": false}, "reward": {"item": "minecraft:iron_chain", "count": 3}},
+    {"text": "Hearth guest! That means you sit inside the ring now, not at the edge. Take some magma cream. It keeps a little warmth for later.", "when": {"level": [2, 2], "child": false}, "reward": {"item": "minecraft:magma_cream", "count": 4}},
+    {"text": "Now we haggle as equals. Fair haggler, that's you. Take this fungus on a stick. Any strider on the sea will follow it.", "when": {"level": [3, 3], "child": false}, "reward": {"item": "minecraft:warped_fungus_on_a_stick", "count": 1}},
+    {"text": "Ember-friend. I don't say that to many. Take a saddle from our pen. Any strider will carry you, and any Ferrier will know you're ours.", "when": {"level": [4, 4], "child": false}, "reward": {"item": "minecraft:saddle", "count": 1}},
+    {"text": "We've hung a link for you on the hearth post. You're of {chain} now, chain-kin. And this chain shirt was forged for you. Wear it near our fires.", "when": {"level": [5, 5], "child": false}, "reward": {"item": "minecraft:chainmail_chestplate", "count": 1}},
+    {"text": "You're my friend now! That's the rule. I just made it.", "when": {"level": [1, 1], "child": true}},
+    {"text": "Here, take my second-best shiny. It's quartz. I'm keeping the best one.", "when": {"level": [2, 2], "child": true}, "reward": {"item": "minecraft:quartz", "count": 1}},
+    {"text": "I told everyone you're my best shore-foot! You're my only one, but still the best.", "when": {"level": [3, 3], "child": true}},
+    {"text": "Hold out your hand. Here's a magma cream. I saved it for you. I only licked it once.", "when": {"level": [4, 4], "child": true}, "reward": {"item": "minecraft:magma_cream", "count": 1}},
+    {"text": "When I'm big and forge links, the first one's for you. I made you one already, for practice. It's a bit bent.", "when": {"level": [5, 5], "child": true}, "reward": {"item": "minecraft:iron_chain", "count": 1}}
+  ],
+
+  "farewell": [
+    {"text": "Keep your glow, shore-foot. Well. Find one, then keep it.", "when": {"child": false, "cold": false}},
+    {"text": "Mind the edge of the deck. The sea's lovely, but it doesn't give things back.", "when": {"child": false, "cold": false}},
+    {"text": "Go warm, come back warmer. And bring coal, if you're asking what I'd like.", "when": {"child": false, "cold": false}},
+    {"text": "Off you go. I'll tell {neighbour} you said hello. You didn't, but it's polite.", "when": {"child": false, "cold": false}},
+    {"text": "Safe crossing. If a sky-mourner cries over you, keep your head down and your feet moving.", "when": {"child": false, "cold": false}},
+    {"text": "Don't be long away, friend. The hearth notices who's missing.", "when": {"child": false, "cold": false, "level": [3, 5]}},
+    {"text": "The barge is here whenever you need it. The fare's always open to haggling. Always.", "when": {"job": "Ferrier", "cold": false}},
+    {"text": "*shiver* Yes. Go. I'm going too. To the fire.", "when": {"child": false, "cold": true}},
+    {"text": "Bye. Cold. Bye.", "when": {"child": false, "cold": true}},
+    {"text": "Go on, then. If you pass the hearth, tell it I'm coming.", "when": {"child": false, "cold": true}},
+    {"text": "Bye! Come back and watch me hop gaps! Don't tell my mother!", "when": {"child": true, "cold": false}},
+    {"text": "Bye bye, shore-foot! Stay warm! Try, anyway!", "when": {"child": true, "cold": false}},
+    {"text": "B-bye. I'm going to sit in the hearth now. Right in it.", "when": {"child": true, "cold": true}}
+  ],
+
+  "refuse": [
+    {"text": "*wades into the lava* Strike a host on their own deck? The Mooring will remember this.", "when": {"state": "angry"}},
+    {"text": "No talk. Not with you. I'll be out in the deep where you can't follow.", "when": {"state": "angry"}},
+    {"text": "*seams flare* You hit me. The lava's mine, and you can't follow. The Mooring remembers.", "when": {"state": "angry"}},
+    {"text": "Every one of us on these decks will know your face now. Go back to the cold you came from.", "when": {"state": "angry", "child": false}},
+    {"text": "Cold and hit. Wonderful. I'm going into the lava, and you're not.", "when": {"state": "angry", "cold": true, "child": false}},
+    {"text": "No crossing for you. Not now. Maybe not ever. The strider remembers too.", "when": {"state": "angry", "job": "Ferrier"}},
+    {"text": "Ow! *runs off into the lava* I'm telling! I'm telling everyone!", "when": {"state": "angry", "child": true}},
+    {"text": "You're mean! I'm going where you can't come! The lava's mine!", "when": {"state": "angry", "child": true}}
+  ]
+}

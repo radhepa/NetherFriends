@@ -1,0 +1,396 @@
+{
+  "levels": ["Stranger in the smoke", "Soft of foot", "Under the eave", "Lantern-kin", "Known by your step", "Cried for"],
+
+  "greet": [
+    {"text": "Oh. You came up quietly. Most things on two legs come up shouting. I'm {name}. Stay low, would you? The others are watching from the vines.", "when": {"first": true, "child": false}},
+    {"text": "You crept. Nobody creeps up on a Ghastkin to hurt one; they just shoot. So you must want something else. I'm {name}, {epithet}.", "when": {"first": true, "child": false}},
+    {"text": "Nobody finds me out here. Well. Nobody quiet. I'm {name}. Mind the ash, it remembers footprints longer than I do.", "when": {"first": true, "child": false, "place": "wild"}},
+    {"text": "You're new! And your eyes are open, like mine. I'm {name}. Why are you walking all bent over like that?", "when": {"first": true, "child": true}},
+    {"text": "Hello! Hello. Mama says outsiders are loud, but you're not loud at all. I'm {name}. Do you want to see me float?", "when": {"first": true, "child": true}},
+
+    {"text": "Slowly. That's it. You keep low, and I'll stay low. What is it you want?", "when": {"level": [0, 0], "child": false}},
+    {"text": "Still crouching. Good. The last one who stood up straight to talk to me is still looking for his hat.", "when": {"level": [0, 1], "child": false}},
+    {"text": "Ah, the quiet one again. I heard you coming. Well, no, I didn't. That's rather the point.", "when": {"level": [1, 2], "child": false}},
+    {"text": "Soft-foot. Sit under the eave a while. The smoke is kinder up here than it looks.", "when": {"level": [2, 3], "child": false}},
+    {"text": "Lantern-kin. I lit a candle in my pod and thought, that one would like this light. And here you are, liking it.", "when": {"level": [3, 4], "child": false}},
+    {"text": "I knew it was you before I turned. Nobody else walks as if they're apologising to the ground.", "when": {"level": [4, 5], "child": false}},
+    {"text": "There you are. I keep a small space in my chest for you. Not for crying. Just for keeping.", "when": {"level": [5, 5], "child": false}},
+    {"text": "{player}. I say your name carefully, you know. Like a vial I don't want to spill.", "when": {"level": [5, 5], "child": false}},
+
+    {"text": "Hello. I'm {name} now. I was {former} once, but that name was cried away. You'll have to make do with me.", "when": {"child": false}},
+    {"text": "Forgive the veil. It isn't for hiding. Well. A little for hiding. Hello.", "when": {"gender": "female", "child": false}},
+    {"text": "Let me push my hood back. There. Now you can see the face that's glad you came quietly.", "when": {"gender": "male", "child": false}},
+    {"text": "Out here it's only me and the smoke, and the smoke never answers. You might. Hello.", "when": {"place": "wild", "child": false}},
+    {"text": "You're carrying a tear. Not one of ours, I think. Who cried it? No. Never mind. It's rude to ask.", "when": {"carrying": "minecraft:ghast_tear", "child": false}},
+    {"text": "Something in your pack smells of fire charges. Keep it in there, please. Keep it very in there.", "when": {"carrying": "minecraft:fire_charge"}},
+
+    {"text": "Careful, I've tears on my hands. If you're hurt, say so. If you're only sad, say that too, though I can't help with that kind.", "when": {"job": "Tearkeeper"}},
+    {"text": "Come in, mind the vials. Every one of those was somebody's goodbye. Now it's a bandage.", "when": {"job": "Tearkeeper"}},
+    {"text": "Hush, I was humming. You'll want to know the words. There aren't any. That's how we keep them.", "when": {"job": "Songwarden"}},
+    {"text": "You walk in time with something. Not my song. I'll teach you mine, if you can stay quiet long enough.", "when": {"job": "Songwarden"}},
+    {"text": "Hold still, there's a thread loose on your sleeve. No? Just me, then. I see loose threads everywhere.", "when": {"job": "Mender"}},
+    {"text": "I'm stitching a veil. Talk if you like, only don't make me laugh. Last time I sewed my own hem to a chain.", "when": {"job": "Mender"}},
+    {"text": "Mind where you step, I've just swept there. Well. Step anyway. The ash comes back. It always comes back.", "when": {"job": "Ashsweeper"}},
+    {"text": "Oh, footprints. Yours are the softest I've ever had to sweep. Nearly a pleasure.", "when": {"job": "Ashsweeper"}},
+    {"text": "Don't stand up. There's a ghast out over the delta, and it might know your shape. Talk to me low.", "when": {"job": "Drift-watcher"}},
+    {"text": "I saw you coming from the gallery. I watched you the whole way. You walked well.", "when": {"job": "Drift-watcher", "place": "village"}},
+
+    {"text": "Why do you always walk squished? Is your back sad? I'm not scared of you. I'm not scared of anything yet.", "when": {"child": true}},
+    {"text": "Look, look! I can float higher than {neighbour} now. Almost. Don't tell.", "when": {"child": true}},
+    {"text": "Your eyes are open like mine! The grown ones keep theirs shut. I think they're only pretending to sleep.", "when": {"child": true}},
+    {"text": "Hello again! I counted your steps. No noise, no noise, then one big crunch. Was that the ash?", "when": {"child": true, "level": [1, 5]}},
+    {"text": "You came back! I saved you a spot on the gallery. It's the spot with the best smoke.", "when": {"child": true, "level": [2, 5]}},
+    {"text": "It's you! I told {neighbour} you were my friend, and they said friends have to float. You can't. I said that's fine.", "when": {"child": true, "level": [3, 5]}},
+
+    {"text": "You came up quietly. Thank you. Most of the Nether only knows how to arrive.", "when": {"child": false}},
+    {"text": "Low and slow, like smoke going home. Good. What can I do for you?", "when": {"child": false}},
+    {"text": "Shh. Not you. The vines. They gossip. Hello.", "when": {"child": false}},
+    {"text": "Soft steps. I like soft steps. My ears are older than my face.", "when": {"child": false}}
+  ],
+
+  "chatter": [
+    {"text": "I watched {neighbour} cry at the pool earlier. One tear, very properly done. Then they asked me what was for supper. That's how you know it worked.", "when": {"child": false}},
+    {"text": "Have you heard {neighbour} practising the high note of the Weeping Song? The basalt keeps answering. I think the basalt is winning.", "when": {"child": false}},
+    {"text": "Don't tell {neighbour}, but the roots in their hanging garden are mine. I swapped the pots. They've been praising my roots to my face for ages.", "when": {"child": false}},
+    {"text": "Have you noticed {neighbour} has kept the same name for a long while now? That's a good sign. Or a quiet one. Mostly the same thing.", "when": {"child": false}},
+    {"text": "Poor {neighbour} swears a ghast waved at them. Ghasts don't have hands to wave with. I didn't say so.", "when": {"child": false}},
+    {"text": "If {neighbour} asks, you never saw me float up to the top pod. Grown Ghastkin don't do that. I'm grown. I did that.", "when": {"child": false}},
+    {"text": "Somewhere {neighbour} keeps a chest of tear beads, one from every name they let go. Not the names. Just the beads. It's a lovely chest. Heavy.", "when": {"child": false}},
+    {"text": "Once {neighbour} tried to cry on purpose, to see if it worked. It didn't. You can't cry for nobody. They got the hiccups instead.", "when": {"child": false}},
+    {"text": "I mended a veil for {neighbour} and put one crooked stitch in the corner. Just so I can find it again. They'll never notice.", "when": {"child": false}},
+
+    {"text": "Would you like to hear the Weeping Song? Just the first part. The rest isn't for outsiders, and the end isn't for anyone.", "when": {"child": false}, "replies": [
+      {"ask": "Please. Quietly.", "text": "*a soft falling hum, three notes, and a fourth that never comes* ...There. That's as far as it goes.", "points": 2},
+      {"ask": "Sing it loud!", "text": "Loud? It isn't that kind of song. Nothing here is that kind of song.", "points": -1}
+    ]},
+    {"text": "Can I tell you something odd? Sometimes I miss people I can't remember. There's a shape where they were, like a pod with the lantern taken out.", "when": {"child": false}, "replies": [
+      {"ask": "That sounds lonely.", "text": "Mm. A little. But a shape is lighter to carry than a whole person. That's the trade.", "points": 1},
+      {"ask": "Then why cry them away?", "text": "Because the other choice drifts over the delta, crying fire. You've seen it.", "points": 0}
+    ]},
+    {"text": "Your armour clinks a little when you crouch. Did you know? It's all right. I've decided to find it charming.", "when": {"child": false}, "replies": [
+      {"ask": "I'll try to be quieter.", "text": "There. Even the trying is quiet. Thank you.", "points": 1},
+      {"ask": "I'll clink if I like.", "text": "Of course you will. And I'll float a little higher. We each have our ways.", "points": -1}
+    ]},
+    {"text": "Have you seen the pool of tears? The only water down here. You could drink it. You'd forget something, and you'd never know what.", "when": {"child": false}, "replies": [
+      {"ask": "I'll leave it be.", "text": "Wise. Most of what's in there was let go on purpose.", "points": 1},
+      {"ask": "Sounds worth the risk.", "text": "*a small smile* That's what {neighbour} said once. Then they forgot where they lived. We walked them home.", "points": 0}
+    ]},
+    {"text": "I could show you how we float. You can't do it, of course. But you can stand very still and look up, and that's half of it.", "when": {"child": false}, "replies": [
+      {"ask": "*look up, very still*", "text": "Yes. Like that. Now you're nearly one of us. Only the drifting is missing.", "points": 2},
+      {"ask": "Can you carry me?", "text": "Carry you? I can barely carry a candle and a feeling at the same time.", "points": 0}
+    ]},
+    {"text": "You've a weapon on you somewhere. I can always tell. It makes the air stand up straighter.", "when": {"child": false}, "replies": [
+      {"ask": "I'll keep it put away.", "text": "Then the air can sit back down. Thank you.", "points": 1},
+      {"ask": "It's for protection.", "text": "So was every crossbow that ever shot one of us out of the smoke. I'm not angry. I'm only counting.", "points": -1}
+    ]},
+    {"text": "Would you cry for me? It's a test. Don't answer too fast.", "when": {"child": false, "level": [1, 5]}, "replies": [
+      {"ask": "Only if I meant it.", "text": "Right answer. A tear has to be for someone, or it's only water.", "points": 2},
+      {"ask": "Sure, right now!", "text": "Oh, please don't. You'd be crying for nobody. That's how the ghasts began.", "points": -1}
+    ]},
+
+    {"text": "We cry once, properly, and then we let it go. People call that cold. Do it properly once and then tell me it's cold.", "when": {"child": false}},
+    {"text": "The smoke is thick over the delta. Good. Piglins can't aim at what they can't see.", "when": {"child": false}},
+    {"text": "I wonder sometimes what my old names would think of me. Then I remember they can't. It's restful.", "when": {"child": false}},
+    {"text": "The lantern in my pod burns blue. Soul fire. It makes everyone look as if they've just been forgiven.", "when": {"child": false}},
+    {"text": "Ghasts cry all the time, you know. That's what happens when you never finish. Like a song stuck on its last note.", "when": {"child": false}},
+    {"text": "I keep a tear vial on my cord. Empty. You keep it empty until somebody needs it, and then it's very full very fast.", "when": {"child": false}},
+    {"text": "Basalt holds warmth a long time. I lean on the pillars when I'm thinking. They never interrupt.", "when": {"child": false}},
+    {"text": "My mother used to say the delta smoke was the roof crying very slowly. Then she... well. She doesn't say it anymore. Do you like the smoke?", "when": {"child": false}},
+    {"text": "When I was {former}, I laughed louder. I think. Somebody told me so. I believe them, mostly.", "when": {"child": false}},
+    {"text": "The ladders on the pillars are for guests. We float. The vines are for the children, who float badly and climb beautifully.", "when": {"child": false, "place": "village"}},
+    {"text": "Don't mind the ghasts overhead. They aren't looking for you. They aren't looking for anything. That's the sad part.", "when": {"child": false}},
+    {"text": "My face looks sad. It isn't, always. The tear tracks are just where it keeps its spares.", "when": {"child": false}},
+    {"text": "The circlet? Tear beads. One for every proper cry. It gets heavier. I tell myself that's a good thing.", "when": {"child": false, "gender": "female"}},
+    {"text": "The hood keeps the ash off. And the stares. Mostly the ash.", "when": {"child": false, "gender": "male"}},
+    {"text": "Every vial in the tear store is labelled with nothing. It's the kindest label there is.", "when": {"job": "Tearkeeper"}},
+    {"text": "There's one up there now, see? Drifting off over the delta. I knew her. Well. Someone I don't remember knew her.", "when": {"job": "Drift-watcher"}},
+    {"text": "Every verse of the Weeping Song was someone. I sing them all, and I couldn't tell you a single name. That's the job.", "when": {"job": "Songwarden"}},
+
+    {"text": "Do you want to know how many ghasts I've counted from the gallery? Eleven! One looked right at me. I waved.", "when": {"child": true}},
+    {"text": "When I'm grown my eyes will close and I'll cry properly. I practise sometimes. Nothing comes out. Mama says that's the right amount.", "when": {"child": true}},
+    {"text": "I heard from {neighbour} that if you look in the pool too long you forget your own name. I looked for ages. I'm still {name}. I checked.", "when": {"child": true}},
+    {"text": "Climbing the weeping vines is faster than floating. Don't tell the grown ones. They think floating is dignified.", "when": {"child": true}},
+    {"text": "Is it true water falls out of the top of your world? Then doesn't everybody forget everything all the time?", "when": {"child": true}},
+    {"text": "Do you want to play drift? You stand still, I float round you, and you have to guess where I am.", "when": {"child": true}, "replies": [
+      {"ask": "*close your eyes and guess*", "text": "Wrong! I was right behind you. Again, again!", "points": 1},
+      {"ask": "I'm too busy.", "text": "Oh. That's all right. Grown-ups always are. Even the ones who float.", "points": -1}
+    ]}
+  ],
+
+  "topics": [
+    {"id": "who_you_are", "ask": "Who are you?", "when": {"child": false}, "lines": [
+      "I'm {name}, {epithet}. We take a new name after every great grief. The old one we let go, like a lantern lowered down the vines.",
+      "{name}. It's a new name, still a little stiff, like fresh ash-silk. I was {former} before. {former} was very sad, and then the sadness was done, and so was the name.",
+      "Who am I? Hm. I'm the one you crept up on. That's the most important thing about me just now, and the nicest.",
+      {"text": "I'm {name}. If you ever meet someone called {former}, it isn't me, and it isn't anyone. Names we let go don't get borrowed.", "replies": [
+        {"ask": "I'll remember it for you.", "text": "Please don't. That's very Withren of you. Kind, but very Withren.", "points": 0},
+        {"ask": "Your new name suits you.", "text": "Does it? I'm still growing into it. Thank you. That helps.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "tears", "ask": "Tell me about your tears.", "when": {"child": false}, "lines": [
+      "We cry once, properly, for each death. Not a little now and then. Once, all the way, and then it's done and we can carry on.",
+      "A tear closes a wound. It also washes a memory away, most often of whoever you cried for. That's why we're careful who we cry for.",
+      "Tearkeepers bottle what's left and heal with it. A hurt hand stops hurting. Sometimes it forgets how it got hurt, too. That's mostly a kindness.",
+      "My first proper cry... I was small. It was for... hm. That's the thing, you see. It worked. I don't know who it was for.",
+      {"text": "Outsiders ask us to cry for them. For their wounds, their dead, their bad luck. As if we were a tap.", "replies": [
+        {"ask": "Could you cry for me now?", "text": "*the face goes very still* No. There's no one to cry for. That isn't how it works, and it isn't kind to ask.", "points": -2},
+        {"ask": "That must be tiring.", "text": "It is. Thank you for noticing. Hardly anyone notices.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "ghasts", "ask": "What are the ghasts?", "when": {"child": false}, "lines": [
+      "Ghasts are us. Were us. A Ghastkin who grieves too long swells up, forgets hands, forgets words, and drifts off over the delta. Still crying.",
+      "They aren't wicked. They're stuck on one grief, going round like a song with no last note. The fire is... we don't really know what the fire is.",
+      "My cousin drifted. Before she went she kept saying she'd finish crying soon, very soon, just one more... Anyway. Would you like some roots? I have roots.",
+      {"text": "The Magmari call them sky-mourners. It's the only thing the Magmari ever got exactly right.", "replies": [
+        {"ask": "Can they ever come back?", "text": "Some of us believe so. Some stop believing, and that's how the next ghast starts. I try to believe a little.", "points": 1},
+        {"ask": "I kill ghasts.", "text": "...I know. Everyone who comes down here does. Please don't tell me which ones.", "points": -2}
+      ]}
+    ]},
+
+    {"id": "weeping_hall", "ask": "What is the Weeping Hall?", "when": {"child": false}, "lines": [
+      "Every Eave has a Weeping Hall at its heart. Quartz walls, pale blue windows, a black roof stepped like a held breath. Inside is the pool.",
+      "The pool of tears is the only water in the Nether. Every proper cry ends there. It's very still. It has a great deal to forget.",
+      "We go to the Hall to cry. Never to watch someone else cry. You sit with your back to them and look at the windows until they're done.",
+      {"text": "The Hall in {village} is older than any name in it. We've all been someone else in there.", "when": {"place": "village"}},
+      {"text": "Outsiders always want to drink from the pool. It is water, after all.", "replies": [
+        {"ask": "I'd never touch it.", "text": "Good. It isn't ours to give. It's everyone we've let go.", "points": 1},
+        {"ask": "Just one sip?", "text": "One sip, and you'd forget something you liked. Maybe me. *a small smile* Don't risk me.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "the_eave", "ask": "Tell me about the Eave.", "when": {"child": false}, "lines": [
+      "We hang our homes from the great basalt pillars, like lanterns. Pods of pale glass, lit blue inside. You can see them glowing through the smoke from far off.",
+      "A gallery runs round each pillar, halfway up. We float to it. The ladder is for guests, and for anyone too tired to float. There's no shame in the ladder.",
+      "Some pods are homes, some are tear stores, some are hanging gardens: crimson and warped roots in soul soil, swinging on a chain. The roots don't mind.",
+      "Weeping vines trail from every pod to the ground, and the children climb them. We named them weeping vines. We are not a subtle people about names.",
+      {"text": "The chains of {village} creak when the pods turn. We call it the Eave talking in its sleep. It never says anything we'd want to hear.", "when": {"place": "village"}}
+    ]},
+
+    {"id": "work", "ask": "What work do you do?", "when": {"child": false}, "lines": [
+      {"text": "I keep the tear stores: vials on racks, brewing stands, every bottle labelled with nothing. A tear doesn't need a name once it's cried.", "when": {"job": "Tearkeeper"}},
+      {"text": "I heal with tears. A drop on a cut and it closes. I always ask first whether they mind forgetting how they got it.", "when": {"job": "Tearkeeper"}, "replies": [
+        {"ask": "Would I forget much?", "text": "Only the hurting. Maybe whatever bit you, too. You'd keep the rest. You'd keep me.", "points": 1},
+        {"ask": "Heal me, then. Now.", "text": "Ask more softly and I might. Healing goes better when nobody's shouting.", "points": -1}
+      ]},
+      {"text": "Songwarden. I keep the songs. When we cry a name away, the song keeps the shape of the person without the name. You can hum someone you can't remember.", "when": {"job": "Songwarden"}},
+      {"text": "The Weeping Song has a verse for everyone we've let go. I know every verse and not one of who they were. Some verses are very short. I'd rather not...", "when": {"job": "Songwarden"}},
+      {"text": "I'm a Mender. Ash-silk tears, chains wear thin, pods crack. I mend all of it. People too, a little, but only the outside.", "when": {"job": "Mender"}},
+      {"text": "Mending is quiet work. You need patient hands. Mine have shaken a bit ever since... well. They still sew straight.", "when": {"job": "Mender"}},
+      {"text": "I sweep the ash from the galleries and the steps of the Weeping Hall. It's fallen again by the time I'm done. That isn't the point of sweeping.", "when": {"job": "Ashsweeper"}},
+      {"text": "If ash got into the pool of tears it would cloud. So I sweep. Someone has to keep the forgetting clean.", "when": {"job": "Ashsweeper"}},
+      {"text": "Drift-watcher. I watch the air for Piglin crossbows, for Weft nets, and for the drifted ones, the ghasts, in case one ever comes home.", "when": {"job": "Drift-watcher"}},
+      {"text": "I watch us, too. Whoever has cried too long, whoever's face is going a little round. Then I go and sit with them. Quietly.", "when": {"job": "Drift-watcher"}, "replies": [
+        {"ask": "Has one ever come home?", "text": "Not yet. I watch anyway. Somebody ought to be looking when it happens.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "piglins", "ask": "What of the Piglins?", "when": {"child": false}, "lines": [
+      "Piglins see something pale in the air and they shoot. Ghast whelps, they call us. They don't wait for a face.",
+      "We don't hate them. It's hard to hate something so frightened. But we don't drift near the crimson, either.",
+      "They wear gold to tell friend from foe. We wear nothing that shines, so we're always foe. Simple people. Very good aim.",
+      "I had a brother who liked to drift low over the wastes. He said Piglins were all noise. He was right about the noise, but...",
+      {"text": "You wear gold sometimes, don't you? I've seen the glint on outsiders.", "replies": [
+        {"ask": "Only to talk to them.", "text": "Mm. Sensible. Take it off before you come up here. It makes me flinch.", "points": 0},
+        {"ask": "Gold suits me.", "text": "It suits the ones who shoot at us, too.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "withren", "ask": "What of the Withren?", "when": {"child": false}, "lines": [
+      "The Withren keep every name, for ever, on a wall. We cry ours away. They think we're careless. We think they must be very tired.",
+      "A Withren once told me I'd betrayed my dead by forgetting them. I said I hadn't forgotten them. I'd finished them. They didn't care for that.",
+      "Their Wither did this to us, you know. Not on purpose. Nothing about it was on purpose. That's what they say, and I've chosen to believe it.",
+      {"text": "Sometimes I envy them. To keep one person whole all your life, and never have to let go...", "replies": [
+        {"ask": "You could do that, too.", "text": "And swell, and forget my hands, and drift? It's a fine thing for them. For us it's a slow way to become a ghast.", "points": 0},
+        {"ask": "Letting go is braver.", "text": "Is it? I'd like that to be true. You can believe it for me.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "magmari", "ask": "What of the Magmari?", "when": {"child": false}, "lines": [
+      "A Ghastkin tear puts out a Magmari's glow. One drop and they go dark and grumpy. So they keep their distance, and frankly so do we.",
+      "Long ago a Ghastkin drifted over a Mooring, crying properly for one of their children. A tear fell on the wrong... well. They've never forgiven us. Fair.",
+      "They call the ghasts sky-mourners. It's a kind name. Kinder than anything they call us.",
+      "They ferried the Piglins in the war, and were paid for it. Then the Wither came for their Moorings. Nobody in the Nether was paid enough for that war."
+    ]},
+
+    {"id": "weft", "ask": "What of the Weft?", "when": {"child": false}, "lines": [
+      "The Weft string nets in the air, high up, where we drift. Not for fish. For us. They want our tears.",
+      "They hold you in the net and read you the sixty black rows of their Long Cloth, row after row, until you cry. It never works. A tear has to be for someone.",
+      "What do they do with our tears? Dye, some say. Healing. I think they just like owning something they can't make with four arms.",
+      "A neighbour of mine was netted once. Came home much later, very thin, a strand of twisting vine still round one tentacle. Never said a word about it. Still doesn't.",
+      {"text": "If you pass through the warped forest, would you do something for me?", "replies": [
+        {"ask": "Cut their nets?", "text": "*a soft, sly laugh* I didn't say that. You said that. I only nodded.", "points": 1},
+        {"ask": "What's in it for me?", "text": "Nothing. That's what makes it a favour. Never mind.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "the_wither", "ask": "What did the Wither do?", "when": {"child": false, "level": [2, 5]}, "lines": [
+      "When the Wither burned, there were too many deaths at once. We cry once for each, properly. Nobody can do that for a thousand at a time. Half of us tried anyway.",
+      "Half the Ghastkin swelled and drifted. Half. My grandmother said the air over the delta was so full of crying you couldn't see the roof. She said...",
+      "We didn't make it. We didn't fight in that war. We only had to grieve it. That's the part nobody else counts.",
+      {"text": "The Withren call it the Last Answer. I've always wondered what the question was.", "replies": [
+        {"ask": "I'm sorry.", "text": "Thank you. That's the right size of thing to say. Most people say too much.", "points": 2},
+        {"ask": "I've made Withers.", "text": "*very quietly* ...Then there are more ghasts to come. Please go. Come back when I've finished thinking about it.", "points": -2}
+      ]}
+    ]},
+
+    {"id": "before", "ask": "Who were you before?", "when": {"child": false, "level": [3, 5]}, "lines": [
+      "Before I was {name}, I was {former}. {former} loved someone very much. That's all I kept: that there was a great deal of love. Not who.",
+      "I was {former}, and before that someone else, and before that... I've been four people. I only remember being two of them. The other two seem nice.",
+      "Once I nearly drifted. I cried and cried and couldn't finish. My face started going round, and {neighbour} sat with me until... hm. Anyway. I'm here. Here is good.",
+      {"text": "Do you want to know why I let {former} go?", "replies": [
+        {"ask": "Only if you want to tell.", "text": "I don't. But I like that you asked like that. Here, have the next bit of the song instead. *hums*", "points": 2},
+        {"ask": "Tell me everything.", "text": "Everything? There isn't an everything anymore. That's rather the point of me.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "cry_for_me", "ask": "Would you cry for me?", "when": {"child": false, "level": [3, 5]}, "lines": [
+      "If you died, you mean? ...Yes. Once, properly. Then I'd let you go, and I wouldn't remember your face. That's what it costs. That's why it means something.",
+      "We're careful who we cry for. Every tear takes someone with it, and I only have so many someones.",
+      {"text": "Ask me again when we're closer. Not because I'm unsure. Because I want you to have to ask twice.", "when": {"level": [3, 4]}},
+      {"text": "Would you rather I didn't? Some outsiders would sooner be remembered than grieved.", "replies": [
+        {"ask": "Remember me instead.", "text": "Then I'd grieve you badly, a little at a time, for ever. That's how ghasts start. ...For you, I'd nearly risk it.", "points": 1},
+        {"ask": "Cry for me, properly.", "text": "Then I will. Once. All the way. I promise it will be the best cry anyone ever let go of.", "points": 2}
+      ]}
+    ]},
+
+    {"id": "kid_eyes", "ask": "Why are your eyes open?", "when": {"child": true}, "lines": [
+      "Because I haven't learned to cry yet! Grown-ups close their eyes when they learn. I'm keeping mine open as long as I can. There's lots to see.",
+      "The grown-ups' eyes are shut, but they still see. With their ears, I think. That's why you have to be quiet.",
+      "Mama says my eyes will close the first time I cry properly. I don't want to cry for anyone. I like everyone.",
+      {"text": "Do your eyes ever close? When you're sad?", "replies": [
+        {"ask": "Only when I sleep.", "text": "You close them on purpose? That's so brave. Mine won't even stay shut for a game of drift.", "points": 1},
+        {"ask": "Sometimes, when I'm sad.", "text": "Oh. Then you're a little bit Ghastkin. Don't tell the grown-ups, they'll want to keep you.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "kid_crying", "ask": "Have you ever cried?", "when": {"child": true}, "lines": [
+      "Not properly! I cried when I bumped my head on the gallery, but Mama says that wasn't real crying, that was just leaking.",
+      "When I do my first proper cry I'll get a new name. I've been thinking of names. I don't want to use them up, though.",
+      "My friend's big sister cried for the first time, and now she's quiet all the time, and she has a new name, and she doesn't remember... I don't like this game. Ask me something else.",
+      {"text": "Will you tell me if crying hurts?", "replies": [
+        {"ask": "A little. Then it helps.", "text": "Oh. Like vine-scrapes. All right. I can do that, then. Later. Much later.", "points": 1},
+        {"ask": "It doesn't matter.", "text": "It matters to me. I'm the one who has to do it.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "kid_play", "ask": "What do you play?", "when": {"child": true}, "lines": [
+      "Drift-and-seek! You hide in the smoke and the seeker finds you by listening. I always win. I'm the quietest. Except when I giggle.",
+      "We climb the weeping vines all the way up to the pods and slide back down. The grown-ups say floating is better. Floating doesn't make your hands tingle.",
+      "Counting ghasts from the gallery. Eleven is the most, though {neighbour} says twelve. One of them was a puff of smoke. I'm sure of it.",
+      {"text": "Will you play with me? You can be the Piglin. You have to be loud and miss.", "replies": [
+        {"ask": "*a very, very soft snort*", "text": "That's the quietest Piglin ever! You're terrible at being a Piglin. I love it.", "points": 2},
+        {"ask": "RAAAH! GOLD!", "text": "*floats up very fast* ...That was too real. I'm coming down in a moment.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "kid_questions", "ask": "Ask me anything.", "when": {"child": true}, "lines": [
+      "Do you have a pool of tears where you live? Who cries in it? Does it ever get full?",
+      "What's a sky? I asked {neighbour}, and they said it's a roof that forgot to be a roof. Is that right?",
+      "Why do you have only two legs? Don't you fall over? I'd fall over. I fall over with four tentacles.",
+      {"text": "Have you ever seen a ghast up close? Did it look sad? Did it look like anyone?", "replies": [
+        {"ask": "It looked very sad.", "text": "That's what Mama said. She said they look a little like everyone. I don't like that. Ask me something nicer.", "points": 1},
+        {"ask": "I shot it down.", "text": "Oh. ...Oh. Was it crying? They're always crying. You can't know which one it was.", "points": -2}
+      ]}
+    ]},
+
+    {"id": "kid_secret", "ask": "Do you have a secret?", "when": {"child": true, "level": [2, 5]}, "lines": [
+      "I touched the pool of tears once. Just one finger. I don't remember why I'm not allowed. I think that's why I'm not allowed.",
+      "A ghast came right up to the gallery once, really close, and it stopped crying for a little while when I hummed. Don't tell. They'd stop me humming.",
+      "I've thought of a Ghastkin name for you. I'll tell you when I'm bigger. It's a good one. It has soft letters in it.",
+      {"text": "I hid a candle in the hanging garden, for when I'm sad. Do you want to know which pot?", "replies": [
+        {"ask": "Keep it secret.", "text": "You're good at this. Most grown-ups say tell me, tell me. All right. It stays secret.", "points": 1},
+        {"ask": "Yes! Which one?", "text": "*giggles* The one with the crookedest roots. Now it's half your secret. Don't spill it.", "points": 0}
+      ]}
+    ]}
+  ],
+
+  "gift": {
+    "loved": ["minecraft:glass_bottle", "minecraft:white_candle", "minecraft:candle", "minecraft:soul_lantern", "minecraft:white_wool", "minecraft:water_bucket", "minecraft:lily_of_the_valley"],
+    "liked": ["minecraft:crimson_roots", "minecraft:warped_roots", "minecraft:weeping_vines", "minecraft:soul_soil", "minecraft:white_carpet", "minecraft:soul_torch", "minecraft:light_blue_candle", "minecraft:light_blue_stained_glass", "minecraft:feather", "minecraft:snowball"],
+    "disliked": ["minecraft:fire_charge", "minecraft:gunpowder", "minecraft:tnt", "#minecraft:swords", "minecraft:bow", "minecraft:crossbow", "#minecraft:arrows", "minecraft:cobweb", "minecraft:goat_horn", "minecraft:wither_skeleton_skull", "minecraft:gold_ingot"],
+    "lines": {
+      "loved": [
+        {"text": "Oh. A bottle. An empty one. Do you know how rare it is for someone to give us room for a tear instead of asking for one?", "when": {"holding": "minecraft:glass_bottle", "child": false}},
+        {"text": "Water. Real water, and nobody had to cry for it. I'm going to sit and look at it for a long while.", "when": {"holding": "minecraft:water_bucket", "child": false}},
+        {"text": "Oh. For me? I'll keep this in my pod, right where the blue light falls. Thank you, quietly and very much.", "when": {"child": false}},
+        {"text": "This is a kind thing. I can tell you chose it. Things that are chosen weigh differently.", "when": {"child": false}},
+        {"text": "*the closed eyes crease, nearly a smile* You've been asking about us. Haven't you. Sly thing.", "when": {"child": false}},
+        {"text": "For me? FOR ME? Sorry. Too loud. *whispers* For me? Thank you!", "when": {"child": true}},
+        {"text": "It's the best thing anyone ever gave me! I'm going to show {neighbour} and then hide it so they can't have it.", "when": {"child": true}}
+      ],
+      "liked": [
+        {"text": "Roots! The hanging garden will be pleased. Well. As pleased as roots get. They mostly dangle.", "when": {"holding": "minecraft:crimson_roots", "child": false}},
+        {"text": "That's nice. Truly nice. The garden pods will want it, if I let them have it. I might not.", "when": {"child": false}},
+        {"text": "Thank you. I'll find a place for it. Somewhere low, where you'd see it if you came crouching by.", "when": {"child": false}},
+        {"text": "Mm. Yes. This will do something useful, or something pretty. I haven't decided which.", "when": {"child": false}},
+        {"text": "Ooh! Can I keep it in my pod? I'm keeping it in my pod. Thank you!", "when": {"child": true}}
+      ],
+      "neutral": [
+        {"text": "Oh. Thank you. I don't know what it's for, but I'll keep it near the candles. Everything looks meant in candlelight.", "when": {"child": false}},
+        {"text": "How strange. Is this what your world is made of? Thank you. I'll think about it.", "when": {"child": false}},
+        {"text": "A gift is a gift. I'll find a reason for it. I'm good at finding reasons. It's most of what I do.", "when": {"child": false}},
+        {"text": "What is it? Is it alive? It's not alive. Thank you anyway! I'll show {neighbour}.", "when": {"child": true}}
+      ],
+      "disliked": [
+        {"text": "Fire in a little ball. No. Thank you, but no. Take it well away from the pods.", "when": {"holding": "minecraft:fire_charge", "child": false}},
+        {"text": "A bow. You've brought a bow to me. ...I'll pretend I didn't see it, and you'll take it home.", "when": {"holding": "minecraft:bow", "child": false}},
+        {"text": "*drifts back a little* Please put that away. Things like that are why we float so high.", "when": {"child": false}},
+        {"text": "I know you didn't mean anything by it. Outsiders never mean anything by it. That's rather the trouble.", "when": {"child": false}},
+        {"text": "Mm. No. Some things don't belong anywhere near a Ghastkin. I think you knew that.", "when": {"child": false}},
+        {"text": "Eww. That's a hurting thing. Mama says never touch hurting things. I'm not touching it. You touch it. Away.", "when": {"child": true}}
+      ],
+      "again": [
+        {"text": "You've already given me something. Let me hold that one a while first. One gift at a time, or I'll start expecting them.", "when": {"child": false}},
+        {"text": "Again? You're very sweet. Save it, and come back with it later, so I have something to look forward to.", "when": {"child": false}},
+        {"text": "No, no, I'm still deciding where the last one goes. Keep that for now.", "when": {"child": false}},
+        {"text": "You gave me one already! I haven't finished being happy about it yet.", "when": {"child": true}}
+      ],
+      "empty": [
+        {"text": "Your hand is empty. That's all right. Sometimes the empty hand is the gift. There's no weapon in it, for one.", "when": {"child": false}},
+        {"text": "Nothing? Good. I mean, thank you for nothing. That came out wrong. No, it came out right.", "when": {"child": false}},
+        {"text": "Empty-handed and quiet. That's how we visit each other, too.", "when": {"child": false}},
+        {"text": "There's nothing in your hand! Is it invisible? Can I hold it?", "when": {"child": true}}
+      ]
+    }
+  },
+
+  "levelup": [
+    {"text": "You keep coming up quietly. I've stopped counting your steps. That's a kind of trust, you know.", "when": {"level": [1, 1], "child": false}},
+    {"text": "Here. A candle from my pod. Light it somewhere you come home to, and think of someone hanging under a basalt eave, being glad.", "when": {"level": [2, 2], "child": false}, "reward": {"item": "minecraft:white_candle", "count": 1}},
+    {"text": "Lantern-kin. Take this light. It's the kind that doesn't burn. Every one of us carries one, so the others can find us in the smoke.", "when": {"level": [3, 3], "child": false}, "reward": {"item": "minecraft:soul_lantern", "count": 1}},
+    {"text": "This tear was cried properly, for someone I no longer remember. It closes wounds. Use it on yourself, not on a grudge. I'll know.", "when": {"level": [4, 4], "child": false}, "reward": {"item": "minecraft:ghast_tear", "count": 1}},
+    {"text": "When you die, and outsiders always do, I'll cry for you. Once, properly, all the way. Here, my vial. Keep it empty. It's for that tear, and it will wait.", "when": {"level": [5, 5], "child": false}, "reward": {"item": "minecraft:glass_bottle", "count": 1}},
+    {"text": "You're my friend now. I decided. I didn't even ask Mama.", "when": {"level": [1, 1], "child": true}},
+    {"text": "Here, this is from my secret pot in the hanging garden. Don't tell anyone where you got it.", "when": {"level": [2, 2], "child": true}, "reward": {"item": "minecraft:warped_roots", "count": 1}},
+    {"text": "I'm giving you my candle. I'll get another. Now when you're far away you'll have a bit of the Eave.", "when": {"level": [3, 3], "child": true}, "reward": {"item": "minecraft:candle", "count": 1}},
+    {"text": "You're the quietest grown-up I know. Quieter than the grown Ghastkin, even. I'm going to tell everyone. Quietly.", "when": {"level": [4, 4], "child": true}},
+    {"text": "When I learn to cry, I'm saving my first proper one for you. Not soon! You have to get really, really old first. Promise?", "when": {"level": [5, 5], "child": true}}
+  ],
+
+  "farewell": [
+    {"text": "Go softly. The ash will cover your footprints, and I'll pretend they were never there. Unless you'd rather they were.", "when": {"child": false}},
+    {"text": "Drift well. Walk well, I mean. You know what I mean.", "when": {"child": false}},
+    {"text": "Come back quietly. I'll be here, or very near, or a little higher up.", "when": {"child": false}},
+    {"text": "Mind the Piglins on your way. And the Weft nets. And the edges. And yourself.", "when": {"child": false}},
+    {"text": "Goodbye for now. I don't cry over goodbyes. They aren't the kind that count.", "when": {"child": false}},
+    {"text": "{former} used to say goodbye with a song. I'll just say it. Goodbye. Be careful.", "when": {"child": false}},
+    {"text": "Go on. Don't die out there. I've only so many tears, and one of them has your name on it.", "when": {"level": [4, 5], "child": false}},
+    {"text": "Take care of that skin. I'd rather not use a tear on you. I'd rather not choose what you forget.", "when": {"job": "Tearkeeper"}},
+    {"text": "I'll watch you go as far as the smoke allows. Then a little further, in my head.", "when": {"job": "Drift-watcher"}},
+    {"text": "Bye! Bye! Come back! Bring something! Or don't! Bye!", "when": {"child": true}},
+    {"text": "Wait, are you going? Walk squished all the way home, so nothing finds you.", "when": {"child": true}},
+    {"text": "Bye. I'm going to count your steps until I can't hear them. That won't take long. You're very quiet.", "when": {"child": true}}
+  ],
+
+  "refuse": [
+    {"text": "*drifts up out of reach, very fast, saying nothing at all*", "when": {"state": "angry"}},
+    {"text": "No. You hurt me. I'm going up where your hands can't reach. Don't follow. You can't, but don't.", "when": {"state": "angry", "child": false}},
+    {"text": "I won't cry over this. Nobody died. But I won't talk to you, either.", "when": {"state": "angry", "child": false}},
+    {"text": "*one soft falling note, and then only the chains creaking*", "when": {"state": "angry", "child": false}},
+    {"text": "You crept up quietly so you could do that? Clever. I'll remember it. From us, that's the worst thing there is to hear.", "when": {"state": "angry", "child": false}},
+    {"text": "You hit me! The grown-ups said outsiders do that. I didn't believe them. *floats away up the vines*", "when": {"state": "angry", "child": true}},
+    {"text": "*hides behind the weeping vines, eyes very wide, saying nothing*", "when": {"state": "angry", "child": true}}
+  ]
+}

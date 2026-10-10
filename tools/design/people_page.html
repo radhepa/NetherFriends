@@ -1,0 +1,1201 @@
+<title>Peoples of the Nether</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Pixelify+Sans:wght@400;600&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column of study plates on the Nether dark; each people stands on its own ground (netherrack, soul sand, lava) and owns one accent: gold, soul fire, magma. Deliberately single-theme (dark). */
+:root {
+  color-scheme: dark;
+  --deep: #140908;
+  --deep-2: #1d0e0c;
+  --deep-3: #2a1411;
+  --line: #4a2621;
+  --ink: #f3e5da;
+  --muted: #b9978b;
+  --rack: #a4504a;
+  --rack-hi: #e8a191;
+  --gold: #f2c14e;
+  --soul: #6fe3f0;
+  --magma: #ff8a2a;
+  --warp: #3fd1c3;
+  --tear: #c9e6ef;
+  --danger: #ff7272;
+  --ok: #8fd17a;
+  --display: "Jacquard 12", "Pixelify Sans", "Lucida Console", monospace;
+  --pixel: "Pixelify Sans", "Lucida Console", monospace;
+  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  /* conversation screen: the Village Friends layout in netherrack */
+  --ui-paper: #6a2b29;
+  --ui-shade: #55211f;
+  --ui-edge: #260d0c;
+  --ui-edge-light: #b35d53;
+  --ui-ink: #fbeee2;
+  --ui-muted: #dcb0a2;
+  --ui-status: #f2c14e;
+  --ui-bubble: #7b3431;
+  --ui-bubble-hi: #923f3a;
+  --ui-empty: #44201d;
+  --rack-tex: none;
+}
+* { box-sizing: border-box; }
+body { background: var(--deep); color: var(--ink); font: 16px/1.6 var(--body); padding-inline: 16px; padding-block: 0 72px; }
+.wrap { max-width: 1080px; margin-inline: auto; display: grid; gap: 64px; }
+h1, h2 { font-family: var(--display); font-weight: 400; text-wrap: balance; line-height: 1; margin: 0; letter-spacing: .01em; }
+h1 { font-size: clamp(2.8rem, 7.5vw, 5.4rem); }
+h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); }
+h3 { font: 600 1.2rem/1.2 var(--pixel); text-wrap: balance; margin: 0; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font: 500 .72rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--rack-hi); }
+.muted { color: var(--muted); }
+.lede { color: var(--muted); font-size: 1.06rem; }
+section { display: grid; gap: 18px; }
+
+/* masthead + lineup */
+.masthead { display: grid; gap: 14px; padding-top: 44px; }
+.stage { position: relative; border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 0%, #4a1712 0%, #230d0b 55%, var(--deep) 100%); }
+.stage canvas { display: block; width: 100%; height: clamp(340px, 50vw, 520px); cursor: grab; touch-action: pan-y; }
+.stage canvas:active { cursor: grabbing; }
+.tag { position: absolute; transform: translate(-50%, -100%); text-align: center; pointer-events: none; white-space: nowrap; }
+.tag b { display: block; font: 600 .95rem/1.2 var(--pixel); }
+.tag span { font: .72rem/1.3 var(--mono); color: var(--muted); }
+.hint { position: absolute; right: 12px; top: 10px; font: .7rem var(--mono); color: var(--muted); }
+
+/* species plates */
+.sheet { background: var(--deep-2); border: 1px solid var(--line); border-radius: 6px; padding: 20px;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 22px; }
+.sheet .col { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.sheet header { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.say { font: .8rem var(--mono); color: var(--muted); }
+.view { width: 100%; height: 440px; display: block; border-radius: 4px; cursor: grab; touch-action: pan-y; }
+.piglins .view { background: radial-gradient(70% 80% at 50% 35%, #4a1d18, var(--deep-2)); }
+.withren .view { background: radial-gradient(70% 80% at 50% 35%, #1d2c2e, var(--deep-2)); }
+.magmari .view { background: radial-gradient(70% 80% at 50% 35%, #3a1a0c, var(--deep-2)); }
+.weft .view { background: radial-gradient(70% 80% at 50% 35%, #14304a, var(--deep-2)); }
+.ghastkin .view { background: radial-gradient(70% 80% at 50% 35%, #2e2d36, var(--deep-2)); }
+@media (max-width: 760px) { .sheet { grid-template-columns: 1fr; } .view { height: 360px; } }
+.facts { display: grid; grid-template-columns: max-content 1fr; gap: 7px 14px; margin: 0; font-size: .95rem; }
+.facts dt { font: 500 .72rem/1.9 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 0; min-width: 0; }
+@media (max-width: 420px) { .facts { grid-template-columns: 1fr; } .facts dd { margin-bottom: 6px; } }
+.quote { border-left: 3px solid var(--accent, var(--rack)); padding: 4px 0 4px 14px; font-style: italic; color: var(--accent, var(--rack-hi)); }
+.piglins { --accent: var(--gold); }
+.withren { --accent: var(--soul); }
+.magmari { --accent: var(--magma); }
+.weft { --accent: var(--warp); }
+.ghastkin { --accent: var(--tear); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: .78rem var(--mono); padding: 2px 8px; border: 1px solid var(--line); border-radius: 3px; color: var(--muted); }
+.variants { display: flex; flex-wrap: wrap; gap: 6px; }
+.btn { font: 600 .88rem var(--pixel); background: var(--deep-3); color: var(--ink); border: 1px solid var(--line); padding: 5px 12px; border-radius: 4px; cursor: pointer; }
+.btn[aria-pressed="true"] { background: var(--accent, var(--rack)); color: #1a0b09; border-color: var(--accent, var(--rack-hi)); }
+.btn:focus-visible, .reply:focus-visible, .dock button:focus-visible, .toggle input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.techline { font: .78rem/1.5 var(--mono); color: var(--muted); border-top: 1px dashed var(--line); padding-top: 10px; max-width: none; }
+.techline code { color: var(--rack-hi); }
+
+/* rules (gold / no gold) */
+.gate { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.rule { border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: grid; gap: 8px; align-content: start; background: var(--deep-2); min-width: 0; }
+.rule.no { border-color: #6b2430; background: linear-gradient(180deg, #2c0d10, var(--deep-2)); }
+.rule.yes { border-color: #6b5420; background: linear-gradient(180deg, #2a2008, var(--deep-2)); }
+.verdict { font: 600 .75rem var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.rule.no .verdict { color: var(--danger); }
+.rule.yes .verdict { color: var(--gold); }
+.rule ol, .rule ul { margin: 0; padding-left: 20px; color: var(--muted); font-size: .93rem; display: grid; gap: 4px; }
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; }
+.panel { border: 1px solid var(--line); border-radius: 6px; padding: 16px; background: var(--deep-2); display: grid; gap: 10px; align-content: start; min-width: 0; }
+.panel ul { margin: 0; padding-left: 20px; color: var(--muted); font-size: .93rem; display: grid; gap: 5px; }
+.panel ul b { color: var(--ink); font-weight: 700; }
+.slots { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.slot { width: 52px; height: 52px; background: #8b8b8b; border: 3px solid; border-color: #373737 #ffffff #ffffff #373737; display: grid; place-items: center; }
+.slot svg { width: 36px; height: 36px; }
+.slot.trim { outline: 2px dashed var(--gold); outline-offset: 3px; }
+
+/* the Last Answer */
+.answer { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 22px; align-items: start; border: 1px solid #23484c; border-radius: 6px; padding: 20px; background: linear-gradient(180deg, #0f1d1f, var(--deep-2)); }
+.answer figure { margin: 0; display: grid; gap: 8px; }
+.answer figure svg { width: 100%; max-width: 220px; height: auto; display: block; }
+.answer figcaption { font: .78rem/1.45 var(--mono); color: var(--muted); }
+.answer .big { font: italic 1.15rem/1.45 var(--body); color: var(--soul); }
+.answer ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--muted); }
+@media (max-width: 640px) { .answer { grid-template-columns: 1fr; } .answer figure svg { max-width: 180px; } }
+.deeds { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 14px; }
+.deed { border-top: 3px solid var(--soul); padding-top: 10px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.deed.bad { border-color: var(--danger); }
+.deed.good { border-color: var(--gold); }
+.deed p { color: var(--muted); font-size: .93rem; }
+
+/* feuds */
+.feuds { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; }
+.feud { border: 1px solid var(--line); border-radius: 6px; padding: 16px; background: var(--deep-2); display: grid; gap: 8px; align-content: start; min-width: 0; }
+.feud .pair { display: flex; align-items: center; gap: 8px; font: 600 1.05rem/1.2 var(--pixel); flex-wrap: wrap; }
+.feud .pair .x { font: 500 .8rem var(--mono); color: var(--danger); }
+.feud p { color: var(--muted); font-size: .93rem; }
+.c-gold { color: var(--gold); } .c-soul { color: var(--soul); } .c-magma { color: var(--magma); } .c-warp { color: var(--warp); } .c-tear { color: var(--tear); }
+.feudwrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; }
+.feudmap { border-collapse: collapse; width: 100%; min-width: 640px; font-size: .86rem; }
+.feudmap th, .feudmap td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+.feudmap th { font: 600 .95rem/1.2 var(--pixel); background: var(--deep-3); white-space: nowrap; }
+.feudmap td { color: var(--muted); background: var(--deep-2); }
+.feudmap td.self { background: var(--deep); }
+.feudmap td.mirror { background: var(--deep); color: var(--line); text-align: center; }
+.village.loom { border-color: var(--warp); }
+.village.eave { border-color: var(--tear); }
+.settled ul { margin: 0; padding-left: 22px; display: grid; gap: 6px; max-width: 72ch; color: var(--muted); }
+.settled ul b { color: var(--ink); }
+
+/* villages */
+.mix { display: flex; height: 34px; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); font: 600 .78rem/34px var(--mono); }
+.mix div { padding-inline: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff3e8; }
+.vgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 18px; }
+.village { border-top: 3px solid var(--gold); padding-top: 12px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.village.vigil { border-color: var(--soul); }
+.village.mooring { border-color: var(--magma); }
+.who { font: .76rem/1.4 var(--mono); color: var(--muted); }
+.village ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: .92rem; }
+.ingame { display: grid; gap: 10px; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; }
+.shots figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
+.shots img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); display: block; }
+.shots figcaption { font: .76rem/1.45 var(--mono); color: var(--muted); }
+.shots figcaption b { color: var(--ink); font-weight: 600; }
+.ruins { border: 1px dashed var(--line); border-radius: 6px; padding: 14px 16px; color: var(--muted); font-size: .95rem; }
+.ruins b { color: var(--ink); }
+
+/* history */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 16px; counter-reset: age; }
+.steps li { counter-increment: age; background: var(--deep-2); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: grid; gap: 6px; align-content: start; }
+.steps li::before { content: "Age " counter(age); font: 500 .7rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--rack-hi); }
+.steps li:nth-child(3) { border-color: #23484c; }
+.steps li:nth-child(3)::before { color: var(--soul); }
+.steps li:last-child { border-color: #6b5420; }
+.steps li:last-child::before { content: "Now"; color: var(--gold); }
+.steps p { color: var(--muted); font-size: .93rem; }
+
+/* conversation screen mock-up */
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font: .88rem var(--pixel); color: var(--ink); cursor: pointer; }
+.toggle input { width: 16px; height: 16px; accent-color: var(--gold); }
+.screen { position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--line); min-height: 560px;
+  background: radial-gradient(90% 70% at 50% 25%, #5a1d14 0%, #2a0d0a 60%, #120605 100%); font-family: var(--pixel); }
+.screen .world { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.screen .shadeover { position: absolute; inset: 50% 0 0 0; background: linear-gradient(180deg, transparent, rgba(10, 3, 2, .5)); pointer-events: none; }
+.rackbg { background-color: var(--ui-paper); background-image: linear-gradient(rgba(84, 30, 28, .62), rgba(84, 30, 28, .62)), var(--rack-tex); background-size: auto, 32px 32px; image-rendering: pixelated; }
+.card { position: absolute; left: 12px; top: 12px; width: min(260px, 48%); color: var(--ui-ink); border: 2px solid var(--ui-edge); border-radius: 4px; padding: 8px 10px; box-shadow: inset 0 0 0 1px var(--ui-edge-light), 0 3px 0 rgba(0,0,0,.45); display: grid; gap: 5px; }
+.card .row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.badge { background: var(--ui-edge); color: var(--ui-status); padding: 0 7px; border-radius: 3px; font-size: .85rem; }
+.meter { display: grid; grid-template-columns: repeat(10, minmax(0, 15px)); gap: 3px; }
+.meter svg { width: 100%; height: auto; aspect-ratio: 7 / 7; display: block; }
+.card .goal { color: var(--ui-muted); font-size: .8rem; }
+.replies { position: absolute; right: 12px; bottom: 196px; display: grid; gap: 6px; width: min(300px, 62%); }
+.reply { display: flex; align-items: center; gap: 8px; text-align: left; background: var(--ui-bubble); color: var(--ui-ink); border: 2px solid var(--ui-edge); border-radius: 4px; padding: 3px 8px 3px 3px; font: 400 .92rem var(--pixel); cursor: pointer; box-shadow: inset 0 0 0 1px var(--ui-edge-light), 0 2px 0 rgba(0,0,0,.4); }
+.reply:hover { background: var(--ui-bubble-hi); transform: translateX(-2px); }
+.reply .n { background: var(--ui-status); color: var(--ui-edge); min-width: 20px; text-align: center; border-radius: 2px; font-weight: 600; }
+.reply[disabled] { opacity: .5; cursor: default; transform: none; }
+.box { position: absolute; left: 50%; transform: translateX(-50%); bottom: 48px; width: min(660px, calc(100% - 24px)); min-height: 116px; color: var(--ui-ink); border: 2px solid var(--ui-edge); border-radius: 4px; box-shadow: inset 0 0 0 1px var(--ui-edge-light), 0 3px 0 rgba(0,0,0,.45); display: grid; grid-template-columns: 104px 1fr; gap: 14px; padding: 10px 12px 8px 10px; }
+.portrait { position: relative; margin-top: -46px; width: 104px; height: 152px; border: 2px solid var(--ui-edge); background: linear-gradient(180deg, #8a3a2e, #3a120e); box-shadow: inset 0 0 0 2px var(--ui-edge-light), 0 3px 0 rgba(0,0,0,.45); }
+.portrait canvas { width: 100%; height: 100%; display: block; }
+.ribbon { position: absolute; left: 128px; top: -24px; display: flex; align-items: baseline; gap: 8px; }
+.ribbon b { background: #a8762a; color: #fff; padding: 1px 10px 2px; font-weight: 600; border-bottom: 3px solid #6b4a14; text-shadow: 1px 1px 0 rgba(0,0,0,.4); white-space: nowrap; }
+.ribbon span { color: #f7e3d6; font-size: .82rem; text-shadow: 1px 1px 0 rgba(0,0,0,.7); }
+.text { min-width: 0; display: grid; grid-template-rows: 1fr auto; gap: 6px; padding-top: 6px; }
+.line { font-size: 1rem; line-height: 1.35; min-height: 4em; }
+.line i { color: var(--ui-muted); }
+.status { border-top: 1px solid var(--ui-edge-light); padding-top: 3px; color: var(--ui-status); font-size: .85rem; display: flex; justify-content: space-between; gap: 8px; }
+.status.hostile { color: var(--danger); font-weight: 600; }
+.status .more { color: var(--ui-status); animation: bob 1s infinite alternate; }
+@keyframes bob { to { transform: translateY(2px); } }
+.dock { position: absolute; left: 0; right: 0; bottom: 8px; display: flex; justify-content: center; gap: 3px; padding-inline: 8px; }
+.dock button { display: flex; align-items: center; gap: 4px; height: 28px; padding: 0 7px; color: var(--ui-ink); border: 2px solid var(--ui-edge); border-radius: 6px; font: 400 .8rem var(--pixel); cursor: pointer; position: relative; box-shadow: inset 0 0 0 1px var(--ui-edge-light), 0 2px 0 rgba(0,0,0,.4); }
+.dock button.sel { outline: 2px solid var(--ui-status); outline-offset: -4px; }
+.dock .gap { width: 8px; flex: none; }
+.dock svg { width: 14px; height: 14px; flex: none; }
+.dock .count { position: absolute; right: -4px; top: -7px; background: var(--ui-status); color: var(--ui-edge); font-size: .65rem; padding: 0 3px; line-height: 1.3; }
+.palette { display: flex; flex-wrap: wrap; gap: 10px; }
+.sw { display: grid; grid-template-columns: 22px auto; gap: 8px; align-items: center; font: .78rem var(--mono); color: var(--muted); }
+.sw i { width: 22px; height: 22px; border-radius: 3px; border: 1px solid var(--line); }
+@media (max-width: 640px) {
+  .screen { min-height: 680px; }
+  .replies { bottom: 232px; width: calc(100% - 24px); }
+  .box { grid-template-columns: 72px 1fr; bottom: 52px; }
+  .portrait { width: 72px; height: 104px; margin-top: -30px; }
+  .ribbon { left: 92px; }
+  .ribbon span { display: none; }
+  .dock { flex-wrap: wrap; bottom: 6px; gap: 2px; }
+  .dock .lbl { display: none; }
+  .dock .gap { width: 4px; }
+  .dock button { padding: 0 5px; }
+  .card { width: calc(100% - 24px); }
+}
+
+/* questions */
+@media (prefers-reduced-motion: reduce) { .status .more { animation: none; } .reply:hover { transform: none; } }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <span class="eyebrow">Nether Expansion · design draft 4 · the people</span>
+    <h1>Five peoples of the Nether</h1>
+    <p class="lede">The Nether stops being empty. Five peoples live there, each in its own biome, and none of them at peace with the others. The Piglins you already know keep their vanilla look but get new code and their own villages. The Withren, the Wither's own people, keep watch over the soul valleys. The Magmari wade the lava seas, the four-armed Weft weave in the Warped Forest canopy, and the Ghastkin, kin to the ghasts, hang their homes under the cliffs of the Basalt Deltas. The new peoples are box models built with the same kit as the End Expansion people, so what you see is how they would look in game.</p>
+  </header>
+
+  <section class="stage" aria-label="Height lineup">
+    <canvas id="lineup"></canvas>
+    <div class="tag" id="tag-magmari"><b>Magmari</b><span>2.5 · 2.9 with crest</span></div>
+    <div class="tag" id="tag-weft"><b>Weft</b><span>2.3 blocks</span></div>
+    <div class="tag" id="tag-ghastkin"><b>Ghastkin</b><span>2.25, floating</span></div>
+    <div class="tag" id="tag-withren"><b>Withren</b><span>1.8 blocks</span></div>
+    <div class="tag" id="tag-you"><b>You</b><span>1.8 blocks</span></div>
+    <div class="tag" id="tag-piglin"><b>Piglin</b><span>1.95 blocks</span></div>
+    <span class="hint">drag to turn</span>
+  </section>
+
+  <!-- PIGLINS ------------------------------------------------------------------------------------ -->
+  <section class="piglins" id="piglins">
+    <span class="eyebrow">The existing mob, rewritten</span>
+    <h2>Piglins</h2>
+    <p class="lede">Piglins keep the look they have in Minecraft, Brutes and babies included. What changes is their code. Every Piglin, in a Bastion or in one of their new Holds, will talk to you while you wear gold. Without gold, they try to kill you.</p>
+    <article class="sheet">
+      <div class="col">
+        <header><h3>Piglin</h3><span class="say">PIG-lin · the gold clans of the Holds</span></header>
+        <canvas class="view" id="piglin-view" aria-label="Piglin model, drag to turn"></canvas>
+        <div class="variants" role="group" aria-label="Show rank">
+          <button class="btn" type="button" data-view="piglin-view" data-mob="piglin" aria-pressed="true">Piglin</button>
+          <button class="btn" type="button" data-view="piglin-view" data-mob="piglin_brute" aria-pressed="false">Brute</button>
+          <button class="btn" type="button" data-view="piglin-view" data-mob="piglin_baby" aria-pressed="false">Baby</button>
+        </div>
+      </div>
+      <div class="col">
+        <dl class="facts">
+          <dt>Look</dt><dd>Exactly the Minecraft Piglin: same model, same skin, same Brutes and babies, about 1.95 blocks. The mod rewrites only how they behave.</dd>
+          <dt>Gold</dt><dd>A piglin's rank, savings and handshake in one. Anyone who shows no gold is an enemy.</dd>
+          <dt>Where</dt><dd>In Bastions, as now, and in Holds, their own new villages. Piglins in both can be talked to.</dd>
+          <dt>Manner</dt><dd>Loud, boastful and greedy, quick to laugh and quick to swing. Honest in their way: they always tell you exactly what they want, which is your gold.</dd>
+          <dt>Names</dt><dd>Short and grunted, with a clan: Grukka Red-Tusk, Snorr Gildsnout, Brakka Ashbristle.</dd>
+          <dt>Gender</dt><dd>Male and female, like Village Friends. It shows in names and voices; the vanilla look is the same for both.</dd>
+          <dt>Belief</dt><dd>The Overworld rots you. Piglins who walk through a portal turn into zombified piglins, "the Rotted". They can't decide whether you're very brave or already half rotted.</dd>
+        </dl>
+        <div class="chips"><span class="chip">Hunter</span><span class="chip">Hoglin-herder</span><span class="chip">Smelter</span><span class="chip">Goldsmith</span><span class="chip">Forager</span><span class="chip">Hoardkeeper (barter)</span><span class="chip">Brute (guard)</span></div>
+        <p class="quote">"Gold on your feet. Good. Means I talk first and swing later."</p>
+      </div>
+    </article>
+
+    <div class="gate">
+      <div class="rule no">
+        <span class="verdict">No gold on you</span>
+        <h3>Attacked on sight</h3>
+        <ol>
+          <li>Any piglin that sees you charges, in a Bastion or a Hold. Vanilla already starts this; now every piglin nearby joins in.</li>
+          <li>In a Hold, a Brute blows the war-horn and the whole village comes running.</li>
+          <li>No talking and no bartering. Right-click does nothing.</li>
+        </ol>
+      </div>
+      <div class="rule yes">
+        <span class="verdict">Wearing gold</span>
+        <h3>Welcome to talk</h3>
+        <ol>
+          <li>Right-click opens the conversation screen.</li>
+          <li>Talk, barter and earn friendship, counted in gold nuggets. Throwing an ingot still barters, and Trade is in the dock.</li>
+          <li>They still hate thieves. Open a Hold's chests, mine its gold or touch the Hoard and they turn on you, and remember it.</li>
+          <li>Take your gold off in front of them and they attack. Hiding your gold is the worst insult a piglin knows.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="panel">
+        <h3>What counts as gold</h3>
+        <div class="slots" aria-label="Golden helmet, chestplate, leggings and boots; and armour with a gold trim">
+          <span class="slot" title="Golden helmet"><svg viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="2" width="8" height="2" fill="#fbd95c"/><rect x="1" y="4" width="10" height="4" fill="#f0c23a"/><rect x="1" y="8" width="2" height="2" fill="#c38a1d"/><rect x="9" y="8" width="2" height="2" fill="#c38a1d"/><rect x="3" y="4" width="6" height="1" fill="#fff1a8"/></svg></span>
+          <span class="slot" title="Golden chestplate"><svg viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="1" width="3" height="3" fill="#f0c23a"/><rect x="8" y="1" width="3" height="3" fill="#f0c23a"/><rect x="2" y="3" width="8" height="8" fill="#f0c23a"/><rect x="5" y="3" width="2" height="2" fill="#8b8b8b"/><rect x="3" y="5" width="6" height="1" fill="#fff1a8"/><rect x="2" y="10" width="8" height="1" fill="#c38a1d"/></svg></span>
+          <span class="slot" title="Golden leggings"><svg viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="1" width="8" height="3" fill="#f0c23a"/><rect x="2" y="4" width="3" height="7" fill="#f0c23a"/><rect x="7" y="4" width="3" height="7" fill="#f0c23a"/><rect x="2" y="1" width="8" height="1" fill="#fff1a8"/><rect x="2" y="10" width="3" height="1" fill="#c38a1d"/><rect x="7" y="10" width="3" height="1" fill="#c38a1d"/></svg></span>
+          <span class="slot" title="Golden boots"><svg viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="4" width="3" height="5" fill="#f0c23a"/><rect x="8" y="4" width="3" height="5" fill="#f0c23a"/><rect x="0" y="8" width="4" height="2" fill="#c38a1d"/><rect x="8" y="8" width="4" height="2" fill="#c38a1d"/><rect x="1" y="4" width="3" height="1" fill="#fff1a8"/><rect x="8" y="4" width="3" height="1" fill="#fff1a8"/></svg></span>
+          <span class="slot trim" title="Netherite chestplate with a gold trim"><svg viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="1" width="3" height="3" fill="#4a4146"/><rect x="8" y="1" width="3" height="3" fill="#4a4146"/><rect x="2" y="3" width="8" height="8" fill="#3b3438"/><rect x="5" y="3" width="2" height="2" fill="#8b8b8b"/><rect x="2" y="6" width="8" height="1" fill="#f0c23a"/><rect x="5" y="7" width="2" height="4" fill="#f0c23a"/><rect x="1" y="1" width="3" height="1" fill="#f0c23a"/><rect x="8" y="1" width="3" height="1" fill="#f0c23a"/></svg></span>
+        </div>
+        <ul>
+          <li><b>Any piece of golden armour.</b> This is vanilla's own list (the item tag <code>piglin_safe_armor</code>).</li>
+          <li><b>Any armour with a gold trim</b> (dashed slot), so you can keep your netherite and still be welcome.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>What else changes</h3>
+        <ul>
+          <li><b>Holds:</b> their own villages, with homes, jobs and daily routines. Bastions stay theirs too, and the Piglins in them can be talked to just the same.</li>
+          <li><b>Memory:</b> they know your name, your friendship and your grudges.</li>
+          <li><b>Brutes</b> respect gold like everyone else (vanilla Brutes attack everyone), except in a Bastion's treasure vault, where only sworn guards may stand.</li>
+          <li><b>Babies</b> follow gold-wearers around and try to borrow a nugget.</li>
+          <li><b>Enemies:</b> Piglins attack Withren and Magmari on sight. A Magmari can never show gold, because it melts on their skin.</li>
+          <li><b>Zombified piglins</b> stay as they are: the Rotted.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="techline">How: in 26.3 the gold check is <code>PiglinAi.isWearingSafeArmor</code> (item tag <code>minecraft:piglin_safe_armor</code>) and right-click is <code>PiglinAi.mobInteract</code>. The rewrite hooks those two and the attack-target search. Their models and textures are untouched, so Piglins stay vanilla mobs and keep working with resource packs and other mods.</p>
+  </section>
+
+  <!-- WITHREN ------------------------------------------------------------------------------------ -->
+  <section class="withren" id="withren">
+    <span class="eyebrow">The Wither's own people</span>
+    <h2>Withren</h2>
+    <p class="lede">A player's body and height, with the Wither's head at normal head size. The Withren are neutral: they leave you alone unless you hurt one of them. They made the Wither once, as a last resort, and whatever they say about it comes back to the price: three of their own.</p>
+    <article class="sheet">
+      <div class="col">
+        <header><h3>Withren</h3><span class="say">WITH-ren · keepers of the soul valleys</span></header>
+        <canvas class="view" id="withren-view" aria-label="Withren model, drag to turn"></canvas>
+        <div class="variants" role="group" aria-label="Show Withren">
+          <button class="btn" type="button" data-view="withren-view" data-mob="withren" aria-pressed="true">Villager</button>
+          <button class="btn" type="button" data-view="withren-view" data-mob="withren_remembrancer" aria-pressed="false">Remembrancer</button>
+          <button class="btn" type="button" data-view="withren-view" data-mob="withren_ashwarden" aria-pressed="false">Ashwarden</button>
+          <button class="btn" type="button" data-view="withren-view" data-mob="withren_child" aria-pressed="false">Child</button>
+        </div>
+      </div>
+      <div class="col">
+        <dl class="facts">
+          <dt>Body</dt><dd>The player's shape and height, 1.8 blocks. Ash-dark skin and bony knuckles.</dd>
+          <dt>Head</dt><dd>The Wither's own head at normal head size. In game it is drawn from the Wither's texture, so it matches the Wither exactly and changes with resource packs.</dd>
+          <dt>Gender</dt><dd>None. Every Withren is "they".</dd>
+          <dt>Temper</dt><dd>Neutral. They ignore you and go about their day. Hit one and every Withren nearby fights back, and the Vigil remembers.</dd>
+          <dt>Dress</dt><dd>Soul-cloth in slate and soul-soil brown, bone toggles, soul lanterns. Elders wear hoods and a stole with a tally mark for every name they keep. Guards wear basalt carved with the Wither's ribcage.</dd>
+          <dt>Manner</dt><dd>Quiet, grave and formal, with a dry graveyard humour. They keep promises and they keep names.</dd>
+          <dt>Names</dt><dd>Each Withren carries the name of one dead person they have sworn to remember: Sereth, who keeps Anwen. Corvane, who keeps the Three.</dd>
+          <dt>Children</dt><dd>The classic Minecraft baby: the adult's body and clothes at half size, but the same full-size Wither head, so a child is mostly skull. About 1.25 blocks. A child has no one to keep yet; they choose a name at their first Vigil.</dd>
+        </dl>
+        <div class="chips"><span class="chip">Wart-grower</span><span class="chip">Brewer</span><span class="chip">Bonecarver</span><span class="chip">Lantern-keeper</span><span class="chip">Remembrancer (elder)</span><span class="chip">Ashwarden (guard)</span></div>
+        <p class="quote">"The Wither is not a weapon. It is the end of an argument. We have only ever ended one."</p>
+      </div>
+    </article>
+
+    <div class="answer">
+      <figure>
+        <svg id="rite" viewBox="0 0 44 36" shape-rendering="crispEdges" role="img" aria-label="Three wither skulls on a T of soul sand"></svg>
+        <figcaption>The rite: three skulls on a T of soul sand. The Withren say it was meant to need willing ones.</figcaption>
+      </figure>
+      <div style="display:grid;gap:12px;min-width:0">
+        <h3>The Last Answer</h3>
+        <p class="big">A weapon of mass destruction, made only as a final resort. It takes three sacrifices.</p>
+        <ul>
+          <li>Three Withren give themselves willingly. Their skulls become its three heads, and the souls in the soul sand become its body.</li>
+          <li>It can't be aimed and it can't be called back. It burns whatever is in front of it until the three souls inside are spent.</li>
+          <li>It was made once, at the end of the War of the Hoard. It broke the Piglin bastions into the ruins you find today, then turned on the Withren's own fortresses.</li>
+          <li>Wither skeletons are the Hollowed: Withren whose souls it burned out as it passed. Their bodies still walk the old fortresses.</li>
+          <li>Three Hollowed skulls on soul sand also wake a Wither, but one with no willing souls inside, so nothing in it wants to stop. That is how outsiders make Withers.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="deeds">
+      <div class="deed"><h3>You carry wither skulls</h3><p>They notice. They ask, carefully, what you mean to do with them.</p></div>
+      <div class="deed bad"><h3>You summon a Wither</h3><p>Every Vigil hears of it. Friendship with every Withren drops hard. They stay neutral but go cold.</p></div>
+      <div class="deed good"><h3>You kill a Wither</h3><p>They honour you. The Nether Star is the three souls fused. Lay it to rest in a Hall of the Three for a great reward, or keep it for a beacon.</p></div>
+    </div>
+  </section>
+
+  <!-- MAGMARI ------------------------------------------------------------------------------------ -->
+  <section class="magmari" id="magmari">
+    <span class="eyebrow">The third people</span>
+    <h2>Magmari</h2>
+    <p class="lede">Nobody has settled the lava seas, so the third people live on them. The Magmari wade the lava, herd striders and run ferries. They never fight you, but they want nothing to do with the Piglins or the Withren.</p>
+    <article class="sheet">
+      <div class="col">
+        <header><h3>Magmari</h3><span class="say">mag-MAR-ee · the lava-sea folk</span></header>
+        <canvas class="view" id="magmari-view" aria-label="Magmari model, drag to turn"></canvas>
+        <div class="variants" role="group" aria-label="Show Magmari">
+          <button class="btn" type="button" data-view="magmari-view" data-mob="magmari" aria-pressed="true">Male</button>
+          <button class="btn" type="button" data-view="magmari-view" data-mob="magmari_female" aria-pressed="false">Female</button>
+          <button class="btn" type="button" data-view="magmari-view" data-mob="magmari_cold" aria-pressed="false">Cooled</button>
+          <button class="btn" type="button" data-view="magmari-view" data-mob="magmari_ferrier" aria-pressed="false">Ferrier</button>
+          <button class="btn" type="button" data-view="magmari-view" data-mob="magmari_child" aria-pressed="false">Child</button>
+          <button class="btn" type="button" data-view="magmari-view" data-mob="magmari_child_cold" aria-pressed="false">Child, cooled</button>
+        </div>
+      </div>
+      <div class="col">
+        <dl class="facts">
+          <dt>Body</dt><dd>About 2.5 blocks and hunched, with long backward-bending legs for wading and a short heavy tail.</dd>
+          <dt>Skin</dt><dd>Magma crust: dark plates with glowing seams. A crest of basalt columns runs over the head, and each column is a little vent.</dd>
+          <dt>Heat</dt><dd>Lava doesn't hurt them; cold does. Away from lava or fire they cool like a strider: the glow fades, the crust turns ash-violet, and they get slow and grumpy. A wade or a seat by a vent warms them up.</dd>
+          <dt>Temper</dt><dd>Peaceful toward you. Attack one and it wades out into the lava where you can't follow, and the Mooring remembers. Piglin and Withren raiders get the chain bridges pulled up and magma thrown at them.</dd>
+          <dt>Dress</dt><dd>Twisting-vine rope, hip cloths woven from weeping vines, iron chain. They are the Nether's chainwrights.</dd>
+          <dt>Manner</dt><dd>Warm, chatty and hospitable, fond of songs and haggling. Always cold, always offering you a seat by the magma.</dd>
+          <dt>Names</dt><dd>Volcanic words, with their mooring's chain: Tephra of the Long Chain, Scoria of the Slow Glow, Brann, Lapilli, Tuff.</dd>
+          <dt>Gender</dt><dd>Male and female. Males carry one tall crest ridge and a chain sash; females twin ridges hung with chain loops and a woven chest wrap.</dd>
+          <dt>Children</dt><dd>About 1.3 blocks: round, stubby-legged, with three nubs for a crest. They run hotter than adults but cool twice as fast, so they never stray far from a vent.</dd>
+        </dl>
+        <div class="chips"><span class="chip">Ferrier (strider barges)</span><span class="chip">Lava-angler</span><span class="chip">Chainwright</span><span class="chip">Quartzcutter</span><span class="chip">Hearthkeeper</span><span class="chip">Chartmaker</span></div>
+        <p class="quote">"Brr. You're cold as a ghast's tear. Sit by the vent. Sit, sit."</p>
+      </div>
+    </article>
+    <div class="panel">
+      <h3>Why they matter in play</h3>
+      <ul>
+        <li><b>Ferries:</b> hire a strider barge across a lava sea (the Travel button in the dock). They carry outsiders like you, never one of the other four peoples.</li>
+        <li><b>Striders</b> are their cattle and their boats. <b>Ghasts</b> are "the sky-mourners": the Magmari say they saw the Wither and have been crying ever since.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WEFT -------------------------------------------------------------------------------------- -->
+  <section class="weft" id="weft">
+    <span class="eyebrow">The fourth people</span>
+    <h2>Weft</h2>
+    <p class="lede">The giant fungi of the Warped Forest hold the Weft: four-armed weavers who live in the canopy and spin twisting vines into cloth, nets and bridges. Their saying is that the forest is the warp and they are the weft. They are wary: leave their forest alone and they will talk; cut it and they drop nets on you.</p>
+    <article class="sheet">
+      <div class="col">
+        <header><h3>Weft</h3><span class="say">WEFT · the canopy weavers</span></header>
+        <canvas class="view" id="weft-view" aria-label="Weft model, drag to turn"></canvas>
+        <div class="variants" role="group" aria-label="Show Weft">
+          <button class="btn" type="button" data-view="weft-view" data-mob="weft" aria-pressed="true">Male</button>
+          <button class="btn" type="button" data-view="weft-view" data-mob="weft_female" aria-pressed="false">Female</button>
+          <button class="btn" type="button" data-view="weft-view" data-mob="weft_child" aria-pressed="false">Child</button>
+        </div>
+      </div>
+      <div class="col">
+        <dl class="facts">
+          <dt>Body</dt><dd>About 2.3 blocks and slender, with four arms: a long upper pair to climb and a short lower pair to weave. Long three-fingered hands.</dd>
+          <dt>Head</dt><dd>A smooth dark face plate with six small glowing eyes, a long skull swept back, and two dark mandibles at the jaw.</dd>
+          <dt>Skin</dt><dd>Like warped-stem bark: deep indigo with teal streaks.</dd>
+          <dt>Temper</dt><dd>Wary. They talk to visitors who leave the forest alone. Break warped stems or wart near a Loom and they drop vine nets on you, slowing and holding you, and the whole Loom turns on you.</dd>
+          <dt>Dress</dt><dd>Cloth woven from twisting vines: warped-wart teal with shroomlight-orange stitching, spools at the belt, a shuttle always in a lower hand.</dd>
+          <dt>Gender</dt><dd>Male and female. Males wear a shoulder mantle, a short kilt and a woven headband; females a shawl, a long skirt and a headwrap with two long tails.</dd>
+          <dt>Manner</dt><dd>Patient, precise and quietly smug about having four arms. They click their mandibles while they think.</dd>
+          <dt>Names</dt><dd>A name and the row of the Long Cloth woven the year they were born: Vesk, Row Four-Hundred-Nine.</dd>
+          <dt>Children</dt><dd>About 1.1 blocks, with only two arms. The lower pair are nubs that grow in later.</dd>
+        </dl>
+        <div class="chips"><span class="chip">Weaver</span><span class="chip">Spinner</span><span class="chip">Netcaster (guard)</span><span class="chip">Dyer</span><span class="chip">Canopy-tender</span><span class="chip">Clothkeeper (elder)</span></div>
+        <p class="quote">"The forest is the warp. We are the weft. You are a loose thread, ground-walker."</p>
+      </div>
+    </article>
+    <div class="panel">
+      <h3>The Long Cloth</h3>
+      <ul>
+        <li>Every Loom keeps a copy of the Long Cloth: their whole history, woven one row a year since the first fungus grew.</li>
+        <li>Sixty rows in the middle are black. That is the Wither, and they don't talk about it.</li>
+        <li>Do something worth remembering for a Loom and they weave you into the cloth: their highest honour, and a friendship milestone.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- GHASTKIN ---------------------------------------------------------------------------------- -->
+  <section class="ghastkin" id="ghastkin">
+    <span class="eyebrow">The fifth people</span>
+    <h2>Ghastkin</h2>
+    <p class="lede">Under the cliffs of the Basalt Deltas hang the Eaves of the Ghastkin: pale, floating mourners with faces like ghasts. They are the gentlest people in the Nether and the most easily frightened. Come at them fast and they drift up out of reach; come softly, sneaking, and they will talk.</p>
+    <article class="sheet">
+      <div class="col">
+        <header><h3>Ghastkin</h3><span class="say">GAST-kin · the mourners of the Basalt Deltas</span></header>
+        <canvas class="view" id="ghastkin-view" aria-label="Ghastkin model, drag to turn"></canvas>
+        <div class="variants" role="group" aria-label="Show Ghastkin">
+          <button class="btn" type="button" data-view="ghastkin-view" data-mob="ghastkin" aria-pressed="true">Male</button>
+          <button class="btn" type="button" data-view="ghastkin-view" data-mob="ghastkin_female" aria-pressed="false">Female</button>
+          <button class="btn" type="button" data-view="ghastkin-view" data-mob="ghastkin_child" aria-pressed="false">Child</button>
+        </div>
+      </div>
+      <div class="col">
+        <dl class="facts">
+          <dt>Body</dt><dd>A pale, slender upper body, and below the waist six tentacles instead of legs. They float a little off the ground, about 2.25 blocks from crown to tentacle tip.</dd>
+          <dt>Head</dt><dd>A ghast's face at normal head size: closed eyes, tear tracks, a small sad mouth.</dd>
+          <dt>Temper</dt><dd>Shy and peaceful. Approach while sneaking to talk. Run at them or draw a weapon and they drift up toward the ceiling. They never fight.</dd>
+          <dt>Tears</dt><dd>They cry once, properly, for each death, and then let it go. Their tears close wounds and wash away memories, so they trade healing and are careful who they cry for.</dd>
+          <dt>Dress</dt><dd>Ash-silk the colour of delta smoke, and a tear vial on a cord.</dd>
+          <dt>Gender</dt><dd>Male and female. Males wear a hood and a short cape; females a long sheer veil and a circlet of tear beads.</dd>
+          <dt>Manner</dt><dd>Soft-spoken, kind and a little melancholy, with a sly streak. They speak slowly and never finish a sad story.</dd>
+          <dt>Names</dt><dd>They take a new name after every great grief and let the old one go: Siel, who was Oriel.</dd>
+          <dt>Children</dt><dd>About 1.2 blocks, eyes still open: they haven't learned to cry yet.</dd>
+          <dt>Ghasts</dt><dd>A Ghastkin who grieves too long swells, forgets their hands and their words, and drifts off as a ghast, still crying.</dd>
+        </dl>
+        <div class="chips"><span class="chip">Tearkeeper (healer)</span><span class="chip">Mender</span><span class="chip">Songwarden</span><span class="chip">Ashsweeper</span><span class="chip">Drift-watcher</span></div>
+        <p class="quote">"We cry for them once, properly. Then we let them go. It's the letting go that takes practice."</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- FEUDS -------------------------------------------------------------------------------------- -->
+  <section>
+    <span class="eyebrow">How they get along</span>
+    <h2>Five peoples, no peace</h2>
+    <p class="muted">They don't share villages and they don't share the Nether. Every pair has its own grudge, and they fight wherever they meet. On top of that, Piglins attack anyone who shows no gold, and none of the other four ever wears it.</p>
+    <div class="feudwrap">
+      <table class="feudmap">
+        <thead><tr><th></th><th class="c-gold">Piglins</th><th class="c-soul">Withren</th><th class="c-magma">Magmari</th><th class="c-warp">Weft</th><th class="c-tear">Ghastkin</th></tr></thead>
+        <tbody>
+          <tr><th class="c-gold">Piglins</th><td class="self"></td><td>The War of the Hoard and the Wither that ended it.</td><td>Gold melts on Magmari skin, so they can never show it. Piglins raid their striders.</td><td>Piglins raid the canopy for shroomlights; the Weft drop nets on the raiders.</td><td>Piglins shoot them down with crossbows as ghast whelps.</td></tr>
+          <tr><th class="c-soul">Withren</th><td class="mirror">·</td><td class="self"></td><td>The ferries that carried the Piglin war-bands; the Moorings the Wither burned.</td><td>The Weft take bone from the Withren dead for needles and loom weights.</td><td>Withren keep every name forever; Ghastkin cry names away.</td></tr>
+          <tr><th class="c-magma">Magmari</th><td class="mirror">·</td><td class="mirror">·</td><td class="self"></td><td>Magmari raid the forest for warped fungus to drive their striders.</td><td>A Ghastkin tear puts out a Magmari's glow where it lands.</td></tr>
+          <tr><th class="c-warp">Weft</th><td class="mirror">·</td><td class="mirror">·</td><td class="mirror">·</td><td class="self"></td><td>The Weft string nets in the air to catch Ghastkin for their tears.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- VILLAGES ----------------------------------------------------------------------------------- -->
+  <section>
+    <span class="eyebrow">Settlements</span>
+    <h2>Five kinds of village</h2>
+    <p class="muted">Each people builds its own villages in its own biome, and never with the others. All five are now in the game, generated naturally in any new Nether.</p>
+    <div class="vgrid">
+      <div class="village"><h3>Hold</h3><span class="who">Piglins · 10-18, with 2 Brutes and their young · Crimson Forest, Nether Wastes</span><p>Crimson-timber longhouses on blackstone footings, gold trim everywhere.</p><ul><li>The Hoard (look, never touch)</li><li>Barter ring</li><li>Hoglin pens</li><li>War-horn tower</li></ul></div>
+      <div class="village vigil"><h3>Vigil</h3><span class="who">Withren · 6-14 · Soul Sand Valley</span><p>Basalt and bone-block halls along lanes of soul lanterns, quiet as a library.</p><ul><li>Hall of the Three (three empty skull niches)</li><li>The Name Wall</li><li>Nether wart terraces on soul sand</li><li>Brewery</li></ul></div>
+      <div class="village mooring"><h3>Mooring</h3><span class="who">Magmari · 6-12 · out on the lava seas</span><p>Platforms on basalt pillars out in the lava, joined by chain bridges.</p><ul><li>Magma-block hearths</li><li>Strider pens in the lava</li><li>Ferry docks</li><li>Chain works</li></ul></div>
+      <div class="village loom"><h3>Loom</h3><span class="who">Weft · 8-14 · Warped Forest</span><p>Platforms on the caps of giant warped fungi, joined by woven bridges and nets.</p><ul><li>The Great Loom and the Long Cloth</li><li>Shroomlight dye vats</li><li>Spinning walks</li><li>Net-hung lookouts</li></ul></div>
+      <div class="village eave"><h3>Eave</h3><span class="who">Ghastkin · 6-12 · Basalt Deltas</span><p>Homes hung like lanterns under the delta cliffs and the great basalt pillars, reached by vine ladders.</p><ul><li>The Weeping Hall</li><li>Tear-vial stores (the healers)</li><li>Hanging gardens</li><li>Lookout perches</li></ul></div>
+    </div>
+    <div class="ingame">
+      <h3>In the game</h3>
+      <p class="muted">Screenshots from the mod's own test: it makes a new world, finds each kind of village by natural generation in the Nether, checks the residents are there, and photographs it.</p>
+      <div class="shots"><!--__SHOTS__--></div>
+    </div>
+    <p class="ruins">The vanilla ruins stay and get a past. <b>Bastion Remnants</b> are what the Wither left of the Piglin empire, and Brutes still guard the old hoards. <b>Nether Fortresses</b> are the Withren's old war-forts, now held by the Hollowed and by the blazes they once set there as wardens.</p>
+  </section>
+
+  <!-- HISTORY ------------------------------------------------------------------------------------ -->
+  <section>
+    <span class="eyebrow">History</span>
+    <h2>The Hoard, the War and the Wither</h2>
+    <ol class="steps">
+      <li><h3>The Gilded Age</h3><p>Five peoples, five realms, no friendship. Piglin bastions roofed in gold across the wastes, Withren valleys and nether-brick fortresses, Magmari on the lava seas, Weft looms in the warped canopy, Ghastkin Eaves under the delta cliffs.</p></li>
+      <li><h3>The War of the Hoard</h3><p>The Piglins want the gold under the valleys. The Magmari ferry Piglin war-bands across the lava for pay, and the Weft strip bone from both sides' dead. Piglins wear gold to tell friend from foe, because nobody else will.</p></li>
+      <li><h3>The Last Answer</h3><p>Three Withren give themselves and the Wither wakes. It burns the bastions, the Moorings and the Withren's own fortresses. The grief afterwards is so great that half the Ghastkin swell into ghasts, and the Weft weave sixty black rows.</p></li>
+      <li><h3>You arrive</h3><p>Five peoples, five kinds of village, ten grudges. Then you step through a portal, from the world where outsiders make Withers for fun.</p></li>
+    </ol>
+  </section>
+
+  <!-- CONVERSATION SCREEN ------------------------------------------------------------------------ -->
+  <section class="ui">
+    <span class="eyebrow">Conversation screen</span>
+    <h2>The Village Friends screen, in netherrack</h2>
+    <p>It's in the game now: right-click anyone to talk (Piglins while you wear gold, Ghastkin while you sneak). About 1,400 lines across the five peoples, six friendship levels each with gifts at the milestones, a name and a job for every resident, and each village's name when you walk in. Photos from the game come first; the mock-up below them is the original sketch.</p>
+    <div class="shots"><!--__TALKSHOTS__--></div>
+    <p class="muted">The layout comes straight from Village Friends' <code>FriendshipScreen</code>: friendship card, dialogue box with portrait and name ribbon, numbered replies and the dock. Only the look comes across; all the talk is new. Panels are netherrack, and each people counts friendship its own way: gold nuggets for Piglins, soul flames for Withren, embers for Magmari, spools for the Weft and tears for the Ghastkin. The lines below are sample writing for the new voices. Click a reply or press 1 to 4.</p>
+    <div class="controls">
+      <button class="btn" type="button" id="pick-piglin" aria-pressed="true">Talk to a Piglin</button>
+      <button class="btn" type="button" id="pick-withren" aria-pressed="false">Talk to a Withren</button>
+      <button class="btn" type="button" id="pick-magmari" aria-pressed="false">Talk to a Magmari</button>
+      <button class="btn" type="button" id="pick-weft" aria-pressed="false">Talk to a Weft</button>
+      <button class="btn" type="button" id="pick-ghastkin" aria-pressed="false">Talk to a Ghastkin</button>
+      <label class="toggle" id="gold-toggle"><input type="checkbox" id="wearing-gold" checked> Wearing gold</label>
+      <label class="toggle" id="cold-toggle" hidden><input type="checkbox" id="away-from-lava"> Away from the lava</label>
+      <label class="toggle" id="sneak-toggle" hidden><input type="checkbox" id="sneaking" checked> Sneaking</label>
+      <button class="btn" type="button" id="sound" aria-pressed="false">Voice blips: off</button>
+    </div>
+    <div class="screen" id="screen">
+      <canvas class="world" id="world" aria-hidden="true"></canvas>
+      <div class="shadeover"></div>
+      <div class="card rackbg">
+        <div class="row"><span class="badge" id="lv">Lv. 1</span><span id="lvname">Gold-bearer</span></div>
+        <div class="meter" id="meter"></div>
+        <span class="goal" id="goal">Next: gift them a gold ingot</span>
+      </div>
+      <div class="replies" id="replies"></div>
+      <div class="box rackbg">
+        <div class="portrait"><canvas id="portrait" aria-hidden="true"></canvas></div>
+        <div class="ribbon"><b id="who">Grukka Red-Tusk</b><span id="sub">Hunter · Boastful · Hold Gharrak</span></div>
+        <div class="text">
+          <div class="line" id="line" aria-live="polite"></div>
+          <div class="status" id="status-row"><span id="status">Grukka eyes your boots.</span><span class="more" id="more" hidden>&#9660;</span></div>
+        </div>
+      </div>
+      <nav class="dock" id="dock" aria-label="Conversation dock"></nav>
+    </div>
+    <div class="palette" aria-label="Screen palette">
+      <span class="sw"><i style="background:#6a2b29"></i>netherrack panel</span>
+      <span class="sw"><i style="background:#260d0c"></i>nether-brick edge</span>
+      <span class="sw"><i style="background:#b35d53"></i>bevel</span>
+      <span class="sw"><i style="background:#fbeee2"></i>ink</span>
+      <span class="sw"><i style="background:#f2c14e"></i>status (gold)</span>
+      <span class="sw"><i style="background:#6fe3f0"></i>soul flame</span>
+      <span class="sw"><i style="background:#ff8a2a"></i>ember</span>
+      <span class="sw"><i style="background:#3fd1c3"></i>spool</span>
+      <span class="sw"><i style="background:#bfe9f5"></i>tear</span>
+    </div>
+  </section>
+
+  <section class="settled">
+    <span class="eyebrow">Settled</span>
+    <h2>Decisions so far</h2>
+    <ul>
+      <li><b>Piglins</b> keep their vanilla model and skin; only their code changes. Every Piglin can be talked to while you wear gold, in Bastions as well as Holds.</li>
+      <li><b>Gold</b> means golden armour or any armour with a gold trim. <b>Brutes</b> respect it, except in a Bastion's treasure vault.</li>
+      <li><b>Withren</b> wear the Wither's own head, drawn from the game's Wither texture, and are genderless. Summoning a Wither turns them cold, not hostile.</li>
+      <li><b>Magmari</b> are peaceful toward you.</li>
+      <li><b>Gender:</b> male and female like Village Friends for Piglins, Magmari, Weft and Ghastkin. Withren have none.</li>
+      <li><b>Babies</b> for everyone: the vanilla baby Piglin, Withren children in the classic style, young Magmari, Weft and Ghastkin.</li>
+      <li><b>Names:</b> the Weft keep theirs. The Basalt Deltas people are the <b>Ghastkin</b>, named for the ghasts they become. Both tempers stand: the Weft wary, the Ghastkin shy.</li>
+      <li><b>Villages</b> are never shared: Holds, Vigils, Moorings, Looms and Eaves, and the five peoples fight wherever they meet.</li>
+    </ul>
+    <p class="muted">Next: the five villages are being built in the game itself, then the few creature species, the dialogue bank and the screen. Animations stay on hold.</p>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const DATA = /*__DATA__*/null;
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ---- pixel textures for the grounds and the UI -----------------------------------------------------
+function rng(seed) { let s = seed; return () => (s = (s * 9301 + 49297) % 233280) / 233280; }
+function pixelCanvas(pal, seed, extra) {
+  const c = document.createElement('canvas'); c.width = c.height = 16;
+  const x = c.getContext('2d'), r = rng(seed);
+  for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) { x.fillStyle = pal[Math.floor(r() * pal.length)]; x.fillRect(i, j, 1, 1); }
+  if (extra) extra(x, r);
+  return c;
+}
+const RACK = ['#6f2f2d', '#652a29', '#783432', '#5f2726', '#8f4a46'];
+const SOULSAND = ['#51402f', '#4a3a2a', '#5a4734', '#43352a'];
+const BASALT = ['#4b4a50', '#45444a', '#525157', '#3f3e44'];
+const BLACKSTONE = ['#2a2429', '#302a2f', '#262126', '#2d272c'];
+function rackCanvas() { return pixelCanvas(RACK, 13, (x, r) => { for (let k = 0; k < 14; k++) { x.fillStyle = r() < .5 ? '#4a1d1c' : '#9c524c'; x.fillRect(Math.floor(r() * 16), Math.floor(r() * 16), 1, 1); } }); }
+function soulCanvas() { return pixelCanvas(SOULSAND, 5, (x, r) => { for (let k = 0; k < 4; k++) { const i = Math.floor(r() * 12) + 1, j = Math.floor(r() * 12) + 1; x.fillStyle = '#2e241a'; x.fillRect(i, j, 1, 1); x.fillRect(i + 2, j, 1, 1); x.fillRect(i, j + 2, 3, 1); } }); }
+function basaltCanvas() { return pixelCanvas(BASALT, 17, (x) => { x.fillStyle = '#6d6c73'; for (let i = 0; i < 16; i++) { x.fillRect(i, 0, 1, 1); x.fillRect(0, i, 1, 1); } x.fillStyle = '#2c2b30'; for (let i = 3; i < 16; i += 4) x.fillRect(i, 1, 1, 15); }); }
+function nyliumCanvas() { return pixelCanvas(['#167e86', '#14757c', '#1b8c94', '#0f5f66'], 23, (x, r) => { for (let k = 0; k < 10; k++) { x.fillStyle = r() < .5 ? '#2fb3a8' : '#0c4f4b'; x.fillRect(Math.floor(r() * 16), Math.floor(r() * 16), 1, 1); } }); }
+function lavaCanvas(t) {
+  const c = document.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d');
+  for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) {
+    const v = Math.sin(i * 0.7 + t) + Math.sin(j * 0.9 - t * 0.8) + Math.sin((i + j) * 0.4 + t * 0.5);
+    x.fillStyle = v > 1.4 ? '#ffd35a' : v > 0.4 ? '#ff9a2a' : v > -0.8 ? '#e5641a' : '#b8400f'; x.fillRect(i, j, 1, 1);
+  }
+  return c;
+}
+function texFrom(canvas) { const t = new THREE.CanvasTexture(canvas); t.magFilter = THREE.NearestFilter; t.minFilter = THREE.NearestFilter; return t; }
+document.documentElement.style.setProperty('--rack-tex', `url(${rackCanvas().toDataURL()})`);
+
+// ---- model building: a port of ModelPart.Cube (box UV), parts as nested groups ---------------------
+const texCache = {};
+function tex(uri) {
+  if (!texCache[uri]) {
+    const t = new THREE.TextureLoader().load(uri);
+    t.magFilter = THREE.NearestFilter; t.minFilter = THREE.NearestFilter;
+    texCache[uri] = t;
+  }
+  return texCache[uri];
+}
+function cubeGeometry(c, tw, th) {
+  let [minX, minY, minZ] = c.from; const [w, h, d] = c.size; const g = c.inflate || 0;
+  let maxX = minX + w, maxY = minY + h, maxZ = minZ + d;
+  const [xo, yo] = c.uv;
+  minX -= g; minY -= g; minZ -= g; maxX += g; maxY += g; maxZ += g;
+  if (c.mirror) { const t = maxX; maxX = minX; minX = t; }
+  const W = Math.ceil(w), H = Math.ceil(h), D = Math.ceil(d);
+  const t0 = [minX, minY, minZ], t1 = [maxX, minY, minZ], t2 = [maxX, maxY, minZ], t3 = [minX, maxY, minZ];
+  const l0 = [minX, minY, maxZ], l1 = [maxX, minY, maxZ], l2 = [maxX, maxY, maxZ], l3 = [minX, maxY, maxZ];
+  const u0 = xo, u1 = xo + D, u2 = xo + D + W, u22 = xo + D + W + W, u3 = xo + D + W + D, u4 = xo + D + W + D + W;
+  const v0 = yo, v1 = yo + D, v2 = yo + D + H;
+  const polys = [
+    [[l1, l0, t0, t1], u1, v0, u2, v1], [[t2, t3, l3, l2], u2, v1, u22, v0],
+    [[t0, l0, l3, t3], u0, v1, u1, v2], [[t1, t0, t3, t2], u1, v1, u2, v2],
+    [[l1, t1, t2, l2], u2, v1, u3, v2], [[l0, l1, l2, l3], u3, v1, u4, v2],
+  ];
+  const pos = [], uv = [];
+  for (const [vs, a, b, cc, dd] of polys) {
+    const uvs = [[cc, b], [a, b], [a, dd], [cc, dd]];
+    for (const i of [0, 1, 2, 0, 2, 3]) { pos.push(...vs[i]); uv.push(uvs[i][0] / tw, 1 - uvs[i][1] / th); }
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  geo.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+  geo.computeVertexNormals();
+  return geo;
+}
+function buildMob(id) {
+  const m = DATA[id];
+  const [tw, th] = m.geo.texture;
+  const base = new THREE.MeshLambertMaterial({ map: tex(m.tex), transparent: true, alphaTest: 0.1, side: THREE.DoubleSide });
+  const glow = m.glow ? new THREE.MeshBasicMaterial({ map: tex(m.glow), transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide }) : null;
+  const borrowed = k => new THREE.MeshLambertMaterial({ map: tex(DATA.vanilla[k]), transparent: true, alphaTest: 0.1, side: THREE.DoubleSide });
+  const root = new THREE.Group(), parts = { '': root };
+  const pose = m.geo.preview || {};
+  for (const p of m.geo.parts) {
+    const g = new THREE.Group();
+    g.position.set(...p.pivot);
+    const r = pose[p.name] || p.rotation;
+    g.rotation.set(r[0], r[1], r[2], 'ZYX');
+    if (p.scale) g.scale.set(...p.scale);   // ModelPart x/y/zScale (classic babies)
+    g.userData.base = { pos: g.position.clone(), rot: g.rotation.clone() };
+    for (const c of p.cubes) {
+      // a cube can borrow a vanilla texture (the Withren's Wither head); vanilla textures are 64x64
+      if (c.texture) { g.add(new THREE.Mesh(cubeGeometry(c, 64, 64), borrowed(c.texture))); continue; }
+      const geo = cubeGeometry(c, tw, th);
+      g.add(new THREE.Mesh(geo, base));
+      if (glow) g.add(new THREE.Mesh(geo, glow));
+    }
+    parts[p.parent].add(g); parts[p.name] = g;
+  }
+  // LivingEntityRenderer: flip, then lift so model y=24 is the ground (y=0)
+  const sc = m.geo.scale || 1;
+  const flip = new THREE.Group(); flip.scale.set(-sc, -sc, sc);
+  root.position.y = -24; flip.add(root);
+  const holder = new THREE.Group(); holder.add(flip);
+  holder.userData.parts = parts; holder.userData.id = id;
+  holder.updateMatrixWorld(true);
+  holder.userData.top = new THREE.Box3().setFromObject(holder).max.y;
+  holder.userData.neck = parts.head.getWorldPosition(new THREE.Vector3()).y;
+  return holder;
+}
+function mannequin() {
+  // the player for scale: Steve's boxes in one flat colour
+  const mat = new THREE.MeshLambertMaterial({ color: 0x7a6560, transparent: true, opacity: 0.9 });
+  const g = new THREE.Group();
+  const box = (w, h, d, x, y, z) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat); m.position.set(x, y + h / 2, z); g.add(m); };
+  box(4, 12, 4, -2, 0, 0); box(4, 12, 4, 2, 0, 0); box(8, 12, 4, 0, 12, 0);
+  box(4, 12, 4, -6, 12, 0); box(4, 12, 4, 6, 12, 0); box(8, 8, 8, 0, 24, 0);
+  return g;
+}
+function ground(w, d, canvas, deep = 16) {
+  const g = new THREE.Group(), mat = new THREE.MeshLambertMaterial({ map: texFrom(canvas) });
+  for (let x = -w / 2; x < w / 2; x += 16) for (let z = -d / 2; z < d / 2; z += 16) {
+    const depth = deep + (Math.abs(x) + Math.abs(z) < w / 3 ? 16 : 0);
+    const m = new THREE.Mesh(new THREE.BoxGeometry(16, depth, 16), mat);
+    m.position.set(x + 8, -depth / 2, z + 8); g.add(m);
+  }
+  return g;
+}
+function lavaSea(size) {
+  const canvas = lavaCanvas(0), t = texFrom(canvas);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(size / 16, size / 16);
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(size, size), new THREE.MeshBasicMaterial({ map: t }));
+  m.rotation.x = -Math.PI / 2; m.position.y = -10;
+  m.userData.tick = (time) => { const c = lavaCanvas(time * 0.8); canvas.getContext('2d').drawImage(c, 0, 0); t.needsUpdate = true; };
+  return m;
+}
+/** Point the camera at a box of the scene (world units) so it fits the canvas. */
+function fit(v, w, h, x0, x1, y0, y1, lift = 0.25) {
+  const t = Math.tan(THREE.MathUtils.degToRad(v.camera.fov / 2));
+  const dist = Math.max((y1 - y0) / 2 / t, (x1 - x0) / 2 / (t * w / h)) * 1.08;
+  const cy = (y0 + y1) / 2;
+  v.camera.position.set((x0 + x1) / 2, cy + dist * lift, -dist); v.camera.lookAt((x0 + x1) / 2, cy, 0);
+}
+function tagFollow(v, canvas, anchors, tags) {
+  const w = canvas.clientWidth, h = canvas.clientHeight, p = new THREE.Vector3();
+  for (const k in anchors) {
+    anchors[k].getWorldPosition(p); p.project(v.camera);
+    const half = tags[k].offsetWidth / 2 + 6;
+    tags[k].style.left = Math.min(w - half, Math.max(half, (p.x + 1) / 2 * w)) + 'px';
+    tags[k].style.top = ((1 - p.y) / 2 * h - 4) + 'px';
+  }
+}
+function anchorOver(obj, top) { const a = new THREE.Object3D(); a.position.set(0, top + 3, 0); obj.add(a); return a; }
+function lights(scene, tint = 0xffd9c8) {
+  scene.add(new THREE.AmbientLight(tint, 0.62));
+  const a = new THREE.DirectionalLight(0xffffff, 0.5); a.position.set(-0.4, 1, -0.9); scene.add(a);
+  const b = new THREE.DirectionalLight(0xff8a50, 0.25); b.position.set(0.6, -0.2, 0.8); scene.add(b);
+}
+
+// ---- viewers: one render loop, drag to turn, paused when off screen --------------------------------
+const viewers = [];
+function Viewer(canvas, setup) {
+  const v = { canvas, visible: true, yaw: setup.yaw || 0, spin: setup.spin ?? (REDUCED ? 0 : 0.15), drag: null, update: setup.update };
+  v.renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true });
+  v.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+  v.scene = new THREE.Scene(); lights(v.scene, setup.tint);
+  v.turn = new THREE.Group(); v.scene.add(v.turn);
+  v.camera = new THREE.PerspectiveCamera(setup.fov || 28, 1, 1, 2000);
+  setup.build(v);
+  v.resize = () => {
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    if (!w || !h) return;
+    v.renderer.setSize(w, h, false); v.camera.aspect = w / h; v.camera.updateProjectionMatrix();
+    if (setup.frame) setup.frame(v, w, h);
+  };
+  new ResizeObserver(v.resize).observe(canvas); v.resize();
+  if (setup.draggable !== false) {
+    canvas.addEventListener('pointerdown', e => { v.drag = { x: e.clientX, yaw: v.yaw }; canvas.setPointerCapture(e.pointerId); });
+    canvas.addEventListener('pointermove', e => { if (v.drag) v.yaw = v.drag.yaw + (e.clientX - v.drag.x) * 0.012; });
+    const end = () => { v.drag = null; };
+    canvas.addEventListener('pointerup', end); canvas.addEventListener('pointercancel', end);
+  }
+  new IntersectionObserver(es => es.forEach(en => v.visible = en.isIntersecting)).observe(canvas);
+  viewers.push(v); return v;
+}
+let last = performance.now();
+function loop(now) {
+  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  for (const v of viewers) {
+    if (!v.visible) continue;
+    if (!v.drag) v.yaw += v.spin * dt;
+    v.turn.rotation.y = v.yaw;
+    if (v.update) v.update(v, now / 1000, dt);
+    v.renderer.render(v.scene, v.camera);
+  }
+  requestAnimationFrame(loop);
+}
+
+// ---- the lineup -------------------------------------------------------------------------------------
+function lineup() {
+  const canvas = document.getElementById('lineup');
+  const tags = {}, anchors = {};
+  for (const k of ['magmari', 'weft', 'withren', 'you', 'piglin', 'ghastkin']) tags[k] = document.getElementById('tag-' + k);
+  Viewer(canvas, {
+    yaw: -0.35, spin: 0, fov: 24,
+    build(v) {
+      v.turn.add(ground(224, 64, rackCanvas()));
+      // adults left to right as the viewer sees them, each child just in front of its parent
+      const row = [['magmari', 'magmari_child', 84], ['weft', 'weft_child', 52], ['withren', 'withren_child', 22],
+                   ['you', null, -6], ['piglin', 'piglin_baby', -34], ['ghastkin', 'ghastkin_child', -70]];
+      for (const [k, kid, x] of row) {
+        const a = k === 'you' ? mannequin() : buildMob(k); a.position.set(x, 0, 0); v.turn.add(a);
+        anchors[k] = anchorOver(a, k === 'you' ? 32 : a.userData.top);
+        if (kid) { const c = buildMob(kid); c.position.set(x - 12, 0, -10); v.turn.add(c); }
+      }
+      // drifting embers
+      const n = 70, pos = new Float32Array(n * 3);
+      for (let i = 0; i < n; i++) { pos[i * 3] = (Math.random() - .5) * 180; pos[i * 3 + 1] = Math.random() * 70 - 10; pos[i * 3 + 2] = (Math.random() - .5) * 90; }
+      const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      v.motes = new THREE.Points(geo, new THREE.PointsMaterial({ color: 0xff9a3a, size: 1.4, transparent: true, opacity: .8 }));
+      v.scene.add(v.motes);
+    },
+    frame(v, w, h) { fit(v, w, h, -112, 112, -20, 100, 0.18); },
+    update(v, t) {
+      if (!v.drag && !REDUCED) v.yaw = -0.35 + Math.sin(t * 0.25) * 0.45;
+      if (!REDUCED) {
+        const a = v.motes.geometry.attributes.position;
+        for (let i = 0; i < a.count; i++) { let y = a.getY(i) + 0.06; if (y > 70) y = -10; a.setY(i, y); }
+        a.needsUpdate = true;
+      }
+      tagFollow(v, canvas, anchors, tags);
+    },
+  });
+}
+
+// ---- per-people turntables with variant buttons -----------------------------------------------------
+const STANDS = {
+  'piglin-view': { mob: 'piglin', base: () => ground(32, 32, rackCanvas()), tint: 0xffd2c0 },
+  'withren-view': { mob: 'withren', base: () => ground(32, 32, soulCanvas()), tint: 0xd8f2f2 },
+  'weft-view': { mob: 'weft', base: () => ground(32, 32, nyliumCanvas()), tint: 0xd0ecf0 },
+  'ghastkin-view': { mob: 'ghastkin', base: () => ground(32, 32, basaltCanvas()), tint: 0xe8e6f0 },
+  'magmari-view': { mob: 'magmari', base: () => { const g = new THREE.Group(); g.add(ground(16, 16, basaltCanvas(), 20)); const l = lavaSea(160); g.add(l); g.userData.lava = l; return g; }, tint: 0xffc8a0 },
+};
+function turntables() {
+  for (const id in STANDS) {
+    const s = STANDS[id], canvas = document.getElementById(id);
+    const view = Viewer(canvas, {
+      yaw: -0.55, fov: 26, tint: s.tint,
+      build(v) { v.base = s.base(); v.turn.add(v.base); v.mob = buildMob(s.mob); v.turn.add(v.mob); },
+      frame(v, w, h) { fit(v, w, h, -24, 24, -14, Math.max(36, v.mob.userData.top) + 4, 0.22); },
+      update(v, t) { if (v.base.userData.lava && !REDUCED && Math.floor(t * 8) !== v.lastLava) { v.lastLava = Math.floor(t * 8); v.base.userData.lava.userData.tick(t); } },
+    });
+    document.querySelectorAll(`.variants .btn[data-view="${id}"]`).forEach(b => b.addEventListener('click', () => {
+      view.turn.remove(view.mob); view.mob = buildMob(b.dataset.mob); view.turn.add(view.mob); view.resize();
+      document.querySelectorAll(`.variants .btn[data-view="${id}"]`).forEach(o => o.setAttribute('aria-pressed', o === b));
+    }));
+  }
+}
+
+// ---- the rite diagram: three skulls on a T of soul sand ---------------------------------------------
+function rite() {
+  const svg = document.getElementById('rite'), out = [];
+  const px = (x, y, w, h, c) => out.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${c}"/>`);
+  const block = (x, y) => {
+    px(x, y, 12, 12, '#51402f'); px(x, y, 12, 1, '#5e4b37'); px(x, y + 11, 12, 1, '#3d3024');
+    const f = [[2, 3], [7, 6], [3, 8]];
+    for (const [i, j] of f) { px(x + i, y + j, 1, 1, '#2e241a'); px(x + i + 2, y + j, 1, 1, '#2e241a'); px(x + i, y + j + 2, 3, 1, '#2e241a'); }
+  };
+  const skull = (x, y) => {
+    px(x, y, 8, 8, '#323232'); px(x, y, 8, 1, '#4c4c4c');
+    px(x + 1, y + 2, 2, 2, '#090909'); px(x + 5, y + 2, 2, 2, '#090909');
+    px(x + 2, y + 3, 1, 1, '#e8f8ff'); px(x + 5, y + 3, 1, 1, '#e8f8ff');
+    px(x + 3, y + 4, 2, 1, '#090909');
+    for (let i = 1; i < 7; i++) px(x + i, y + 6, 1, 1, i % 2 ? '#b4b4b4' : '#090909');
+  };
+  block(4, 12); block(16, 12); block(28, 12); block(16, 24);
+  skull(6, 4); skull(18, 4); skull(30, 4);
+  svg.innerHTML = out.join('');
+}
+
+// ---- conversation screen ----------------------------------------------------------------------------
+const PEOPLE = {
+  piglin: {
+    model: 'piglin', meter: 'nugget', who: 'Grukka Red-Tusk', sub: 'Hunter · Boastful · Hold Gharrak', ribbon: '#a8762a', ribbonEdge: '#6b4a14',
+    lv: 1, lvname: 'Gold-bearer', fill: 1.4, goal: 'Next: gift them a gold ingot', voice: 'piglin',
+    open: { line: '*sniffs* Gold on your feet. Good. Means I talk first and swing later. What you want, Overworlder?', status: 'Grukka eyes your boots.' },
+    replies: [
+      ['What’s the Hoard?', 'The pile. In the middle. The big shiny one. You look at it, fine. You touch it, I touch you. With axe.', 'Grukka points at the Hoard. Twice.'],
+      ['Want to trade?', 'Always! You throw gold, you get stuff. Simple. Not my fault if the stuff is gravel sometimes.', 'Friendship +5'],
+      ['Why do you hate the Withren?', 'Skull-heads made the burning thing. It burned the old bastions. My great-great-great... lots of greats... grandsow. Burned. Gold melted. Worst day.', 'Grukka spits.'],
+      ['Been to the Overworld?', '*shudders* No. Go through the purple door, you rot. Come back green and droopy. You... you not rotting? Turn around. ...Hm. Maybe a little.', 'Grukka takes a step back.'],
+    ],
+  },
+  piglin_hostile: {
+    model: 'piglin_brute', meter: 'nugget', hostile: true, who: 'Brakka Ashbristle', sub: 'Brute · Hold Gharrak', ribbon: '#8e1f2a', ribbonEdge: '#5c141b',
+    lv: 0, lvname: 'No gold', fill: 0, goal: 'Put on something gold, or run', voice: 'piglin',
+    open: { line: '*squeals* NO GOLD! NO GOLD ON IT! BLOW THE HORN!', status: 'Hostile: the whole Hold attacks.' },
+    replies: [['Wait, I’m friendly!'], ['I have gold at home!'], ['Can we talk about this?'], ['Run.']],
+  },
+  withren: {
+    model: 'withren_remembrancer', meter: 'soul', who: 'Sereth, who keeps Anwen', sub: 'Remembrancer · Patient · Vigil of the Low Ash', ribbon: '#2a6d75', ribbonEdge: '#174249',
+    lv: 1, lvname: 'Stranger', fill: 1.0, goal: 'Next: give them a name to keep', voice: 'withren',
+    open: { line: '*The skull tilts.* You walked in by the front way and kept your hands still. Thank you. Most outsiders do not. Be welcome at the Vigil.', status: 'Sereth regards you calmly.' },
+    replies: [
+      ['What is the Wither?', 'Our last answer. Three of us give ourselves, and it wakes. It does not stop until the three inside are spent. We made one, once. Look around you: this valley is what it cost.', 'Sereth is quiet for a long time.'],
+      ['Why three?', 'One to want it, one to aim it, one to forgive it. That is the old teaching. The truer answer is that one or two of us were never enough to end a war.', 'Friendship +5'],
+      ['Who do you keep?', 'Anwen. A brewer. She laughed too loudly at funerals. She died long before I was born, and I am the last who says her name. Now you have said it too. Thank you.', 'Sereth seems pleased.'],
+      ['I found some skulls in a fortress.', '*The pale eyes narrow.* Hollowed skulls. Keep them if you must. But if you ever set three on soul sand, there will be no one inside that Wither to stop it. Remember that I asked you not to.', 'Sereth will remember this.'],
+    ],
+  },
+  magmari: {
+    model: 'magmari', meter: 'ember', who: 'Tephra of the Long Chain', sub: 'Ferrier · Cheerful · Mooring of the Slow Glow', ribbon: '#c2531a', ribbonEdge: '#7a300c',
+    lv: 2, lvname: 'Passenger', fill: 2.4, goal: 'Next: share a hot meal by the vent', voice: 'magmari',
+    open: { line: 'Ho, Overworlder! Brr, you’re cold as a ghast’s tear. Come, sit by the vent. Sit, sit. Where is the ferry taking you?', status: 'Tephra waves you over.' },
+    replies: [
+      ['Aren’t you hot?', 'Hot? This is lovely! You should see the deep lava past the Long Chain, where the striders sleep. Warm enough to make you sing. *Their seams flicker brighter.*', 'Tephra glows a little.'],
+      ['Can you take me across?', 'For you, half fare. Hold the barge rail and don’t lean over. The striders don’t mind passengers. They do mind falling ones.', 'Friendship +5'],
+      ['Whose side were you on in the war?', 'The side that paid. The Piglins paid in gold we couldn\u2019t even wear, so we melted it into chain. Then the skull-heads sent their monster after the Moorings. They say we had it coming. *The seams flare white.* We say they made a monster.', 'Tephra\u2019s seams flare hot.'],
+      ['Why are some of you grey?', 'Cold. Too long on the platforms, away from the vents. Your fingers go stiff, your seams go dark, you get cranky. Like a strider on a cold rock. A hot meal and a wade fixes it.', 'Tephra shivers at the thought.'],
+    ],
+  },
+};
+PEOPLE.weft = {
+  model: 'weft', meter: 'spool', who: 'Vesk, Row Four-Hundred-Nine', sub: 'Netcaster · Wary · Loom of the High Cap', ribbon: '#1b8f86', ribbonEdge: '#0c4f4b',
+  lv: 1, lvname: 'Watched', fill: 1.0, goal: 'Next: bring him twisting vines', voice: 'weft',
+  open: { line: '*Six orange eyes blink down from the canopy, one pair at a time.* You climbed slow. You did not cut. Good. Speak, ground-walker. The cloth is listening.', status: 'Vesk watches from above.' },
+  replies: [
+    ['What is the Long Cloth?', 'Our story. One row for every year since the first fungus grew. In the middle the cloth goes black for sixty rows. That is the Wither. We do not talk about the black rows.', 'Vesk\u2019s lower hands keep weaving.'],
+    ['Why four arms?', 'Two to climb, two to weave. Ground-walkers have only two, so you must always choose. *click click* We pity you a little.', 'Friendship +5'],
+    ['Do you trade?', 'Thread for bone. Bring us bone and we weave you cloth no fire can touch. Do not ask whose bone. The skull-heads ask, and look how they are.', 'Vesk sounds amused.'],
+    ['The Withren say you rob their dead.', '*Every eye narrows.* The dead do not need bones. We need needles. The skull-heads keep names, we keep thread. Both are ways to remember.', 'Vesk will remember you asked.'],
+  ],
+};
+PEOPLE.ghastkin = {
+  model: 'ghastkin_female', meter: 'tear', who: 'Siel, who was Oriel', sub: 'Tearkeeper · Gentle · Eave of the Long Fall', ribbon: '#7f8a99', ribbonEdge: '#525a66',
+  lv: 1, lvname: 'Quiet visitor', fill: 1.2, goal: 'Next: sit with her a while', voice: 'ghastkin',
+  open: { line: '*The closed eyes turn toward you. A tear runs down, slowly.* You came softly. Thank you. Most things that come here are loud. Sit, if you like. We do not mind silence.', status: 'Siel drifts a little closer.' },
+  replies: [
+    ['Why are you crying?', 'Someone is always dead somewhere. We cry for them once, properly, and then we let them go. *another tear* The skull-heads keep every name forever. Imagine carrying all that.', 'Siel sighs, a long wavering note.'],
+    ['Are you related to ghasts?', 'They were us. A Ghastkin who grieves too long swells, and forgets their hands, and their words, and drifts away still crying. *quietly* My mother is one. I don\u2019t know which.', 'Siel goes very still.'],
+    ['Can your tears heal?', 'A little. Enough to close a cut, or a memory. Be careful which one you ask for.', 'Friendship +5'],
+    ['Why do the Magmari fear you?', 'Our tears are cold. One drop and a Magmari\u2019s glow goes out where it lands. They think we do it on purpose. *a small wet laugh* Sometimes we do.', 'Siel almost smiles.'],
+  ],
+};
+PEOPLE.ghastkin_fled = Object.assign({}, PEOPLE.ghastkin, {
+  hostile: true, fled: true, lvname: 'Too loud', goal: 'Come back sneaking',
+  open: { line: '*Siel drifts up toward the ceiling, out of reach, and does not look back.*', status: 'Siel fled. Approach while sneaking.' },
+  replies: [['Wait, come back!'], ['I won\u2019t hurt you!'], ['Can we talk?'], ['Leave.']],
+});
+PEOPLE.magmari_cold = Object.assign({}, PEOPLE.magmari, {
+  model: 'magmari_cold', fill: 2.4, lvname: 'Passenger', voice: 'magmari_cold',
+  open: { line: '*shivers* Brrrr. Can’t feel my tail. Talk fast, Overworlder. I need a vent, and you need to stop standing in my draught.', status: 'Tephra is cold: slow and grumpy.' },
+});
+const DOCK = [
+  ['Talk', 'talk'], ['Story', 'book'], ['Time', 'clock'], ['Travel', 'strider'], ['Journal', 'journal'], null,
+  ['Gift', 'gift'], ['Trade', 'ingot'], ['Settlement', 'banner'], null, ['Farewell', 'door'],
+];
+const ICONS = {
+  talk: [[2,3,10,6,'#fbeee2'],[3,9,2,2,'#fbeee2'],[4,5,2,1,'#b35d53'],[7,5,2,1,'#b35d53']],
+  book: [[2,2,10,10,'#5a1d1c'],[3,3,8,8,'#8f4a46'],[3,11,8,1,'#f3e5da'],[6,4,2,4,'#f2c14e']],
+  clock: [[3,2,8,10,'#c38a1d'],[4,3,6,8,'#f2c14e'],[6,4,2,3,'#5a1d1c'],[7,6,2,1,'#5a1d1c']],
+  strider: [[2,4,10,5,'#9c3a3a'],[3,5,8,2,'#c45050'],[3,9,1,4,'#6b2a2a'],[10,9,1,4,'#6b2a2a'],[4,3,2,1,'#3a3a3a'],[8,3,2,1,'#3a3a3a']],
+  journal: [[3,2,8,10,'#3a1412'],[4,3,7,8,'#f3e5da'],[5,5,5,1,'#b9978b'],[5,7,5,1,'#b9978b']],
+  gift: [[4,6,6,6,'#f2c14e'],[5,4,4,3,'#fff1a8'],[6,9,2,4,'#8a3a12']],
+  ingot: [[2,6,10,4,'#c38a1d'],[3,5,8,3,'#f2c14e'],[4,5,6,1,'#fff1a8']],
+  banner: [[6,1,2,12,'#5a3d22'],[2,2,10,7,'#7b3431'],[4,4,6,3,'#f2c14e']],
+  door: [[3,1,8,12,'#43201d'],[4,2,6,10,'#6a2b29'],[8,7,1,1,'#f2c14e']],
+};
+function icon(name) {
+  return '<svg viewBox="0 0 14 14" shape-rendering="crispEdges" aria-hidden="true">' +
+    ICONS[name].map(([x, y, w, h, c]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${c}"/>`).join('') + '</svg>';
+}
+// friendship meters, filled from the left like Village Friends' hearts
+const METERS = {
+  nugget: { px: ['.....#.', '..####.', '.######', '#######', '.#####.', '..##...', '.......'], on: '#f2c14e', hi: '#fff1a8'},
+  soul: { px: ['...#...', '...##..', '..###..', '.####..', '.#####.', '#######', '.#####.'], on: '#6fe3f0', hi: '#d9fbff'},
+  ember: { px: ['...#...', '..###..', '.##.##.', '.#####.', '#######', '#######', '.#####.'], on: '#ff8a2a', hi: '#ffd35a'},
+  spool: { px: ['#######', '.#####.', '.#####.', '.#####.', '.#####.', '.#####.', '#######'], on: '#3fd1c3', hi: '#bdf5ee'},
+  tear: { px: ['...#...', '..###..', '..###..', '.#####.', '.#####.', '.#####.', '..###..'], on: '#bfe9f5', hi: '#ffffff'},
+};
+function meterIcon(kind, fill) {
+  const m = METERS[kind], cols = Math.round(Math.max(0, Math.min(1, fill)) * 7);
+  let out = '';
+  m.px.forEach((row, y) => [...row].forEach((ch, x) => {
+    if (ch !== '#') return;
+    const col = x < cols ? (y <= 2 && x <= 3 ? m.hi : m.on) : 'var(--ui-empty)';
+    out += `<rect x="${x}" y="${y}" width="1" height="1" fill="${col}"/>`;
+  }));
+  return `<svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true">${out}</svg>`;
+}
+
+let audio = null, soundOn = false;
+function blip(voice, ch) {
+  if (!soundOn) return;
+  audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+  const o = audio.createOscillator(), g = audio.createGain(), t = audio.currentTime;
+  const step = 0.85 + (ch.toLowerCase().charCodeAt(0) % 11) * 0.045;
+  let peak = 0.1, len = 0.1;
+  if (voice === 'piglin') { o.type = 'square'; o.frequency.setValueAtTime(190 * step, t); o.frequency.exponentialRampToValueAtTime(110 * step, t + 0.09); peak = 0.05; }
+  else if (voice === 'withren') { o.type = 'sine'; o.frequency.setValueAtTime(140 * step, t); o.frequency.linearRampToValueAtTime(128 * step, t + 0.14); len = 0.16; peak = 0.14; }
+  else if (voice === 'magmari_cold') { o.type = 'triangle'; o.frequency.value = 170 * step; len = 0.08; }
+  else if (voice === 'weft') { o.type = 'square'; o.frequency.value = 820 * step; len = 0.035; peak = 0.03; }
+  else if (voice === 'ghastkin') { o.type = 'sine'; o.frequency.setValueAtTime(560 * step, t); o.frequency.linearRampToValueAtTime(500 * step, t + 0.2); len = 0.22; peak = 0.07; }
+  else { o.type = 'triangle'; o.frequency.setValueAtTime(230 * step, t); o.frequency.exponentialRampToValueAtTime(300 * step, t + 0.05); }
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + 0.01);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + len);
+  o.connect(g).connect(audio.destination); o.start(t); o.stop(t + len + 0.02);
+}
+
+const conv = { who: 'piglin', pick: 'piglin', text: '', shown: 0, pause: 0, budget: 0, since: 0, used: new Set() };
+function typing() { return conv.shown < conv.text.length; }
+function renderLine() {
+  const s = conv.text.slice(0, conv.shown);
+  document.getElementById('line').innerHTML = s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]))
+    .replace(/\*([^*]*)\*?/g, (m, inner) => `<i>${inner}</i>`);
+  document.getElementById('more').hidden = typing();
+}
+function say(line, status) {
+  conv.text = line; conv.shown = REDUCED ? line.length : 0; conv.budget = 0; conv.pause = 0;
+  document.getElementById('status').textContent = status;
+  renderLine();
+}
+function setPerson(pick) {
+  let id = pick;
+  if (pick === 'piglin' && !document.getElementById('wearing-gold').checked) id = 'piglin_hostile';
+  if (pick === 'magmari' && document.getElementById('away-from-lava').checked) id = 'magmari_cold';
+  if (pick === 'ghastkin' && !document.getElementById('sneaking').checked) id = 'ghastkin_fled';
+  conv.who = id; conv.pick = pick; conv.used = new Set();
+  const p = PEOPLE[id];
+  document.getElementById('gold-toggle').hidden = pick !== 'piglin';
+  document.getElementById('cold-toggle').hidden = pick !== 'magmari';
+  document.getElementById('sneak-toggle').hidden = pick !== 'ghastkin';
+  document.getElementById('status-row').classList.toggle('hostile', !!p.hostile && !p.fled);
+  const who = document.getElementById('who');
+  who.textContent = p.who; who.style.background = p.ribbon; who.style.borderBottomColor = p.ribbonEdge;
+  document.getElementById('sub').textContent = p.sub;
+  document.getElementById('lv').textContent = 'Lv. ' + p.lv;
+  document.getElementById('lvname').textContent = p.lvname;
+  document.getElementById('goal').textContent = p.goal;
+  document.getElementById('meter').innerHTML = Array.from({ length: 10 }, (_, i) => meterIcon(p.meter, p.fill - i)).join('');
+  for (const k of ['piglin', 'withren', 'magmari', 'weft', 'ghastkin']) document.getElementById('pick-' + k).setAttribute('aria-pressed', k === pick);
+  for (const v of [conv.world, conv.portrait]) {
+    v.turn.remove(v.mob); v.mob = buildMob(p.model); v.turn.add(v.mob);
+    if (v.reframe) v.reframe();
+  }
+  renderReplies();
+  say(p.open.line, p.open.status);
+}
+function renderReplies() {
+  const box = document.getElementById('replies'); box.innerHTML = '';
+  PEOPLE[conv.who].replies.forEach(([label], i) => {
+    const b = document.createElement('button');
+    b.className = 'reply'; b.type = 'button';
+    b.innerHTML = `<span class="n">${i + 1}</span><span></span>`;
+    b.lastChild.textContent = label;
+    b.disabled = conv.used.has(i) || !!PEOPLE[conv.who].hostile;
+    b.addEventListener('click', () => choose(i));
+    box.appendChild(b);
+  });
+}
+function choose(i) {
+  const p = PEOPLE[conv.who], r = p.replies[i];
+  if (!r || conv.used.has(i) || p.hostile) return;
+  conv.used.add(i); renderReplies();
+  say(r[1], r[2]);
+}
+function advance(dt) {
+  if (!typing()) return;
+  conv.budget += dt;
+  const cost = 1 / 36;
+  while (conv.budget > 0 && typing()) {
+    if (conv.pause > 0) { const u = Math.min(conv.pause, conv.budget); conv.pause -= u; conv.budget -= u; continue; }
+    if (conv.budget < cost) break;
+    conv.budget -= cost;
+    const c = conv.text[conv.shown++];
+    if (c.trim() && c !== '*' && ++conv.since >= 2) { conv.since = 0; blip(PEOPLE[conv.who].voice, c); }
+    if ('.!?'.includes(c)) conv.pause = 0.18; else if (',;:'.includes(c)) conv.pause = 0.08;
+  }
+  renderLine();
+}
+function speakingPose(v, t) {
+  // while the line types out: a piglin's ears flap, a Withren's skull tilts, a Magmari bobs and its crest settles
+  const parts = v.mob.userData.parts, talking = typing() && !REDUCED, id = v.mob.userData.id;
+  const head = parts.head, b = head.userData.base;
+  if (id.startsWith('piglin')) {
+    for (const [ear, s] of [['left_ear', 1], ['right_ear', -1]]) {
+      const e = parts[ear]; if (!e) continue;
+      e.rotation.z = e.userData.base.rot.z + (talking ? Math.sin(t * 14) * 0.18 * s : 0);
+    }
+    head.position.y = b.pos.y + (talking ? Math.abs(Math.sin(t * 10)) * -0.4 : 0);
+  } else if (id.startsWith('withren')) {
+    head.rotation.z = b.rot.z + (talking ? Math.sin(t * 2.5) * 0.08 : 0);
+  } else if (id.startsWith('weft')) {
+    // the lower hands never stop weaving
+    for (const [k, s] of [['right_lower_forearm', 1], ['left_lower_forearm', -1]]) {
+      const f = parts[k]; if (f) f.rotation.x = f.userData.base.rot.x + Math.sin(t * 6 * s) * 0.18;
+    }
+    head.rotation.z = b.rot.z + (talking ? Math.sin(t * 9) * 0.04 : 0);
+  } else if (id.startsWith('ghastkin')) {
+    // they hover and their tentacles drift
+    v.mob.position.y = Math.sin(t * 1.6) * 0.8;
+    for (let i = 0; i < 6; i++) { const tp = parts['tentacle_' + i]; if (tp) tp.rotation.x = tp.userData.base.rot.x + Math.sin(t * 1.3 + i) * 0.08; }
+    head.rotation.x = b.rot.x + (talking ? 0.06 + Math.sin(t * 3) * 0.03 : 0);
+  } else {
+    head.position.y = b.pos.y + (talking ? Math.sin(t * 8) * 0.35 : 0);
+    if (parts.tail) parts.tail.rotation.y = Math.sin(t * 1.2) * 0.15;
+  }
+}
+function screen() {
+  const pointer = { x: 0, y: 0 };
+  document.getElementById('screen').addEventListener('pointermove', e => {
+    const r = e.currentTarget.getBoundingClientRect();
+    pointer.x = (e.clientX - r.left) / r.width * 2 - 1; pointer.y = (e.clientY - r.top) / r.height * 2 - 1;
+  });
+  conv.world = Viewer(document.getElementById('world'), {
+    yaw: 0, spin: 0, fov: 30, draggable: false,
+    build(v) { v.mob = buildMob('piglin'); v.turn.add(v.mob); v.ground = ground(160, 96, rackCanvas()); v.scene.add(v.ground); },
+    frame(v, w, h) {
+      v.reframe = () => {
+        const top = Math.max(32, v.mob.userData.top);
+        v.camera.position.set(0, top * 1.2, -top * 3.6); v.camera.lookAt(0, top * 0.7, 0);
+      };
+      v.reframe();
+      const x = w < 640 ? 0 : 12; v.turn.position.set(x, 0, 0); v.ground.position.set(x, 0, 0);
+    },
+    update(v, t, dt) {
+      advance(dt);
+      v.turn.rotation.y = pointer.x * -0.35;
+      speakingPose(v, t);
+    },
+  });
+  conv.portrait = Viewer(document.getElementById('portrait'), {
+    yaw: 0, spin: 0, fov: 22, draggable: false,
+    build(v) {
+      v.mob = buildMob('piglin'); v.turn.add(v.mob);
+      v.reframe = () => {
+        // head and shoulders: from below the neck to the top of the head (or crown, hood, crest)
+        const top = v.mob.userData.top, neck = v.mob.userData.neck, vis = top - neck + 18;
+        const dist = vis / 2 / Math.tan(THREE.MathUtils.degToRad(v.camera.fov / 2));
+        const cy = neck + (top - neck) / 2 - 4;
+        v.camera.position.set(0, cy + 4, -dist); v.camera.lookAt(0, cy, 0);
+      };
+      v.reframe();
+    },
+    update(v, t) {
+      v.turn.rotation.y = pointer.x * -0.6;
+      const head = v.mob.userData.parts.head;
+      head.rotation.x = head.userData.base.rot.x + pointer.y * 0.25;
+      speakingPose(v, t);
+    },
+  });
+  const dock = document.getElementById('dock');
+  dock.innerHTML = DOCK.map(d => d ? `<button type="button" class="rackbg${d[1] === 'talk' ? ' sel' : ''}">${icon(d[1])}<span class="lbl">${d[0]}</span>${d[1] === 'gift' ? '<span class="count">3</span>' : ''}</button>` : '<span class="gap"></span>').join('');
+  dock.querySelectorAll('button').forEach(b => b.addEventListener('click', () => document.getElementById('status').textContent = 'The dock is a mock-up: only the replies work here.'));
+  for (const k of ['piglin', 'withren', 'magmari', 'weft', 'ghastkin']) document.getElementById('pick-' + k).addEventListener('click', () => setPerson(k));
+  document.getElementById('sneaking').addEventListener('change', () => setPerson('ghastkin'));
+  document.getElementById('wearing-gold').addEventListener('change', () => setPerson('piglin'));
+  document.getElementById('away-from-lava').addEventListener('change', () => setPerson('magmari'));
+  document.getElementById('sound').addEventListener('click', e => {
+    soundOn = !soundOn; e.currentTarget.setAttribute('aria-pressed', soundOn);
+    e.currentTarget.textContent = 'Voice blips: ' + (soundOn ? 'on' : 'off');
+  });
+  document.getElementById('screen').addEventListener('click', e => {
+    if (e.target.closest('.box') && typing()) { conv.shown = conv.text.length; renderLine(); }
+  });
+  addEventListener('keydown', e => {
+    if (!document.getElementById('screen').matches(':hover') && !document.activeElement.closest?.('.ui')) return;
+    const n = parseInt(e.key, 10);
+    if (n >= 1 && n <= 4) { choose(n - 1); e.preventDefault(); }
+    if (e.key === ' ' && typing() && document.activeElement === document.body) { conv.shown = conv.text.length; renderLine(); e.preventDefault(); }
+  });
+  setPerson('piglin');
+}
+
+rite();
+lineup();
+turntables();
+screen();
+requestAnimationFrame(loop);
+</script>

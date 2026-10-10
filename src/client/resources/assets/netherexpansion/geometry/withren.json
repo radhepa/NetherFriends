@@ -1,0 +1,277 @@
+{
+ "texture": [
+  128,
+  64
+ ],
+ "parts": [
+  {
+   "name": "head",
+   "parent": "",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      0
+     ],
+     "from": [
+      -4,
+      -8,
+      -4
+     ],
+     "size": [
+      8,
+      8,
+      8
+     ],
+     "inflate": 0.0,
+     "mirror": false,
+     "texture": "entity/wither/wither"
+    }
+   ]
+  },
+  {
+   "name": "body",
+   "parent": "",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      0
+     ],
+     "from": [
+      -4,
+      0,
+      -2
+     ],
+     "size": [
+      8,
+      12,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "right_arm",
+   "parent": "",
+   "pivot": [
+    -5,
+    2,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      24,
+      0
+     ],
+     "from": [
+      -3,
+      -2,
+      -2
+     ],
+     "size": [
+      4,
+      12,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "right_leg",
+   "parent": "",
+   "pivot": [
+    -1.9,
+    12,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      40,
+      0
+     ],
+     "from": [
+      -2,
+      0,
+      -2
+     ],
+     "size": [
+      4,
+      12,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "left_arm",
+   "parent": "",
+   "pivot": [
+    5,
+    2,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      24,
+      0
+     ],
+     "from": [
+      -1,
+      -2,
+      -2
+     ],
+     "size": [
+      4,
+      12,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  },
+  {
+   "name": "left_leg",
+   "parent": "",
+   "pivot": [
+    1.9,
+    12,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      40,
+      0
+     ],
+     "from": [
+      -2,
+      0,
+      -2
+     ],
+     "size": [
+      4,
+      12,
+      4
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  },
+  {
+   "name": "lantern",
+   "parent": "body",
+   "pivot": [
+    3.2,
+    10,
+    -2.2
+   ],
+   "rotation": [
+    0,
+    0,
+    0.12
+   ],
+   "cubes": [
+    {
+     "uv": [
+      64,
+      0
+     ],
+     "from": [
+      -0.5,
+      0,
+      -0.5
+     ],
+     "size": [
+      1,
+      1,
+      1
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      56,
+      0
+     ],
+     "from": [
+      -1,
+      1,
+      -1
+     ],
+     "size": [
+      2,
+      3,
+      2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  }
+ ],
+ "preview": {
+  "right_arm": [
+   -0.1,
+   0,
+   0.06
+  ],
+  "left_arm": [
+   0.08,
+   0,
+   -0.06
+  ]
+ }
+}

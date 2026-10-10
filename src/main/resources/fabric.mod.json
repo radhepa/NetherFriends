@@ -1,0 +1,23 @@
+{
+	"schemaVersion": 1,
+	"id": "netherexpansion",
+	"version": "${version}",
+	"name": "Nether Expansion",
+	"description": "The Nether stops being empty. Five peoples live there, each in its own villages and none at peace with the others: Piglin Holds, Withren Vigils in the soul valleys, Magmari Moorings on the lava seas, Weft Looms in the warped canopy and Ghastkin Eaves in the Basalt Deltas.",
+	"authors": ["minal"],
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": ["dev.netherexpansion.NetherExpansion"],
+		"client": ["dev.netherexpansion.client.NetherExpansionClient"]
+	},
+	"mixins": [
+		"netherexpansion.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

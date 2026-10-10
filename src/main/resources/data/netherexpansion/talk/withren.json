@@ -1,0 +1,416 @@
+{
+  "levels": ["Unnamed", "Named Once", "Spoken Twice", "Written in Ash", "Carved in Bone", "Kept"],
+
+  "greet": [
+    {"text": "A stranger. Stand still a moment, so I can learn your face. We remember faces here. It is most of what we do.", "when": {"first": true, "child": false}},
+    {"text": "You walk like someone from the other world. Welcome to {village}. Mind the lanterns. Each one is lit for someone.", "when": {"first": true, "child": false, "place": "village"}},
+    {"text": "A living face, out here. I am {name}, {epithet}. I am walking, and so, it seems, are you.", "when": {"first": true, "child": false, "place": "wild"}},
+    {"text": "Oh. You are new. Are you dead? No, you are breathing far too loudly. Sorry. We get a lot of dead.", "when": {"first": true, "child": true}},
+
+    {"text": "You again. I have not yet decided whether to remember you. Say something worth keeping.", "when": {"level": [0, 0]}},
+    {"text": "You came back. That is how every name on the Wall began, with someone coming back.", "when": {"level": [0, 1], "child": false}},
+    {"text": "Ah. I said your name once, under my breath. It did not object.", "when": {"level": [1, 2], "child": false}},
+    {"text": "Back among the lanterns. Good. The lanterns like company, and so, I am told, do I.", "when": {"level": [1, 3]}},
+    {"text": "{player}. There, I have said it twice now. Do not let it go to your head.", "when": {"level": [2, 3], "child": false}},
+    {"text": "Your name is written in ash on my hearthstone. Ash smudges. Do not give me cause to smudge it.", "when": {"level": [3, 4], "child": false}},
+    {"text": "I knew your step on the soul soil before I saw you. That is a compliment, here.", "when": {"level": [3, 5]}},
+    {"text": "You. Sit, if you like. The dead will not mind sharing the bench.", "when": {"level": [4, 5], "child": false}},
+    {"text": "Kept one. Whatever you came to ask, the answer is probably yes.", "when": {"level": [5, 5], "child": false}},
+    {"text": "There you are. I was telling {kept} about you. They are a good listener. It is the only kind they can be.", "when": {"level": [4, 5], "child": false}},
+
+    {"text": "Are you here for the Vigil? I get to choose someone soon. I have a list. It is very long.", "when": {"child": true}},
+    {"text": "Shh. I am practising being solemn. How is it? Do I look like I am remembering?", "when": {"child": true}},
+    {"text": "Hello. I do not keep anyone yet, so I can talk to whoever I like.", "when": {"child": true}},
+    {"text": "You came back! I told {neighbour} you would. They said nobody comes back on purpose.", "when": {"child": true, "level": [2, 5]}},
+
+    {"text": "Stand where I can see you. Every face that comes to {village} goes into my memory. Yours is going in now.", "when": {"job": "Remembrancer", "place": "village"}},
+    {"text": "Welcome back. I have made a small mark on my stole for you. Not a full tally. You are not dead. A hopeful one.", "when": {"job": "Remembrancer", "level": [2, 5]}},
+    {"text": "Hands where I can see them. Good. Now: welcome. The order matters.", "when": {"job": "Ashwarden"}},
+    {"text": "I would stand aside for you even if I were not told to. Do not tell the other Ashwardens.", "when": {"job": "Ashwarden", "level": [3, 5]}},
+    {"text": "Every lantern on this lane is lit for someone. You are walking through a crowd. Walk softly.", "when": {"job": "Lantern-keeper"}},
+    {"text": "Careful of the terraces. The wart does not care for boots. Neither do I, much.", "when": {"job": "Wart-grower"}},
+    {"text": "Do not mind the dust. It is old bone, from beasts nobody remembers. I make very sure of that.", "when": {"job": "Bonecarver"}},
+    {"text": "Do not drink anything on my bench. Some of it is for the living, and some of it is not yet sure.", "when": {"job": "Brewer"}},
+
+    {"text": "You carry a Hollowed skull. Perhaps more than one. What do you mean to do with it? Answer slowly.", "when": {"carrying": "minecraft:wither_skeleton_skull"}},
+    {"text": "I can smell the Hollowed on you. Three of those and a little sand make a fire that never asks to stop. Tell me you know that.", "when": {"carrying": "minecraft:wither_skeleton_skull", "child": false}},
+    {"text": "Is that a Hollowed head in your pack? Can I see? I will not stack it. I know all about stacking.", "when": {"carrying": "minecraft:wither_skeleton_skull", "child": true}},
+    {"text": "That light in your pack. It is three souls, fused. Lay it in the Hall of the Three. Let them rest beside the ones who chose.", "when": {"carrying": "minecraft:nether_star"}},
+    {"text": "You killed one. You carry what is left of three who never chose. Bring them to the Hall of the Three, please. We will say names over them, even if we must guess.", "when": {"carrying": "minecraft:nether_star", "child": false}},
+
+    {"text": "Out here, nobody writes the dead down. So I do. You may watch, if you are quiet.", "when": {"place": "wild", "child": false}},
+
+    "Be welcome. Speak softly. The living will not mind, but the remembered are listening.",
+    "Ah. A visitor. Come in out of the ash.",
+    "Greetings. We are all here, the living and the remembered. Mostly the remembered."
+  ],
+
+  "chatter": [
+    {"text": "{neighbour} keeps a cousin they never met. They say it is easier. They have never once been let down.", "when": {"child": false, "place": "village"}},
+    {"text": "{neighbour} has been arguing with the Name Wall again. The Wall is winning. It has more names.", "when": {"child": false, "place": "village"}},
+    {"text": "If you see {neighbour} counting the lanterns, do not interrupt. They lose their place, and then they must count the dead as well.", "when": {"child": false}},
+    {"text": "I lent {neighbour} my good candle. They lit it for someone I never liked. I said nothing. That is what friendship is.", "when": {"child": false}},
+    {"text": "{neighbour} says the brewery smells of feet. It smells of wart. Nobody has kept feet in the brewery for a long time.", "when": {"child": false, "place": "village"}},
+    {"text": "When I was ill, {neighbour} offered to keep {kept} for me. You cannot lend a keeping. I said the name through the whole fever, very loudly.", "when": {"child": false}},
+    {"text": "{neighbour} carved a skull for the children to play with. It was a good skull. It was taken away for being too good.", "when": {"child": false, "place": "village"}},
+    {"text": "{neighbour} keeps a famous name. Everyone remembers that one already. Only I remember {kept}. Mine is harder work.", "when": {"child": false, "place": "village"}},
+    {"text": "I remember {kept} best while I am doing something dull. They liked dull work, the Wall says. It left room to think.", "when": {"child": false}},
+    {"text": "Out here I keep {kept} by saying their name to the basalt. The basalt has not complained.", "when": {"child": false, "place": "wild"}},
+
+    {"text": "Every lantern on the lane is lit for someone. I know which is whose. When one goes out, I am the first to know who is being forgotten.", "when": {"job": "Lantern-keeper"}},
+    {"text": "Wart wants soul sand, patience and nobody stepping on it. It is the easiest crop in the Nether to describe and the hardest to keep.", "when": {"job": "Wart-grower"}},
+    {"text": "I carve valley bone, from beasts so old nobody kept them. Never a person's bone. That is the difference between us and the Weft.", "when": {"job": "Bonecarver"}},
+    {"text": "Every brew begins with wart. Every grief begins with a name. I find it helps to keep the two benches apart.", "when": {"job": "Brewer"}},
+    {"text": "Guarding a Vigil is quiet work. The Hollowed never come here. Something in them still knows the way, and will not take it.", "when": {"job": "Ashwarden"}},
+    {"text": "I hold the names whose keepers have died, until a child chooses them. My stole has a mark for each. It is heavy. It should be.", "when": {"job": "Remembrancer"}},
+
+    {"text": "Do you keep anyone? Where you come from, I mean. Someone you have lost.", "when": {"child": false}, "replies": [
+      {"ask": "Yes. I say their name.", "text": "Then you are halfway to one of us. Say it often. Say it badly, if you must. Only silence wears a name away.", "points": 2},
+      {"ask": "No. The dead are gone.", "text": "Gone is a word for things nobody looks for. Still, I will not argue. You are young, in the way that matters.", "points": 0},
+      {"ask": "Why would I bother?", "text": "So that someone bothers for you, after. It is not a hard trade. It is only a long one.", "points": -1}
+    ]},
+    {"text": "I know a joke about the Hollowed. It has no ending. Neither do they. That is the joke.", "when": {"child": false}, "replies": [
+      {"ask": "That is dark.", "text": "We live in a valley of souls under a roof of rock. Everything is dark. We make our own light, and some of it is jokes.", "points": 1},
+      {"ask": "*laugh quietly*", "text": "There. You see? The dead are not offended. I asked them first.", "points": 1},
+      {"ask": "The Hollowed deserve it.", "text": "They were us. They were burned hollow for a war they did not choose. Nobody deserves that. Not even in a joke.", "points": -2}
+    ]},
+    {"text": "Do you know what a Wither is, outsider? Not the word. The thing.", "when": {"child": false}, "replies": [
+      {"ask": "A grief that cannot stop.", "text": "Yes. Exactly that. You have been listening, or you have lost someone. Possibly both.", "points": 2},
+      {"ask": "A boss to fight.", "text": "A boss. As if it were a foreman. It is three last breaths, still burning. Fight it if you must. Do not enjoy it.", "points": -1},
+      {"ask": "A mighty weapon.", "text": "It was meant to be. It burned the hand that made it. Mighty is a word for things that have not yet burned you.", "points": -2}
+    ]},
+    {"text": "At the hearth, {neighbour} forgot the name they keep. Only for a moment. Nobody breathed. Then it came back. We have not stopped teasing them.", "when": {"child": false}, "replies": [
+      {"ask": "That must be frightening.", "text": "It was the worst moment of their life, and they have had several. That is why we tease them. Fear needs somewhere to go.", "points": 1},
+      {"ask": "Who would even notice?", "text": "The name would notice. Nothing else would. That is the whole of the problem.", "points": -1}
+    ]},
+    {"text": "Sit a while. You need not say anything. Most of the best talk here is silent.", "replies": [
+      {"ask": "*sit quietly*", "text": "*a long, comfortable silence* Thank you. That was very good. You have a gift for it.", "points": 2},
+      {"ask": "I am in a hurry.", "text": "Everyone is, until they are on the Wall. Then nobody is. Go, then. Carefully.", "points": -1}
+    ]},
+    {"text": "Have you ever made a Wither, outsider? I ask everyone from your world. It saves time later.", "when": {"child": false}, "replies": [
+      {"ask": "Never.", "text": "Good. Keep it that way. It is a short promise and a long one at once.", "points": 1},
+      {"ask": "Yes, for the star.", "text": "For a star. Three dead woken to burn, so you could have a light on a pillar. *a slow breath* Lay the star in the Hall, at least.", "points": -2},
+      {"ask": "Not yet.", "text": "Yet. A small word. It carries more than most. Put it down, if you can.", "points": -1}
+    ]},
+
+    {"text": "I counted every name on the Name Wall. I got a different number from {neighbour}. One of us has forgotten someone. I think it is them.", "when": {"child": true}},
+    {"text": "When I choose who to keep, I will choose someone very old. They have more stories. {neighbour} says that is cheating.", "when": {"child": true}},
+    {"text": "We play Hollowed and Keepers. The Hollowed have to walk stiff and not say their names. I am very good at it.", "when": {"child": true}},
+    {"text": "I am not allowed to touch the skulls in the Hall. I touched one. It was cold. I did not tell anybody. Now I have told you.", "when": {"child": true}},
+    {"text": "Grown-ups say we never hurry. I hurry. I am small. Small people have to hurry to keep up.", "when": {"child": true}},
+    {"text": "Do you keep a name? You can practise on mine. It is {name}. Say it very seriously.", "when": {"child": true}},
+    {"text": "Do you want a secret? The Remembrancer forgets where they put their hood. All the time. They remember everything else.", "when": {"child": true}, "replies": [
+      {"ask": "I will keep it safe.", "text": "Good. That is the most Withren thing you could say. Keeping things is our whole job.", "points": 1},
+      {"ask": "Ha! Silly old thing.", "text": "You must not laugh at the Remembrancer. I can laugh. I live here. You are only visiting.", "points": -1}
+    ]},
+
+    "Beds burst here. Some outsider learns it every so often, very loudly. We have bedrolls. Bedrolls have never killed anyone.",
+    "The soul fire is low. Someone is being forgotten somewhere. Or the wick wants trimming. Usually it is the wick.",
+    "We do not hurry. The dead are not going anywhere, and neither, if we are careful, are we.",
+    "Wart grows slowly on soul sand. Everything good here grows slowly. Except gossip.",
+    "Outsiders think we are sad. We are not sad. We are busy. Remembering is a great deal of work.",
+    "A Hollowed walked past the valley edge a while ago. Nobody said anything. You do not greet them. They would not know their own name.",
+    "Ash on the lane again. The Ashwardens say it means nothing. The Ashwardens say that about most things. It is their job."
+  ],
+
+  "topics": [
+    {"id": "kept", "ask": "Who do you keep?", "when": {"child": false}, "lines": [
+      "I keep {kept}. I say their name when I rise, when I eat and when I lie down. That is the least. I do it more often than the least.",
+      {"text": "{kept} died before I was born. I chose them at my first Vigil because their sign was near the bottom of the Wall, and fading. Nobody else had chosen them.", "replies": [
+        {"ask": "That was kind.", "text": "It was stubborn. Kindness and stubbornness look the same from outside. From inside too, mostly.", "points": 2},
+        {"ask": "How did they die?", "text": "In the War of the Hoard, holding a door. The Wall does not say which door. I have decided it was an important one.", "points": 1},
+        {"ask": "Why keep a stranger?", "text": "Everyone on the Wall is a stranger to someone. Keeping is how they stop being one.", "points": 0}
+      ]},
+      "Keeping means this: while I say {kept}, they are not finished. When I die, someone keeps me, and someone keeps {kept}. Nobody is let go. That is the rule.",
+      {"text": "{kept} was a brewer, the Wall says, and a bad one. I like that. A name is easier to love with a few burnt pots in it.", "when": {"level": [3, 5]}},
+      {"text": "Sometimes I lose a little of {kept}. Never the name. The shape of them. So I make up a little, and keep that too. Is that wrong, do you think?", "replies": [
+        {"ask": "It is what memory does.", "text": "Yes. Perhaps. You say it gently, which helps. Thank you.", "points": 2},
+        {"ask": "It is a lie.", "text": "A lie told to keep someone is closer to them than a truth told to forget them. Still. I will think on it.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "own_name", "ask": "Tell me about your name.", "when": {"child": false}, "lines": [
+      "I am {name}, {epithet}. The first half is mine. The second half is the part that matters.",
+      "{name} is what my parent called me. My keeping I chose myself. We think the second is the more honest of the two.",
+      "When I die, my name goes on the Name Wall, and someone will choose to keep it. I hope it is someone patient. I was not always easy.",
+      "Outsiders ask if it is gloomy, wearing a dead name. It is not wearing. It is carrying. You do not complain that a lantern is heavy."
+    ]},
+
+    {"id": "vigil", "ask": "What is a Vigil?", "when": {"child": false}, "lines": [
+      "A Vigil is the place, and a Vigil is the gathering. We live in one and we hold one. The difference is mostly candles.",
+      "At a Vigil we gather in the Hall of the Three and say every name on the Wall. All of them. It takes a long while. Nobody has ever left early.",
+      "The Name Wall holds every Withren who has died, each on a sign. Nobody is taken down. When the Wall is full, we build more Wall.",
+      "At their first Vigil, a child walks the Name Wall and chooses who to keep. Some choose fast. Some walk it many times. We wait. Waiting is most of a Vigil.",
+      {"text": "{village} has more names on its Wall than people in its homes. That is true of every Vigil. It is how you know one is old.", "when": {"place": "village"}}
+    ]},
+
+    {"id": "hall_of_three", "ask": "Who were the Three?", "when": {"child": false}, "lines": [
+      "Ashrin, Velmir and Thalys. They gave themselves at the end of the War of the Hoard, so that it would end. It did. It ended almost everything.",
+      "Their skulls became the heads of the Last Answer. The souls in the soul sand became its body. They chose it. That is why we keep a Hall, and not a shame.",
+      {"text": "Ashrin was a Remembrancer. Velmir carried lanterns. Thalys was young and should not have been asked. They were asked anyway. All three said yes.", "replies": [
+        {"ask": "That was brave.", "text": "Brave, yes. And sorry, I think, by the end. You can be both. The Hall holds both.", "points": 1},
+        {"ask": "They should have refused.", "text": "Perhaps. Many have said so. Nobody says it in the Hall.", "points": 0},
+        {"ask": "Fools, then.", "text": "*a long silence* We do not say that word near their names. Not even outsiders. Especially outsiders.", "points": -2}
+      ]},
+      "Three bone plinths, a soul fire under each, a sign with each name. The skulls on them are Hollowed we brought home, set far apart. Never stack them. We say that a lot.",
+      {"text": "When you go into the Hall, say their names on the way in and on the way out. Ashrin, Velmir, Thalys. It is polite. It is also the rule.", "when": {"level": [2, 5]}}
+    ]},
+
+    {"id": "work", "ask": "What is your work?", "when": {"child": false}, "lines": [
+      {"text": "I keep the Name Wall true. Every new name is mine to letter, every faded one mine to paint again. I have never misspelled a name. Twice.", "when": {"job": "Remembrancer"}},
+      {"text": "When a keeper dies, their name and their keeping both come to me, until a child chooses. My stole has a mark for each. It is a heavy stole.", "when": {"job": "Remembrancer"}},
+      {"text": "I guard the Vigil. Basalt on my chest, carved with its ribs, so I never forget what we guard against. Mostly it is outsiders. Mostly they are lost.", "when": {"job": "Ashwarden"}},
+      {"text": "My circlet has three empty sockets, for Ashrin, Velmir and Thalys. We wear their absence. It is lighter than you would think, and heavier.", "when": {"job": "Ashwarden"}},
+      {"text": "I keep the soul lanterns on the lanes lit. Each one is lit for someone on the Wall. If one goes out, I find out who, and say their name until it catches.", "when": {"job": "Lantern-keeper"}},
+      {"text": "Trimming wicks, mostly. It is not glorious. Nobody has ever made a song about a wick. I tried once. It did not catch either.", "when": {"job": "Lantern-keeper"}},
+      {"text": "I tend the wart terraces. Wart on soul sand, nothing else. It feeds the brewery, and asks very little, except never to be stepped on.", "when": {"job": "Wart-grower"}},
+      {"text": "Wart grows best near the dead, the old growers say. I say it grows best on soul sand, which is full of them. We are both right. It is rare.", "when": {"job": "Wart-grower"}},
+      {"text": "I carve bone: toggles, lantern posts, the plinths in the Hall. Valley bone only, from beasts nobody kept. Never a person's. Never.", "when": {"job": "Bonecarver"}},
+      {"text": "Every bone post on the lanes is mine. Lean on them if you must. They have held up worse than you.", "when": {"job": "Bonecarver"}},
+      {"text": "I brew. Wart, a little fire, a great deal of patience. Mourning is thirsty work, and the living still need mending.", "when": {"job": "Brewer"}},
+      {"text": "Half my work is waiting for a pot. The other half is stopping people from tasting it. The dead have never once asked for a sip.", "when": {"job": "Brewer"}},
+      {"text": "The brewery is the warmest room in {village}. People come in to grieve where it is warm. I let them. I also make them stir.", "when": {"job": "Brewer", "place": "village"}}
+    ]},
+
+    {"id": "last_answer", "ask": "What was the Last Answer?", "when": {"child": false, "level": [2, 5]}, "lines": [
+      "The War of the Hoard had gone on too long. The Piglins wanted the gold under our valleys. We had no soldiers left. So we made one answer. The last one.",
+      "It could not be aimed and it could not be called back. It burned the bastions. It burned the Moorings. Then it turned and burned our fortresses. It did not know us.",
+      {"text": "It burned until the three souls inside were spent. Then it was quiet. At the end, it was the quietest thing we ever made.", "replies": [
+        {"ask": "I am sorry.", "text": "Thank you. Nobody alive was there. We are all still sorry. It runs in the family.", "points": 2},
+        {"ask": "It won your war.", "text": "There was nobody left to lose to. If that is winning, we do not use the word.", "points": -1},
+        {"ask": "I wish I had seen it.", "text": "No. You do not. You wish you had seen a story. It was not a story while it was happening.", "points": -2}
+      ]},
+      "Half the Ghastkin swelled into ghasts from grieving it. The Weft wove sixty black rows. The Piglins put on gold. Everyone remembers it. Only we have to."
+    ]},
+
+    {"id": "hollowed", "ask": "Who are the Hollowed?", "when": {"child": false}, "lines": [
+      "The Hollowed were us. Withren in the fortresses, when the Last Answer came through. It burned their souls out and left them walking. They still walk.",
+      "You will meet them in the old fortresses, among the blazes. Do not take it personally. They are not angry. There is nobody in there to be angry.",
+      "The fortresses were ours, built for the War. Now the Hollowed hold them, with the blazes set there as wardens. Nobody has told the blazes the war is over.",
+      {"text": "If you must fight a Hollowed, do it cleanly. And if you can, say a name over it. Any name. They lost theirs.", "replies": [
+        {"ask": "I will say a name.", "text": "Then you are kinder than the fire was. That is not hard, but it is still kind.", "points": 2},
+        {"ask": "They drop good things.", "text": "They drop what they were carrying when they burned. Pick it up gently. It was theirs.", "points": -1},
+        {"ask": "They are monsters.", "text": "They are monsters now. They were neighbours first. Both are true, and only one is their fault.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "outsiders", "ask": "Withers where I come from?", "when": {"child": false, "level": [2, 5]}, "lines": [
+      "Your people set three Hollowed skulls on soul sand. The Hollowed have no willing souls left. So what wakes has nothing in it that wants to stop.",
+      "Ours chose. Yours are woken. That is the whole difference, and it is a large one. Ours burned out. Yours have to be killed.",
+      {"text": "Outsiders make Withers for a star and a shout. I have heard them call it a test of strength. Is it?", "replies": [
+        {"ask": "For some, yes.", "text": "Then they test it on three of our dead. I hope they pass. I hope they do not try again.", "points": 0},
+        {"ask": "It is cruel.", "text": "Yes. Thank you for saying it first. I did not want to.", "points": 2},
+        {"ask": "It is good sport.", "text": "*very quietly* Sport. I will write that on the Wall, beside the three it was done to.", "points": -2}
+      ]},
+      "When you kill one, it leaves a star: three souls fused, all that is left of them. Bring it to the Hall of the Three. We will lay it with the ones who chose.",
+      "We know where you come from. We see it in your step. We do not hold it against you. We do watch your hands."
+    ]},
+
+    {"id": "piglins", "ask": "What of the Piglins?", "when": {"child": false}, "lines": [
+      "The Piglins wanted the gold under our valleys. We would not let them dig through our dead to reach it. That was the War of the Hoard, in one breath.",
+      "They wear gold so they know each other in a fight, because nobody else would wear it. We never would. Gold remembers nothing.",
+      {"text": "They blame us for the bastions. We blame them for the War. The Wither sits between us like a table nobody will eat at.", "replies": [
+        {"ask": "Both sides lost.", "text": "Yes. Everyone lost. We lost first and last. Do not tell a Piglin I agreed with you.", "points": 1},
+        {"ask": "The Piglins started it.", "text": "They did. We finished it. I am not sure which is worse. The Wall does not say.", "points": 0},
+        {"ask": "Piglins are good company.", "text": "For outsiders in gold, perhaps. Go and wear it somewhere else.", "points": -1}
+      ]},
+      "When a Piglin dies, nobody keeps them. They spend names like nuggets. I find that the saddest thing about them, and it has competition."
+    ]},
+
+    {"id": "magmari", "ask": "What of the Magmari?", "when": {"child": false}, "lines": [
+      "The Magmari ferried the Piglin war-bands over the lava, for pay. Every Piglin that reached our valleys came on a Magmari barge.",
+      "The Last Answer burned their Moorings for it. They have not forgiven us. We have not forgiven the ferries. It is a very well-kept grudge, on both sides.",
+      "Warm, they call themselves. Friendly. Always cold, always haggling. I have never seen one sell a grudge, though. Those they keep.",
+      "A Magmari once told me they would ferry anything, for the right price. I asked the price of a dead name. They had no answer. I keep that too."
+    ]},
+
+    {"id": "weft", "ask": "What of the Weft?", "when": {"child": false}, "lines": [
+      "In the War, the Weft walked the fields afterwards and took bone from the dead of both sides. Needles. Loom weights. Our dead are in their cloth, holding it down.",
+      "They weave their history, one row a year, and they put the Wither in as sixty black rows. Sixty. As if it were their grief to weave.",
+      {"text": "A Weft once offered to weave my keeping into their Long Cloth. As a kindness. With what needle, I asked.", "replies": [
+        {"ask": "That is horrible.", "text": "It is. They did not see it. That is the horrible part. Four arms, and not one of them knows when to stop.", "points": 1},
+        {"ask": "Maybe they meant well.", "text": "Perhaps they did. Meaning well is cheap. Bone is not.", "points": 0},
+        {"ask": "Bone is only bone.", "text": "Then give them yours. *a pause* No? Then it is not only bone.", "points": -2}
+      ]},
+      "Our bone comes from the valley, from beasts nobody kept. Theirs came from people with names. That is the difference. They do not think there is one."
+    ]},
+
+    {"id": "ghastkin", "ask": "What of the Ghastkin?", "when": {"child": false}, "lines": [
+      "The Ghastkin cry once for each death, and the tears wash the memory away. They call it letting go. We call it a second death, done gently.",
+      "We keep every name. They cry names away. You can see why we do not share a valley.",
+      "Half of them swelled into ghasts, grieving the Last Answer. That is our grief, floating overhead, still crying. I do not know what to say to it. I keep its silence.",
+      {"text": "A Ghastkin once offered to cry for {kept}, so I could rest. I said no. They said I looked tired. I did. I said no.", "replies": [
+        {"ask": "You were right.", "text": "I think so. It would have been easier to be wrong. Easier things often are.", "points": 1},
+        {"ask": "Maybe you should rest.", "text": "I rest. I rest with the name in my mouth. It is the only way we know.", "points": 0},
+        {"ask": "Let the name go.", "text": "*a cold look* That is the one thing you must never say in a Vigil. I will pretend you did not.", "points": -2}
+      ]}
+    ]},
+
+    {"id": "wart_and_fire", "ask": "Wart, fire and brewing?", "when": {"child": false}, "lines": [
+      "Nether wart grows only on soul sand. The old growers said it drinks the patience of the dead. It certainly drinks ours.",
+      "Soul fire burns blue because it burns on soul sand and soul soil. We light our lanterns from it. It is the only fire here that wants nothing.",
+      "Every brew begins with wart. You cannot make anything good without first making something awkward. That is true of brewing, and of visits.",
+      "The first brew from each terrace goes to the Hall. The Three do not drink it. Nobody else may either. That is how you know it is a gift."
+    ]},
+
+    {"id": "keep_me", "ask": "Would you keep my name?", "when": {"child": false, "level": [3, 5]}, "lines": [
+      {"text": "Not yet. A name has to be heavy enough to carry first. Yours is getting there. Come back. Bring it with you.", "when": {"level": [3, 4]}},
+      {"text": "Outsiders are never on the Wall. You would be the first. I would have to ask the Remembrancer for a very long sign.", "when": {"level": [3, 5]}},
+      {"text": "Yes. When you die, I will keep your name. One keeping each is the rule. I asked {kept}. They do not mind sharing.", "when": {"level": [5, 5]}},
+      {"text": "You are Kept. I will say your name when I rise, when I eat and when I lie down. You will not be finished while I am here.", "when": {"level": [5, 5]}, "replies": [
+        {"ask": "Thank you.", "text": "Do not thank me. Live a long while. It is easier to keep someone with a lot of stories.", "points": 1},
+        {"ask": "And when you die?", "text": "Then you go on the Wall beside me, and a child chooses us both. They will have two to carry. They will manage.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "choosing", "ask": "Who will you keep?", "when": {"child": true}, "lines": [
+      "I do not know yet! At my first Vigil I walk the Name Wall and choose. I keep changing my mind. There are so many, and they all look lonely.",
+      "{neighbour} says to choose someone with a short name, so it is easy to say. I think that is lazy. I want a long one. I want it to be work.",
+      {"text": "Who would you choose, if you were me? Someone brave, or someone nobody else has chosen?", "replies": [
+        {"ask": "Someone nobody chose.", "text": "That is what I think too! Then they have somebody. Then they are not only a sign.", "points": 2},
+        {"ask": "Someone brave.", "text": "Brave ones get chosen a lot. I might still. I will think very hard about it. *frowns very hard*", "points": 1},
+        {"ask": "Nobody. It is silly.", "text": "It is not silly! It is the most important thing I will ever do. You are not invited to my Vigil.", "points": -2}
+      ]},
+      "Sometimes I practise. I pick a name off the Wall and say it all the way home. Then I feel bad for putting it back."
+    ]},
+
+    {"id": "play", "ask": "What do you play?", "when": {"child": true}, "lines": [
+      "Hollowed and Keepers! The Hollowed walk stiff and say nothing, and the Keepers guess who they used to be. I always guess right. I peek at the Wall.",
+      "Wart-row hiding. You lie down between the terraces and stay very still. The grown-ups never find you. Then they do, and it is not a game any more.",
+      "Lantern counting. You count all the lanterns on the lane and say a name for each. {neighbour} cheats. They say the same name twice.",
+      "We are not allowed to play stacking. Nobody will say why. I know why. Everybody knows why."
+    ]},
+
+    {"id": "scared", "ask": "What scares you?", "when": {"child": true}, "lines": [
+      "The Hollowed. They used to be us, and now they are not anyone. I would rather be anyone. Even a Piglin. Maybe not a Piglin.",
+      "Being forgotten. Not dying, that is normal. But if nobody chose me after. Grown-ups say that never happens. Grown-ups say a lot of things.",
+      "Ghastkin. {neighbour} says if one cries on you, you forget your own name. I put my hood up when the ghasts go over. Just in case.",
+      "Beds! An outsider put one down in the lane and lay on it and it went off like a ghast shot. They lived. Their eyebrows did not."
+    ]},
+
+    {"id": "grownups", "ask": "What do grown-ups say?", "when": {"child": true}, "lines": [
+      "They say the Three were very brave and we must never stack skulls. They say both of those a lot. I think it is the same lesson.",
+      "They say do not hurry. Then they say hurry up, the Vigil is starting. I do not think grown-ups have worked it out either.",
+      "The Remembrancer says every name is a lantern. I said, then who carries them all? They said, we do. Then they gave me one to carry. It was heavy.",
+      "They say outsiders make Withers. You do not look like you make Withers. You look like you make a mess. That is different. Probably."
+    ]}
+  ],
+
+  "gift": {
+    "loved": [
+      "minecraft:nether_wart",
+      "minecraft:wither_rose",
+      "minecraft:soul_lantern",
+      "minecraft:soul_campfire",
+      "minecraft:wither_skeleton_skull",
+      "minecraft:nether_star"
+    ],
+    "liked": [
+      "minecraft:bone",
+      "minecraft:bone_block",
+      "minecraft:bone_meal",
+      "minecraft:skeleton_skull",
+      "minecraft:soul_torch",
+      "#minecraft:candles",
+      "minecraft:soul_sand",
+      "minecraft:soul_soil",
+      "minecraft:basalt",
+      "minecraft:polished_basalt",
+      "minecraft:book",
+      "minecraft:writable_book",
+      "minecraft:glass_bottle",
+      "minecraft:blaze_powder"
+    ],
+    "disliked": [
+      "minecraft:gold_ingot",
+      "minecraft:gold_nugget",
+      "minecraft:flint_and_steel",
+      "minecraft:fire_charge",
+      "minecraft:lava_bucket",
+      "minecraft:tnt",
+      "minecraft:rotten_flesh",
+      "minecraft:ghast_tear",
+      "#minecraft:beds"
+    ],
+    "lines": {
+      "loved": [
+        {"text": "Oh. This is very good. I will tell {kept} about it. They will be pleased for me, in their way.", "when": {"child": false}},
+        {"text": "For me? Really? I am going to show everyone. Then I am going to hide it so nobody takes it.", "when": {"child": true}},
+        "You knew. Someone told you, or you guessed. Either way, I will remember this. That is not a small promise, here.",
+        "This goes by the hearth, where I keep the things that matter. There is not much room. I am making some.",
+        "*holds it a long moment* Thank you. Truly. The dead give no gifts, so we notice the living ones."
+      ],
+      "liked": [
+        {"text": "Thank you! I know just where it goes. Well. I know where it does not go, which is a start.", "when": {"child": true}},
+        "A good gift. Useful and quiet, like a good guest.",
+        "Thank you. I will use it well, and not wastefully. Waste is a kind of forgetting.",
+        "Ah. We have a place for this. We have a place for most things. Now it has one.",
+        "Kindly done. I will mention it at the hearth. Briefly. We do not gush. This is me gushing."
+      ],
+      "neutral": [
+        "Thank you. I am not sure what it is for, but I will keep it. Keeping is the one thing we are good at.",
+        "A gift. Well. It is the giving we remember, mostly. The thing itself can be odd.",
+        "I will find a use for this. If not, I will find someone who has one. Nothing is wasted in a Vigil.",
+        "Hm. Thank you. *turns it over slowly* I will think about this one."
+      ],
+      "disliked": [
+        "This burns, or it rots, or it glitters. We have had enough of all three. Take it back, please.",
+        "I would rather you had brought nothing. Nothing, at least, dishonours nobody.",
+        "*sets it down far from the lanterns* Thank you for the thought. The thought I will keep. The thing, I will not.",
+        "You meant well, I am sure. The dead have heard that before. They are tired of it, and so am I.",
+        "Not this. Not in a Vigil. We have burned and we have rotted. We remember both too well already."
+      ],
+      "again": [
+        "You have given already. Once is a gift. Twice starts to feel like a debt.",
+        "Keep it for another visit. I am still deciding where to put the last one.",
+        "Thank you, but no. Generosity is a thing to spread out, like candles.",
+        "Again? You will make me feel I owe you. I would rather owe you slowly."
+      ],
+      "empty": [
+        "Your hand is empty. That is fine. So is a lantern, before it is lit.",
+        "There is nothing in your hand. Did you mean to give me a moment of silence? I accept.",
+        "An empty hand. We greet the dead with those. I do hope that is not what you mean.",
+        "Nothing? Well. You came. That is a gift too, of a sort. A small one."
+      ]
+    }
+  },
+
+  "levelup": [
+    {"text": "I said your name aloud just now, to the lanterns. Named Once. Most outsiders never get further.", "when": {"level": [1, 1], "child": false}},
+    {"text": "Spoken Twice. The second time is the one that means it. Take this wart, from the terraces. Plant it on soul sand. Be patient.", "when": {"level": [2, 2], "child": false}, "reward": {"item": "minecraft:nether_wart", "count": 8}},
+    {"text": "Written in Ash. Your name is on my hearthstone now. Take these lanterns. Light them for whoever you have lost, and say their name each time.", "when": {"level": [3, 3], "child": false}, "reward": {"item": "minecraft:soul_lantern", "count": 4}},
+    {"text": "Carved in Bone. That does not wear off. Take this soul fire for your own hearth. Sit by it. Say names. You will find you have more than you thought.", "when": {"level": [4, 4], "child": false}, "reward": {"item": "minecraft:soul_campfire", "count": 1}},
+    {"text": "Kept. When you die, I will keep your name. And take this: it points to where you last fell. We use them to find our dead. Now you can find yours.", "when": {"level": [5, 5], "child": false}, "reward": {"item": "minecraft:recovery_compass", "count": 1}},
+
+    {"text": "I said your name to the Wall. Only to hear how it sounds. It sounds alright.", "when": {"level": [1, 1], "child": true}},
+    {"text": "You are my second favourite outsider now. I only know two. Here, I swept these up from the Bonecarver's floor.", "when": {"level": [2, 2], "child": true}, "reward": {"item": "minecraft:bone_meal", "count": 6}},
+    {"text": "I wrote your name in the ash with my finger. I am not supposed to write on things. I wrote it small. Here, have some of my torches.", "when": {"level": [3, 3], "child": true}, "reward": {"item": "minecraft:soul_torch", "count": 6}},
+    {"text": "I tried to carve your name into a bone. It came out as a skull. Most things do. Have it anyway.", "when": {"level": [4, 4], "child": true}, "reward": {"item": "minecraft:bone", "count": 3}},
+    {"text": "At my first Vigil I might choose you, if you have died by then. Please do not hurry. Here, light this for me while you wait.", "when": {"level": [5, 5], "child": true}, "reward": {"item": "minecraft:soul_lantern", "count": 1}}
+  ],
+
+  "farewell": [
+    {"text": "Bye! Do not die! Or if you do, tell me first, so I can choose you.", "when": {"child": true}},
+    {"text": "Bye. I will tell the Wall you visited. It does not answer, but I think it likes to know.", "when": {"child": true}},
+    {"text": "Go. I will watch the lane until you are off it. It is my job, and also I want to.", "when": {"job": "Ashwarden"}},
+    {"text": "Go well. I have your face now. I do not lose faces.", "when": {"job": "Remembrancer"}},
+    {"text": "Go on. The valley is wide, and most of it is someone.", "when": {"place": "wild"}},
+    {"text": "Go well, friend. I will tell {kept} you left in good health. They will be relieved. They worry, for someone who cannot.", "when": {"level": [4, 5], "child": false}},
+    "Go carefully. Come back with the same name you left with.",
+    "Walk well. Mind the soul sand. It holds on to things.",
+    "Farewell. I will say your name once after you have gone, to see if it stays.",
+    "Go, then. The lanterns will still be lit. They are always lit. That is rather the point.",
+    "Until next time. There is always a next time, until there is not. Then there is the Wall.",
+    "Keep your skulls apart and your fires small. That is all the advice we have, and it is plenty."
+  ],
+
+  "refuse": [
+    {"text": "You struck one of us. The Vigil remembers. We remember everything. That is the trouble with us.", "when": {"state": "angry"}},
+    {"text": "No. Not now. Lower your hands and walk away, and the next part will go easier for you.", "when": {"state": "angry"}},
+    {"text": "We have buried better fighters than you. We kept their names. Shall we start a sign for yours?", "when": {"state": "angry"}},
+    {"text": "*a hollow, silent stare* The Vigil remembers.", "when": {"state": "angry"}},
+    {"text": "You would raise a hand in a place of names. I will keep that. I would rather have kept something else.", "when": {"state": "angry"}},
+    {"text": "Speak? To you? Later, perhaps. Much later. We are very patient, and very hard to forget.", "when": {"state": "angry"}},
+    {"text": "Go away! I am telling the Ashwardens! I am telling the Remembrancer! I am telling the WALL!", "when": {"state": "angry", "child": true}}
+  ]
+}

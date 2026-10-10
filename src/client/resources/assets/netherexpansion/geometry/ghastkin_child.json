@@ -1,0 +1,310 @@
+{
+ "texture": [
+  64,
+  64
+ ],
+ "parts": [
+  {
+   "name": "head",
+   "parent": "",
+   "pivot": [
+    0,
+    12,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      0
+     ],
+     "from": [
+      -3.5,
+      -7,
+      -3.5
+     ],
+     "size": [
+      7,
+      7,
+      7
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "body",
+   "parent": "",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      28,
+      0
+     ],
+     "from": [
+      -2,
+      12,
+      -1.5
+     ],
+     "size": [
+      4,
+      4.5,
+      3
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    },
+    {
+     "uv": [
+      42,
+      0
+     ],
+     "from": [
+      -2.2,
+      12,
+      -1.7
+     ],
+     "size": [
+      4.4,
+      2.2,
+      3.4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "tentacle_0",
+   "parent": "",
+   "pivot": [
+    -1,
+    16,
+    -0.6
+   ],
+   "rotation": [
+    -0.075,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      16,
+      14
+     ],
+     "from": [
+      -0.6,
+      0,
+      -0.6
+     ],
+     "size": [
+      1.2,
+      4,
+      1.2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "tentacle_1",
+   "parent": "",
+   "pivot": [
+    1,
+    16,
+    -0.6
+   ],
+   "rotation": [
+    -0.025,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      14
+     ],
+     "from": [
+      -0.6,
+      0,
+      -0.6
+     ],
+     "size": [
+      1.2,
+      5,
+      1.2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "tentacle_2",
+   "parent": "",
+   "pivot": [
+    -1,
+    16,
+    0.6
+   ],
+   "rotation": [
+    0.025,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      0,
+      14
+     ],
+     "from": [
+      -0.6,
+      0,
+      -0.6
+     ],
+     "size": [
+      1.2,
+      5,
+      1.2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "tentacle_3",
+   "parent": "",
+   "pivot": [
+    1,
+    16,
+    0.6
+   ],
+   "rotation": [
+    0.075,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      16,
+      14
+     ],
+     "from": [
+      -0.6,
+      0,
+      -0.6
+     ],
+     "size": [
+      1.2,
+      4,
+      1.2
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "right_arm",
+   "parent": "",
+   "pivot": [
+    -2.7,
+    12.5,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      8,
+      14
+     ],
+     "from": [
+      -0.7,
+      -0.3,
+      -0.7
+     ],
+     "size": [
+      1.4,
+      5,
+      1.4
+     ],
+     "inflate": 0.0,
+     "mirror": false
+    }
+   ]
+  },
+  {
+   "name": "left_arm",
+   "parent": "",
+   "pivot": [
+    2.7,
+    12.5,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "cubes": [
+    {
+     "uv": [
+      8,
+      14
+     ],
+     "from": [
+      -0.7,
+      -0.3,
+      -0.7
+     ],
+     "size": [
+      1.4,
+      5,
+      1.4
+     ],
+     "inflate": 0.0,
+     "mirror": true
+    }
+   ]
+  }
+ ],
+ "preview": {
+  "right_arm": [
+   -0.3,
+   0,
+   0.2
+  ],
+  "left_arm": [
+   -0.1,
+   0,
+   -0.2
+  ]
+ }
+}

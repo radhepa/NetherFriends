@@ -1,0 +1,406 @@
+{
+  "levels": ["Loose thread", "Tied on", "On the spool", "Through the heddle", "Close-woven", "Woven"],
+
+  "greet": [
+    {"text": "*click* *click* A stranger, and only two arms. You climbed all this way with two? Patient of you. I am {name}, {epithet}.", "when": {"first": true, "child": false}},
+    {"text": "Stand still. *click* Your feet found the bridge, not the stems. Good. I am {name}. If you carry an axe, keep it where I can see it.", "when": {"first": true, "child": false}},
+    {"text": "*all six eyes turn to you* You are new. New things are counted here. I am {name}, {epithet}. Now you are counted too.", "when": {"first": true, "child": false}},
+    {"text": "*a vine net hangs ready in the lower hands* I watched you climb. You did not touch a stem. So you may speak, outsider.", "when": {"first": true, "job": "Netcaster"}},
+    {"text": "*click... click* An outsider. Every outsider who climbs this high ends up in the Cloth, one way or another. Let us see which way.", "when": {"first": true, "job": "Clothkeeper"}},
+    {"text": "*peeks out from behind a bridge rope* You only have two arms too! Are you a child? You are very tall for a child.", "when": {"first": true, "child": true}},
+
+    {"text": "*click* You again. The forest let you through. So will I, for now.", "when": {"level": [0, 0], "child": false}},
+    {"text": "Speak slowly, outsider. Thread pulled fast snaps.", "when": {"level": [0, 0], "child": false}},
+    {"text": "*click click* The outsider who walks softly. Welcome back to {village}.", "when": {"level": [1, 2], "child": false}},
+    {"text": "Ah. {player}. I wound your name on a spool so I would not lose it.", "when": {"level": [1, 2], "child": false}},
+    {"text": "*upper hands wave, lower hands keep weaving* Sit. I can talk and work at once. One of us has enough arms for both.", "when": {"level": [3, 4], "child": false}},
+    {"text": "You came back. *click* The Clothkeepers have started asking after you. That is rare.", "when": {"level": [3, 4], "child": false}},
+    {"text": "Woven one. *bows, all four hands crossed* Your thread hangs in the Cloth. Every Weft on every deck knows it.", "when": {"level": [5, 5], "child": false}},
+    {"text": "*click* There you are. When I pass the Long Cloth I touch your thread. It has become a habit.", "when": {"level": [5, 5], "child": false}},
+
+    {"text": "*waves both arms* I have two now and two coming! Look, the nubs! Can you see them?", "when": {"child": true}},
+    {"text": "*swings down from a bridge rope* Don't tell the Clothkeeper I'm out past the hatch!", "when": {"child": true}},
+    {"text": "*click click* Hello, two-arms! Same as me!", "when": {"child": true}},
+    {"text": "You came back! I saved you a place on the net. It only sags a little.", "when": {"child": true, "level": [3, 5]}},
+
+    {"text": "*click... click* I was born before the black rows. I have seen outsiders come and go. Sit, and do not touch the Cloth.", "when": {"job": "Clothkeeper"}},
+    {"text": "*click* Your hands are empty. Keep them so, and my net stays rolled.", "when": {"job": "Netcaster"}},
+    {"text": "*the shuttle never stops* Speak. I am listening with my upper hands. The lower ones are busy.", "when": {"job": "Weaver"}},
+    {"text": "*a thread runs out from the lower hands* Mind the thread. It is longer than this deck and I mean to keep it whole.", "when": {"job": "Spinner"}},
+    {"text": "*climbs down the stalk head first* The caps are sound. The wart is thick. You may stay.", "when": {"job": "Canopy-tender"}},
+    {"text": "*shakes teal drops from four hands* Do not stand downwind of the vats. You would come out teal.", "when": {"job": "Dyer"}},
+
+    {"text": "*smooths the tails of her headwrap with a lower hand* *click* Outsider. Mind the bridge ropes.", "when": {"gender": "female", "child": false}},
+    {"text": "*straightens his headband with two hands and keeps weaving with the other two* Outsider. Greetings.", "when": {"gender": "male", "child": false}},
+    {"text": "*click* Far from any Loom, and still you find a Weft. The forest is wide, but threads cross.", "when": {"place": "wild", "child": false}},
+
+    {"text": "*every eye goes to the axe in your hand* Put that away before you speak to me.", "when": {"holding": "minecraft:iron_axe"}},
+    {"text": "*click.* A diamond axe. In the forest. Put it on your back, outsider, and keep it there.", "when": {"holding": "minecraft:diamond_axe"}},
+    {"text": "*the lower hands reach for a net* That axe has cut harder things than stems. It will not cut ours.", "when": {"holding": "minecraft:netherite_axe"}},
+
+    "*click* Outsider.",
+    "*click click* Speak, then. Precisely, if you can.",
+    "*six eyes, one by one, settle on you* Yes?"
+  ],
+
+  "chatter": [
+    {"text": "*click* {neighbour} spun a thread so fine I could not see it. I felt it, though. Four hands feel what six eyes miss.", "when": {"child": false}},
+    {"text": "{neighbour} dropped a shuttle through the hatch again. It is in the net. Everything ends up in the net.", "when": {"child": false}},
+    {"text": "*click click* {neighbour} says you walked under the Long Cloth with your head bowed. Good. That is how it is done.", "when": {"child": false}},
+    {"text": "{neighbour} is in the dye house up to all four elbows. They will be teal until the next row is tied off.", "when": {"child": false}},
+    {"text": "Do not tell {neighbour} I said so, but their knots are loose. *click* I retie them when they are not looking.", "when": {"child": false}},
+    {"text": "{neighbour} counted the rungs on every ladder in {village}. Then counted them again. Now they are content.", "when": {"child": false}},
+    {"text": "{neighbour} once climbed a stalk with a full dye barrel on their back. Upper arms only. *click* We are not allowed to forget it.", "when": {"child": false}},
+    {"text": "{neighbour} has been weaving the same hem for nine rows. It is the finest hem in {village}.", "when": {"child": false}},
+    {"text": "{neighbour} heard a Piglin horn past the lookout. *click* Only an echo. Probably.", "when": {"child": false}},
+
+    {"text": "The bridges run out from the Great Loom in four straight arms. A crooked bridge is a careless bridge.", "when": {"child": false}},
+    {"text": "Every stalk has a ladder, for outsiders and children. The rest of us just climb. *click*", "when": {"child": false}},
+    {"text": "The lookout cap is small, but its nets catch everything that falls. And some things that drift.", "when": {"child": false}},
+    {"text": "Our huts are teal wool with orange stitches. The stitches are there so you can count your way home through the smoke.", "when": {"child": false}},
+    {"text": "The planks in our huts come from stems that died standing. The forest gives those. We take nothing it does not give.", "when": {"child": false}},
+    {"text": "Listen. The Long Cloth moves when no one touches it. *click* The Clothkeepers say it is the heat rising. I have my doubts.", "when": {"child": false}},
+    {"text": "Twisting vines grow up. Weeping vines grow down. A Weft goes both ways.", "when": {"child": false}},
+    {"text": "*click* You hold your thoughts like a loose spool. They will unwind if you are not careful.", "when": {"child": false}},
+    {"text": "Smell that? Shroomlight in the dye vats. The orange is slow to set. Most things worth having are.", "when": {"child": false}},
+    {"text": "The forest hums when the wart is thick. Put your hand on the stalk. *click* No? Outsiders never do.", "when": {"child": false}},
+    {"text": "Something below the decks moved a block of nylium again. The tall walkers are untidy, but they never cut.", "when": {"child": false}},
+    {"text": "*click* I will tell you something. Some of the needles in my belt were Piglin once. They sew very straight.", "when": {"child": false, "level": [3, 5]}},
+    {"text": "*click* Your thread in the Cloth is a little crooked. The Clothkeeper says that is how we know it is really you.", "when": {"child": false, "level": [5, 5]}},
+
+    {"text": "*ties the tails of her headwrap in a quick knot* Precision is a kind of kindness. Loose ends trip people.", "when": {"gender": "female", "child": false}},
+    {"text": "*flicks his mantle back to free the upper arms* A mantle is warm. But arms first, always.", "when": {"gender": "male", "child": false}},
+    {"text": "This year's row is Thirteen-Twelve. I have lived through more than a hundred and twenty rows. My hands remember each one.", "when": {"job": "Clothkeeper"}},
+    {"text": "*click* My nets are rolled and ready. I have never needed one for you. Keep it that way.", "when": {"job": "Netcaster"}},
+
+    {"text": "*click* Tell me, outsider. When you go up a ladder, do you count the rungs?", "when": {"child": false}, "replies": [
+      {"ask": "Every one.", "text": "*click click* Good. A Weft who loses count loses the ladder.", "points": 1},
+      {"ask": "I just climb fast.", "text": "Fast. *click* That is how things end up in nets.", "points": -1},
+      {"ask": "Why would I?", "text": "So you know how far there is to fall. Think on it.", "points": 0}
+    ]},
+    {"text": "We never cut a warped stem. Not for wood, not for room, not for anything. Do you understand why?", "when": {"child": false}, "replies": [
+      {"ask": "The forest is the warp.", "text": "*all six eyes brighten* And we are the weft. You listen well, outsider.", "points": 2},
+      {"ask": "It's just a big mushroom.", "text": "*click.* It is the frame we hang our lives on. Say that again and I will not hear you.", "points": -2},
+      {"ask": "No. Tell me.", "text": "Cut one stem and the warp is broken. Everything woven on it unravels. Slowly, but it does.", "points": 1}
+    ]},
+    {"text": "*holds up a knot in a lower hand* Is this knot tied well? Look closely before you answer.", "when": {"child": false}, "replies": [
+      {"ask": "*look closely* Yes.", "text": "*click* You looked. That is the right answer, whatever the knot.", "points": 1},
+      {"ask": "Sure, looks fine.", "text": "You did not look. It is a slip knot. It would have dropped you.", "points": -1},
+      {"ask": "One loop is loose.", "text": "*click click click* It is. I tied it loose to see if you would notice.", "points": 2}
+    ]},
+    {"text": "The Long Cloth grows one row a year. You outsiders want everything faster. Why?", "when": {"child": false}, "replies": [
+      {"ask": "We don't live as long.", "text": "*click* Ah. That explains a great deal. I am sorry for you.", "points": 1},
+      {"ask": "Waiting is boring.", "text": "Boring. *click* Only to those who do not watch closely.", "points": -1},
+      {"ask": "Not all of us do.", "text": "Then you may be one of the slow ones. That is praise, here.", "points": 1}
+    ]},
+    {"text": "*click* Outsiders carry axes the way we carry spools. What is yours for?", "when": {"child": false}, "replies": [
+      {"ask": "I left it behind.", "text": "*click click* Thoughtful. The netcasters will be bored.", "points": 2},
+      {"ask": "Trees. Not yours.", "text": "Hm. A careful answer. Keep it careful.", "points": 0},
+      {"ask": "Whatever's in my way.", "text": "*six eyes narrow* Then do not let us be in your way.", "points": -2}
+    ]},
+    {"text": "*click* I saw you looking at the nets under the bridges. Thinking of jumping?", "when": {"child": false}, "replies": [
+      {"ask": "Never. I'd tear them.", "text": "Considerate. They take a long time to weave.", "points": 1},
+      {"ask": "Maybe. Looks fun.", "text": "The children think so too. The children are lighter than you.", "points": 0}
+    ]},
+    {"text": "*click* Something in your pack has blades. Shears, I think. For wool, I hope, and not for our nets.", "when": {"carrying": "minecraft:shears"}, "replies": [
+      {"ask": "Only for wool.", "text": "Then keep them in the pack. Webs do not grow back quickly.", "points": 1},
+      {"ask": "For whatever I like.", "text": "*click* The netcasters will be told.", "points": -2}
+    ]},
+
+    {"text": "{neighbour} let me hold the shuttle! For a little while. Then I dropped it in the net.", "when": {"child": true}},
+    {"text": "I can climb a whole stalk with just my two arms! Well. Halfway.", "when": {"child": true}},
+    {"text": "When my lower arms grow in I'm going to be a netcaster. Or a dyer. Dyers get to be teal.", "when": {"child": true}},
+    {"text": "*click click* I'm practising my clicking. Grown-ups click when they think. I click when I want to look like I'm thinking.", "when": {"child": true}},
+    {"text": "The Long Cloth is so long you can't see the bottom from the deck. I tried. I leaned. Someone grabbed me.", "when": {"child": true}},
+    {"text": "Do you want to see me hang by my knees? *already hanging* I'm very good at it.", "when": {"child": true}, "replies": [
+      {"ask": "Careful up there!", "text": "There's a net! There's always a net. *click*", "points": 1},
+      {"ask": "Show me.", "text": "*swings, and lands on the rope* See? Precise. Like a grown-up.", "points": 1}
+    ]},
+
+    "*click*",
+    "*click... click* Hm. Yes.",
+    "*six eyes drift to the canopy, then back to you* The wart is thick. That is good."
+  ],
+
+  "topics": [
+    {"id": "who_you_are", "ask": "Who are you?", "when": {"child": false}, "lines": [
+      "I am {name}, {epithet}. I was born the year row {row} was woven, so that row is mine. My thread runs through it.",
+      "{name}. Row {row}. *click* A Weft is named for the Cloth, not the other way round.",
+      "*click click* I am a {job} of {village}. My name is {name} and my row is {row}. That is all of me the Cloth needs.",
+      {"text": "{name}, {epithet}. I was born before the black rows. Few of us are left who remember the Cloth when it was all teal and orange.", "when": {"job": "Clothkeeper"}},
+      {"text": "My row is {row}. When I die, the Clothkeepers will tie one knot in it. Just one. What would you want in yours?", "replies": [
+        {"ask": "Something true.", "text": "*click* The right answer. The Cloth does not hold a lie for long.", "points": 1},
+        {"ask": "Something grand.", "text": "Grand things fade first. True things hold.", "points": 0},
+        {"ask": "I don't care.", "text": "Then you will be a loose end. Loose ends get trimmed.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "long_cloth", "ask": "What is the Long Cloth?", "when": {"child": false}, "lines": [
+      "Our history. One row is woven every year, every row in its own colours. This year's row is Thirteen-Twelve. It hangs from the Great Loom, down through the deck.",
+      "Every Loom keeps its own copy. *click* They are never quite alike. The Clothkeepers meet and argue about the differences, very slowly.",
+      "The newest row is always at the frame. The old rows hang down toward the forest floor. The oldest of all are nearly in the nylium.",
+      "To be woven into the Cloth is the highest honour we give. *click* Outsiders who are careless get in too, now and then. As a stain.",
+      {"text": "*click* Would you like to touch it?", "replies": [
+        {"ask": "No. It isn't mine to touch.", "text": "*click click* Then you may. Gently. One finger.", "points": 2},
+        {"ask": "Yes! Right now.", "text": "*catches your hand with a lower arm* Not yet. Learn to want things slowly.", "points": -1},
+        {"ask": "What would happen?", "text": "Nothing, probably. But all of us would remember that you did.", "points": 0}
+      ]}
+    ]},
+
+    {"id": "four_arms", "ask": "Why do you have four arms?", "when": {"child": false}, "lines": [
+      "The upper pair climbs. The lower pair weaves. *click* You have two, so you must always choose which work to do. How tiring for you.",
+      "One lower hand holds the shuttle, the other beats the row in. The upper hands hold me to the frame. Nothing falls. Nothing waits.",
+      "Children are born with two, and nubs where the lower pair will grow. When the nubs open into hands, the child is given a shuttle.",
+      {"text": "*click* Do you wish you had four?", "replies": [
+        {"ask": "Yes, very much.", "text": "Honest. *click click* Most outsiders pretend not to.", "points": 1},
+        {"ask": "Two is enough.", "text": "*click* It is enough for falling, I suppose.", "points": 0},
+        {"ask": "Four seems excessive.", "text": "Excessive. *click* Said the one holding the ladder with both.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "the_forest", "ask": "Tell me about the forest.", "when": {"child": false}, "lines": [
+      "The forest is the warp. We are the weft. The stems stand still and we move through them, over and under. Cut a stem and you cut the cloth.",
+      "We never cut warped stems. Not for wood, not for room. We grow our own giant fungi with bone meal and patience, and live on what grows.",
+      "The wart is the canopy. The shroomlights are its lamps. The tall walkers wander below, moving blocks about. Untidy, but they never cut.",
+      {"text": "*click* Have you ever cut a warped stem?", "replies": [
+        {"ask": "Never.", "text": "*all six eyes hold you* Good. I would know.", "points": 1},
+        {"ask": "Once, before I knew.", "text": "*click... click* Honest. The forest forgives once, if you stop.", "points": 1},
+        {"ask": "A few. So what?", "text": "*a long silence* Then you have a great deal of standing still to do before I trust your hands.", "points": -2}
+      ]}
+    ]},
+
+    {"id": "nets", "ask": "What are the nets for?", "when": {"child": false}, "lines": [
+      "The webs under the bridges catch what falls. Children, mostly. Shuttles. Once a Piglin, who was very surprised.",
+      "Netcasters keep vine nets rolled at their belts. Cut our forest and one drops on you. You will stand still for a while, and think.",
+      "Some nets we hang in the open air, where the smoke drifts. *click* What do we catch there? Ask again when you know us better.",
+      "A net is only holes, held together with patience. So is a good Loom."
+    ]},
+
+    {"id": "your_work", "ask": "What is your work?", "when": {"child": false}, "lines": [
+      {"text": "I keep the Long Cloth. I weave this year's row, Thirteen-Twelve, and I decide what goes in it. Perhaps even you.", "when": {"job": "Clothkeeper"}},
+      {"text": "*click... click* I wove some of the black rows. Now I keep them clean, and I keep the children from staring at them.", "when": {"job": "Clothkeeper"}},
+      {"text": "I weave cloth for huts and shawls and kilts. Shuttle in one lower hand, beater in the other. The upper hands keep the warp from swaying.", "when": {"job": "Weaver"}},
+      {"text": "The heddle lifts every other thread so the shuttle can pass. Over, under, over. Thirty thousand times, and it is a shawl.", "when": {"job": "Weaver"}},
+      {"text": "*click* Would you like to try the shuttle?", "when": {"job": "Weaver"}, "replies": [
+        {"ask": "Yes. I'll go slowly.", "text": "*hands you the shuttle* Slow is correct. Over. Under. Yes. Again.", "points": 1},
+        {"ask": "How hard can it be?", "text": "*takes it back* Hard enough that you asked.", "points": -1}
+      ]},
+      {"text": "I spin twisting vine into thread on the spinning walk. I go backward along the bridge while the spindle turns. I have never once fallen.", "when": {"job": "Spinner"}},
+      {"text": "Your world's string is very even. *click* Who spins it there? Something with eight legs, I hear. We should talk, they and I.", "when": {"job": "Spinner"}},
+      {"text": "I tend the giant fungi our decks stand on. Bone meal at the root, patience at the cap. I never prune. Pruning is cutting with good manners.", "when": {"job": "Canopy-tender"}},
+      {"text": "I climb every stalk in {village} and listen. A sick stalk sounds hollow. *click* None are sick. I would know first.", "when": {"job": "Canopy-tender"}},
+      {"text": "I work the dye house. Wart for teal, shroomlight for orange. And black. *click* We keep the black for when it is needed.", "when": {"job": "Dyer"}},
+      {"text": "Dye needs water. There is only one water in the Nether, and it is not ours. We get it anyway. *click* Do not ask how.", "when": {"job": "Dyer"}},
+      {"text": "I watch from the lookout. Piglins come for the shroomlights. Magmari come for the fungus. My nets come for them both.", "when": {"job": "Netcaster"}},
+      {"text": "*click* A vine net, dropped well, holds a grown Piglin still until they remember their manners. Most never do. We wait anyway.", "when": {"job": "Netcaster"}}
+    ]},
+
+    {"id": "the_loom", "ask": "Tell me about this place.", "when": {"child": false, "place": "village"}, "lines": [
+      "{village} stands on giant warped fungi we grew ourselves. The decks sit on the caps, high above the floor. Bridges run from the Great Loom in four straight arms.",
+      "The Great Loom stands on the biggest cap. The Long Cloth hangs from its frame, down through the deck. Walk under it with your head bowed.",
+      "The dye house is open to the air, under a wool canopy. Cauldrons, barrels, and dyers who are teal to the elbow.",
+      "The lookout is the smallest cap, hung round with nets. From it the netcasters can see every stalk. And every outsider.",
+      "*click* Our huts are woven. Teal wool, orange stitching, cone roofs. You may knock. Gently. Wool does not knock back."
+    ]},
+
+    {"id": "black_rows", "ask": "What are the black rows?", "when": {"child": false, "level": [2, 5]}, "lines": [
+      "Rows Eleven-Ninety to Twelve-Forty-Nine. Sixty rows of black, for the Wither. Sixty years in which nothing else was woven.",
+      "Ask a weaver and they say we chose black, to mourn what it burned. Ask a Clothkeeper who was there. *click* We did not choose. Every thread we spun came out black.",
+      "The Withren call it the Last Answer. We call it Eleven-Ninety. A row is more precise than an answer.",
+      "In row Twelve-Fifty a Clothkeeper tied in one teal thread. No one unpicked it. Then there was orange again. Slowly.",
+      {"text": "*click... click* I wove some of the black rows. Do you want to know what it was like?", "when": {"job": "Clothkeeper"}, "replies": [
+        {"ask": "Only if you want to tell me.", "text": "*a long click* Then not yet. Thank you for asking it that way.", "points": 2},
+        {"ask": "Yes. All of it.", "text": "All of it. *click* Outsiders always want all of it at once.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "war_of_the_hoard", "ask": "The War of the Hoard?", "when": {"child": false, "level": [3, 5]}, "lines": [
+      "The Piglins wanted the gold under the soul sand valleys. The Withren would not give it. The Magmari ferried the war-bands, for pay. And we... *click* collected.",
+      "We took bone from the dead of both sides. Needles. Loom weights. Nothing holds a warp straight like bone.",
+      "*touches a needle at the belt* Are we ashamed? *click* No. The dead had no more use for it. ...Some Clothkeepers will not use the old needles. They do not say why.",
+      "The war rows are knotted with bone beads, one for every needle we took. *click* There are a great many knots.",
+      {"text": "You look at my needles as if they were teeth. *click* Say what you think.", "replies": [
+        {"ask": "It was wrong.", "text": "*click* Honest. Many of us think so too. Quietly.", "points": 1},
+        {"ask": "It was practical.", "text": "Practical. *click* Yes. That is the word we use when we do not want the other one.", "points": 1},
+        {"ask": "It's disgusting.", "text": "*click* Disgust is cheap. The Withren burned the world. We only sewed.", "points": -1}
+      ]}
+    ]},
+
+    {"id": "outsiders", "ask": "What do you make of me?", "when": {"child": false, "level": [2, 5]}, "lines": [
+      "You come from where outsiders make Withers. Three Hollowed skulls, and nothing inside that wants to stop. *click* We have counted.",
+      "If you make a Wither, we will weave it. We weave everything. *click* The only question is the colour.",
+      "You are careful with the forest. That is rare in your kind. I have told the Clothkeepers.",
+      {"text": "*click* Have you ever made a Wither?", "replies": [
+        {"ask": "Never.", "text": "*click* Good. Keep the answer that short.", "points": 1},
+        {"ask": "Not yet.", "text": "*every eye narrows* 'Yet' is a loose thread. People trip on it.", "points": -2},
+        {"ask": "I've killed one.", "text": "*click click* Then you have seen it. Tell the Clothkeeper. They will want the colour right.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "piglins", "ask": "What of the Piglins?", "when": {"child": false}, "lines": [
+      "They raid the canopy for shroomlights and shake the bridges so we drop things. We drop nets. *click* It evens out.",
+      "Piglins wear gold so they know their friends. We never wear it. Gold makes a poor thread: too heavy to hang, too soft to hold a knot.",
+      "A Piglin in a net is loud for a long time. Then quiet. Then loud again. *click* We let them go while they are quiet.",
+      "Their war began what ended in the black rows. They do not like it when we say so. We say so."
+    ]},
+
+    {"id": "withren", "ask": "What of the Withren?", "when": {"child": false}, "lines": [
+      "They keep names. We keep rows. *click* You would think we would get along. We do not.",
+      "They say we stole bone from their dead. We say the dead did not object. They have not forgiven it, and they forget nothing.",
+      "When the Hollowed fall in the old fortresses, they drop bone. We pick it up. The Withren call that theft. *click* It is tidying.",
+      "They made the Wither. Three of them gave themselves to it. We wove sixty rows of black. *click* No one asked us to."
+    ]},
+
+    {"id": "magmari", "ask": "What of the Magmari?", "when": {"child": false}, "lines": [
+      "They pull fungus from our forest floor to dangle in front of their striders. Every fungus they take is a giant that will never grow.",
+      "They carried the Piglin war-bands over the lava, for pay. *click* We remember the price. It is in the war rows.",
+      "Always cold, always talking, always haggling. *click* I could weave a whole shawl while a Magmari names a price.",
+      "A Magmari once asked to buy a stalk. A whole living stalk. *click click* The netcaster is still laughing."
+    ]},
+
+    {"id": "ghastkin", "ask": "What of the Ghastkin?", "when": {"child": false, "level": [2, 5]}, "lines": [
+      "We string nets in the open air where they drift. What they cry into the net, we keep. Then we let them go. *click* Mostly.",
+      "Dye needs water. Their tears are the only water there is. *click* You see how it is.",
+      "Their tears wash away memory. Our dyers forget small things: names, where a spool was set. It is the vats.",
+      {"text": "*click* You think the nets are cruel.", "replies": [
+        {"ask": "They are.", "text": "*click* Perhaps. The dye house would be empty without them. Choose: colour, or kindness.", "points": 0},
+        {"ask": "I didn't say that.", "text": "Your face said it. Two-armed folk have very loud faces.", "points": 0},
+        {"ask": "Every people does as it must.", "text": "*click click* A weft answer. Over and under. I like it.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "growing_arms", "ask": "When do you get four arms?", "when": {"child": true}, "lines": [
+      "*shows the nubs* These are my lower arms! They're still asleep. When they wake up I get a shuttle.",
+      "{neighbour} says the nubs itch before they open. Mine itch all the time. *click* That's a good sign, I think.",
+      "Grown-ups say two arms are for climbing and four are for working. So I'm not allowed to work yet. Good.",
+      {"text": "You only have two arms, forever? *click* Do you mind?", "replies": [
+        {"ask": "I manage fine.", "text": "*click* You're brave. I'll hold the ladder for you.", "points": 1},
+        {"ask": "I wish I had four.", "text": "Me too! We can wish together.", "points": 1}
+      ]}
+    ]},
+
+    {"id": "games", "ask": "What do you like to play?", "when": {"child": true}, "lines": [
+      "Drop-and-catch! You jump off a bridge into the web net and count how far you sank. I sank nine. Don't tell.",
+      "Stalk races! Up the stalk with no ladder. The ladders are for outsiders. Sorry. *click*",
+      "We play Clothkeeper. One of us says a row and the others have to say what happened in it. I always lose on the old rows.",
+      "Hide in the dye house. You come out teal and everyone knows where you were. It's not a very good game."
+    ]},
+
+    {"id": "my_row", "ask": "Where is your row?", "when": {"child": true}, "lines": [
+      "My row is {row}! It's near the top, by the frame, where the new rows are. I can touch it if I stretch.",
+      "Every Weft has a row. Mine is {row}. My mother says nothing much happened that year except me.",
+      "*click* I counted down from my row to the first black one once. I lost count twice.",
+      "Do you have a row? Outsiders don't. *click* Maybe you'll get one if you're very careful."
+    ]},
+
+    {"id": "not_allowed", "ask": "What aren't you allowed to do?", "when": {"child": true}, "lines": [
+      "Don't touch a warped stem with anything sharp. Don't climb the Long Cloth. Don't drop shuttles. I'm good at two of those.",
+      "We're not allowed to stare at the black rows. *whispers* I did once. It felt like they stared back.",
+      "Not allowed past the lookout nets. That's where the netcasters hang the air nets. They won't say what for.",
+      "No going down to the floor alone. The tall walkers are down there. They don't hurt you if you don't look at them."
+    ]}
+  ],
+
+  "gift": {
+    "loved": ["minecraft:string", "minecraft:cobweb", "minecraft:twisting_vines", "minecraft:shroomlight"],
+    "liked": ["#minecraft:wool", "#minecraft:dyes", "minecraft:weeping_vines", "minecraft:bone", "minecraft:bone_meal", "minecraft:warped_fungus", "minecraft:lead"],
+    "disliked": ["#minecraft:axes", "minecraft:shears", "minecraft:flint_and_steel", "minecraft:fire_charge", "#minecraft:warped_stems", "minecraft:warped_fungus_on_a_stick"],
+    "lines": {
+      "loved": [
+        {"text": "*all four hands reach at once* Oh. *click click* This will go into something that lasts longer than both of us.", "when": {"child": false}},
+        {"text": "*click* You chose well. Not quickly, I think. Well.", "when": {"child": false}},
+        {"text": "*winds it carefully onto a belt spool* I will think of you every time this passes the shuttle.", "when": {"child": false}},
+        {"text": "Four hands, and still not enough to hold how pleased I am. *click click click*", "when": {"child": false}},
+        {"text": "A web, whole and unbroken. *click* You carried it so carefully. The netcasters will be jealous.", "when": {"holding": "minecraft:cobweb"}},
+        {"text": "A shroomlight, and not taken from our canopy. *holds it up to every eye* I can tell. It smells of somewhere else.", "when": {"holding": "minecraft:shroomlight"}},
+        {"text": "*hugs it with both arms* For me? All of it? I'll keep it until my lower arms wake up!", "when": {"child": true}},
+        {"text": "*click click click* This is the best thing anyone ever gave me. I'm going to show everyone.", "when": {"child": true}}
+      ],
+      "liked": [
+        {"text": "*click* Useful. I will find a place for it in the weave.", "when": {"child": false}},
+        {"text": "Good. Not perfect, but good. Most good things are.", "when": {"child": false}},
+        {"text": "*tucks it into a lower hand* Thank you. The upper hands thank you too.", "when": {"child": false}},
+        {"text": "*click click* This will do nicely. Precisely nicely.", "when": {"child": false}},
+        {"text": "*turns the bone in three hands* There is a good needle in here. Whose was it? *click* No. Do not tell me.", "when": {"holding": "minecraft:bone"}},
+        {"text": "Ooh. *click* Can I keep it? I'm keeping it.", "when": {"child": true}},
+        {"text": "Thank you! I'll put it with my spools. I have three spools.", "when": {"child": true}}
+      ],
+      "neutral": [
+        {"text": "*click* Hm. I will find a use. We find a use for everything, eventually.", "when": {"child": false}},
+        {"text": "Thank you. *turns it over slowly* I do not know what it is for, but I will learn.", "when": {"child": false}},
+        {"text": "*sets it carefully on the deck* It is a kind thought. That counts.", "when": {"child": false}},
+        {"text": "An outsider's gift. *click* The Clothkeeper will want to know what it was.", "when": {"child": false}},
+        {"text": "What is it? *click click* Does it do anything?", "when": {"child": true}},
+        {"text": "Thank you! I'll ask a grown-up what it's for.", "when": {"child": true}}
+      ],
+      "disliked": [
+        {"text": "*every eye on it* Take that off this deck. Slowly.", "when": {"child": false}},
+        {"text": "*click.* You brought that into the Loom. I will pretend I did not see it. Once.", "when": {"child": false}},
+        {"text": "Blades and fire do not belong near a net. You knew that. If you did not, now you do.", "when": {"child": false}},
+        {"text": "*the lower hands go still* That is a thing for cutting. We do not cut.", "when": {"child": false}},
+        {"text": "*click* This was standing once. Put it down, and do not bring me another.", "when": {"holding": "minecraft:warped_stem"}},
+        {"text": "Fungus on a stick, to lead a strider. *click* That is a Magmari trick, and it was our fungus.", "when": {"holding": "minecraft:warped_fungus_on_a_stick"}},
+        {"text": "*steps back, all four arms raised* Fire. On a deck made of wool. Put it away.", "when": {"holding": "minecraft:flint_and_steel"}},
+        {"text": "*backs away* That's a cutting thing. We're not allowed near cutting things.", "when": {"child": true}},
+        {"text": "No! *click click* Put it away before a netcaster sees!", "when": {"child": true}}
+      ],
+      "again": [
+        {"text": "*click* You gave already. Let the thread rest a while.", "when": {"child": false}},
+        {"text": "One gift is a kindness. Two is a hurry. We do not hurry.", "when": {"child": false}},
+        {"text": "Keep it for next time. *click* There is always a next time, if you are patient.", "when": {"child": false}},
+        {"text": "I have not finished being grateful for the last one.", "when": {"child": false}},
+        {"text": "You already gave me something! My mother says one is polite. Two is showing off.", "when": {"child": true}},
+        {"text": "*click* I still have the other one! I haven't finished looking at it.", "when": {"child": true}}
+      ],
+      "empty": [
+        {"text": "*looks at your empty hand* *click* A gift of nothing. Very light to carry.", "when": {"child": false}},
+        {"text": "Your hand is empty. Precision, outsider. Hold the thing first.", "when": {"child": false}},
+        {"text": "*click click* There is nothing there. Unless outsiders give air. Do they?", "when": {"child": false}},
+        {"text": "*pretends to take something from your hand* Thank you. It is invisible. I will weave it into nothing.", "when": {"child": false}},
+        {"text": "There's nothing in your hand! Is it a trick? *click*", "when": {"child": true}},
+        {"text": "*peers at your empty hand* Is it very small? I can't see it.", "when": {"child": true}}
+      ]
+    }
+  },
+
+  "levelup": [
+    {"text": "*ties a short thread round your wrist* *click* Tied on. You are a loose end no longer. Take this string, for tying things of your own.", "when": {"level": [1, 1], "child": false}, "reward": {"item": "minecraft:string", "count": 8}},
+    {"text": "*click click* I have wound your name on a spool with the others. Here, teal from the vats. Use it on something worth keeping.", "when": {"level": [2, 2], "child": false}, "reward": {"item": "minecraft:cyan_dye", "count": 6}},
+    {"text": "You have passed the heddle, outsider: through, not around. *click* Take a net of your own. Hang it where something might fall.", "when": {"level": [3, 3], "child": false}, "reward": {"item": "minecraft:cobweb", "count": 3}},
+    {"text": "*click... click* The Clothkeepers spoke of you at the Great Loom. They asked me to give you this loom. You will have to work it with two hands. I am sorry.", "when": {"level": [4, 4], "child": false}, "reward": {"item": "minecraft:loom", "count": 1}},
+    {"text": "Come to the Great Loom. *click* We have woven you into the Long Cloth, row Thirteen-Twelve. Your thread hangs there as long as the Cloth does. Take the trial piece.", "when": {"level": [5, 5], "child": false}, "reward": {"item": "minecraft:cyan_wool", "count": 16}},
+
+    {"text": "*ties a thread round your finger, very tight* There! Now you're tied on. That's what grown-ups say. You can have the rest of the string.", "when": {"level": [1, 1], "child": true}, "reward": {"item": "minecraft:string", "count": 4}},
+    {"text": "I wound your name on my practice spool! *click* It's a bit crooked. Here, have some teal. It's from the dye house. I asked first.", "when": {"level": [2, 2], "child": true}, "reward": {"item": "minecraft:cyan_dye", "count": 3}},
+    {"text": "You can come in my net now. Here's a bit of web for your own. Don't tell the netcasters I had it.", "when": {"level": [3, 3], "child": true}, "reward": {"item": "minecraft:cobweb", "count": 1}},
+    {"text": "*whispers* I asked the Clothkeeper if you could have a loom, and they said yes! This one. I helped carry it. With two arms!", "when": {"level": [4, 4], "child": true}, "reward": {"item": "minecraft:loom", "count": 1}},
+    {"text": "They wove you into the Long Cloth! Your thread is right at the top, near mine! *click click* I saved this wool for you.", "when": {"level": [5, 5], "child": true}, "reward": {"item": "minecraft:cyan_wool", "count": 8}}
+  ],
+
+  "farewell": [
+    {"text": "Mind the bridge ropes on your way down. They remember who pulls.", "when": {"child": false}},
+    {"text": "Go, then. The forest will watch you out. So will I.", "when": {"child": false}},
+    {"text": "*turns back to the weave without looking* Over, under. Farewell.", "when": {"child": false}},
+    {"text": "The forest is the warp. We are the weft. *click* And you are... passing through.", "when": {"child": false}},
+    {"text": "Come back soon. The Clothkeepers are still deciding about you. Give them something good to decide.", "when": {"child": false, "level": [3, 4]}},
+    {"text": "*touches the air toward the Great Loom, where your thread hangs* Go woven. Come back woven.", "when": {"child": false, "level": [5, 5]}},
+    {"text": "*click* Go straight down. Not through the canopy.", "when": {"job": "Netcaster"}},
+    {"text": "*click... click* Go well. I will remember this in the row, if it is worth remembering.", "when": {"job": "Clothkeeper"}},
+    {"text": "The forest is wide. *click* Find a Loom if you can. Every Loom keeps the Cloth, more or less.", "when": {"place": "wild", "child": false}},
+    {"text": "Bye! Watch me drop into the net! *drops* ...Bye!", "when": {"child": true}},
+    {"text": "Come back when my lower arms wake up! I'll wave with all four.", "when": {"child": true}},
+    "*click* Go carefully. Count the rungs."
+  ],
+
+  "refuse": [
+    {"text": "*click.* You cut the forest. I heard it fall. We have nothing to say to you.", "when": {"state": "grudge", "child": false}},
+    {"text": "*turns away, all six eyes dimmed* Your hands smell of warped stem. Go.", "when": {"state": "grudge", "child": false}},
+    {"text": "You tore the wart from our canopy. The warp is broken where you cut it. Until it grows back, so is this.", "when": {"state": "grudge", "child": false}},
+    {"text": "*a vine net hangs from the lower hands* Not one step more. You cut what holds us up.", "when": {"state": "grudge", "job": "Netcaster"}},
+    {"text": "*hides behind a rope* You cut a stem! I'm not allowed to talk to you!", "when": {"state": "grudge", "child": true}},
+    {"text": "*all four arms raised* You struck a Weft. Back away from the bridges.", "when": {"state": "angry", "child": false}},
+    {"text": "*click click click* No talking. The nets are falling.", "when": {"state": "angry", "child": false}},
+    {"text": "Hands that strike get no answers here. Go down.", "when": {"state": "angry", "child": false}},
+    {"text": "*scrambles up the stalk* Go away! I'm telling the netcasters!", "when": {"state": "angry", "child": true}}
+  ]
+}
