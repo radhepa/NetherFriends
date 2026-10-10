@@ -22,6 +22,10 @@ loom {
 			if (project.hasProperty('netherVillages')) {
 				vmArg "-Dnetherfriends.villages=${project.property('netherVillages')}"
 			}
+			// -PnetherFilm films the ferry crossing (frames for tools/film_ferry.py)
+			if (project.hasProperty('netherFilm')) {
+				vmArg "-Dnetherfriends.film=true"
+			}
 			if (project.hasProperty('seed')) {
 				vmArg "-Dnetherfriends.seed=${project.property('seed')}"
 			}

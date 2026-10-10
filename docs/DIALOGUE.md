@@ -13,7 +13,8 @@ you talk. `python tools/check_talk.py` checks every file (run it after any edit)
   they answer with one of that topic's lines. Some answers offer **replies** of your own; what you say can win or
   lose friendship.
 - The dock along the bottom: **Talk** (small talk: **chatter**), **Gift** (the item in your main hand),
-  **Barter** (Piglins only: hand over the gold ingot you're holding) and **Goodbye** (they say a **farewell**
+  **Barter** (Piglins only: hand over the gold ingot you're holding), **Ferry** (a Mooring's Ferrier only: a
+  barge to another Mooring, `FERRY.md`; its lines are in `ferry/magmari.json`) and **Goodbye** (they say a **farewell**
   over your hotbar).
 - If they won't talk (a Weft whose forest you cut, anyone you just hit), they say a **refuse** line and offer
   nothing else.

@@ -79,7 +79,12 @@ public final class Builder {
     // -- coordinates ------------------------------------------------------------------------------------
 
     public BlockPos pos(int x, int y, int z) {
-        return this.origin.offset(rotX(this.rotation, x, z), y, rotZ(this.rotation, x, z));
+        return at(this.origin, this.rotation, x, y, z);
+    }
+
+    /** A point in a building's own space (x, y, z from its origin, NORTH = its front) in the world. */
+    public static BlockPos at(BlockPos origin, Rotation rotation, int x, int y, int z) {
+        return origin.offset(rotX(rotation, x, z), y, rotZ(rotation, x, z));
     }
 
     static int rotX(Rotation r, int x, int z) {

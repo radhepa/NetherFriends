@@ -1,0 +1,110 @@
+{
+  "striders": ["Steady", "Old Plod", "Grumble", "Cinder", "Wobbles", "Ember", "Patience", "Sizzle", "Doughty", "Big Slow", "Hob", "Ash-Toes"],
+
+  "offer": [
+    "Where to, shore-foot? {strider}'s saddled and the sea's calm. Well. Calm for lava.",
+    "Every Mooring I can reach is on the list. Pick one. The fare's fair. Fairer if you smile.",
+    "A crossing, then! Choose your shore. {strider} knows the way to all of them and hardly ever gets lost.",
+    "These are the Moorings within a strider's walk. Further than that and even I start to feel the cold.",
+    {"text": "*shiver* Somewhere warm, I hope. Pick quick, before my seams go grey.", "when": {"cold": true}},
+    {"text": "Back again! You must like the sea. Or the company. Where shall {strider} take you?", "when": {"level": [2, 3]}}
+  ],
+
+  "free": [
+    "For you? No fare. Ember-friends ride free. Don't tell the others or they'll all want to be my friend.",
+    "Put your fungus away. You're kin to this hearth now. Where shall {strider} take you?",
+    "A free crossing for a friend. I'll haggle with somebody else today. Where to?"
+  ],
+
+  "searching": [
+    "Hold on. Let me think where the barges can reach from here. *taps the chart post* Give me a moment.",
+    "Crossings, crossings... Let me count the Moorings on this sea. My memory's slower than my strider.",
+    "One moment. I'm working out which chains we can reach before the fungus runs out."
+  ],
+
+  "none": [
+    "No other Mooring within a strider's walk, I'm sorry to say. This sea's ours alone, as far as the barges go.",
+    "Nowhere to take you, shore-foot. The nearest chain is further than any strider walks.",
+    "I've looked and looked. There's no Mooring close enough for a crossing. We're a lonely little hearth out here."
+  ],
+
+  "wild": [
+    "My barge? Back at the Mooring, tied up and sulking. Out here I'm just a Magmari with sore feet.",
+    "No dock, no barge, no crossing. Find me at home and we'll talk fares.",
+    "A Ferrier without a Mooring is just somebody who knows a lot about striders. Ask me at the dock."
+  ],
+
+  "busy": [
+    "You've a crossing booked already. The barge is at the dock, waiting for you.",
+    "One crossing at a time, shore-foot. The barge for your last one is still tied up at the dock."
+  ],
+
+  "blocked": [
+    "Something's crowding the dock today. I can't get a barge out to open lava. Try me again later.",
+    "The lava round the dock is too tight for a barge right now. Even striders need elbow room."
+  ],
+
+  "poor": [
+    "That's short. I'm warm-hearted, not soft-headed. Come back with the whole fare in fungus.",
+    "Not enough fungus, and the strider counts. Striders always count. Bring the rest and we'll go.",
+    "We haggle on the way, not before. Fare first. You're short."
+  ],
+
+  "booked": [
+    "Done! {strider}'s tied up at the dock. Climb aboard and we're off to {destination}.",
+    "Fare's paid and the barge is waiting at the dock. Hop on when you're ready for {destination}.",
+    "Off to {destination}, then. The barge is at the end of the pier. I'll be right behind you.",
+    "Lovely. Down to the dock with you. {strider}'s already pawing at the lava."
+  ],
+
+  "castoff": [
+    "Rub this on first. Magma cream: keeps the sea's heat off your skin. Walk on, {strider}!",
+    "Hold the chain and don't lean over. Walk on, {strider}, nice and steady.",
+    "Here we go! Mind the slabs, they're warm. That's the best kind of warm.",
+    "Off to {destination}. Paste on your hands, there's a dear. Magma cream. Smells awful, works wonders."
+  ],
+
+  "hopoff": [
+    "This is where I leave you. {strider} knows the way to {destination} better than I do. Safe crossing!",
+    "Open sea! I'll wade home from here. Trust the strider and don't look down. Well. Look down. It's very pretty.",
+    "Off I hop. {strider}'s walked to {destination} more times than I've had hot dinners. Say hello to their Ferrier for me.",
+    "Here's my stop. Keep your hands in the barge and your heart warm. {strider} will see you there."
+  ],
+
+  "crossing": [
+    "The Mooring sinks into the red haze behind you. Then there's only lava, to every edge of the world.",
+    "{strider} hums a low note with every step. The barge rocks in time with it.",
+    "Far above, a sky-mourner drifts across the roof of the Nether, crying.",
+    "The heat comes up through the slabs. Somehow it's comfortable.",
+    "A lava fall pours from the dark overhead and hisses into the sea a long way off.",
+    "You lose count of time. Minutes or hours, it's hard to tell on the sea.",
+    "Something big turns over deep in the lava, and the barge rides its swell.",
+    "The chain links clink against the rail. It almost sounds like a song.",
+    "A Magmari song reaches you from somewhere across the sea. Then the haze swallows it."
+  ],
+
+  "landfall": [
+    "Lanterns ahead, low on the sea. {strider} quickens.",
+    "Chains on the sea ahead. Then decks, then huts, then {destination}.",
+    "The haze thins, and a dock comes out of it: {destination}."
+  ],
+
+  "arrive": [
+    "The barge bumps the dock at {destination}. Behind you, {strider} swings round and wades for home.",
+    "Ashore at {destination}. {strider} snorts once, as if to say the fare was worth it, and turns back out to sea.",
+    "You step onto the dock of {destination}. The barge is already slipping back into the haze.",
+    "{destination}. Warm decks, strange faces. {strider} doesn't wait around for thanks."
+  ],
+
+  "late": [
+    "The barge couldn't wait all day. Here's your fungus back. Come and find me when you're ready.",
+    "{strider} got bored and wandered off with the barge. Fare's returned. No hard feelings, she's like that.",
+    "You missed the barge! Fare's back in your pocket. The sea will still be here tomorrow."
+  ],
+
+  "stay": [
+    "Sit down! The sea's hungry, and you're crunchy.",
+    "Stay on the barge! Magma cream only goes so far.",
+    "Back on the slabs, shore-foot. Nobody swims this sea."
+  ]
+}

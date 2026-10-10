@@ -117,7 +117,8 @@ PNGs to the repo.
 - **Children:** about 1.3 blocks, round and stubby-legged, three crest nubs; they run hotter than adults but cool
   twice as fast (`magmari_child`, `magmari_child_cold`).
 - **Jobs:** Ferrier (strider barges), Lava-angler, Chainwright, Quartzcutter, Hearthkeeper, Chartmaker.
-- **Play:** strider-barge ferries across lava seas (Travel), for outsiders only, never one of the other four peoples.
+- **Play:** strider-barge ferries across lava seas, for outsiders only, never one of the other four peoples. Built:
+  ask a Ferrier (Ferry), pay in warped fungus, and a barge takes you to another Mooring (`FERRY.md`).
   Striders are their cattle and boats; ghasts are "the sky-mourners" who saw the Wither and never stopped crying.
 
 ## Weft: the canopy weavers of the Warped Forest (my design)
@@ -234,4 +235,4 @@ the building they live in. Walking into a village shows its name ("Gildmaw Hold"
 Tabs under the friendship card: **Talk**, **Story** (every grown resident's own story in four steps, 64 stories
 across the five peoples, two for every job) and **Journal** (memories, About, story notes). See `STORIES.md`.
 
-Not built yet: trading for the four new peoples, and the Ferrier's ferry (Travel).
+The Ferrier's ferry is built (`FERRY.md`). Not built yet: trading for the four new peoples.

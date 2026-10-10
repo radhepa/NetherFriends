@@ -193,6 +193,7 @@ LANG = {
     "entity.netherfriends.cairnback": "Cairnback",
     "entity.netherfriends.silkgrub": "Silkgrub",
     "entity.netherfriends.ashbell": "Ashbell",
+    "entity.netherfriends.barge": "Strider Barge",
     "item.netherfriends.cairnback_spawn_egg": "Cairnback Spawn Egg",
     "item.netherfriends.silkgrub_spawn_egg": "Silkgrub Spawn Egg",
     "item.netherfriends.ashbell_spawn_egg": "Ashbell Spawn Egg",

@@ -2,28 +2,33 @@ package dev.netherfriends.test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import dev.netherfriends.NetherFriends;
 import dev.netherfriends.client.TalkScreen;
 import dev.netherfriends.entity.Ashbell;
+import dev.netherfriends.entity.Barge;
 import dev.netherfriends.entity.Cairnback;
 import dev.netherfriends.entity.NetherEntities;
 import dev.netherfriends.entity.Silkgrub;
 import dev.netherfriends.entity.People;
 import dev.netherfriends.piglin.GoldRule;
 import dev.netherfriends.talk.Bonds;
+import dev.netherfriends.talk.Ferry;
 import dev.netherfriends.talk.Folk;
 import dev.netherfriends.talk.Journal;
 import dev.netherfriends.talk.Story;
 import dev.netherfriends.talk.Talk;
 import dev.netherfriends.talk.TalkPayload;
 import dev.netherfriends.world.BuildingPiece;
+import dev.netherfriends.world.Sea;
 
 import net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 import net.fabricmc.fabric.api.client.gametest.v1.context.TestServerContext;
 import net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext;
+import net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions;
 import net.minecraft.client.gui.screens.worldselection.WorldCreationUiState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -61,7 +66,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
  * residents (each with a name and a job) and photographed from a few sides. "Talk": a conversation with each people,
  * through the real window: greeting, a topic, a gift and a level-up. "Story": every people's stories load, and one
  * resident's story is played through on the Story tab, then read back on the Journal tab's three pages.
- * "Creatures": the Cairnback, Silkgrub and Ashbell,
+ * "Ferry": a Mooring's Ferrier takes the player across the lava sea to another Mooring (with -PnetherFilm, filmed
+ * frame by frame into ferry-frames/ for tools/film_ferry.py). "Creatures": the Cairnback, Silkgrub and Ashbell,
  * photographed, then each one's use tried for real (relighting, shearing, calming a ghast). Screenshots land in build/run/clientGameTest/screenshots.
  *   gradlew runClientGameTest -PtestHeap=3g [-PnetherTests=Villages]
  */
@@ -106,6 +112,7 @@ public class NetherClientTest implements FabricClientGameTest {
             if (wanted("Peoples")) peoples(ctx, world, server);
             if (wanted("Talk")) talk(ctx, world, server);
             if (wanted("Story")) story(ctx, world, server);
+            if (wanted("Ferry")) ferry(ctx, world, server);
             if (wanted("Creatures")) creatures(ctx, world, server);
             if (wanted("Villages")) villages(ctx, world, server);
         }
@@ -464,6 +471,133 @@ public class NetherClientTest implements FabricClientGameTest {
         server.runCommand("clear @a");
         System.out.println("[netherfriends] story: " + loaded + System.lineSeparator() + "played: " + title + ", reward " + reward
                 + System.lineSeparator() + notes);
+    }
+
+    // -- the ferry ---------------------------------------------------------------------------------------------------
+
+    void ferry(ClientGameTestContext ctx, TestSingleplayerContext world, TestServerContext server) {
+        BlockPos centre = server.computeOnServer(srv -> locate(srv.getLevel(Level.NETHER), "mooring"));
+        check(centre != null, "no Mooring to sail from");
+        server.runCommand(String.format("execute in minecraft:the_nether run tp @a %d %d %d 0 20", centre.getX(), centre.getY() + 3, centre.getZ()));
+        world.getConnection().waitForChunksRender();
+        ctx.waitTicks(40);
+        for (String cmd : List.of("gamemode survival @a", "clear @a", "give @a warped_fungus 16", "effect give @a resistance 600 4 true",
+                "effect give @a fire_resistance 600 0 true", "effect give @a saturation 600 0 true")) {
+            server.runCommand(cmd);
+        }
+        // the Ferrier, on their dock, and the player beside them
+        String ferrierName = server.computeOnServer(srv -> {
+            ServerLevel nether = srv.getLevel(Level.NETHER);
+            ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+            LivingEntity ferrier = nether.getEntitiesOfClass(LivingEntity.class, new AABB(centre).inflate(64), Ferry::ferries).stream().findFirst().orElse(null);
+            check(ferrier != null, "no Ferrier at the Mooring");
+            Sea.Dock dock = Ferry.dockOf(ferrier);
+            check(dock != null, "the Ferrier's Mooring has no dock");
+            BlockPos at = dock.landing();
+            ferrier.teleportTo(nether, at.getX() + 0.5, at.getY(), at.getZ() + 0.5, Set.of(), 0.0F, 0.0F, false);
+            BlockPos stand = at.relative(dock.seaward().getOpposite());
+            float face = dock.seaward().toYRot();
+            player.teleportTo(nether, stand.getX() + 0.5, stand.getY(), stand.getZ() + 0.5, Set.of(), face, 15.0F, false);
+            Talk.open(player, ferrier);
+            return Folk.name(ferrier);
+        });
+        ctx.waitForScreen(TalkScreen.class);
+        ctx.waitTicks(5);
+        TalkPayload p = ctx.computeOnClient(client -> ((TalkScreen) client.gui.screen()).payload());
+        check(p.canFerry(), "the Ferrier offers no Ferry button");
+        press(ctx, "ferry");
+        ctx.waitFor(client -> client.gui.screen() instanceof TalkScreen t && offers(t.payload(), "ferry:0"), 1200);
+        p = ctx.computeOnClient(client -> ((TalkScreen) client.gui.screen()).payload());
+        String offered = p.choices().stream().map(TalkPayload.Choice::label).toList().toString();
+        ctx.getInput().pressKey(KEY_SPACE);
+        ctx.waitTicks(4);
+        shoot(ctx, "nether-ferry-1-offer");
+        // book the first crossing: the window closes, the fare is paid, the barge comes to the dock
+        TalkPayload booking = p;
+        ctx.runOnClient(client -> ClientPlayNetworking.send(new TalkPayload.Action(booking.entityId(), booking.residentId(), "ferry:0")));
+        ctx.waitFor(client -> client.gui.screen() == null, 100);
+        int fungus = server.computeOnServer(srv -> srv.getPlayerList().getPlayers().getFirst().getInventory().countItem(Items.WARPED_FUNGUS));
+        check(fungus < 16, "no fare was taken");
+        // filmed (-PnetherFilm): the game's own view from behind the player. The game runs slowed while it's filmed,
+        // so each frame (however long it takes to save) covers a tick or two; every frame's game tick is noted, and
+        // the film is timed by those (tools/film_ferry.py)
+        if (FILM) {
+            ctx.getInput().resizeWindow(960, 540);
+            server.runOnServer(srv -> srv.tickRateManager().setTickRate(SLOW_TICKS));
+        }
+        ctx.runOnClient(client -> {
+            client.gui.hud.getChat().clearMessages(false);
+            if (client.gui.hud.isHidden()) client.gui.hud.toggle();
+            client.options.setCameraType(net.minecraft.client.CameraType.THIRD_PERSON_BACK);
+        });
+        ctx.waitTicks(5);
+        List<String> log = new ArrayList<>();
+        int frame = 0;
+        for (int i = 0; i < 25; i++, frame++) frame(ctx, server, frame, "WAITING", log);
+        server.runOnServer(srv -> {
+            ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+            ServerLevel nether = srv.getLevel(Level.NETHER);
+            Barge barge = nether.getEntitiesOfClass(Barge.class, player.getBoundingBox().inflate(16), b -> b.bookedFor(player)).stream().findFirst().orElse(null);
+            check(barge != null, "no barge waiting at the dock");
+            barge.interact(player, InteractionHand.MAIN_HAND, barge.position());
+        });
+        List<String> stages = new ArrayList<>();
+        String stage = "OUT";
+        int ashoreFrames = 0;
+        for (int i = 0; i < 3000 && ashoreFrames < 60; i++, frame++) {
+            if (stage.equals("OUT") || stage.equals("IN")) {
+                // a camera looking well down over the player's head, so the strider shows ahead of the raft
+                ctx.runOnClient(client -> client.player.setXRot(38.0F));
+            }
+            frame(ctx, server, frame, stage, log);
+            String now = server.computeOnServer(srv -> Ferry.stage(srv.getPlayerList().getPlayers().getFirst().getUUID()));
+            stage = now == null ? "DONE" : now;
+            if (stages.isEmpty() || !stages.getLast().equals(stage)) stages.add(stage);
+            if (stage.equals("ASHORE") || stage.equals("DONE")) ashoreFrames++;
+            if (stage.equals("DONE") && !stages.contains("IN")) break;      // it ended before landing: fail now
+        }
+        if (FILM) {
+            server.runOnServer(srv -> srv.tickRateManager().setTickRate(20.0F));
+            try {
+                java.nio.file.Files.write(java.nio.file.Path.of("ferry-frames", "frames.txt"), log);
+            } catch (java.io.IOException e) {
+                throw new java.io.UncheckedIOException(e);
+            }
+        }
+        check(stages.contains("CROSSING") && stages.contains("IN"), "the crossing never happened: " + stages);
+        check(stage.equals("ASHORE") || stage.equals("DONE"), "the barge never landed: " + stages);
+        String landed = server.computeOnServer(srv -> {
+            ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+            check(player.getVehicle() == null, "still aboard after landing");
+            check(!player.isInLava(), "set down in the lava");
+            BlockPos at = player.blockPosition();
+            return at.toShortString() + (player.distanceToSqr(centre.getX(), centre.getY(), centre.getZ()) > 200 * 200 ? " (far from where we set out)" : "");
+        });
+        shoot(ctx, "nether-ferry-2-ashore");
+        if (FILM) ctx.getInput().resizeWindow(1600, 900);
+        ctx.runOnClient(client -> {
+            client.options.setCameraType(net.minecraft.client.CameraType.FIRST_PERSON);
+            if (!client.gui.hud.isHidden()) client.gui.hud.toggle();
+        });
+        server.runCommand("gamemode creative @a");
+        server.runCommand("clear @a");
+        System.out.println("[netherfriends] ferry: " + ferrierName + " offered " + offered + "; fare paid, " + fungus + " fungus left; stages "
+                + stages + "; landed at " + landed + "; " + frame + " frames");
+    }
+
+    /** -PnetherFilm: film the ferry crossing. */
+    static final boolean FILM = Boolean.getBoolean("netherfriends.film");
+    /** The game's speed while the ferry is filmed (normal is 20), so frames come a tick or two apart. */
+    static final float SLOW_TICKS = 2.5F;
+
+    /** One tick of the crossing; when filming, one frame of it (ferry-frames/frame-NNNN.png) with its stage and game tick. */
+    static void frame(ClientGameTestContext ctx, TestServerContext server, int frame, String stage, List<String> log) {
+        ctx.waitTicks(1);
+        if (!FILM) return;
+        ctx.takeScreenshot(TestScreenshotOptions.of(String.format("frame-%04d", frame)).disableCounterPrefix()
+                .withDestinationDir(java.nio.file.Path.of("ferry-frames")));
+        long tick = server.computeOnServer(srv -> srv.overworld().getGameTime());
+        log.add(frame + " " + stage + " " + tick);
     }
 
     // -- the creatures ----------------------------------------------------------------------------------------------

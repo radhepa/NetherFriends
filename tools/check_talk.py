@@ -309,6 +309,38 @@ def count(data):
     return n
 
 
+FERRY = os.path.join(os.path.dirname(TALK), "ferry", "magmari.json")
+FERRY_POOLS = {"offer": 4, "free": 3, "searching": 3, "none": 3, "wild": 3, "busy": 2, "blocked": 2, "poor": 3, "booked": 4,
+               "castoff": 4, "hopoff": 4, "crossing": 6, "landfall": 3, "arrive": 4, "late": 3, "stay": 3}
+# {strider} and {destination} are only filled in where the ferry knows them
+FERRY_EXTRA = {"offer": {"strider"}, "free": {"strider"}}
+FERRY_BOTH = {"booked", "castoff", "hopoff", "crossing", "landfall", "arrive", "late", "stay"}
+
+
+def check_ferry():
+    """The Magmari ferry's lines (data/netherfriends/ferry/magmari.json)."""
+    with open(FERRY, encoding="utf-8") as f:
+        data = json.load(f)
+    c = Checker("magmari", data)
+    for k in data:
+        if k not in set(FERRY_POOLS) | {"striders"}:
+            c.bad("ferry", f"unknown key {k}")
+    names = data.get("striders")
+    if not (isinstance(names, list) and len(names) >= 6 and all(isinstance(n, str) and 0 < len(n) <= 16 for n in names)):
+        c.bad("ferry striders", "at least 6 names, each at most 16 characters")
+    for key, least in FERRY_POOLS.items():
+        c.allowed = COMMON_PLACEHOLDERS | OWN_PLACEHOLDERS["magmari"] | FERRY_EXTRA.get(key, set()) | (
+            {"strider", "destination"} if key in FERRY_BOTH else set())
+        lines = c.lines(f"ferry {key}", data.get(key))
+        if len(lines) < least:
+            c.bad(f"ferry {key}", f"{len(lines)} lines, want at least {least}")
+        if sum(1 for line in lines if not line.get("when")) < 2:
+            c.bad(f"ferry {key}", "want at least 2 plain lines (no when)")
+    if not c.problems:
+        print(f"ferry: ok, {sum(len(data[k]) for k in FERRY_POOLS)} lines, {len(names)} strider names")
+    return c.problems
+
+
 def main(argv):
     peoples = argv or PEOPLES
     problems = []
@@ -329,6 +361,8 @@ def main(argv):
         problems += found
         if not found:
             print(f"{people}: ok, {count(data)} lines, {len(data['topics'])} topics")
+    if not argv and os.path.exists(FERRY):
+        problems += check_ferry()
     if problems:
         print("\n".join(problems))
         return 1

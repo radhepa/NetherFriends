@@ -19,7 +19,8 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
  */
 public record TalkPayload(int entityId, UUID residentId, int people, String name, String subtitle, String levelName, int level,
                           int points, int floor, int next, String line, String status, List<Choice> choices, boolean opening,
-                          boolean levelUp, boolean canGift, boolean canBarter, boolean refused, String tab) implements CustomPacketPayload {
+                          boolean levelUp, boolean canGift, boolean canBarter, boolean canFerry, boolean refused, String tab)
+        implements CustomPacketPayload {
     public static final int MAX_CHOICES = 8, MAX_LINE = 16384;
 
     /** Something the player can say. {@code fresh} marks a topic they haven't heard about yet. */
@@ -50,6 +51,7 @@ public record TalkPayload(int entityId, UUID residentId, int people, String name
                 buf.writeBoolean(v.levelUp);
                 buf.writeBoolean(v.canGift);
                 buf.writeBoolean(v.canBarter);
+                buf.writeBoolean(v.canFerry);
                 buf.writeBoolean(v.refused);
                 buf.writeUtf(v.tab, 16);
             },
@@ -65,7 +67,7 @@ public record TalkPayload(int entityId, UUID residentId, int people, String name
                 List<Choice> choices = new ArrayList<>();
                 for (int i = 0; i < count; i++) choices.add(new Choice(buf.readUtf(64), buf.readUtf(64), buf.readBoolean()));
                 return new TalkPayload(entity, id, people, name, subtitle, levelName, level, points, floor, next, line, status,
-                        List.copyOf(choices), buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readUtf(16));
+                        List.copyOf(choices), buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readBoolean(), buf.readUtf(16));
             });
 
     @Override
@@ -75,7 +77,8 @@ public record TalkPayload(int entityId, UUID residentId, int people, String name
 
     /**
      * Client to server: what the player pressed. "topic:&lt;id&gt;", "reply:&lt;n&gt;", "chatter", "gift", "barter", "bye",
-     * "tab:talk|story|journal", "story:next|begin|bring|end:&lt;n&gt;" or "journal:memories|about|notes".
+     * "tab:talk|story|journal", "story:next|begin|bring|end:&lt;n&gt;", "journal:memories|about|notes", or for a
+     * Ferrier "ferry" (where to?) and "ferry:&lt;n&gt;" (book that crossing).
      */
     public record Action(int entityId, UUID residentId, String action) implements CustomPacketPayload {
         public static final Type<Action> TYPE = new Type<>(NetherFriends.id("talk_action"));

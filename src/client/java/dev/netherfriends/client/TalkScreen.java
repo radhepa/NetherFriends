@@ -32,7 +32,7 @@ import net.minecraft.world.item.Items;
  * The conversation window: Village Friends' layout in netherrack. The resident stays in view in the world; their
  * portrait and name ribbon sit on a dialogue box at the bottom, where their line types out in their people's
  * voice; what you can say floats as numbered bubbles on the right; a dock along the bottom has Talk, Gift, Barter
- * (Piglins) and Goodbye; and a card in the corner shows your friendship in their people's own tokens, with three
+ * (Piglins), Ferry (a Mooring's Ferrier) and Goodbye; and a card in the corner shows your friendship in their people's own tokens, with three
  * tabs under it: Talk, Story (their own story, step by step) and Journal (what you've shared, shown at once in a
  * taller box you can scroll).
  */
@@ -259,6 +259,7 @@ public final class TalkScreen extends Screen {
         boolean piglin = this.people == People.PIGLIN;
         List<String> ids = new ArrayList<>(List.of("chatter", "gift"));
         if (piglin) ids.add("barter");
+        if (this.data.canFerry()) ids.add("ferry");
         ids.add("bye");
         boolean wide = this.width >= 520;
         int each = wide ? 70 : 22, gap = 4, total = ids.size() * each + (ids.size() - 1) * gap + 8;
@@ -268,6 +269,7 @@ public final class TalkScreen extends Screen {
             ItemStack icon = switch (id) {
                 case "gift" -> held.isEmpty() ? new ItemStack(Items.CRIMSON_FUNGUS) : held.copyWithCount(1);
                 case "barter" -> new ItemStack(Items.GOLD_INGOT);
+                case "ferry" -> new ItemStack(Items.WARPED_FUNGUS_ON_A_STICK);
                 case "bye" -> new ItemStack(Items.CRIMSON_DOOR);
                 default -> ItemStack.EMPTY;
             };
@@ -275,6 +277,7 @@ public final class TalkScreen extends Screen {
                 case "chatter" -> "Talk";
                 case "gift" -> "Gift";
                 case "barter" -> "Barter";
+                case "ferry" -> "Ferry";
                 default -> "Goodbye";
             };
             DockButton button = new DockButton(x, y, each, dockH, label, icon, id.equals("chatter"), wide, pressed -> {
@@ -298,6 +301,7 @@ public final class TalkScreen extends Screen {
             case "gift" -> !this.data.canGift() ? "Gift: one a day, and you've given one today"
                     : "Gift: offer " + (held.isEmpty() ? "the item in your main hand (you're holding nothing)" : "one " + held.getHoverName().getString());
             case "barter" -> this.data.canBarter() ? "Barter: hand over the gold ingot you're holding" : "Barter: hold a gold ingot to barter";
+            case "ferry" -> "Ferry: a strider barge across the lava sea to another Mooring";
             default -> "Goodbye (Esc)";
         };
     }

@@ -316,7 +316,8 @@ public class MooringVillage extends NetherVillage {
                 b.set(x, 2, z, Kit.lantern(false));
             }
         }
-        for (int x = -4; x <= 4; x++) b.set(x, 0, -2, Blocks.NETHER_BRICK_FENCE);
+        // a rail along the lander's pier side, open where the pier comes in; the sea side stays open for the barge
+        for (int x = -4; x <= 4; x++) if (Math.abs(x) > 1) b.set(x, 0, -2, Blocks.NETHER_BRICK_FENCE);
         b.set(3, 0, 1, Kit.facingAny(Blocks.BARREL, Direction.UP));
         b.barrel(4, 0, 1, Direction.UP, Loot.MOORING_DOCK);
         magmari(b, -2, 0, 0, Magmari.FERRIER, false);

@@ -43,7 +43,8 @@ or `#netherfriends:village` for all of them).
 - **Hearth** (centre): a pool of lava in a magma ring, seats, chain posts with lanterns.
 - **Homes** (4-5): round decks with domed basalt huts, magma seams, three-high doorways (Magmari are tall).
 - **Strider pen**: open lava fenced by a ring walk on posts, with striders (one saddled).
-- **Ferry dock**: a T-shaped landing at the end of a long pier, the Ferrier, a saddled strider.
+- **Ferry dock**: a T-shaped landing at the end of a long pier, the Ferrier, a saddled strider. A rail runs along
+  its pier side, open where the pier comes in; its sea side is open for the ferry's barges (`FERRY.md`).
 - **Causeway**: a bridge to the nearest shore within 64 blocks, if there is one.
 - The Magmari walk on lava, so they wade between the platforms.
 

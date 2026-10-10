@@ -1,5 +1,8 @@
 package dev.netherfriends.client;
 
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
+import dev.netherfriends.talk.FerryPayload;
+import dev.netherfriends.NetherFriends;
 import java.util.List;
 
 import dev.netherfriends.client.ResidentRenderer.Look;
@@ -26,7 +29,7 @@ public final class NetherFriendsClient implements ClientModInitializer {
             "magmari", "magmari_female", "magmari_ferrier", "magmari_child",
             "weft", "weft_female", "weft_child",
             "ghastkin", "ghastkin_female", "ghastkin_child",
-            "cairnback", "silkgrub", "ashbell");
+            "cairnback", "silkgrub", "ashbell", "barge");
 
     @Override
     public void onInitializeClient() {
@@ -36,6 +39,19 @@ public final class NetherFriendsClient implements ClientModInitializer {
             if (client.gui.screen() instanceof TalkScreen screen && screen.matches(payload)) screen.update(payload);
             else if (payload.opening() && client.player != null) client.gui.setScreen(new TalkScreen(payload));
         });
+        // the ferry: the conversation window closes once a crossing is booked; the crossing darkens the screen
+        ClientPlayNetworking.registerGlobalReceiver(FerryPayload.TYPE, (payload, context) -> {
+            var client = context.client();
+            switch (payload.phase()) {
+                case FerryPayload.BOOKED -> {
+                    if (client.gui.screen() instanceof TalkScreen screen) screen.onClose();
+                }
+                case FerryPayload.CROSS -> CrossingOverlay.start(payload.lines());
+                default -> CrossingOverlay.clear();
+            }
+        });
+        HudElementRegistry.addLast(NetherFriends.id("crossing"), CrossingOverlay::extract);
+        EntityRendererRegistry.register(NetherEntities.BARGE, BargeRenderer::new);
         for (String id : GEOMETRY) {
             ModelLayerRegistry.registerModelLayer(Geometry.layer(id), () -> Geometry.load(id));
             if (Geometry.borrowed(id) != null) {

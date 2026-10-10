@@ -93,6 +93,10 @@ public class BuildingPiece extends StructurePiece {
         return this.origin;
     }
 
+    public Rotation rotation() {
+        return this.rotation;
+    }
+
     /** The centre of the village this piece belongs to. */
     public BlockPos village() {
         return this.village;

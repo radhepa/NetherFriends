@@ -65,6 +65,18 @@ public final class NetherEntities {
     public static final EntityType<Ashbell> ASHBELL = creature("ashbell", Ashbell::new, Ashbell::createAttributes,
             b -> b.sized(0.8F, 1.25F).eyeHeight(0.9F).fireImmune(), Ashbell::checkSpawnRules, Biomes.BASALT_DELTAS, 5, 1, 3);
 
+    /**
+     * The Magmari's strider barge: made by the ferry for a crossing, never summoned. Not saved either, but by the barge
+     * itself (Barge.shouldBeSaved): a type marked noSave can't be ridden.
+     */
+    public static final EntityType<Barge> BARGE = barge();
+
+    private static EntityType<Barge> barge() {
+        ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, NetherFriends.id("barge"));
+        return Registry.register(BuiltInRegistries.ENTITY_TYPE, key, EntityType.Builder.<Barge>of(Barge::new, MobCategory.MISC)
+                .sized(3.0F, 0.6F).clientTrackingRange(10).updateInterval(1).fireImmune().noSummon().build(key));
+    }
+
     private static <T extends Mob> EntityType<T> creature(String id, EntityType.EntityFactory<T> factory,
                                                           Supplier<AttributeSupplier.Builder> attributes,
                                                           UnaryOperator<EntityType.Builder<T>> edit, SpawnPlacements.SpawnPredicate<T> rule,

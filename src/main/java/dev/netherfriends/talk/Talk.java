@@ -96,6 +96,11 @@ public final class Talk {
     }
 
     private static final Map<UUID, Session> SESSIONS = new HashMap<>();
+
+    /** The conversation this player is having, if any. */
+    static @Nullable Session session(UUID player) {
+        return SESSIONS.get(player);
+    }
     private static final Map<UUID, UUID> LISTENING = new HashMap<>();
 
     public static void init() {
@@ -220,6 +225,19 @@ public final class Talk {
         String status = "";
         if (a.startsWith("tab:") || a.startsWith("story:") || a.startsWith("journal:")) {
             tabs(player, resident, s, bond, ctx, a);
+            return;
+        }
+        if (a.equals("ferry") || a.startsWith("ferry:")) {
+            if (!Ferry.ferries(resident)) return;
+            if (a.equals("ferry")) {
+                Ferry.offer(player, resident, s, bond, ctx);
+            } else {
+                try {
+                    Ferry.book(player, resident, s, bond, ctx, Integer.parseInt(a.substring(6)));
+                } catch (NumberFormatException ignored) {
+                    // not a destination
+                }
+            }
             return;
         }
         s.tab = TAB_TALK;
@@ -438,7 +456,7 @@ public final class Talk {
         return Dialogue.fill(text, values);
     }
 
-    private static Ctx ctx(LivingEntity resident, Folk.Profile profile, Player player, Bond bond, @Nullable String state) {
+    static Ctx ctx(LivingEntity resident, Folk.Profile profile, Player player, Bond bond, @Nullable String state) {
         return ctx(resident, profile, player, bond, state, bond.level());
     }
 
@@ -453,8 +471,8 @@ public final class Talk {
 
     // -- the window ----------------------------------------------------------------------------------------------
 
-    private static void send(ServerPlayer player, LivingEntity resident, Session s, String text, String status, List<TalkPayload.Choice> choices,
-                             boolean refused, boolean opening) {
+    static void send(ServerPlayer player, LivingEntity resident, Session s, String text, String status, List<TalkPayload.Choice> choices,
+                     boolean refused, boolean opening) {
         send(player, resident, s, text, status, choices, refused, false, opening);
     }
 
@@ -477,7 +495,7 @@ public final class Talk {
         int next = level >= Bonds.MAX_LEVEL ? Bonds.THRESHOLDS[Bonds.MAX_LEVEL] : Bonds.THRESHOLDS[level + 1];
         ServerPlayNetworking.send(player, new TalkPayload(resident.getId(), resident.getUUID(), people.ordinal(), Folk.name(resident),
                 String.join(" · ", bits), bank.levels().get(level), level, bond.points(), Bonds.THRESHOLDS[level], next, text, status,
-                choices.subList(0, Math.min(choices.size(), TalkPayload.MAX_CHOICES)), opening, levelUp, canGift, canBarter, refused, s.tab));
+                choices.subList(0, Math.min(choices.size(), TalkPayload.MAX_CHOICES)), opening, levelUp, canGift, canBarter, Ferry.ferries(resident), refused, s.tab));
     }
 
     // -- while talking -------------------------------------------------------------------------------------------

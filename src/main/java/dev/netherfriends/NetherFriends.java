@@ -3,6 +3,7 @@ package dev.netherfriends;
 import dev.netherfriends.entity.NetherEntities;
 import dev.netherfriends.entity.Weft;
 import dev.netherfriends.talk.Arrival;
+import dev.netherfriends.talk.Ferry;
 import dev.netherfriends.talk.Talk;
 import dev.netherfriends.world.NetherStructures;
 
@@ -23,6 +24,7 @@ import net.minecraft.world.phys.AABB;
  */
 public final class NetherFriends implements ModInitializer {
     public static final String MOD_ID = "netherfriends";
+    public static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(MOD_ID);
     static final TagKey<Block> WARPED_STEMS = TagKey.create(Registries.BLOCK, Identifier.withDefaultNamespace("warped_stems"));
 
     public static Identifier id(String path) {
@@ -34,6 +36,7 @@ public final class NetherFriends implements ModInitializer {
         NetherEntities.init();
         NetherStructures.init();
         Talk.init();
+        Ferry.init();
         Arrival.init();
         // cut the warped forest near a Loom and the Weft come for you
         PlayerBlockBreakEvents.AFTER.register((level, player, pos, state, blockEntity) -> {
