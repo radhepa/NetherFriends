@@ -3,6 +3,8 @@ package dev.netherfriends.client;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.netherfriends.client.anim.Poser;
+
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
@@ -98,5 +100,6 @@ public class ResidentModel extends EntityModel<ResidentRenderState> {
                 this.leftArm.xRot -= 0.9F;
             }
         }
+        Poser.apply(this.root(), s.pose);
     }
 }

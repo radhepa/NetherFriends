@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "dev.netherfriends.client.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"PiglinRenderStateMixin",
+		"PiglinRendererMixin",
+		"PiglinModelMixin",
+		"HumanoidModelMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

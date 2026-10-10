@@ -22,6 +22,7 @@ import dev.netherfriends.talk.Dialogue.Bank;
 import dev.netherfriends.talk.Dialogue.Ctx;
 import dev.netherfriends.talk.Dialogue.Line;
 import dev.netherfriends.talk.Dialogue.Reply;
+import dev.netherfriends.anim.Cue;
 import dev.netherfriends.talk.Dialogue.Topic;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -159,6 +160,7 @@ public final class Talk {
         if (state != null) {
             s.refused = true;
             send(player, resident, s, line(bank.refuse(), ctx, s, resident), "", List.of(), true, true);
+            Cue.send(resident, "decline", player);
             return;
         }
         Line greet = ctx.first() ? firstMeeting(bank.greet(), ctx, s) : null;
@@ -265,6 +267,7 @@ public final class Talk {
             text = fill(reply.text(), ctx, resident);
             s.said(reply.text());
             if (reply.points() != 0) {
+                Cue.send(resident, reply.points() > 0 ? "pleased" : "annoyed", player);
                 bond = bond.add(reply.points());
                 status = reply.points() > 0 ? "They liked that: +" + reply.points() : "That stung: " + reply.points();
             }
@@ -294,6 +297,11 @@ public final class Talk {
                         }));
                 if (!player.hasInfiniteMaterials()) held.shrink(1);
                 bond = bond.gifted(day).add(points);
+                Cue.send(resident, switch (kind) {
+                    case "loved" -> "happy";
+                    case "disliked" -> "decline";
+                    default -> "thanks";
+                }, player);
                 status = "Gave " + gift + ": " + (points > 0 ? "+" : "") + points;
             }
             s.pending = List.of();
@@ -368,6 +376,7 @@ public final class Talk {
             }
             bond = bond.reached(level);
             levelUp = true;
+            Cue.send(resident, "happy", player);
         }
         Bonds.put(resident, player.getUUID(), bond);
         Ctx ctx = ctx(resident, profile, player, bond, null);

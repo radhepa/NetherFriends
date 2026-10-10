@@ -4,6 +4,12 @@ Every people has one dialogue file: `src/main/resources/data/netherfriends/talk/
 `withren`, `magmari`, `weft`, `ghastkin`). The server reads it when the game starts and picks lines from it as
 you talk. `python tools/check_talk.py` checks every file (run it after any edit).
 
+About 13,400 lines in all, some 2,600 to 2,750 per people: greetings for every job, level and age, small talk with
+replies, around fifty topics each (the old ones, two of their own for every job, and life-and-lore topics that open
+as friendship grows), gifts, level-ups, farewells and refusals. Big batches of new lines are easiest written as
+fragment files and merged in: `python tools/talk_more.py` (its docstring has the format) checks a fragment against
+every rule below and merges them, skipping any line already there.
+
 ## How a conversation goes
 
 - Right-click a resident to open the conversation window. Piglins only talk while you wear gold (golden armour or

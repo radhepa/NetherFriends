@@ -9,6 +9,7 @@ import java.util.function.ToIntFunction;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
+import dev.netherfriends.client.anim.Life;
 import dev.netherfriends.entity.Resident;
 
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -84,6 +85,7 @@ public class ResidentRenderer<T extends Resident> extends MobRenderer<T, Residen
         state.look = this.pick.applyAsInt(entity);
         state.swing = entity.getSwingAnimation(partialTicks);
         this.extract.accept(entity, state);
+        Life.fill(entity, state.pose, partialTicks);
     }
 
     /** The cubes drawn with a vanilla texture (the Withren's Wither head). */

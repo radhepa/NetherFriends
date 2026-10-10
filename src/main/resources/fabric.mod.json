@@ -15,7 +15,8 @@
 		"client": ["dev.netherfriends.client.NetherFriendsClient"]
 	},
 	"mixins": [
-		"netherfriends.mixins.json"
+		"netherfriends.mixins.json",
+		{"config": "netherfriends.client.mixins.json", "environment": "client"}
 	],
 	"depends": {
 		"fabricloader": ">=0.19.5",

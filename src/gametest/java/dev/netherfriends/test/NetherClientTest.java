@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.Set;
 
 import dev.netherfriends.NetherFriends;
+import dev.netherfriends.anim.Clip;
+import dev.netherfriends.anim.Cue;
+import dev.netherfriends.anim.Library;
+import dev.netherfriends.anim.Pack;
+import dev.netherfriends.client.anim.Life;
 import dev.netherfriends.client.TalkScreen;
 import dev.netherfriends.entity.Ashbell;
 import dev.netherfriends.entity.Barge;
@@ -68,7 +73,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
  * resident's story is played through on the Story tab, then read back on the Journal tab's three pages.
  * "Ferry": a Mooring's Ferrier takes the player across the lava sea to another Mooring (with -PnetherFilm, filmed
  * frame by frame into ferry-frames/ for tools/film_ferry.py). "Creatures": the Cairnback, Silkgrub and Ashbell,
- * photographed, then each one's use tried for real (relighting, shearing, calming a ghast). Screenshots land in build/run/clientGameTest/screenshots.
+ * photographed, then each one's use tried for real (relighting, shearing, calming a ghast). "Animations": every
+ * people's pack loads with fifty clips or more; a row of each people acts out every clip in turn (photographed
+ * mid-motion), and a reaction cue from the server plays. Screenshots land in build/run/clientGameTest/screenshots.
  *   gradlew runClientGameTest -PtestHeap=3g [-PnetherTests=Villages]
  */
 @SuppressWarnings("UnstableApiUsage")
@@ -114,6 +121,7 @@ public class NetherClientTest implements FabricClientGameTest {
             if (wanted("Story")) story(ctx, world, server);
             if (wanted("Ferry")) ferry(ctx, world, server);
             if (wanted("Creatures")) creatures(ctx, world, server);
+            if (wanted("Animations")) animations(ctx, world, server);
             if (wanted("Villages")) villages(ctx, world, server);
         }
     }
@@ -162,6 +170,110 @@ public class NetherClientTest implements FabricClientGameTest {
             shoot(ctx, "nether-0" + (3 + r) + "-peoples-row" + (r + 1));
         }
         server.runCommand("kill @e[type=!player]");
+    }
+
+    // -- animations ---------------------------------------------------------------------------------------------------
+
+    /** A people's row for the animation photos: five grown-ups (every look) and a child, last. */
+    record Row(String people, String type, List<String> nbt) {}
+
+    static final List<Row> ROWS = List.of(
+            new Row("piglin", "minecraft:piglin", List.of("IsImmuneToZombification:1b", "IsImmuneToZombification:1b",
+                    "IsImmuneToZombification:1b", "IsImmuneToZombification:1b", "IsImmuneToZombification:1b", "IsImmuneToZombification:1b,IsBaby:1b")),
+            new Row("withren", "netherfriends:withren", List.of("Role:0", "Role:1", "Role:2", "Role:0", "Role:1", "Age:-24000")),
+            new Row("magmari", "netherfriends:magmari", List.of("Gender:0", "Gender:1", "Role:1", "Gender:0", "Gender:1", "Age:-24000")),
+            new Row("weft", "netherfriends:weft", List.of("Gender:0", "Gender:1", "Gender:0", "Gender:1", "Gender:0", "Age:-24000")),
+            new Row("ghastkin", "netherfriends:ghastkin", List.of("Gender:0", "Gender:1", "Gender:0", "Gender:1", "Gender:0", "Age:-24000")));
+
+    static List<LivingEntity> rowOnClient(net.minecraft.client.Minecraft client, String people) {
+        return client.level.getEntitiesOfClass(LivingEntity.class, new AABB(-12, 146, -4, 12, 156, 4),
+                        e -> Life.kind(e) != null && Life.kind(e).species().equals(people)).stream()
+                .sorted(java.util.Comparator.comparingDouble(Entity::getX)).toList();
+    }
+
+    void animations(ClientGameTestContext ctx, TestSingleplayerContext world, TestServerContext server) {
+        ctx.runOnClient(client -> {
+            Library library = Library.current();
+            for (String people : Library.SPECIES) {
+                Pack pack = library.pack(people);
+                check(pack != null, people + " has no animation pack");
+                check(pack.clips().size() >= 50, people + " has only " + pack.clips().size() + " clips");
+                for (String trigger : Pack.TRIGGERS) {
+                    check(!library.clips(people, trigger).isEmpty(), people + " has no clip for " + trigger);
+                }
+            }
+        });
+        for (String cmd : List.of("kill @e[type=!player]", "gamemode creative @a", "tp @a 0 150.5 -8 0 8",
+                "fill -12 149 -12 12 149 6 blackstone", "fill -12 150 -12 12 158 6 air", "fill -12 150 6 12 156 6 nether_bricks")) {
+            server.runCommand(cmd);
+        }
+        world.getConnection().waitForChunksRender();
+        ctx.waitTicks(20);
+        // the floor goes in once the chunks are there, and the player is put back on it
+        for (String cmd : List.of("fill -12 149 -12 12 149 6 blackstone", "fill -12 150 -12 12 158 6 air",
+                "fill -12 150 6 12 156 6 nether_bricks", "tp @a 0 150 -8 0 8")) {
+            server.runCommand(cmd);
+        }
+        ctx.runOnClient(client -> {
+            if (!client.gui.hud.isHidden()) client.gui.hud.toggle();
+        });
+        ctx.waitTicks(10);
+        List<String> report = new ArrayList<>();
+        for (Row row : ROWS) {
+            server.runCommand("kill @e[type=!player]");
+            for (int i = 0; i < row.nbt().size(); i++) {
+                server.runCommand(String.format("summon %s %.1f 150 0.5 {NoAI:1b,PersistenceRequired:1b,Rotation:[180f,0f],%s}",
+                        row.type(), (i - (row.nbt().size() - 1) / 2.0) * 2.2, row.nbt().get(i)));
+            }
+            ctx.waitFor(client -> rowOnClient(client, row.people()).size() == row.nbt().size(), 200);
+            ctx.waitTicks(10);
+            List<Clip> clips = Library.current().pack(row.people()).clips();
+            List<Clip> young = clips.stream().filter(c -> c.require().stream().anyMatch(g -> g.equals(Set.of("child")))).toList();
+            List<Clip> grown = clips.stream().filter(c -> !young.contains(c)).toList();
+            int grownSlots = row.nbt().size() - 1;
+            int shots = Math.max((grown.size() + grownSlots - 1) / grownSlots, young.size());
+            for (int shot = 0; shot < shots; shot++) {
+                int first = shot * grownSlots, n = shot;
+                List<String> cast = ctx.computeOnClient(client -> {
+                    List<LivingEntity> folk = rowOnClient(client, row.people());
+                    List<String> playing = new ArrayList<>();
+                    for (int i = 0; i < folk.size(); i++) {
+                        LivingEntity e = folk.get(i);
+                        Clip clip = i == folk.size() - 1 ? (n < young.size() ? young.get(n) : grown.get(n % grown.size()))
+                                : first + i < grown.size() ? grown.get(first + i) : null;
+                        if (clip == null) continue;
+                        check(Life.of(e).play(e, clip.id()), row.people() + ": could not play " + clip.id());
+                        playing.add(e.getId() + "=" + clip.id().substring(clip.id().indexOf(':') + 1));
+                    }
+                    return playing;
+                });
+                ctx.waitTicks(18);
+                ctx.runOnClient(client -> {
+                    for (LivingEntity e : rowOnClient(client, row.people())) {
+                        String id = cast.stream().filter(c -> c.startsWith(e.getId() + "=")).findFirst().orElse(null);
+                        if (id == null) continue;
+                        var now = Life.of(e).activity();
+                        check(now != null && now.id().endsWith(":" + id.substring(id.indexOf('=') + 1)),
+                                row.people() + ": " + id + " stopped before its photo");
+                    }
+                });
+                String name = String.format("nether-anim-%s-%02d", row.people(), shot + 1);
+                shoot(ctx, name);
+                report.add(name + ": " + String.join(", ", cast));
+            }
+            // a reaction from the server: everyone watching sees it
+            server.runOnServer(srv -> {
+                ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+                LivingEntity first = srv.overworld().getEntitiesOfClass(LivingEntity.class, new AABB(-12, 146, -4, 12, 156, 4),
+                        e -> People.of(e) != null).getFirst();
+                Cue.send(first, "happy", player);
+            });
+            ctx.waitFor(client -> rowOnClient(client, row.people()).stream().anyMatch(e -> Life.of(e).reaction() != null
+                    && Life.of(e).describe().endsWith("/happy")), 100);
+            report.add(row.people() + ": " + clips.size() + " clips, happy cue played");
+        }
+        server.runCommand("kill @e[type=!player]");
+        System.out.println("[netherfriends] animations:" + System.lineSeparator() + String.join(System.lineSeparator(), report));
     }
 
     // -- talking ------------------------------------------------------------------------------------------------------
@@ -318,7 +430,7 @@ public class NetherClientTest implements FabricClientGameTest {
     }
 
     static Piglin tagged(net.minecraft.server.MinecraftServer srv, String tag) {
-        return srv.overworld().getEntitiesOfClass(Piglin.class, new AABB(-8, 145, -8, 8, 160, 8), e -> e.entityTags().contains(tag)).getFirst();
+        return srv.overworld().getEntitiesOfClass(Piglin.class, new AABB(-40, 100, -40, 40, 170, 40), e -> e.entityTags().contains(tag)).getFirst();
     }
 
     static @org.jspecify.annotations.Nullable LivingEntity target(Piglin piglin) {

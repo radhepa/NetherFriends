@@ -1,5 +1,6 @@
 package dev.netherfriends;
 
+import dev.netherfriends.anim.Cue;
 import dev.netherfriends.entity.NetherEntities;
 import dev.netherfriends.entity.Weft;
 import dev.netherfriends.talk.Arrival;
@@ -38,6 +39,7 @@ public final class NetherFriends implements ModInitializer {
         Talk.init();
         Ferry.init();
         Arrival.init();
+        Cue.init();
         // cut the warped forest near a Loom and the Weft come for you
         PlayerBlockBreakEvents.AFTER.register((level, player, pos, state, blockEntity) -> {
             if (!(level instanceof ServerLevel server)) return;

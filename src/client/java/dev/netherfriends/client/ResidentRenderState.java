@@ -1,5 +1,7 @@
 package dev.netherfriends.client;
 
+import dev.netherfriends.client.anim.Pose;
+
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 
 /** What the peoples' models animate from. */
@@ -14,4 +16,6 @@ public class ResidentRenderState extends LivingEntityRenderState {
     public boolean frightened;
     /** A Magmari gone cold. */
     public boolean cold;
+    /** The clips they're acting out this frame (tools/animations). */
+    public final Pose pose = new Pose();
 }

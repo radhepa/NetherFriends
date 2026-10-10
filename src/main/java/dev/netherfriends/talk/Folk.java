@@ -16,6 +16,9 @@ import dev.netherfriends.entity.Withren;
 import dev.netherfriends.world.Names;
 
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -56,6 +59,11 @@ public final class Folk {
 
     public static final AttachmentType<Profile> PROFILE = AttachmentRegistry.create(NetherFriends.id("profile"),
             b -> b.persistent(Profile.CODEC));
+
+    /** The job, synced to clients so the animations can follow it. Not saved: it is copied from the profile
+     *  whenever a resident with one is given it or loads (see {@link #init}). */
+    public static final AttachmentType<String> JOB = AttachmentRegistry.create(NetherFriends.id("job"),
+            b -> b.syncWith(ByteBufCodecs.STRING_UTF8, AttachmentSyncPredicate.all()));
 
     public static final String CHILD = "Child";
 
@@ -109,13 +117,19 @@ public final class Folk {
         if (people == null) throw new IllegalArgumentException("not one of the peoples: " + mob);
         Profile profile = make(mob, people, job, home, village, village != null ? "village" : "wild");
         mob.setAttached(PROFILE, profile);
+        mob.setAttached(JOB, profile.job());
         name(mob, profile, people);
         return profile;
     }
 
     /** This resident's profile, made now if they never had one (a Bastion Piglin, a spawn egg). */
-    /** Loads the class, so the attachment is registered before any world (and its residents) loads. */
-    public static void init() {}
+    /** Registers the attachments before any world (and its residents) loads, and syncs jobs as residents load. */
+    public static void init() {
+        ServerEntityEvents.ENTITY_LOAD.register((entity, level) -> {
+            Profile profile = entity.getAttached(PROFILE);
+            if (profile != null && !profile.job().equals(entity.getAttached(JOB))) entity.setAttached(JOB, profile.job());
+        });
+    }
 
     public static Profile of(LivingEntity entity) {
         Profile profile = entity.getAttached(PROFILE);
@@ -130,6 +144,7 @@ public final class Folk {
         }
         profile = make(entity, people, null, null, null, place);
         entity.setAttached(PROFILE, profile);
+        entity.setAttached(JOB, profile.job());
         name(entity, profile, people);
         return profile;
     }

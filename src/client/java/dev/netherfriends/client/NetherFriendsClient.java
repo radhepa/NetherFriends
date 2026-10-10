@@ -16,6 +16,19 @@ import dev.netherfriends.entity.Weft;
 import dev.netherfriends.entity.Withren;
 
 import dev.netherfriends.talk.TalkPayload;
+import dev.netherfriends.anim.Cue;
+import dev.netherfriends.client.anim.Life;
+import dev.netherfriends.entity.Resident;
+import dev.netherfriends.talk.Folk;
+import java.util.Locale;
+import java.util.Set;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
+import net.minecraft.world.entity.monster.piglin.PiglinArmPose;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -51,6 +64,7 @@ public final class NetherFriendsClient implements ClientModInitializer {
             }
         });
         HudElementRegistry.addLast(NetherFriends.id("crossing"), CrossingOverlay::extract);
+        animations();
         EntityRendererRegistry.register(NetherEntities.BARGE, BargeRenderer::new);
         for (String id : GEOMETRY) {
             ModelLayerRegistry.registerModelLayer(Geometry.layer(id), () -> Geometry.load(id));
@@ -90,5 +104,39 @@ public final class NetherFriendsClient implements ClientModInitializer {
             s.climbing = g.isClimbing();
         }));
         EntityRendererRegistry.register(NetherEntities.ASHBELL, ctx -> new CreatureRenderer<Ashbell>(ctx, "ashbell", 0.3F, true, (a, s) -> {}));
+    }
+
+    /**
+     * The peoples' animation packs (docs/ANIMATIONS.md): who plays them, when they can't (fighting, climbing,
+     * frightened, a Piglin admiring gold or dancing), and the tags that choose clips (job, gender, a cold Magmari).
+     */
+    static void animations() {
+        Life.register(EntityTypes.PIGLIN, new Life.Kind("piglin", e -> e instanceof AbstractPiglin p && !p.isAggressive()
+                && !p.isConverting() && p.getArmPose() == PiglinArmPose.DEFAULT, NetherFriendsClient::tags));
+        Life.register(EntityTypes.PIGLIN_BRUTE, new Life.Kind("piglin", e -> e instanceof AbstractPiglin p && !p.isAggressive()
+                && !p.isConverting(), (e, tags) -> {
+            tags(e, tags);
+            tags.add("brute");
+        }));
+        Life.register(NetherEntities.WITHREN, new Life.Kind("withren", e -> !((Mob) e).isAggressive(), NetherFriendsClient::tags));
+        Life.register(NetherEntities.MAGMARI, new Life.Kind("magmari", e -> !((Mob) e).isAggressive(), (e, tags) -> {
+            tags(e, tags);
+            if (((Magmari) e).isCold()) tags.add("cold");
+        }));
+        Life.register(NetherEntities.WEFT, new Life.Kind("weft", e -> !((Mob) e).isAggressive() && !((Weft) e).isClimbing(), NetherFriendsClient::tags));
+        Life.register(NetherEntities.GHASTKIN, new Life.Kind("ghastkin", e -> !((Mob) e).isAggressive() && !((Ghastkin) e).isFrightened(),
+                NetherFriendsClient::tags));
+        // in a conversation: 2 while their line types out, 1 while you choose what to say
+        Life.conversation = e -> Minecraft.getInstance().gui.screen() instanceof TalkScreen t && t.payload().entityId() == e.getId()
+                ? (t.speaking() ? 2 : 1) : 0;
+        ClientTickEvents.END_CLIENT_TICK.register(Life::tickAll);
+        ClientPlayNetworking.registerGlobalReceiver(Cue.TYPE, (cue, context) -> Life.cue(cue.entityId(), cue.trigger()));
+    }
+
+    /** Tags every people shares: their job ("job:lava_angler") and, where they have one, their gender. */
+    static void tags(LivingEntity e, Set<String> tags) {
+        String job = e.getAttached(Folk.JOB);
+        if (job != null && !job.isEmpty()) tags.add("job:" + job.toLowerCase(Locale.ROOT).replace('-', '_').replace(' ', '_'));
+        if (e instanceof Resident r && r.people().gendered) tags.add(r.isFemale() ? "female" : "male");
     }
 }
