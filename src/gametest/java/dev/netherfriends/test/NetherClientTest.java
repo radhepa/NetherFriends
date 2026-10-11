@@ -17,6 +17,7 @@ import dev.netherfriends.client.TalkScreen;
 import dev.netherfriends.entity.Ashbell;
 import dev.netherfriends.entity.Barge;
 import dev.netherfriends.entity.Cairnback;
+import dev.netherfriends.entity.Magmari;
 import dev.netherfriends.entity.NetherEntities;
 import dev.netherfriends.entity.Silkgrub;
 import dev.netherfriends.entity.People;
@@ -88,7 +89,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
  * people's pack loads with fifty clips or more; a row of each people acts out every clip in turn (photographed
  * mid-motion), and a reaction cue from the server plays. "Loot": every loot table of the mod rolled hundreds of times
  * (chest counts vary, potions are real potions, the Cairnback's bone meal comes half the time), so we know 26.3
- * reads them. Screenshots land in build/run/clientGameTest/screenshots.
+ * reads them. "Lava": Magmari stand on a lava top, and one put on the floor of a deep pool or dropped in from above
+ * comes back up to it (26.3 needs a liquid collision shape as well as canStandOnFluid). Screenshots land in
+ * build/run/clientGameTest/screenshots.
  *   gradlew runClientGameTest -PtestHeap=3g [-PnetherTests=Villages]
  */
 @SuppressWarnings("UnstableApiUsage")
@@ -137,6 +140,7 @@ public class NetherClientTest implements FabricClientGameTest {
             if (wanted("Animations")) animations(ctx, world, server);
             if (wanted("Villages")) villages(ctx, world, server);
             if (wanted("Loot")) loot(server);
+            if (wanted("Lava")) lava(ctx, world, server);
         }
     }
 
@@ -973,5 +977,44 @@ public class NetherClientTest implements FabricClientGameTest {
                 }
             }
         });
+    }
+
+    // -- Magmari on lava ---------------------------------------------------------------------------------------
+
+    /** Lava top of the test pool; Magmari stand half a block into it, on the strider's footing. */
+    static final int POOL_TOP = 149;
+
+    void lava(ClientGameTestContext ctx, TestSingleplayerContext world, TestServerContext server) {
+        server.runCommand("tp @a 34 154 -6 0 25");
+        world.getConnection().waitForChunksRender();
+        ctx.waitTicks(20);
+        // a pool six deep, walled high enough that nobody steps out of it, and a floor for the camera
+        for (String cmd : List.of("fill 29 143 -1 39 154 9 basalt", "fill 30 144 0 38 154 8 air", "fill 30 144 0 38 " + POOL_TOP + " 8 lava",
+                "fill 29 150 -1 39 154 -1 air", "fill 29 150 -1 39 150 -1 glass", "fill 33 153 -7 35 153 -5 barrier",
+                "tp @a 34 154 -6 0 25", "kill @e[type=netherfriends:magmari]")) {
+            server.runCommand(cmd);
+        }
+        // one on the pool floor, one dropped in from above, one stood on the top
+        server.runCommand("summon netherfriends:magmari 32.5 144 4.5 {PersistenceRequired:1b,Rotation:[180f,0f]}");
+        server.runCommand("summon netherfriends:magmari 34.5 153 4.5 {PersistenceRequired:1b,Rotation:[180f,0f],Gender:1}");
+        server.runCommand("summon netherfriends:magmari 36.5 " + POOL_TOP + ".5 4.5 {PersistenceRequired:1b,Rotation:[180f,0f],Age:-24000}");
+        AABB pool = new AABB(30, 143, 0, 39, 155, 9);
+        ctx.waitTicks(160);
+        // then watched for two seconds: all at the top, none sunk, none hopping
+        double low = Double.MAX_VALUE, high = -Double.MAX_VALUE;
+        for (int i = 0; i < 8; i++) {
+            double[] ys = server.computeOnServer(srv -> srv.overworld().getEntitiesOfClass(Magmari.class, pool, m -> true)
+                    .stream().mapToDouble(Magmari::getY).toArray());
+            check(ys.length == 3, "three Magmari still in the pool, found " + ys.length);
+            for (double y : ys) {
+                low = Math.min(low, y);
+                high = Math.max(high, y);
+            }
+            ctx.waitTicks(5);
+        }
+        System.out.println("[netherfriends test] Magmari on lava: feet between " + low + " and " + high + " (lava top " + POOL_TOP + ")");
+        check(low >= POOL_TOP + 0.3, "every Magmari is up on the lava top, lowest feet at " + low);
+        check(high <= POOL_TOP + 1.2, "no Magmari is hopping about, highest feet at " + high);
+        shoot(ctx, "nether-lava-magmari");
     }
 }

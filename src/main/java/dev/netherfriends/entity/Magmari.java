@@ -12,18 +12,22 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 
@@ -73,15 +77,52 @@ public class Magmari extends Resident {
     @Override
     protected void registerGoals() {
         super.registerGoals();
+        // FloatGoal also fires in lava, which would set them hopping on the surface they stand on: water only
+        this.goalSelector.removeAllGoals(goal -> goal instanceof FloatGoal);
+        this.goalSelector.addGoal(0, new FloatGoal(this) {
+            @Override
+            public boolean canUse() {
+                return !Magmari.this.isInLava() && super.canUse();
+            }
+        });
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.5));
         this.goalSelector.addGoal(7, new RandomStrollGoal(this, 0.7));
     }
 
     // -- lava -------------------------------------------------------------------------------------------------
 
+    /** The lava top they stand on, the strider's: half a block. */
+    private static final VoxelShape LAVA_FOOTING = Block.column(16.0, 0.0, 8.0);
+
+    /** In 26.3 both this and {@link #canStandOnFluid} are needed for a lava surface to hold them up. */
     @Override
     public boolean canStandOnFluid(FluidState fluid) {
         return fluid.is(FluidTags.LAVA);
+    }
+
+    @Override
+    public VoxelShape getLiquidCollisionShape() {
+        return LAVA_FOOTING;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        this.floatUp();
+    }
+
+    /**
+     * Under the surface (knocked in, a flowing edge, a fall) they rise back up, as striders do but quicker:
+     * lava seas are deep and a strider's rise would take most of a minute from the floor.
+     */
+    private void floatUp() {
+        if (!this.isInLava()) return;
+        if (CollisionContext.of(this).isAbove(LAVA_FOOTING, this.blockPosition(), true)
+                && !this.level().getFluidState(this.blockPosition().above()).is(FluidTags.LAVA)) {
+            this.setOnGround(true);
+        } else {
+            this.setDeltaMovement(this.getDeltaMovement().scale(0.5).add(0.0, 0.1, 0.0));
+        }
     }
 
     @Override
