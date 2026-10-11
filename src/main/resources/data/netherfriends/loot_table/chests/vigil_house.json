@@ -12,9 +12,9 @@
           "type": "minecraft:item",
           "name": "minecraft:bone",
           "weight": 25,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,
@@ -27,9 +27,9 @@
           "type": "minecraft:item",
           "name": "minecraft:bone_meal",
           "weight": 15,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,
@@ -42,9 +42,9 @@
           "type": "minecraft:item",
           "name": "minecraft:nether_wart",
           "weight": 20,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,
@@ -57,9 +57,9 @@
           "type": "minecraft:item",
           "name": "minecraft:soul_torch",
           "weight": 12,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,
@@ -72,9 +72,9 @@
           "type": "minecraft:item",
           "name": "minecraft:coal",
           "weight": 15,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,
@@ -92,9 +92,9 @@
           "type": "minecraft:item",
           "name": "minecraft:paper",
           "weight": 10,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,
@@ -112,9 +112,9 @@
           "type": "minecraft:item",
           "name": "minecraft:quartz",
           "weight": 10,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,

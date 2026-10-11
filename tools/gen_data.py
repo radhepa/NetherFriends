@@ -66,16 +66,16 @@ def item(name, weight, lo=1, hi=1, extra=None):
     e = {"type": "minecraft:item", "name": name, "weight": weight}
     fns = []
     if hi > 1 or lo != 1:
-        fns.append({"function": "minecraft:set_count", "count": {"type": "minecraft:uniform", "min": lo, "max": hi}})
+        fns.append({"type": "minecraft:set_count", "count": {"type": "minecraft:uniform", "min": lo, "max": hi}})
     if extra:
         fns.extend(extra)
     if fns:
-        e["functions"] = fns
+        e["modifier"] = fns
     return e
 
 
 def potion(pid):
-    return [{"function": "minecraft:set_potion", "id": pid}]
+    return [{"type": "minecraft:set_potion", "id": pid}]
 
 
 def table(*pools):
@@ -145,7 +145,7 @@ def drops(*entries):
     return {"type": "minecraft:entity", "pools": [{
         "rolls": 1,
         "entries": [item(name, 1, lo, hi)],
-        **({"conditions": [{"condition": "minecraft:random_chance", "chance": chance}]} if chance < 1 else {}),
+        **({"condition": {"type": "minecraft:random_chance", "chance": chance}} if chance < 1 else {}),
     } for (name, lo, hi, chance) in entries]}
 
 

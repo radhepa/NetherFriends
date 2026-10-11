@@ -12,9 +12,9 @@
           "type": "minecraft:item",
           "name": "minecraft:white_candle",
           "weight": 18,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1,
@@ -27,9 +27,9 @@
           "type": "minecraft:item",
           "name": "minecraft:light_blue_candle",
           "weight": 10,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1,
@@ -42,9 +42,9 @@
           "type": "minecraft:item",
           "name": "minecraft:string",
           "weight": 12,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,
@@ -57,9 +57,9 @@
           "type": "minecraft:item",
           "name": "minecraft:quartz",
           "weight": 15,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,
@@ -77,9 +77,9 @@
           "type": "minecraft:item",
           "name": "minecraft:white_wool",
           "weight": 10,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1,
@@ -92,9 +92,9 @@
           "type": "minecraft:item",
           "name": "minecraft:glass_bottle",
           "weight": 12,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1,
@@ -107,9 +107,9 @@
           "type": "minecraft:item",
           "name": "minecraft:paper",
           "weight": 8,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1,
@@ -122,9 +122,9 @@
           "type": "minecraft:item",
           "name": "minecraft:basalt",
           "weight": 10,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,

@@ -1,7 +1,10 @@
 package dev.netherfriends.test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import dev.netherfriends.NetherFriends;
@@ -38,11 +41,14 @@ import net.minecraft.client.gui.screens.worldselection.WorldCreationUiState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
@@ -50,6 +56,7 @@ import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Ghast;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -59,6 +66,10 @@ import net.minecraft.world.level.levelgen.presets.WorldPresets;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
@@ -75,7 +86,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
  * frame by frame into ferry-frames/ for tools/film_ferry.py). "Creatures": the Cairnback, Silkgrub and Ashbell,
  * photographed, then each one's use tried for real (relighting, shearing, calming a ghast). "Animations": every
  * people's pack loads with fifty clips or more; a row of each people acts out every clip in turn (photographed
- * mid-motion), and a reaction cue from the server plays. Screenshots land in build/run/clientGameTest/screenshots.
+ * mid-motion), and a reaction cue from the server plays. "Loot": every loot table of the mod rolled hundreds of times
+ * (chest counts vary, potions are real potions, the Cairnback's bone meal comes half the time), so we know 26.3
+ * reads them. Screenshots land in build/run/clientGameTest/screenshots.
  *   gradlew runClientGameTest -PtestHeap=3g [-PnetherTests=Villages]
  */
 @SuppressWarnings("UnstableApiUsage")
@@ -123,6 +136,7 @@ public class NetherClientTest implements FabricClientGameTest {
             if (wanted("Creatures")) creatures(ctx, world, server);
             if (wanted("Animations")) animations(ctx, world, server);
             if (wanted("Villages")) villages(ctx, world, server);
+            if (wanted("Loot")) loot(server);
         }
     }
 
@@ -903,5 +917,61 @@ public class NetherClientTest implements FabricClientGameTest {
             if (piece instanceof BuildingPiece building) return building.village();
         }
         return null;
+    }
+
+    // -- every loot table, rolled ---------------------------------------------------------------------------------
+
+    static final int ROLLS = 300;
+
+    /** Per item: in how many rolls it came, its biggest single stack and how many in all. */
+    static Map<Item, int[]> roll(LootTable table, LootParams params) {
+        Map<Item, int[]> out = new LinkedHashMap<>();
+        for (int i = 0; i < ROLLS; i++) {
+            Map<Item, Integer> got = new HashMap<>();
+            for (ItemStack stack : table.getRandomItems(params)) {
+                if (stack.isEmpty()) continue;
+                var potion = stack.get(DataComponents.POTION_CONTENTS);
+                check(!stack.is(Items.POTION) || potion != null && potion.potion().isPresent(), "a chest potion is a real potion, not " + stack);
+                got.merge(stack.getItem(), stack.getCount(), Integer::sum);
+                int[] t = out.computeIfAbsent(stack.getItem(), k -> new int[3]);
+                t[1] = Math.max(t[1], stack.getCount());
+            }
+            got.forEach((item, n) -> { int[] t = out.get(item); t[0]++; t[2] += n; });
+        }
+        return out;
+    }
+
+    void loot(TestServerContext server) {
+        server.runOnServer(srv -> {
+            ServerLevel level = srv.overworld();
+            ServerPlayer player = srv.getPlayerList().getPlayers().getFirst();
+            Vec3 origin = player.position();
+            var tables = srv.reloadableRegistries().lookup().lookupOrThrow(Registries.LOOT_TABLE).listElementIds()
+                    .filter(k -> k.identifier().getNamespace().equals(NetherFriends.MOD_ID)).sorted((a, b) -> a.identifier().compareTo(b.identifier())).toList();
+            check(tables.size() == 15, "15 Nether Friends loot tables load, found " + tables.size());
+            for (var key : tables) {
+                String path = key.identifier().getPath();
+                boolean chest = path.startsWith("chests/");
+                var params = new LootParams.Builder(level).withParameter(LootContextParams.ORIGIN, origin);
+                if (!chest) {
+                    Entity mob = BuiltInRegistries.ENTITY_TYPE.getOptional(key.identifier().withPath(path.substring("entities/".length())))
+                            .orElseThrow().create(level, EntitySpawnReason.COMMAND);
+                    mob.setPos(origin);
+                    params.withParameter(LootContextParams.THIS_ENTITY, mob).withParameter(LootContextParams.DAMAGE_SOURCE, level.damageSources().playerAttack(player))
+                            .withParameter(LootContextParams.ATTACKING_ENTITY, player).withParameter(LootContextParams.LAST_DAMAGE_PLAYER, player);
+                }
+                var got = roll(srv.reloadableRegistries().getLootTable(key), params.create(chest ? LootContextParamSets.CHEST : LootContextParamSets.ENTITY));
+                StringBuilder shown = new StringBuilder();
+                got.forEach((item, t) -> shown.append(BuiltInRegistries.ITEM.getKey(item).getPath()).append(" in ").append(t[0]).append(" up to ").append(t[1]).append(", "));
+                System.out.println("[netherfriends test] " + path + ": " + shown);
+                // Before 26.3's keys every stack was a single item, and every creature drop came every time.
+                if (chest) check(got.values().stream().anyMatch(t -> t[1] >= 2), path + " stack sizes follow set_count");
+                else check(got.values().stream().anyMatch(t -> t[1] >= 2 || t[0] < ROLLS), path + " drop counts follow set_count");
+                if (path.equals("entities/cairnback")) {
+                    int[] meal = got.get(Items.BONE_MEAL);
+                    check(meal != null && meal[0] > ROLLS * 3 / 10 && meal[0] < ROLLS * 7 / 10, "the Cairnback's bone meal comes about half the time");
+                }
+            }
+        });
     }
 }
